@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Sayfa Bulunamadı",
@@ -13,9 +15,15 @@ export default function NotFoundPage() {
           Sayfa Bulunamadı!
         </h1>
 
-        <p className="mt-4 text-muted-foreground">
+        <p className="my-4 text-muted-foreground">
           Üzgünüz, gitmeye çalıştığınız sayfayı bulamadık.
         </p>
+
+        <Link href={'/'}>
+          <Button variant="secondary">
+            Ana sayfaya dön
+          </Button>
+        </Link>
       </div>
     </div>
   )
