@@ -20,7 +20,7 @@ const login = async (email: string, password: string) => {
   });
 
   if (data.success) {
-    tokenService.setToken(data.data.token);
+    await tokenService.setToken(data.data.token);
   }
 
   return data;
@@ -35,7 +35,7 @@ const register = async (email: string, name: string, surname: string, password: 
   });
 
   if (data.success) {
-    tokenService.setToken(data.data.token);
+    await tokenService.setToken(data.data.token);
   }
 
   return data;

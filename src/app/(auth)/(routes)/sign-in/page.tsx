@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,8 +11,26 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import login from "@/actions/auth/login";
+import { useToast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
 
 export default function AuthSignInPage() {
+  const toast = useToast();
+
+  const clientAction = async (formData: FormData) => {
+    const response = await login(formData);
+
+    if (!response.success) {
+      toast.toast({
+        description: response.message
+      });
+      return;
+    }
+
+    redirect("/");
+  }
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -22,13 +42,14 @@ export default function AuthSignInPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="grid gap-4">
+        <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">
               E-posta (*)
             </Label>
             <Input
               id="email"
+              name="email"
               type="email"
               required
             />
@@ -44,6 +65,7 @@ export default function AuthSignInPage() {
             </div>
             <Input
               id="password"
+              name="password"
               type="password"
               required
             />

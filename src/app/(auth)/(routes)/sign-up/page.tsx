@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,8 +12,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import register from "@/actions/auth/register";
+import { useToast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
 
 export default function AuthSignUpPage() {
+  const toast = useToast();
+
+  const clientAction = async (formData: FormData) => {
+    const response = await register(formData);
+
+    if (!response.success) {
+      toast.toast({
+        description: response.message
+      });
+      return;
+    }
+
+    redirect("/");
+  }
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -23,7 +43,7 @@ export default function AuthSignUpPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="grid gap-4">
+        <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">
               E-posta (*)
@@ -31,6 +51,7 @@ export default function AuthSignUpPage() {
             <Input
               id="email"
               type="email"
+              name="email"
               required
             />
           </div>
@@ -41,6 +62,7 @@ export default function AuthSignUpPage() {
             <Input
               id="name"
               type="text"
+              name="name"
               required
             />
           </div>
@@ -51,6 +73,7 @@ export default function AuthSignUpPage() {
             <Input
               id="surname"
               type="text"
+              name="surname"
               required
             />
           </div>
@@ -61,6 +84,7 @@ export default function AuthSignUpPage() {
             <Input
               id="password"
               type="password"
+              name="password"
               required
             />
           </div>
@@ -71,6 +95,7 @@ export default function AuthSignUpPage() {
             <Input
               id="confirmPassword"
               type="password"
+              name="confirmPassword"
               required
             />
           </div>
