@@ -23,6 +23,7 @@ export default function AuthSignInPage() {
 
     if (!response.success) {
       toast.toast({
+        variant: "destructive",
         description: response.message
       });
       return;

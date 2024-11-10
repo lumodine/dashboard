@@ -24,6 +24,7 @@ export default function AuthSignUpPage() {
 
     if (!response.success) {
       toast.toast({
+        variant: "destructive",
         description: response.message
       });
       return;
