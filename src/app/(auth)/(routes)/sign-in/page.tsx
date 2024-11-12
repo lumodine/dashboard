@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import login from "@/actions/auth/login";
 import { useToast } from "@/hooks/use-toast";
-import { redirect } from "next/navigation";
 
 export default function AuthSignInPage() {
   const toast = useToast();
@@ -21,15 +20,12 @@ export default function AuthSignInPage() {
   const clientAction = async (formData: FormData) => {
     const response = await login(formData);
 
-    if (!response.success) {
+    if (response.message) {
       toast.toast({
-        variant: "destructive",
+        variant: response.success ? "default" : "destructive",
         description: response.message
       });
-      return;
     }
-
-    redirect("/");
   }
 
   return (

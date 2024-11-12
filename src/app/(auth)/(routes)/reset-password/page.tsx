@@ -11,15 +11,18 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import register from "@/actions/auth/register";
 import { useToast } from "@/hooks/use-toast";
+import resetPassword from "@/actions/auth/resetPassword";
+import { useSearchParams } from "next/navigation";
 
-export default function AuthSignUpPage() {
+export default function AuthResetPasswordPage() {
+  const searchParams = useSearchParams()
   const toast = useToast();
 
   const clientAction = async (formData: FormData) => {
-    const response = await register(formData);
+    const t = searchParams.get("t") as string;
+    
+    const response = await resetPassword(t, formData);
 
     if (response.message) {
       toast.toast({
@@ -33,50 +36,17 @@ export default function AuthSignUpPage() {
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">
-          Kayıt ol
+          Şifremi sıfırla
         </CardTitle>
         <CardDescription>
-          Kayıt olmak için aşağıdaki bilgileri doldurunuz
+          Yeni şifrenizi oluşturmak için aşağıdaki bilgileri doldurunuz
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">
-              E-posta (*)
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              name="email"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="name">
-              Ad (*)
-            </Label>
-            <Input
-              id="name"
-              type="text"
-              name="name"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="surname">
-              Soyad (*)
-            </Label>
-            <Input
-              id="surname"
-              type="text"
-              name="surname"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="password">
-              Şifre (*)
+              Yeni şifre (*)
             </Label>
             <Input
               id="password"
@@ -85,22 +55,19 @@ export default function AuthSignUpPage() {
               required
             />
           </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="terms" required />
-            <Label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Hüküm ve koşulları kabul edin (*)
-            </Label>
-          </div>
           <span className="text-xs">
             (*) Zorunlu alan
           </span>
           <Button type="submit" className="w-full">
-            Kayıt ol
+            Şifremi yenile
           </Button>
         </form>
+        <div className="mt-4 text-center text-sm">
+          Hesabınız yok mu?{" "}
+          <Link href={"/sign-up"} className="underline">
+            Kayıt ol
+          </Link>
+        </div>
         <div className="mt-4 text-center text-sm">
           Hesabınız var mı?{" "}
           <Link href={"/sign-in"} className="underline">

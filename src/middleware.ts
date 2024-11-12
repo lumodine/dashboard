@@ -2,17 +2,30 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import tokenService from "./services/token.service";
 
+const publicRoutes = [
+    "/reset-password",
+    "/forgot-password",
+];
+
 const authRoutes = [
     "/sign-in",
     "/sign-up",
-    "/forgot-password",
 ];
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+
+    const publicRoute = publicRoutes
+        .find(publicRoute =>
+            pathname
+                .indexOf(publicRoute) !== -1);
+    if (publicRoute) {
+        return;
+    }
+
     const token = await tokenService.getToken();
     const isAuthRoute = authRoutes.includes(pathname);
-    
+
     if (!token && !isAuthRoute) {
         return NextResponse.redirect(new URL(authRoutes[0], request.url));
     } else if (token && isAuthRoute) {

@@ -41,6 +41,22 @@ const register = async (email: string, name: string, surname: string, password: 
   return data;
 };
 
+const forgotPassword = async (email: string) => {
+  const { data } = await axios.post("/auth/forgot-password", {
+    email,
+  });
+
+  return data;
+};
+
+const resetPassword = async (token: string, password: string) => {
+  const { data } = await axios.post(`/auth/reset-password?t=${token}`, {
+    password,
+  });
+
+  return data;
+};
+
 const logout = async () => await tokenService.removeToken();
 
 export default {
@@ -49,4 +65,6 @@ export default {
   login,
   register,
   logout,
+  forgotPassword,
+  resetPassword,
 };
