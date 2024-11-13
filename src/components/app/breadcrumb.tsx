@@ -36,7 +36,7 @@ export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
 
                             return (
                                 <>
-                                    <BreadcrumbItem>
+                                    <BreadcrumbItem key={itemIndex}>
                                         {
                                             item.href
                                             ? (
