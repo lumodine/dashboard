@@ -9,7 +9,7 @@ export default async function (token: string, formData: FormData) {
     const response = await authService.resetPassword(token, password);
 
     if (response.success) {
-        redirect("/sign-in");
+        redirect("/");
     }
 
     return response;

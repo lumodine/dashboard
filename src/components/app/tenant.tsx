@@ -15,13 +15,13 @@ export type TenantItemProps = {
 export const TenantItem = ({ tenant }: TenantItemProps) => {
     return (
         <Link
-            href={`/${tenant._id}`}
+            href={`/d/${tenant._id}`}
             className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
             <div className="flex gap-2">
                 <div>
                     <Image
-                        src={'https://placehold.co/100x100/png'}
+                        src={"https://placehold.co/100x100/png"}
                         alt={tenant.name}
                         width={100}
                         height={100}
@@ -69,15 +69,15 @@ export const TenantList = ({ tenants }: TenantListProps) => {
                 <h2 className="text-2xl font-semibold">
                     İşletmelerim ({count})
                 </h2>
-                <Link href={'/create'}>
-                    <Button size={'sm'}>
+                <Link href={"/d/create"}>
+                    <Button size={"sm"}>
                         <Plus size={14} /> Yeni işletme ekle
                     </Button>
                 </Link>
             </div>
             {
                 !hasTenants && (
-                    <NotFound title={'Henüz eklenmiş bir işletmeniz bulunamadı. Hemen bir tane ekle!'} />
+                    <NotFound title={"Henüz eklenmiş bir işletmeniz bulunamadı. Hemen bir tane ekle!"} />
                 )
             }
             {

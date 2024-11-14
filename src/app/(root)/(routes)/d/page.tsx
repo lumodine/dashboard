@@ -9,8 +9,8 @@ export default async function DashboardPage() {
         <>
             <Hero
                 title={process.env.NEXT_PUBLIC_APP_NAME!}
-                description={'Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli'}
-                image={'https://placehold.co/500x300/png'}
+                description={"Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli"}
+                image={"https://placehold.co/500x300/png"}
             />
             <main className="container my-4">
                 <TenantList

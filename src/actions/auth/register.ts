@@ -17,7 +17,7 @@ export default async function (formData: FormData) {
     );
 
     if (response.success) {
-        redirect("/");
+        redirect("/d");
     }
 
     return response;

@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button"
-import { Metadata } from "next"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sayfa Bulunamadı",
-  robots: "noindex, nofollow"
-}
+  robots: "noindex, nofollow",
+};
 
 export default function NotFoundPage() {
   return (
@@ -19,7 +19,7 @@ export default function NotFoundPage() {
           Üzgünüz, gitmeye çalıştığınız sayfayı bulamadık.
         </p>
 
-        <Link href={'/'}>
+        <Link href={"/d"}>
           <Button variant="secondary">
             Ana sayfaya dön
           </Button>

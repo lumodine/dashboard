@@ -8,7 +8,7 @@ const publicRoutes = [
 ];
 
 const authRoutes = [
-    "/sign-in",
+    "/",
     "/sign-up",
 ];
 
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
     if (!token && !isAuthRoute) {
         return NextResponse.redirect(new URL(authRoutes[0], request.url));
     } else if (token && isAuthRoute) {
-        return NextResponse.redirect(new URL("/", request.url));
+        return NextResponse.redirect(new URL("/d", request.url));
     }
 }
 

@@ -10,7 +10,7 @@ export default async function (formData: FormData) {
     const response = await authService.login(email, password);
 
     if (response.success) {
-        redirect("/");
+        redirect("/d");
     }
 
     return response;

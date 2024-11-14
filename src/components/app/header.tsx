@@ -7,7 +7,8 @@ import { redirect } from "next/navigation";
 export const Header = () => {
     const handleLogout = async () => {
         await authService.logout();
-        redirect("/sign-in");
+        redirect("/");
+        return;
     }
 
     return (

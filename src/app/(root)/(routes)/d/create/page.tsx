@@ -25,21 +25,21 @@ export default async function DashboardPage() {
     const [
         websiteScheme,
         websiteHost
-    ] = process.env.NEXT_PUBLIC_QR_MENU_URL!.split('{alias}');
+    ] = process.env.NEXT_PUBLIC_QR_MENU_URL!.split("{alias}");
 
     return (
         <>
             <Hero
                 supTitle={process.env.NEXT_PUBLIC_APP_NAME!}
-                title={'İşletme ekle'}
-                description={'Lorem ipsum dolor sit amet.'}
-                image={'https://placehold.co/500x300/png'}
+                title={"İşletme ekle"}
+                description={"Lorem ipsum dolor sit amet."}
+                image={"https://placehold.co/500x300/png"}
             />
 
             <AppBreadcrumb
                 items={[
                     {
-                        title: 'İşletme ekle',
+                        title: "İşletme ekle",
                     },
                 ]}
             />

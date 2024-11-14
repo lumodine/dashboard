@@ -22,7 +22,7 @@ export default async function TenantPage({ params }: TenantPageProps) {
                 supTitle={process.env.NEXT_PUBLIC_APP_NAME!}
                 title={tenant.name}
                 description={tenant.address}
-                image={'https://placehold.co/500x300/png'}
+                image={"https://placehold.co/500x300/png"}
             />
             <AppBreadcrumb
                 items={[
