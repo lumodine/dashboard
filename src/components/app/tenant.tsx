@@ -7,6 +7,12 @@ import {
     Globe,
     Plus,
 } from "lucide-react";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export type TenantItemProps = {
     tenant: any;
@@ -36,18 +42,40 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
                         {tenant.address}
                     </p>
                     <div className="flex gap-2">
-                        <div className="flex gap-1 item-center">
-                            <Globe size={16} />
-                            <span className="text-xs">
-                                {tenant.languages.length}
-                            </span>
-                        </div>
-                        <div className="flex gap-1 item-center">
-                            <Banknote size={16} />
-                            <span className="text-xs">
-                                {tenant.currencies.length}
-                            </span>
-                        </div>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="flex gap-1 item-center">
+                                        <Globe size={16} />
+                                        <span className="text-xs">
+                                            {tenant.languages.length}
+                                        </span>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>
+                                        Diller
+                                    </p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="flex gap-1 item-center">
+                                        <Banknote size={16} />
+                                        <span className="text-xs">
+                                            {tenant.currencies.length}
+                                        </span>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>
+                                        Para birimleri
+                                    </p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
                     </div>
                 </div>
             </div>
@@ -133,7 +161,7 @@ export const TenantMenuList = ({ tenant, menus }: TenantMenuListProps) => {
                     </h3>
                     {menu.items.length > 0 && (
                         <ul className="mt-2 flex flex-wrap gap-2">
-                            {menu.items.map((menuItem, menuItemIndex) => (
+                            {menu.items.map((menuItem: any, menuItemIndex: number) => (
                                 <Link
                                     key={menuItemIndex}
                                     href={menuItem.href}
