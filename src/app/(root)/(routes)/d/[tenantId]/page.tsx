@@ -1,19 +1,22 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
 import { Hero } from "@/components/app/hero";
+import { TenantMenuList } from "@/components/app/tenant";
 import tenantService from "@/services/tenant.service";
 
 type TenantPageProps = {
-  params: {
-    tenantId: string,
-  };
+    params: {
+        tenantId: string,
+    };
 };
 
 export default async function TenantPage({ params }: TenantPageProps) {
     const { tenantId } = await params;
     const [
         { data: tenant },
+        { data: tenantMenus },
     ] = await Promise.all([
         tenantService.getById(tenantId),
+        tenantService.getMenus(tenantId),
     ]);
 
     return (
@@ -31,8 +34,11 @@ export default async function TenantPage({ params }: TenantPageProps) {
                     }
                 ]}
             />
-            <section className="container">
-                menü
+            <section className="container flex gap-4">
+                <TenantMenuList
+                    tenant={tenant}
+                    menus={tenantMenus}
+                />
             </section>
         </>
     );

@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import {
     Banknote,
     Globe,
-    Plus
+    Plus,
 } from "lucide-react";
 
 export type TenantItemProps = {
@@ -95,5 +95,60 @@ export const TenantList = ({ tenants }: TenantListProps) => {
                 )
             }
         </section>
+    );
+};
+
+export type TenantIframeProps = {
+    tenant: any;
+    path?: string;
+};
+
+export const TenantIframe = ({ tenant, path = "" }: TenantIframeProps) => {
+    const domain = process.env.NEXT_PUBLIC_QR_MENU_URL!.replace("{alias}", tenant.alias);
+    const iframeSrc = domain + path;
+
+    return (
+        <div>
+            <iframe className="border-2 rounded-lg" src={iframeSrc} width={540} height={720} />
+        </div>
+    );
+};
+
+export type TenantMenuListProps = {
+    tenant: any;
+    menus: any[];
+};
+
+export const TenantMenuList = ({ tenant, menus }: TenantMenuListProps) => {
+    if (menus.length === 0) {
+        return null;
+    }
+
+    return (
+        <div>
+            {menus.map((menu, menuIndex) => (
+                <div key={menuIndex} className="mb-4">
+                    <h3 className="text-xl font-bold">
+                        {menuIndex + 1}. {menu.title}
+                    </h3>
+                    {menu.items.length > 0 && (
+                        <ul className="mt-2 flex flex-wrap gap-2">
+                            {menu.items.map((menuItem, menuItemIndex) => (
+                                <Link
+                                    key={menuItemIndex}
+                                    href={menuItem.href}
+                                    title={menuItem.title}
+                                    className="flex flex-col items-center justify-center gap-2 text-center w-[150px] h-[120px] p-4 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                                >
+                                    <span className="text-sm font-semibold">
+                                        {menuIndex + 1}.{menuItemIndex + 1}. {menuItem.title}
+                                    </span>
+                                </Link>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            ))}
+        </div>
     );
 };
