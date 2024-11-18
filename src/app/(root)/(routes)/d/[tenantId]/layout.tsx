@@ -13,15 +13,10 @@ export default async function TenantLayout({
   params,
 }: Readonly<TenantLayoutProps>) {
   const { tenantId } = await params;
-  const tenantAll = await tenantService.getAll();
+  const tenant = await tenantService.getById(tenantId);
 
-  if (!tenantAll.success) {
+  if (!tenant.success) {
     return notFound();
-  }
-
-  const tenant = tenantAll.data.find(tenant => tenant._id === tenantId);
-  if (!tenant) {
-    notFound();
   }
 
   return (
