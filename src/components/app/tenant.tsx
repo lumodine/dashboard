@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import {
     Banknote,
+    ExternalLink,
     Globe,
     Plus,
 } from "lucide-react";
@@ -136,8 +137,25 @@ export const TenantIframe = ({ tenant, path = "" }: TenantIframeProps) => {
     const iframeSrc = domain + path;
 
     return (
-        <div>
-            <iframe className="border-2 rounded-lg" src={iframeSrc} width={540} height={720} />
+        <div className="flex flex-col items-center gap-2">
+            <Link
+                href={iframeSrc}
+                target="_blank"
+                className="w-full"
+            >
+                <Button
+                    variant={"secondary"}
+                    className="w-full"
+                >
+                    Menüyü farklı sayfada görüntüle <ExternalLink />
+                </Button>
+            </Link>
+            <iframe
+                className="border rounded-lg"
+                src={iframeSrc}
+                width={390}
+                height={844}
+            />
         </div>
     );
 };

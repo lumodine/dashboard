@@ -59,18 +59,6 @@ export default async function DashboardPage() {
                         />
                     </div>
                     <div className="grid gap-2">
-                        <div className="flex items-center">
-                            <Label htmlFor="address">
-                                Adresi (*)
-                            </Label>
-                        </div>
-                        <Input
-                            id="address"
-                            type="text"
-                            required
-                        />
-                    </div>
-                    <div className="grid gap-2">
                         <Label htmlFor="alias">
                             Web adresi (*)
                         </Label>

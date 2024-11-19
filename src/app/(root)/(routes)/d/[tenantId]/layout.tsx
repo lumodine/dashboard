@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 
 type TenantLayoutProps = {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     tenantId: string,
-  };
+  }>;
 };
 
 export default async function TenantLayout({

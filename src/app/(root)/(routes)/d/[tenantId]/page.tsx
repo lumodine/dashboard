@@ -1,12 +1,14 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
-import { TenantMenuList } from "@/components/app/tenant";
+import { TenantIframe, TenantMenuList } from "@/components/app/tenant";
+import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
+import { Download } from "lucide-react";
+import Image from "next/image";
 
 type TenantPageProps = {
-    params: {
+    params: Promise<{
         tenantId: string,
-    };
+    }>;
 };
 
 export default async function TenantPage({ params }: TenantPageProps) {
@@ -21,12 +23,41 @@ export default async function TenantPage({ params }: TenantPageProps) {
 
     return (
         <>
-            <Hero
-                supTitle={process.env.NEXT_PUBLIC_APP_NAME!}
-                title={tenant.name}
-                description={tenant.address}
-                image={"https://placehold.co/500x300/png"}
-            />
+            <section className="bg-primary py-8">
+                <div className="container flex gap-6 items-center">
+                    <div className="flex flex-col gap-2 items-center">
+                        <Image
+                            src={tenant.qrCodes.small}
+                            width={128}
+                            height={128}
+                            alt={`${tenant.name} qr code`}
+                        />
+                        <a
+                            href={tenant.qrCodes.small}
+                            download={`${tenant.name} small qr code.png`}
+                        >
+                            <Button
+                                variant={"outline"}
+                                size={"sm"}
+                            >
+                                <Download />
+                                Karekod'u indir
+                            </Button>
+                        </a>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <span className="text-lg text-secondary">
+                            {process.env.NEXT_PUBLIC_APP_NAME}
+                        </span>
+                        <h1 className="text-3xl font-semibold text-secondary">
+                            {tenant.name}
+                        </h1>
+                        <p className="text-sm text-secondary">
+                            {tenant.address}
+                        </p>
+                    </div>
+                </div>
+            </section>
             <AppBreadcrumb
                 items={[
                     {
@@ -38,6 +69,9 @@ export default async function TenantPage({ params }: TenantPageProps) {
                 <TenantMenuList
                     tenant={tenant}
                     menus={tenantMenus}
+                />
+                <TenantIframe
+                    tenant={tenant}
                 />
             </section>
         </>
