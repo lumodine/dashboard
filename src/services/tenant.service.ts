@@ -12,12 +12,6 @@ const getById = async (id: string) => {
   return data;
 };
 
-const getMenus = async (id: string) => {
-  const { data } = await axios.get(`/tenants/${id}/menus`);
-
-  return data;
-};
-
 type CreateProps = {
   name: string;
   alias: string;
@@ -39,6 +33,5 @@ const create = async ({ name, alias, languages, currencies }: CreateProps) => {
 export default {
   getAll,
   getById,
-  getMenus,
   create,
 };

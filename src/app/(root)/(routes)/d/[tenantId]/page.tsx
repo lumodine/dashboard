@@ -13,13 +13,7 @@ type TenantPageProps = {
 
 export default async function TenantPage({ params }: TenantPageProps) {
     const { tenantId } = await params;
-    const [
-        { data: tenant },
-        { data: tenantMenus },
-    ] = await Promise.all([
-        tenantService.getById(tenantId),
-        tenantService.getMenus(tenantId),
-    ]);
+    const { data: tenant } = await tenantService.getById(tenantId);
 
     return (
         <>
@@ -68,7 +62,6 @@ export default async function TenantPage({ params }: TenantPageProps) {
             <section className="container flex gap-4">
                 <TenantMenuList
                     tenant={tenant}
-                    menus={tenantMenus}
                 />
                 <TenantIframe
                     tenant={tenant}

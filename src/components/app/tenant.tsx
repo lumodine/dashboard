@@ -14,6 +14,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { MENUS } from "@/constants/menu";
 
 export type TenantItemProps = {
     tenant: any;
@@ -166,10 +167,11 @@ export const TenantIframe = ({ tenant, path = "" }: TenantIframeProps) => {
 
 export type TenantMenuListProps = {
     tenant: any;
-    menus: any[];
 };
 
-export const TenantMenuList = ({ tenant, menus }: TenantMenuListProps) => {
+export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
+    const menus = MENUS(tenant._id);
+    
     if (menus.length === 0) {
         return null;
     }
@@ -190,6 +192,11 @@ export const TenantMenuList = ({ tenant, menus }: TenantMenuListProps) => {
                                     title={menuItem.title}
                                     className="flex flex-col items-center justify-center gap-2 text-center w-[150px] h-[120px] p-4 bg-gray-100 hover:bg-gray-200 rounded-lg"
                                 >
+                                    {
+                                        menuItem.icon && (
+                                            <menuItem.icon size={48} strokeWidth={1} />
+                                        )
+                                    }
                                     <span className="text-sm font-semibold">
                                         {menuIndex + 1}.{menuItemIndex + 1}. {menuItem.title}
                                     </span>
