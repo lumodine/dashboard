@@ -85,6 +85,17 @@ export default function AuthSignUpPage() {
               required
             />
           </div>
+          <div className="grid gap-2">
+            <Label htmlFor="confirmPassword">
+              Şifreyi onayla (*)
+            </Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              required
+            />
+          </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="terms" required />
             <Label

@@ -45,13 +45,24 @@ export default function AuthResetPasswordPage() {
       <CardContent>
         <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">
+            <Label htmlFor="password">
               Yeni şifre (*)
             </Label>
             <Input
               id="password"
               type="password"
               name="password"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="confirmPassword">
+              Şifreyi onayla (*)
+            </Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
               required
             />
           </div>

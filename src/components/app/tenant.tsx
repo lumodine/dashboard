@@ -26,13 +26,14 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
             className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
             <div className="flex gap-2">
-                <div>
+                <div className="h-full">
                     <Image
                         src={"https://placehold.co/100x100/png"}
                         alt={tenant.name}
                         width={100}
                         height={100}
                         loading="lazy"
+                        className="h-full"
                     />
                 </div>
                 <div className="p-2 flex flex-col gap-2">
@@ -78,6 +79,9 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
                             </Tooltip>
                         </TooltipProvider>
                     </div>
+                    <p className="text-xs text-muted-foreground">
+                        Oluşturma tarihi: {tenant.createdAt}
+                    </p>
                 </div>
             </div>
         </Link>

@@ -26,12 +26,13 @@ const login = async (email: string, password: string) => {
   return data;
 };
 
-const register = async (email: string, name: string, surname: string, password: string) => {
+const register = async (email: string, name: string, surname: string, password: string, confirmPassword: string) => {
   const { data } = await axios.post("/auth/register", {
     email,
     name,
     surname,
-    password
+    password,
+    confirmPassword
   });
 
   if (data.success) {
@@ -49,9 +50,10 @@ const forgotPassword = async (email: string) => {
   return data;
 };
 
-const resetPassword = async (token: string, password: string) => {
+const resetPassword = async (token: string, password: string, confirmPassword: string) => {
   const { data } = await axios.post(`/auth/reset-password?t=${token}`, {
     password,
+    confirmPassword,
   });
 
   return data;

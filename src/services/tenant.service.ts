@@ -18,8 +18,27 @@ const getMenus = async (id: string) => {
   return data;
 };
 
+type CreateProps = {
+  name: string;
+  alias: string;
+  languages: any[];
+  currencies: any[];
+};
+
+const create = async ({ name, alias, languages, currencies }: CreateProps) => {
+  const { data } = await axios.post(`/tenants`, {
+    name,
+    alias,
+    languages,
+    currencies,
+  });
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
   getMenus,
+  create,
 };
