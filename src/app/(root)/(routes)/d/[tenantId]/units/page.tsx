@@ -1,8 +1,9 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
+import { CreateUnitForm } from "@/components/app/create-unit-form";
 import { Hero } from "@/components/app/hero";
-import { TenantIframe } from "@/components/app/tenant";
-import { UpdateTenantSettingsForm } from "@/components/app/update-tenant-settings-form";
+import { UnitList } from "@/components/app/unit";
 import tenantService from "@/services/tenant.service";
+import unitService from "@/services/unit.service";
 
 type TenantUnitPagePageProps = {
     params: Promise<{
@@ -14,7 +15,13 @@ export default async function TenantUnitPagePage({
     params,
 }: TenantUnitPagePageProps) {
     const { tenantId } = await params;
-    const { data: tenant } = await tenantService.getById(tenantId);
+    const [
+        { data: units },
+        { data: tenant }
+    ] = await Promise.all([
+        unitService.getAll(tenantId),
+        tenantService.getById(tenantId),
+    ]);
 
     return (
         <>
@@ -35,12 +42,18 @@ export default async function TenantUnitPagePage({
                 ]}
             />
 
-            <section className="container flex flex-col lg:flex-row gap-4">
-                <UpdateTenantSettingsForm
+            <section className="container">
+                <CreateUnitForm
                     tenant={tenant}
                 />
-                <TenantIframe
+            </section>
+            <section className="container mt-3">
+                <h2 className="text-2xl font-semibold mb-3">
+                    Birimler
+                </h2>
+                <UnitList
                     tenant={tenant}
+                    units={units}
                 />
             </section>
         </>
