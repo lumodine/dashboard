@@ -60,10 +60,24 @@ const updateLanguageSettings = async ({ tenantId, languages }: UpdateLanguageSet
   return data;
 };
 
+type UpdateCurrencySettingsProps = {
+  tenantId: string;
+  currencies: any[];
+};
+
+const updateCurrencySettings = async ({ tenantId, currencies }: UpdateCurrencySettingsProps) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/currencies`, {
+    currencies
+  });
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
   create,
   updateSettings,
   updateLanguageSettings,
+  updateCurrencySettings,
 };
