@@ -24,18 +24,18 @@ export default async function TenantPage({ params }: TenantPageProps) {
                             src={tenant.qrCodes.small}
                             width={128}
                             height={128}
-                            alt={`${tenant.name} qr code`}
+                            alt={`${tenant.name} karekod`}
                         />
                         <a
                             href={tenant.qrCodes.small}
-                            download={`${tenant.name} small qr code.png`}
+                            download={`${tenant.name} küçük karekod.png`}
                         >
                             <Button
                                 variant={"outline"}
                                 size={"sm"}
                             >
                                 <Download />
-                                Karekod'u indir
+                                Karekodu indir
                             </Button>
                         </a>
                     </div>
@@ -52,6 +52,7 @@ export default async function TenantPage({ params }: TenantPageProps) {
                     </div>
                 </div>
             </section>
+
             <AppBreadcrumb
                 items={[
                     {
@@ -59,7 +60,8 @@ export default async function TenantPage({ params }: TenantPageProps) {
                     }
                 ]}
             />
-            <section className="container flex gap-4">
+
+            <section className="container flex flex-col lg:flex-row gap-4">
                 <TenantMenuList
                     tenant={tenant}
                 />
