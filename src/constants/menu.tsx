@@ -1,4 +1,5 @@
 import {
+    Banknote,
     Boxes,
     CaseSensitive,
     Contact,
@@ -58,6 +59,11 @@ export const MENUS = (id: string) => [
                 title: "language_settings",
                 href: `/d/${id}/language-settings`,
                 icon: Languages,
+            },
+            {
+                title: "currency_settings",
+                href: `/d/${id}/currency-settings`,
+                icon: Banknote,
             },
             {
                 title: "general_settings",

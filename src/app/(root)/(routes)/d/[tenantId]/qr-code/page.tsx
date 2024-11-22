@@ -1,4 +1,5 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
+import { Hero } from "@/components/app/hero";
 import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
 import { Download } from "lucide-react";
@@ -41,18 +42,10 @@ export default async function TenantQrCodePage({
 
     return (
         <>
-            <section className="bg-primary py-8">
-                <div className="container flex gap-6 items-center">
-                    <div className="flex flex-col gap-2">
-                        <h1 className="text-3xl font-semibold text-secondary">
-                            Karekod
-                        </h1>
-                        <p className="text-sm text-secondary">
-                            Baskı için kullanabileceğiniz karekodunuzu aşağıdan indirebilirsiniz.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <Hero
+                title={"Karekod"}
+                description={"Baskı için kullanabileceğiniz karekodunuzu aşağıdan indirebilirsiniz."}
+            />
 
             <AppBreadcrumb
                 items={[
