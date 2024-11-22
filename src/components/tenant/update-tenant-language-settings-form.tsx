@@ -1,20 +1,20 @@
 "use client";
 
 import updateTenantLanguageSettings from "@/actions/tenant/updateTenantLanguageSettings";
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "../ui/select";
-import { Button } from "../ui/button";
-import { Plus, Trash } from "lucide-react";
-import { Input } from "../ui/input";
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Plus, Save, Trash } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { NotFound } from "./error";
+import { NotFound } from "@/components/common/error";
+import { toast } from "react-toastify";
 
 export type UpdateTenantLanguageSettingsFormProps = {
     languages: any[];
@@ -26,11 +26,11 @@ export const UpdateTenantLanguageSettingsForm = ({
     tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
     const _tenantLanguages = languages.filter(language =>
-        tenant.languages.some(tenantLanguage => tenantLanguage._id._id === language._id)
+        tenant.languages.some((tenantLanguage: any) => tenantLanguage._id._id === language._id)
     );
 
     const _defaultLanguageId = tenant.languages
-        .find(tenantLanguage => tenantLanguage.isDefault)._id._id
+        .find((tenantLanguage: any) => tenantLanguage.isDefault)._id._id
         || _tenantLanguages[0]._id;
 
     const _defaultLanguage = _tenantLanguages
@@ -45,8 +45,6 @@ export const UpdateTenantLanguageSettingsForm = ({
                 .some(tenantLanguage => tenantLanguage._id === language._id)
         );
 
-    const toast = useToast();
-
     const [defaultLanguage, setDefaultLanguage] = useState<any>(_defaultLanguage);
     const [otherLanguages, setOtherLanguages] = useState<any[]>(_otherLanguages);
 
@@ -57,9 +55,8 @@ export const UpdateTenantLanguageSettingsForm = ({
         const response = await updateTenantLanguageSettings(tenant._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+              type: response.success ? "success" : "error",
             });
         }
     }
@@ -146,7 +143,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                             )
                         }
                         {
-                            otherLanguages.map((language, languageIndex) => (
+                            otherLanguages.map((language: any, languageIndex: number) => (
                                 <div
                                     key={languageIndex}
                                     className="flex justify-between items-center gap-3 p-2 border rounded-lg"
@@ -170,6 +167,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                                         </span>
                                     </div>
                                     <Button
+                                        variant={"destructive"}
                                         title="Dili sil"
                                         type="button"
                                         onClick={() => removeLanguage(language)}
@@ -183,19 +181,13 @@ export const UpdateTenantLanguageSettingsForm = ({
                         {
                             addableLanguages.length > 0 && (
                                 <div className="flex items-center gap-2">
-                                    <Button
-                                        type="button"
-                                        onClick={addNewLanguage}
-                                    >
-                                        <Plus size={14} /> Dil ekle
-                                    </Button>
                                     <Select onValueChange={(value) => setNewLanguageId(value)}>
                                         <SelectTrigger>
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {
-                                                addableLanguages.map((language, languageIndex) => (
+                                                addableLanguages.map((language: any, languageIndex: number) => (
                                                     <SelectItem
                                                         key={languageIndex}
                                                         value={language._id}
@@ -206,6 +198,12 @@ export const UpdateTenantLanguageSettingsForm = ({
                                             }
                                         </SelectContent>
                                     </Select>
+                                    <Button
+                                        type="button"
+                                        onClick={addNewLanguage}
+                                    >
+                                        <Plus size={14} /> Dil ekle
+                                    </Button>
                                 </div>
                             )
                         }
@@ -217,9 +215,10 @@ export const UpdateTenantLanguageSettingsForm = ({
                 </span>
 
                 <Button type="submit" className="w-full">
-                    Kaydet
+                    <Save /> Kaydet
                 </Button>
             </form>
         </section>
     );
 };
+UpdateTenantLanguageSettingsForm.displayName = "UpdateTenantLanguageSettingsForm";

@@ -11,3 +11,4 @@ export const NotFound = ({ title }: NotFoundProps) => {
         </div>
     );
 };
+NotFound.displayName = "NotFound";

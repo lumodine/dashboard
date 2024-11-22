@@ -11,19 +11,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import forgotPassword from "@/actions/auth/forgotPassword";
+import { toast } from "react-toastify";
 
 export default function AuthForgotPasswordPage() {
-  const toast = useToast();
-
   const clientAction = async (formData: FormData) => {
     const response = await forgotPassword(formData);
 
     if (response.message) {
-      toast.toast({
-        variant: response.success ? "default" : "destructive",
-        description: response.message
+      toast(response.message, {
+        type: response.success ? "success" : "error",
       });
     }
   }

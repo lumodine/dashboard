@@ -1,25 +1,23 @@
 "use client";
 
 import createUnit from "@/actions/unit/createUnit";
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { Plus } from "lucide-react";
 
 export type CreateUnitFormProps = {
     tenant: any;
 };
 
 export const CreateUnitForm = ({ tenant }: CreateUnitFormProps) => {
-    const toast = useToast();
-
     const clientAction = async (formData: FormData) => {
         const response = await createUnit(tenant._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+                type: response.success ? "success" : "error",
             });
         }
     }
@@ -33,7 +31,7 @@ export const CreateUnitForm = ({ tenant }: CreateUnitFormProps) => {
                     </Label>
                 </div>
                 <div className="pl-3 mt-2 flex flex-col gap-2">
-                    {tenant.languages.map((language, languageIndex) => (
+                    {tenant.languages.map((language: any, languageIndex: number) => (
                         <div key={languageIndex}>
                             <Input
                                 type="hidden"
@@ -57,8 +55,9 @@ export const CreateUnitForm = ({ tenant }: CreateUnitFormProps) => {
                 (*) Zorunlu alan
             </span>
             <Button type="submit" className="w-full">
-                Birimi oluştur
+                <Plus /> Birimi oluştur
             </Button>
         </form>
     );
 };
+CreateUnitForm.displayName = "CreateUnitForm";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +32,19 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <Toaster />
+
+        <ToastContainer
+          position={"top-center"}
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );

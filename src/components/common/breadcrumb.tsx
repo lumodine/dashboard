@@ -31,7 +31,7 @@ export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
             <Breadcrumb>
                 <BreadcrumbList>
                     {
-                        items.map((item, itemIndex) => {
+                        items.map((item: any, itemIndex: number) => {
                             const isLast = count === itemIndex;
 
                             return (
@@ -65,3 +65,4 @@ export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
         </section>
     );
 };
+AppBreadcrumb.displayName = "AppBreadcrumb";

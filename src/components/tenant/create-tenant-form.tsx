@@ -1,11 +1,18 @@
 "use client";
 
 import createTenant from "@/actions/tenant/createTenant";
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { Button } from "../ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { Plus } from "lucide-react";
 
 export type CreateTenantFormProps = {
     languages: any[];
@@ -13,8 +20,6 @@ export type CreateTenantFormProps = {
 };
 
 export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProps) => {
-    const toast = useToast();
-
     const [
         websiteScheme,
         websiteHost
@@ -24,9 +29,8 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
       const response = await createTenant(formData);
   
       if (response.message) {
-        toast.toast({
-          variant: response.success ? "default" : "destructive",
-          description: response.message
+        toast(response.message, {
+          type: response.success ? "success" : "error",
         });
       }
     }
@@ -79,7 +83,7 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
                             </SelectTrigger>
                             <SelectContent>
                                 {
-                                    languages.map((language, languageIndex) => (
+                                    languages.map((language: any, languageIndex: number) => (
                                         <SelectItem
                                             key={languageIndex}
                                             value={language._id}
@@ -103,7 +107,7 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
                             </SelectTrigger>
                             <SelectContent>
                                 {
-                                    currencies.map((currency, currencyIndex) => (
+                                    currencies.map((currency: any, currencyIndex: number) => (
                                         <SelectItem
                                             key={currencyIndex}
                                             value={currency._id}
@@ -119,9 +123,10 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
                         (*) Zorunlu alan
                     </span>
                     <Button type="submit" className="w-full">
-                        İşletmemi oluştur
+                        <Plus /> İşletmemi oluştur
                     </Button>
                 </form>
             </section>
     );
 };
+CreateTenantForm.displayName = "CreateTenantForm";

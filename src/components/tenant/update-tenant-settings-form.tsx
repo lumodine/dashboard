@@ -1,18 +1,17 @@
 "use client";
 
 import updateTenantSettings from "@/actions/tenant/updateTenantSettings";
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { Save } from "lucide-react";
 
 export type UpdateTenantSettingsFormProps = {
     tenant: any;
 };
 
 export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormProps) => {
-    const toast = useToast();
-
     const [
         websiteScheme,
         websiteHost
@@ -22,9 +21,8 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
         const response = await updateTenantSettings(tenant._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+              type: response.success ? "success" : "error",
             });
         }
     }
@@ -83,8 +81,9 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
                 (*) Zorunlu alan
             </span>
             <Button type="submit" className="w-full">
-                Ayarları güncelle
+                <Save /> Kaydet
             </Button>
         </form>
     );
 };
+UpdateTenantSettingsForm.displayName = "UpdateTenantSettingsForm";

@@ -1,9 +1,10 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
-import { TenantIframe } from "@/components/app/tenant";
-import { UpdateTenantCurrencySettingsForm } from "@/components/app/update-tenant-currency-settings-form";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
+import { TenantIframe } from "@/components/tenant/tenant-iframe";
+import { UpdateTenantCurrencySettingsForm } from "@/components/tenant/update-tenant-currency-settings-form";
 import currencyService from "@/services/currency.service";
 import tenantService from "@/services/tenant.service";
+import Link from "next/link";
 
 type TenantCurrencySettingsPageProps = {
     params: Promise<{
@@ -26,6 +27,11 @@ export default async function TenantCurrencySettingsPage({
     return (
         <>
             <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
                 title={"Para birimi ayarları"}
                 description={"İşletmenize ait para birimi ayarlarını buradan güncelleyebilirsiniz."}
             />

@@ -7,10 +7,13 @@ const nextConfig = {
         hostname: "placehold.co",
       },
       {
+        hostname: "picsum.photos",
+      },
+      {
         hostname: "cdn.lumodine.com",
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

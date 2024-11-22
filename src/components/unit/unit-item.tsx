@@ -1,11 +1,12 @@
 "use client";
 
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import updateUnit from "@/actions/unit/updateUnit";
 import removeUnit from "@/actions/unit/removeUnit";
+import { toast } from "react-toastify";
+import { Plus, Trash } from "lucide-react";
 
 export type UnitItemProps = {
     unit: any;
@@ -13,15 +14,21 @@ export type UnitItemProps = {
 };
 
 export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
-    const toast = useToast();
-
     const clientAction = async (formData: FormData) => {
         const response = await updateUnit(tenant._id, unit._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    }
+    const handleRemoveUnit = async (unitId: string) => {
+        const response = await removeUnit(tenant._id, unit._id);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
             });
         }
     }
@@ -35,8 +42,8 @@ export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
                     </Label>
                 </div>
                 <div className="pl-3 mt-2 flex flex-col gap-2">
-                    {tenant.languages.map((language, languageIndex) => {
-                        const data = unit.translations.find(unitTranslation => unitTranslation.languageId._id === language._id._id);
+                    {tenant.languages.map((language: any, languageIndex: number) => {
+                        const data = unit.translations.find((unitTranslation: any) => unitTranslation.languageId._id === language._id._id);
 
                         return (
                             <div key={languageIndex}>
@@ -65,34 +72,17 @@ export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
             </span>
             <div className="flex gap-2">
                 <Button type="submit" className="w-full flex-1">
-                    Birimi güncelle
+                    <Plus /> Birimi güncelle
                 </Button>
-                <Button type="button" onClick={() => removeUnit(tenant._id, unit._id)}>
-                    Birimi sil
+                <Button
+                    variant={"destructive"}
+                    type="button"
+                    onClick={() => handleRemoveUnit(unit._id)}
+                >
+                    <Trash /> Birimi sil
                 </Button>
             </div>
         </form>
     );
 };
-
-export type UnitListProps = {
-    units: any[];
-    tenant: any;
-};
-
-export const UnitList = ({ units, tenant }: UnitListProps) => {
-    const count = units?.length || 0;
-    const hasUnits = count > 0;
-
-    return (
-        <div className="flex flex-col gap-2">
-            {hasUnits && units.map((unit, unitIndex) => (
-                <UnitItem
-                    key={unitIndex}
-                    unit={unit}
-                    tenant={tenant}
-                />
-            ))}
-        </div>
-    );
-};
+UnitItem.displayName = "UnitItem";

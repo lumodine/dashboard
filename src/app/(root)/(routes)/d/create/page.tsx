@@ -1,8 +1,9 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { CreateTenantForm } from "@/components/app/create-tenant-form";
-import { Hero } from "@/components/app/hero";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { CreateTenantForm } from "@/components/tenant/create-tenant-form";
+import { Hero } from "@/components/common/hero";
 import currencyService from "@/services/currency.service";
 import languageService from "@/services/language.service";
+import Link from "next/link";
 
 export default async function DashboardPage() {
     const [
@@ -16,10 +17,12 @@ export default async function DashboardPage() {
     return (
         <>
             <Hero
-                supTitle={process.env.NEXT_PUBLIC_APP_NAME!}
+                supTitle={
+                    <Link href={"/d"}>
+                        {process.env.NEXT_PUBLIC_APP_NAME!}
+                    </Link>
+                }
                 title={"İşletme ekle"}
-                description={"Lorem ipsum dolor sit amet."}
-                image={"https://placehold.co/500x300/png"}
             />
 
             <AppBreadcrumb

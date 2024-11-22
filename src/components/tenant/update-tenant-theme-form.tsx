@@ -1,11 +1,11 @@
 "use client";
 
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
-import { Button } from "../ui/button";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import updateTenantTheme from "@/actions/tenant/updateTenantTheme";
-import { cn } from "@/utils/shadcn";
+import { toast } from "react-toastify";
+import { Save } from "lucide-react";
 
 export type UpdateTenantThemeFormProps = {
     tenant: any;
@@ -13,15 +13,12 @@ export type UpdateTenantThemeFormProps = {
 };
 
 export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormProps) => {
-    const toast = useToast();
-
     const clientAction = async (formData: FormData) => {
         const response = await updateTenantTheme(tenant._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+              type: response.success ? "success" : "error",
             });
         }
     }
@@ -29,13 +26,16 @@ export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormP
     return (
         <section className="container my-3">
             <form action={clientAction} className="flex flex-col gap-4">
+                <Label htmlFor="theme">
+                    Temalar
+                </Label>
                 <RadioGroup
                     name="theme"
                     defaultValue={tenant.theme}
                     className="flex items-center justify-center flex-wrap gap-2"
                 >
                     {
-                        themes.map((theme, themeIndex) => (
+                        themes.map((theme: any, themeIndex: number) => (
                             <Label
                                 key={themeIndex}
                                 htmlFor={theme}
@@ -58,9 +58,10 @@ export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormP
                     }
                 </RadioGroup>
                 <Button type="submit" className="w-full">
-                    Kaydet
+                    <Save /> Kaydet
                 </Button>
             </form>
         </section>
     );
 };
+UpdateTenantThemeForm.displayName = "UpdateTenantThemeForm";

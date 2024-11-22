@@ -1,9 +1,10 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
-import { TenantIframe } from "@/components/app/tenant";
-import { UpdateTenantLanguageSettingsForm } from "@/components/app/update-tenant-language-settings-form";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
+import { TenantIframe } from "@/components/tenant/tenant-iframe";
+import { UpdateTenantLanguageSettingsForm } from "@/components/tenant/update-tenant-language-settings-form";
 import languageService from "@/services/language.service";
 import tenantService from "@/services/tenant.service";
+import Link from "next/link";
 
 type TenantLanguageSettingsPageProps = {
     params: Promise<{
@@ -26,6 +27,11 @@ export default async function TenantLanguageSettingsPage({
     return (
         <>
             <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
                 title={"Dil ayarları"}
                 description={"İşletmenize ait dil ayarlarını buradan güncelleyebilirsiniz."}
             />

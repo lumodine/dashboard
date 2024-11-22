@@ -1,7 +1,7 @@
 import {
     Banknote,
     Boxes,
-    Languages,
+    Globe,
     Menu,
     Palette,
     QrCode,
@@ -10,55 +10,55 @@ import {
 
 export const MENUS = (id: string) => [
     {
-        title: "content",
+        title: "İçerik",
         items: [
             {
-                title: "units",
+                title: "Birimler",
                 href: `/d/${id}/units`,
                 icon: Boxes,
             },
             {
-                title: "menu",
+                title: "Menü",
                 href: `/d/${id}/menu`,
                 icon: Menu,
             },
         ],
     },
     {
-        title: "design",
+        title: "Tasarım",
         items: [
             {
-                title: "theme",
+                title: "Tema",
                 href: `/d/${id}/theme`,
                 icon: Palette,
             },
         ],
     },
     {
-        title: "files",
+        title: "Dosyalar",
         items: [
             {
-                title: "qr_code",
+                title: "Karekod",
                 href: `/d/${id}/qr-code`,
                 icon: QrCode,
             },
         ],
     },
     {
-        title: "settings",
+        title: "Ayarlar",
         items: [
             {
-                title: "language_settings",
+                title: "Dil ayarları",
                 href: `/d/${id}/language-settings`,
-                icon: Languages,
+                icon: Globe,
             },
             {
-                title: "currency_settings",
+                title: "Para birimi ayarları",
                 href: `/d/${id}/currency-settings`,
                 icon: Banknote,
             },
             {
-                title: "general_settings",
+                title: "Genel ayarlar",
                 href: `/d/${id}/general-settings`,
                 icon: Settings,
             },

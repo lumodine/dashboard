@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/utils/shadcn";
 
 export type HeroProps = {
-    supTitle?: string;
+    supTitle?: any;
     title: string;
     description?: string;
     image?: string;
@@ -31,7 +31,7 @@ export const Hero = ({ supTitle, title, description, image }: HeroProps) => {
                                 </Badge>
                             )
                         }
-                        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl">
+                        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl text-primary-foreground">
                             {title}
                         </h1>
                         {
@@ -61,3 +61,4 @@ export const Hero = ({ supTitle, title, description, image }: HeroProps) => {
         </section>
     );
 };
+Hero.displayName = "Hero";

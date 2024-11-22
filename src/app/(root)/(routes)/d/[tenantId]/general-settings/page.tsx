@@ -1,9 +1,10 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
-import { RemoveTenantForm } from "@/components/app/remove-tenant-form";
-import { TenantIframe } from "@/components/app/tenant";
-import { UpdateTenantSettingsForm } from "@/components/app/update-tenant-settings-form";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
+import { RemoveTenantForm } from "@/components/tenant/remove-tenant-form";
+import { TenantIframe } from "@/components/tenant/tenant-iframe";
+import { UpdateTenantSettingsForm } from "@/components/tenant/update-tenant-settings-form";
 import tenantService from "@/services/tenant.service";
+import Link from "next/link";
 
 type TenantGeneralSettingsPageProps = {
     params: Promise<{
@@ -20,6 +21,11 @@ export default async function TenantGeneralSettingsPage({
     return (
         <>
             <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
                 title={"Genel ayarlar"}
                 description={"İşletmenize ait genel ayarları buradan güncelleyebilirsiniz."}
             />

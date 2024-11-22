@@ -1,20 +1,20 @@
 "use client";
 
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "../ui/select";
-import { Button } from "../ui/button";
-import { Plus, Trash } from "lucide-react";
-import { Input } from "../ui/input";
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Plus, Save, Trash } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { NotFound } from "./error";
+import { NotFound } from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
+import { toast } from "react-toastify";
 
 export type UpdateTenantCurrencySettingsFormProps = {
     currencies: any[];
@@ -26,11 +26,11 @@ export const UpdateTenantCurrencySettingsForm = ({
     tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
     const _tenantCurrencies = currencies.filter(currency =>
-        tenant.currencies.some(tenantCurrency => tenantCurrency._id._id === currency._id)
+        tenant.currencies.some((tenantCurrency: any) => tenantCurrency._id._id === currency._id)
     );
 
     const _defaultCurrencyId = tenant.currencies
-        .find(tenantCurrency => tenantCurrency.isDefault)._id._id
+        .find((tenantCurrency: any) => tenantCurrency.isDefault)._id._id
         || _tenantCurrencies[0]._id;
 
     const _defaultCurrency = _tenantCurrencies
@@ -45,8 +45,6 @@ export const UpdateTenantCurrencySettingsForm = ({
                 .some(tenantCurrency => tenantCurrency._id === currency._id)
         );
 
-    const toast = useToast();
-
     const [defaultCurrency, setDefaultCurrency] = useState<any>(_defaultCurrency);
     const [otherCurrencies, setOtherCurrencies] = useState<any[]>(_otherCurrencies);
 
@@ -57,9 +55,8 @@ export const UpdateTenantCurrencySettingsForm = ({
         const response = await updateTenantCurrencySettings(tenant._id, formData);
 
         if (response.message) {
-            toast.toast({
-                variant: response.success ? "default" : "destructive",
-                description: response.message
+            toast(response.message, {
+              type: response.success ? "success" : "error",
             });
         }
     }
@@ -146,7 +143,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                             )
                         }
                         {
-                            otherCurrencies.map((currency, currencyIndex) => (
+                            otherCurrencies.map((currency: any, currencyIndex: number) => (
                                 <div
                                     key={currencyIndex}
                                     className="flex justify-between items-center gap-3 p-2 border rounded-lg"
@@ -170,6 +167,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                                         </span>
                                     </div>
                                     <Button
+                                        variant={"destructive"}
                                         title="Para birimini sil"
                                         type="button"
                                         onClick={() => removeCurrency(currency)}
@@ -183,19 +181,13 @@ export const UpdateTenantCurrencySettingsForm = ({
                         {
                             addableCurrencies.length > 0 && (
                                 <div className="flex items-center gap-2">
-                                    <Button
-                                        type="button"
-                                        onClick={addNewCurrency}
-                                    >
-                                        <Plus size={14} /> Para birimi ekle
-                                    </Button>
                                     <Select onValueChange={(value) => setNewCurrencyId(value)}>
                                         <SelectTrigger>
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {
-                                                addableCurrencies.map((currency, currencyIndex) => (
+                                                addableCurrencies.map((currency: any, currencyIndex: number) => (
                                                     <SelectItem
                                                         key={currencyIndex}
                                                         value={currency._id}
@@ -206,6 +198,12 @@ export const UpdateTenantCurrencySettingsForm = ({
                                             }
                                         </SelectContent>
                                     </Select>
+                                    <Button
+                                        type="button"
+                                        onClick={addNewCurrency}
+                                    >
+                                        <Plus size={14} /> Para birimi ekle
+                                    </Button>
                                 </div>
                             )
                         }
@@ -217,9 +215,10 @@ export const UpdateTenantCurrencySettingsForm = ({
                 </span>
 
                 <Button type="submit" className="w-full">
-                    Kaydet
+                    <Save /> Kaydet
                 </Button>
             </form>
         </section>
     );
 };
+UpdateTenantCurrencySettingsForm.displayName = "UpdateTenantCurrencySettingsForm";

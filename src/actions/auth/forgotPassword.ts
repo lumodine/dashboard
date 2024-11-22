@@ -8,9 +8,5 @@ export default async function (formData: FormData) {
 
     const response = await authService.forgotPassword(email);
 
-    if (response.success) {
-        redirect("/");
-    }
-
     return response;
 }

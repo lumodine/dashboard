@@ -1,9 +1,10 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { CreateUnitForm } from "@/components/app/create-unit-form";
-import { Hero } from "@/components/app/hero";
-import { UnitList } from "@/components/app/unit";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { CreateUnitForm } from "@/components/unit/create-unit-form";
+import { Hero } from "@/components/common/hero";
+import { UnitList } from "@/components/unit/unit-list";
 import tenantService from "@/services/tenant.service";
 import unitService from "@/services/unit.service";
+import Link from "next/link";
 
 type TenantUnitPagePageProps = {
     params: Promise<{
@@ -26,6 +27,11 @@ export default async function TenantUnitPagePage({
     return (
         <>
             <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
                 title={"Birimler"}
                 description={"İşletmenize ait genel ayarları buradan güncelleyebilirsiniz."}
             />
@@ -48,9 +54,6 @@ export default async function TenantUnitPagePage({
                 />
             </section>
             <section className="container mt-3">
-                <h2 className="text-2xl font-semibold mb-3">
-                    Birimler
-                </h2>
                 <UnitList
                     tenant={tenant}
                     units={units}

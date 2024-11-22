@@ -12,18 +12,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import login from "@/actions/auth/login";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "react-toastify";
 
 export default function AuthSignInPage() {
-  const toast = useToast();
-
   const clientAction = async (formData: FormData) => {
     const response = await login(formData);
 
     if (response.message) {
-      toast.toast({
-        variant: response.success ? "default" : "destructive",
-        description: response.message
+      toast(response.message, {
+        type: response.success ? "success" : "error",
       });
     }
   }

@@ -1,8 +1,9 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
-import { TenantIframe } from "@/components/app/tenant";
-import { UpdateTenantThemeForm } from "@/components/app/update-tenant-theme-form";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
+import { TenantIframe } from "@/components/tenant/tenant-iframe";
+import { UpdateTenantThemeForm } from "@/components/tenant/update-tenant-theme-form";
 import tenantService from "@/services/tenant.service";
+import Link from "next/link";
 
 type TenantThemePageProps = {
     params: Promise<{
@@ -25,7 +26,12 @@ export default async function TenantThemePage({
     return (
         <>
             <Hero
-                title={"Tema ayarları"}
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
+                title={"Tema"}
                 description={"İşletmenize ait tema ayarlarını buradan güncelleyebilirsiniz."}
             />
 
@@ -36,7 +42,7 @@ export default async function TenantThemePage({
                         href: `/d/${tenantId}`
                     },
                     {
-                        title: "Tema ayarları",
+                        title: "Tema",
                     }
                 ]}
             />

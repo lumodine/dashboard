@@ -11,13 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import resetPassword from "@/actions/auth/resetPassword";
 import { useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function AuthResetPasswordPage() {
   const searchParams = useSearchParams()
-  const toast = useToast();
 
   const clientAction = async (formData: FormData) => {
     const t = searchParams.get("t") as string;
@@ -25,9 +24,8 @@ export default function AuthResetPasswordPage() {
     const response = await resetPassword(t, formData);
 
     if (response.message) {
-      toast.toast({
-        variant: response.success ? "default" : "destructive",
-        description: response.message
+      toast(response.message, {
+        type: response.success ? "success" : "error",
       });
     }
   }

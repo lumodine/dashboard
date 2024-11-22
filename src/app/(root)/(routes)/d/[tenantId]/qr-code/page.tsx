@@ -1,9 +1,10 @@
-import { AppBreadcrumb } from "@/components/app/breadcrumb";
-import { Hero } from "@/components/app/hero";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
 import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
 import { Download } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type TenantQrCodePageProps = {
     params: Promise<{
@@ -43,6 +44,11 @@ export default async function TenantQrCodePage({
     return (
         <>
             <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
                 title={"Karekod"}
                 description={"Baskı için kullanabileceğiniz karekodunuzu aşağıdan indirebilirsiniz."}
             />
