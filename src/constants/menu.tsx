@@ -28,8 +28,8 @@ export const MENUS = (id: string) => [
         title: "design",
         items: [
             {
-                title: "color_palette",
-                href: `/d/${id}/design`,
+                title: "theme",
+                href: `/d/${id}/theme`,
                 icon: Palette,
             },
         ],

@@ -6,6 +6,12 @@ const getAll = async () => {
   return data;
 };
 
+const getAllThemes = async () => {
+  const { data } = await axios.get("/tenants/themes");
+
+  return data;
+};
+
 const getById = async (id: string) => {
   const { data } = await axios.get(`/tenants/${id}`);
 
@@ -73,11 +79,26 @@ const updateCurrencySettings = async ({ tenantId, currencies }: UpdateCurrencySe
   return data;
 };
 
+type UpdateThemeProps = {
+  tenantId: string;
+  theme: string;
+};
+
+const updateTheme = async ({ tenantId, theme }: UpdateThemeProps) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/theme`, {
+    theme
+  });
+
+  return data;
+};
+
 export default {
   getAll,
+  getAllThemes,
   getById,
   create,
   updateSettings,
   updateLanguageSettings,
   updateCurrencySettings,
+  updateTheme,
 };
