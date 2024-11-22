@@ -92,6 +92,12 @@ const updateTheme = async ({ tenantId, theme }: UpdateThemeProps) => {
   return data;
 };
 
+const remove = async (tenantId: string) => {
+  const { data } = await axios.delete(`/tenants/${tenantId}`);
+
+  return data;
+};
+
 export default {
   getAll,
   getAllThemes,
@@ -101,4 +107,5 @@ export default {
   updateLanguageSettings,
   updateCurrencySettings,
   updateTheme,
+  remove,
 };
