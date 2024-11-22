@@ -113,7 +113,7 @@ export const UpdateTenantCurrencySettingsForm = ({
 
     return (
         <section className="container my-3">
-            <form action={clientAction} className="grid gap-4">
+            <form action={clientAction} className="flex flex-col gap-4">
                 <Input
                     type="hidden"
                     name="defaultCurrency"

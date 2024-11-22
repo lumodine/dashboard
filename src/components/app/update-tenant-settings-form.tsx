@@ -30,7 +30,7 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
     }
 
     return (
-        <form action={clientAction} className="grid gap-4 w-full">
+        <form action={clientAction} className="flex flex-col gap-4 w-full">
             <div className="grid gap-2">
                 <div className="flex items-center">
                     <Label htmlFor="name">

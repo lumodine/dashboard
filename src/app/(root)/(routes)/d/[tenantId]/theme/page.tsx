@@ -4,15 +4,15 @@ import { TenantIframe } from "@/components/app/tenant";
 import { UpdateTenantThemeForm } from "@/components/app/update-tenant-theme-form";
 import tenantService from "@/services/tenant.service";
 
-type TenantGeneralSettingsPageProps = {
+type TenantThemePageProps = {
     params: Promise<{
         tenantId: string,
     }>;
 };
 
-export default async function TenantGeneralSettingsPage({
+export default async function TenantThemePage({
     params,
-}: TenantGeneralSettingsPageProps) {
+}: TenantThemePageProps) {
     const { tenantId } = await params;
     const [
         { data: tenant },
