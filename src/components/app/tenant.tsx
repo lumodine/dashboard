@@ -177,7 +177,7 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
     }
 
     return (
-        <div>
+        <div className="flex-1">
             {menus.map((menu, menuIndex) => (
                 <div key={menuIndex} className="mb-4">
                     <h3 className="text-xl font-bold">

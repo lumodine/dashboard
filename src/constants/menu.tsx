@@ -1,14 +1,11 @@
 import {
     Banknote,
     Boxes,
-    CaseSensitive,
-    Contact,
     Languages,
     Menu,
     Palette,
     QrCode,
     Settings,
-    Users
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -30,11 +27,6 @@ export const MENUS = (id: string) => [
     {
         title: "design",
         items: [
-            {
-                title: "font",
-                href: `/d/${id}/font`,
-                icon: CaseSensitive,
-            },
             {
                 title: "color_palette",
                 href: `/d/${id}/design`,
@@ -69,16 +61,6 @@ export const MENUS = (id: string) => [
                 title: "general_settings",
                 href: `/d/${id}/general-settings`,
                 icon: Settings,
-            },
-            {
-                title: "social_media_accounts",
-                href: `/d/${id}/social-media-accounts`,
-                icon: Contact,
-            },
-            {
-                title: "users",
-                href: `/d/${id}/users`,
-                icon: Users,
             },
         ],
     },

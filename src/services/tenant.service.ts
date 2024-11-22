@@ -47,9 +47,23 @@ const updateSettings = async ({ tenantId, name, address, alias }: UpdateSettings
   return data;
 };
 
+type UpdateLanguageSettingsProps = {
+  tenantId: string;
+  languages: any[];
+};
+
+const updateLanguageSettings = async ({ tenantId, languages }: UpdateLanguageSettingsProps) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/languages`, {
+    languages
+  });
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
   create,
   updateSettings,
+  updateLanguageSettings,
 };
