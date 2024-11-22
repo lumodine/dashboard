@@ -1,5 +1,6 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
 import { Hero } from "@/components/app/hero";
+import { TenantIframe } from "@/components/app/tenant";
 import { UpdateTenantSettingsForm } from "@/components/app/update-tenant-settings-form";
 import tenantService from "@/services/tenant.service";
 
@@ -34,9 +35,14 @@ export default async function TenantGeneralSettingsPage({
                 ]}
             />
 
-            <UpdateTenantSettingsForm
-                tenant={tenant}
-            />
+            <section className="container flex flex-col lg:flex-row gap-4">
+                <UpdateTenantSettingsForm
+                    tenant={tenant}
+                />
+                <TenantIframe
+                    tenant={tenant}
+                />
+            </section>
         </>
     );
 }

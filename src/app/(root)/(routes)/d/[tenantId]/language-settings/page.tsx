@@ -1,5 +1,6 @@
 import { AppBreadcrumb } from "@/components/app/breadcrumb";
 import { Hero } from "@/components/app/hero";
+import { TenantIframe } from "@/components/app/tenant";
 import { UpdateTenantLanguageSettingsForm } from "@/components/app/update-tenant-language-settings-form";
 import languageService from "@/services/language.service";
 import tenantService from "@/services/tenant.service";
@@ -41,10 +42,15 @@ export default async function TenantLanguageSettingsPage({
                 ]}
             />
 
-            <UpdateTenantLanguageSettingsForm
-                languages={languages}
-                tenant={tenant}
-            />
+            <section className="container flex flex-col lg:flex-row gap-4">
+                <UpdateTenantLanguageSettingsForm
+                    languages={languages}
+                    tenant={tenant}
+                />
+                <TenantIframe
+                    tenant={tenant}
+                />
+            </section>
         </>
     );
 }
