@@ -168,7 +168,6 @@ export const UpdateTenantLanguageSettingsForm = ({
                                     </div>
                                     <Button
                                         variant={"destructive"}
-                                        title="Dili sil"
                                         type="button"
                                         onClick={() => removeLanguage(language)}
                                     >

@@ -7,6 +7,14 @@ import updateUnit from "@/actions/unit/updateUnit";
 import removeUnit from "@/actions/unit/removeUnit";
 import { toast } from "react-toastify";
 import { Plus, Trash } from "lucide-react";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 export type UnitItemProps = {
     unit: any;
@@ -74,13 +82,35 @@ export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
                 <Button type="submit" className="w-full flex-1">
                     <Plus /> Birimi güncelle
                 </Button>
-                <Button
-                    variant={"destructive"}
-                    type="button"
-                    onClick={() => handleRemoveUnit(unit._id)}
-                >
-                    <Trash /> Birimi sil
-                </Button>
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button
+                            variant={"destructive"}
+                            type="button"
+                        >
+                            <Trash /> Birimi sil
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>
+                                Birimi sil
+                            </DialogTitle>
+                        </DialogHeader>
+                        <p>
+                            <b>ÖNEMLİ</b>! birimi silmeniz sonucunda tüm içeriklerinizi kaybedeceksiniz. Yine de bunu yapmak istiyor musunuz?
+                        </p>
+                        <DialogClose asChild>
+                            <Button
+                                variant={"destructive"}
+                                type="button"
+                                onClick={() => handleRemoveUnit(unit._id)}
+                            >
+                                <Trash /> Birimi sil
+                            </Button>
+                        </DialogClose>
+                    </DialogContent>
+                </Dialog>
             </div>
         </form>
     );

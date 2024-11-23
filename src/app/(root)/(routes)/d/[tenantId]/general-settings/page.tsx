@@ -42,16 +42,16 @@ export default async function TenantGeneralSettingsPage({
                 ]}
             />
 
-            <section className="container flex flex-col gap-4">
-                <div className="flex-1 w-full flex flex-col md:flex-row items-start justify-start gap-4">
+            <section className="container flex flex-col lg:flex-row gap-4">
+                <div className="flex-1 flex flex-col gap-4">
                     <UpdateTenantSettingsForm
                         tenant={tenant}
                     />
-                    <TenantIframe
+                    <RemoveTenantForm
                         tenant={tenant}
                     />
                 </div>
-                <RemoveTenantForm
+                <TenantIframe
                     tenant={tenant}
                 />
             </section>

@@ -168,7 +168,6 @@ export const UpdateTenantCurrencySettingsForm = ({
                                     </div>
                                     <Button
                                         variant={"destructive"}
-                                        title="Para birimini sil"
                                         type="button"
                                         onClick={() => removeCurrency(currency)}
                                     >
