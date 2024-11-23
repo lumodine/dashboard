@@ -34,7 +34,7 @@ export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
     }
 
     return (
-        <form action={clientAction} className="flex flex-col gap-4 w-full">
+        <form action={clientAction} className="flex flex-col gap-4 w-full bg-gray-50 p-4 rounded-lg">
             <div className="grid gap-2">
                 <div className="flex items-center">
                     <Label>

@@ -26,9 +26,6 @@ export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormP
     return (
         <section className="container my-3">
             <form action={clientAction} className="flex flex-col gap-4">
-                <Label htmlFor="theme">
-                    Temalar
-                </Label>
                 <RadioGroup
                     name="theme"
                     defaultValue={tenant.theme}

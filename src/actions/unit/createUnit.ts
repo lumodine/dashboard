@@ -1,7 +1,7 @@
 "use server";
 
 import unitService from "@/services/unit.service";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function (tenantId: string, formData: FormData) {
     const languageIds = formData.getAll("languageIds") as string[];
@@ -17,7 +17,9 @@ export default async function (tenantId: string, formData: FormData) {
     
     const response = await unitService.create(tenantId, translations);
 
-    revalidatePath("/");
+    if (response.success) {
+        redirect(`/d/${tenantId}/units`);
+    }
 
     return response;
 }

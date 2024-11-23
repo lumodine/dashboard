@@ -1,8 +1,7 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { CreateUnitForm } from "@/components/unit/create-unit-form";
 import { Hero } from "@/components/common/hero";
-import { UnitList } from "@/components/unit/unit-list";
 import tenantService from "@/services/tenant.service";
-import unitService from "@/services/unit.service";
 import Link from "next/link";
 
 type TenantUnitPagePageProps = {
@@ -15,13 +14,7 @@ export default async function TenantUnitPagePage({
     params,
 }: TenantUnitPagePageProps) {
     const { tenantId } = await params;
-    const [
-        { data: units },
-        { data: tenant }
-    ] = await Promise.all([
-        unitService.getAll(tenantId),
-        tenantService.getById(tenantId),
-    ]);
+    const { data: tenant } = await tenantService.getById(tenantId);
 
     return (
         <>
@@ -31,8 +24,7 @@ export default async function TenantUnitPagePage({
                         {tenant.name}
                     </Link>
                 }
-                title={"Birimler"}
-                description={"İşletmenize ait birimlerinizi buradan yönetebilirsiniz."}
+                title={"Yeni birim ekle"}
             />
 
             <AppBreadcrumb
@@ -43,14 +35,17 @@ export default async function TenantUnitPagePage({
                     },
                     {
                         title: "Birimler",
+                        href: `/d/${tenantId}/units`
+                    },
+                    {
+                        title: "Yeni birim ekle"
                     }
                 ]}
             />
 
             <section className="container mt-3">
-                <UnitList
+                <CreateUnitForm
                     tenant={tenant}
-                    units={units}
                 />
             </section>
         </>
