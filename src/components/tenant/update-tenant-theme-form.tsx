@@ -48,9 +48,6 @@ export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormP
                                             value={theme}
                                             id={theme}
                                         />
-                                        <span className="text-primary">
-                                            {theme}
-                                        </span>
                                     </div>
                                 </div>
                             </Label>
