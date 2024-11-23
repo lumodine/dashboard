@@ -1,31 +1,46 @@
 import {
     Banknote,
-    Boxes,
     Globe,
-    Menu,
     Palette,
     QrCode,
     Settings,
+    SquareMenu,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
     {
-        title: "İçerik",
+        title: "Dil",
         items: [
             {
-                title: "Birimler",
-                href: `/d/${id}/units`,
-                icon: Boxes,
-            },
-            {
-                title: "Menü",
-                href: `/d/${id}/menu`,
-                icon: Menu,
+                title: "Dil ayarları",
+                href: `/d/${id}/language-settings`,
+                icon: Globe,
             },
         ],
     },
     {
-        title: "Tasarım",
+        title: "Para birimi",
+        items: [
+            {
+                title: "Para birimi ayarları",
+                href: `/d/${id}/currency-settings`,
+                icon: Banknote,
+            },
+        ],
+    },
+    {
+        title: "İçerik",
+        items: [
+            {
+                title: "Menü",
+                href: `/d/${id}/menu`,
+                icon: SquareMenu,
+                isSuggested: true,
+            },
+        ],
+    },
+    {
+        title: "Görünüm",
         items: [
             {
                 title: "Tema",
@@ -47,16 +62,6 @@ export const MENUS = (id: string) => [
     {
         title: "Ayarlar",
         items: [
-            {
-                title: "Dil ayarları",
-                href: `/d/${id}/language-settings`,
-                icon: Globe,
-            },
-            {
-                title: "Para birimi ayarları",
-                href: `/d/${id}/currency-settings`,
-                icon: Banknote,
-            },
             {
                 title: "Genel ayarlar",
                 href: `/d/${id}/general-settings`,

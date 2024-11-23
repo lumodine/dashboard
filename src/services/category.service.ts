@@ -1,13 +1,13 @@
 import axios from "@/lib/axios";
 
-const getAll = async () => {
-  const { data } = await axios.get("/categories");
+const getAll = async (tenantId: string) => {
+  const { data } = await axios.get(`/${tenantId}/categories`);
 
   return data;
 };
 
-const getById = async (id: string) => {
-  const { data } = await axios.get(`/categories/${id}`);
+const getById = async (tenantId: string, categoryId: string) => {
+  const { data } = await axios.get(`/${tenantId}/categories/${categoryId}`);
 
   return data;
 };

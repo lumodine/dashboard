@@ -51,17 +51,17 @@ export const UnitItem = ({ unit, tenant }: UnitItemProps) => {
                 </div>
                 <div className="pl-3 mt-2 flex flex-col gap-2">
                     {tenant.languages.map((language: any, languageIndex: number) => {
-                        const data = unit.translations.find((unitTranslation: any) => unitTranslation.languageId._id === language._id._id);
+                        const data = unit.translations.find((unitTranslation: any) => unitTranslation.languageId._id === language.language._id);
 
                         return (
                             <div key={languageIndex}>
                                 <Input
                                     type="hidden"
                                     name="languageIds"
-                                    defaultValue={language._id._id}
+                                    defaultValue={language.language._id}
                                 />
                                 <Label htmlFor="names">
-                                    {language._id.name} - {language._id.shortName} (*)
+                                    {language.language.name} - {language.language.shortName} (*)
                                 </Label>
                                 <Input
                                     id="names"

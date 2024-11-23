@@ -27,8 +27,9 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
                             {menu.items.map((menuItem: any, menuItemIndex: number) => (
                                 <li key={menuItemIndex}>
                                     <TenantMenuItem
-                                        menu={menuItem}
+                                        parentMenuIndex={menuIndex}
                                         menuIndex={menuItemIndex}
+                                        menu={menuItem}
                                     />
                                 </li>
                             ))}

@@ -11,14 +11,14 @@ export default async function (formData: FormData) {
 
     const languages = [
         {
-            _id: language,
+            language: language,
             isDefault: true,
         },
     ];
 
     const currencies = [
         {
-            _id: currency,
+            currency: currency,
             isDefault: true,
         },
     ];

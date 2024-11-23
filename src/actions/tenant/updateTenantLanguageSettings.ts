@@ -8,14 +8,14 @@ export default async function (tenantId: string, formData: FormData) {
 
     let languages = [
         {
-            _id: defaultLanguage,
+            language: defaultLanguage,
             isDefault: true,
         },
     ];
 
     for (const otherLanguage of otherLanguages) {
         languages.push({
-            _id: otherLanguage,
+            language: otherLanguage,
             isDefault: false,
         });
     }

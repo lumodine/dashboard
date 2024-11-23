@@ -36,10 +36,10 @@ export const CreateUnitForm = ({ tenant }: CreateUnitFormProps) => {
                             <Input
                                 type="hidden"
                                 name="languageIds"
-                                defaultValue={language._id._id}
+                                defaultValue={language.language._id}
                             />
                             <Label htmlFor="names">
-                                {language._id.name} - {language._id.shortName} (*)
+                                {language.language.name} - {language.language.shortName} (*)
                             </Label>
                             <Input
                                 id="names"

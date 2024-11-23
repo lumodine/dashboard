@@ -24,7 +24,6 @@ export default async function TenantPage({ params }: TenantPageProps) {
                     </Link>
                 }
                 title={tenant.name}
-                description={tenant.address}
             />
 
             <AppBreadcrumb

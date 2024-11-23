@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,8 +35,8 @@ export default function RootLayout({
         {children}
 
         <ToastContainer
-          position={"top-center"}
-          autoClose={2000}
+          position={"bottom-center"}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -43,7 +44,7 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light"
+          theme="colored"
         />
       </body>
     </html>

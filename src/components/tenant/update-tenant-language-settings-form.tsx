@@ -26,11 +26,11 @@ export const UpdateTenantLanguageSettingsForm = ({
     tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
     const _tenantLanguages = languages.filter(language =>
-        tenant.languages.some((tenantLanguage: any) => tenantLanguage._id._id === language._id)
+        tenant.languages.some((tenantLanguage: any) => tenantLanguage.language._id === language._id)
     );
 
     const _defaultLanguageId = tenant.languages
-        .find((tenantLanguage: any) => tenantLanguage.isDefault)._id._id
+        .find((tenantLanguage: any) => tenantLanguage.isDefault).language._id
         || _tenantLanguages[0]._id;
 
     const _defaultLanguage = _tenantLanguages
@@ -208,10 +208,6 @@ export const UpdateTenantLanguageSettingsForm = ({
                         }
                     </div>
                 </div>
-
-                <span className="text-xs">
-                    (*) Kaydet butonuna basana kadar yaptığınız değişiklikler uygulanmayacaktır! İstediğiniz gibi güncelleme yapabilirsiniz.
-                </span>
 
                 <Button type="submit" className="w-full">
                     <Save /> Kaydet

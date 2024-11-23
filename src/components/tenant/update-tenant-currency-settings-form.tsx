@@ -26,11 +26,11 @@ export const UpdateTenantCurrencySettingsForm = ({
     tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
     const _tenantCurrencies = currencies.filter(currency =>
-        tenant.currencies.some((tenantCurrency: any) => tenantCurrency._id._id === currency._id)
+        tenant.currencies.some((tenantCurrency: any) => tenantCurrency.currency._id === currency._id)
     );
 
     const _defaultCurrencyId = tenant.currencies
-        .find((tenantCurrency: any) => tenantCurrency.isDefault)._id._id
+        .find((tenantCurrency: any) => tenantCurrency.isDefault).currency._id
         || _tenantCurrencies[0]._id;
 
     const _defaultCurrency = _tenantCurrencies
@@ -208,10 +208,6 @@ export const UpdateTenantCurrencySettingsForm = ({
                         }
                     </div>
                 </div>
-
-                <span className="text-xs">
-                    (*) Kaydet butonuna basana kadar yaptığınız değişiklikler uygulanmayacaktır! İstediğiniz gibi güncelleme yapabilirsiniz.
-                </span>
 
                 <Button type="submit" className="w-full">
                     <Save /> Kaydet

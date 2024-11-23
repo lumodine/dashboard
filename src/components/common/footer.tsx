@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Footer = () => {
     const startYear = 2024;
     const currentDate = new Date();
@@ -9,9 +11,15 @@ export const Footer = () => {
 
     return (
         <footer className="border-t my-3 pt-3">
-            <div className="container">
-                <p className="text-center">
-                    &copy; {year}
+            <div className="container flex flex-col items-center justify-center gap-6">
+                <p className="text-xs">
+                    &copy; {year} &#x2022; <Link
+                        href={process.env.NEXT_PUBLIC_LANDING_URL!}
+                        target="_blank"
+                        className="underline"
+                    >
+                        {process.env.NEXT_PUBLIC_APP_NAME}
+                    </Link> &#x2022; Tüm hakları saklıdır
                 </p>
             </div>
         </footer>

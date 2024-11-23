@@ -8,14 +8,14 @@ export default async function (tenantId: string, formData: FormData) {
 
     let currencies = [
         {
-            _id: defaultCurrency,
+            currency: defaultCurrency,
             isDefault: true,
         },
     ];
 
     for (const otherCurrency of otherCurrencies) {
         currencies.push({
-            _id: otherCurrency,
+            currency: otherCurrency,
             isDefault: false,
         });
     }

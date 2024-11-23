@@ -7,12 +7,6 @@ const me = async () => {
   return data;
 };
 
-const mePermissions = async () => {
-  const { data } = await axios.get("/auth/me/permissions");
-
-  return data;
-};
-
 const login = async (email: string, password: string) => {
   const { data } = await axios.post("/auth/login", {
     email,
@@ -63,7 +57,6 @@ const logout = async () => await tokenService.removeToken();
 
 export default {
   me,
-  mePermissions,
   login,
   register,
   logout,
