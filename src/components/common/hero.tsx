@@ -7,9 +7,10 @@ export type HeroProps = {
     title: string;
     description?: string;
     image?: string;
+    button?: any;
 };
 
-export const Hero = ({ supTitle, title, description, image }: HeroProps) => {
+export const Hero = ({ supTitle, title, description, image, button }: HeroProps) => {
     const hasImage = !!image;
 
     return (
@@ -23,10 +24,10 @@ export const Hero = ({ supTitle, title, description, image }: HeroProps) => {
                         )
                     }
                 >
-                    <div>
+                    <div className="flex flex-col gap-3 items-start justify-start">
                         {
                             supTitle && (
-                                <Badge variant="secondary" className="mb-2">
+                                <Badge variant="secondary">
                                     {supTitle}
                                 </Badge>
                             )
@@ -36,10 +37,13 @@ export const Hero = ({ supTitle, title, description, image }: HeroProps) => {
                         </h1>
                         {
                             description && (
-                                <p className="mt-3 text-lg text-white">
+                                <p className="text-lg text-white">
                                     {description}
                                 </p>
                             )
+                        }
+                        {
+                            button && button
                         }
                     </div>
                     {

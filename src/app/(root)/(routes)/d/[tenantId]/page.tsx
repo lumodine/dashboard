@@ -1,7 +1,9 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
 import { TenantMenuList } from "@/components/tenant/tenant-menu-list";
+import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 type TenantPageProps = {
@@ -23,6 +25,19 @@ export default async function TenantPage({ params }: TenantPageProps) {
                     </Link>
                 }
                 title={tenant.name}
+                button={
+                    <Link
+                        href={process.env.NEXT_PUBLIC_QR_MENU_URL!.replace("{alias}", tenant.alias)}
+                        target="_blank"
+                    >
+                        <Button
+                            variant={"secondary"}
+                            size={"sm"}
+                        >
+                            <ExternalLink /> Menüyü gör
+                        </Button>
+                    </Link>
+                }
             />
 
             <AppBreadcrumb
