@@ -16,7 +16,7 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
     }
 
     return (
-        <div className="flex-1">
+        <>
             {menus.map((menu: any, menuIndex: number) => (
                 <div key={menuIndex} className="mb-4">
                     {
@@ -31,8 +31,6 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
                             {menu.items.map((menuItem: any, menuItemIndex: number) => (
                                 <li key={menuItemIndex}>
                                     <TenantMenuItem
-                                        parentMenuIndex={menuIndex}
-                                        menuIndex={menuItemIndex}
                                         menu={menuItem}
                                     />
                                 </li>
@@ -41,7 +39,7 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
                     )}
                 </div>
             ))}
-        </div>
+        </>
     );
 };
 TenantMenuList.displayName = "TenantMenuList";

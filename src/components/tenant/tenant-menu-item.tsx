@@ -4,12 +4,10 @@ import { cn } from "@/utils/shadcn";
 import Link from "next/link";
 
 export type TenantMenuItemProps = {
-    parentMenuIndex: number;
-    menuIndex: number;
     menu: any;
 };
 
-export const TenantMenuItem = ({ parentMenuIndex, menuIndex, menu }: TenantMenuItemProps) => {
+export const TenantMenuItem = ({ menu }: TenantMenuItemProps) => {
     return (
         <Link
             href={menu.href}
@@ -28,7 +26,7 @@ export const TenantMenuItem = ({ parentMenuIndex, menuIndex, menu }: TenantMenuI
                 )
             }
             <span className="text-sm font-semibold">
-                {parentMenuIndex + 1}.{menuIndex + 1}. {menu.title}
+                {menu.title}
             </span>
         </Link>
     );
