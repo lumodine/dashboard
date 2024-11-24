@@ -1,26 +1,19 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
-import { UpdateTenantThemeForm } from "@/components/tenant/update-tenant-theme-form";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
 
-type TenantThemePageProps = {
+type TenantMenuPageProps = {
     params: Promise<{
         tenantId: string,
     }>;
 };
 
-export default async function TenantThemePage({
+export default async function TenantMenuPage({
     params,
-}: TenantThemePageProps) {
+}: TenantMenuPageProps) {
     const { tenantId } = await params;
-    const [
-        { data: tenant },
-        { data: themes }
-    ] = await Promise.all([
-        tenantService.getById(tenantId),
-        tenantService.getAllThemes(),
-    ]);
+    const { data: tenant } = await tenantService.getById(tenantId);
 
     return (
         <>
@@ -30,8 +23,7 @@ export default async function TenantThemePage({
                         {tenant.name}
                     </Link>
                 }
-                title={"Tema"}
-                description={"İşletmenize ait tema ayarlarını buradan güncelleyebilirsiniz."}
+                title={"Menü"}
             />
 
             <AppBreadcrumb
@@ -41,17 +33,10 @@ export default async function TenantThemePage({
                         href: `/d/${tenantId}`
                     },
                     {
-                        title: "Tema",
+                        title: "Menü",
                     }
                 ]}
             />
-
-            <section className="container">
-                <UpdateTenantThemeForm
-                    tenant={tenant}
-                    themes={themes}
-                />
-            </section>
         </>
     );
 }

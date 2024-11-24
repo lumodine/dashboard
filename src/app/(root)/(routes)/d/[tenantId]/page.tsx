@@ -1,6 +1,5 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
-import { TenantIframe } from "@/components/tenant/tenant-iframe";
 import { TenantMenuList } from "@/components/tenant/tenant-menu-list";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
@@ -34,11 +33,8 @@ export default async function TenantPage({ params }: TenantPageProps) {
                 ]}
             />
 
-            <section className="container flex flex-col lg:flex-row gap-4">
+            <section className="container">
                 <TenantMenuList
-                    tenant={tenant}
-                />
-                <TenantIframe
                     tenant={tenant}
                 />
             </section>

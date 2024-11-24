@@ -19,9 +19,13 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
         <div className="flex-1">
             {menus.map((menu: any, menuIndex: number) => (
                 <div key={menuIndex} className="mb-4">
-                    <h3 className="text-xl font-bold">
-                        {menuIndex + 1}. {menu.title}
-                    </h3>
+                    {
+                        menu.title && (
+                            <h3 className="text-xl font-bold">
+                                {menuIndex + 1}. {menu.title}
+                            </h3>
+                        )
+                    }
                     {menu.items.length > 0 && (
                         <ul className="mt-2 flex flex-wrap gap-2">
                             {menu.items.map((menuItem: any, menuItemIndex: number) => (

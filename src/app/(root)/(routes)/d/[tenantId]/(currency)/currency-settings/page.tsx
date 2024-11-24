@@ -1,6 +1,5 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
-import { TenantIframe } from "@/components/tenant/tenant-iframe";
 import { UpdateTenantCurrencySettingsForm } from "@/components/tenant/update-tenant-currency-settings-form";
 import currencyService from "@/services/currency.service";
 import tenantService from "@/services/tenant.service";
@@ -48,12 +47,9 @@ export default async function TenantCurrencySettingsPage({
                 ]}
             />
 
-            <section className="container flex flex-col lg:flex-row gap-4">
+            <section className="container">
                 <UpdateTenantCurrencySettingsForm
                     currencies={currencies}
-                    tenant={tenant}
-                />
-                <TenantIframe
                     tenant={tenant}
                 />
             </section>
