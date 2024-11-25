@@ -35,7 +35,7 @@ export const TenantList = ({ tenants }: TenantListProps) => {
             }
             {
                 hasTenants && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-3">
                         {
                             tenants.map((tenant: any, tenantIndex: number) => (
                                 <TenantItem
