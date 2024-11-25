@@ -20,6 +20,14 @@ const create = async (tenantId: string, translations: any[]) => {
   return data;
 };
 
+const update = async (tenantId: string, categoryId: string, translations: any[]) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}`, {
+    translations
+  });
+
+  return data;
+};
+
 const updateSort = async (tenantId: string, items: any[]) => {
   const { data } = await axios.put(`/tenants/${tenantId}/categories/sort`, {
     items,
@@ -32,5 +40,6 @@ export default {
   getAll,
   getById,
   create,
+  update,
   updateSort,
 };
