@@ -12,7 +12,6 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { formatDate } from "@/utils/date";
 
 export type TenantItemProps = {
     tenant: any;
@@ -25,20 +24,24 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
             className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
             <div className="flex gap-2">
-                <div className="w-36">
-                    <Image
-                        src={"https://picsum.photos/100/100"}
-                        alt={tenant.name}
-                        width={100}
-                        height={100}
-                        loading="lazy"
-                        className="h-full w-full"
-                    />
-                </div>
+                {
+                    tenant.logo && (
+                        <div className="w-36">
+                            <Image
+                                src={tenant.logo}
+                                alt={tenant.name}
+                                width={100}
+                                height={100}
+                                loading="lazy"
+                                className="h-full w-full"
+                            />
+                        </div>
+                    )
+                }
                 <div className="w-full p-2 flex flex-col gap-2">
-                    <span>
-                        {tenant.name} ({tenant.alias})
-                    </span>
+                    <b>
+                        {tenant.name}
+                    </b>
                     <div className="flex gap-2">
                         <TooltipProvider>
                             <Tooltip>
@@ -75,9 +78,6 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
                             </Tooltip>
                         </TooltipProvider>
                     </div>
-                    <p className="text-xs text-muted-foreground">
-                        Oluşturma tarihi: {formatDate(tenant.createdAt)}
-                    </p>
                 </div>
             </div>
         </Link>

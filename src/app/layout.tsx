@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       url: "/favicon.ico"
     }
   ],
+  robots: "nofollow, noindex",
 };
 
 type RootLayoutProps = {

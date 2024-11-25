@@ -1,27 +1,37 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
-import { CategoryList } from "@/components/category/category-list";
+import { CreateProductForm } from "@/components/product/create-product-form";
 import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-type TenantMenuPageProps = {
+type TenantMenuCreateProductPageProps = {
     params: Promise<{
-        tenantId: string,
+        tenantId: string;
+        categoryId: string;
     }>;
 };
 
-export default async function TenantMenuPage({
+export default async function TenantMenuCreateProductPage({
     params,
-}: TenantMenuPageProps) {
-    const { tenantId } = await params;
+}: TenantMenuCreateProductPageProps) {
+    const {
+        tenantId,
+        categoryId
+    } = await params;
+
     const [
         { data: tenant },
-        { data: categories },
+        { data: category },
     ] = await Promise.all([
         tenantService.getById(tenantId),
-        categoryService.getAll(tenantId),
+        categoryService.getById(tenantId, categoryId),
     ]);
+
+    if (!category) {
+        return notFound();
+    }
 
     return (
         <>
@@ -31,7 +41,7 @@ export default async function TenantMenuPage({
                         {tenant.name}
                     </Link>
                 }
-                title={"Menü"}
+                title={"Ürün ekle"}
             />
 
             <AppBreadcrumb
@@ -42,14 +52,22 @@ export default async function TenantMenuPage({
                     },
                     {
                         title: "Menü",
-                    }
+                        href: `/d/${tenantId}/menu`
+                    },
+                    {
+                        title: category.translations[0].name,
+                        href: `/d/${tenantId}/menu/${category._id}`
+                    },
+                    {
+                        title: "Ürün ekle",
+                    },
                 ]}
             />
 
             <section className="container">
-                <CategoryList
+                <CreateProductForm
                     tenant={tenant}
-                    categories={categories}
+                    category={category}
                 />
             </section>
         </>

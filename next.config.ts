@@ -4,9 +4,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "placehold.co",
-      },
-      {
         hostname: "picsum.photos",
       },
       {

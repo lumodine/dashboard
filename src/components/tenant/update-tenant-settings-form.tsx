@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Save } from "lucide-react";
+import { formatDate } from "@/utils/date";
 
 export type UpdateTenantSettingsFormProps = {
     tenant: any;
@@ -80,6 +81,14 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
             <span className="text-xs">
                 (*) Zorunlu alan
             </span>
+            <div className="flex flex-col sm:flex-row justify-between gap-1">
+                <span className="text-muted-foreground text-xs">
+                    <b>Oluşturma tarihi</b>: {formatDate(tenant.createdAt)}
+                </span>
+                <span className="text-muted-foreground text-xs">
+                    <b>Güncelleme tarihi</b>: {formatDate(tenant.updatedAt)}
+                </span>
+            </div>
             <Button type="submit" className="w-full">
                 <Save /> Kaydet
             </Button>

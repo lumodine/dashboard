@@ -1,27 +1,20 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
-import { CategoryList } from "@/components/category/category-list";
-import categoryService from "@/services/category.service";
+import { CreateCategoryForm } from "@/components/category/create-category-form";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
 
-type TenantMenuPageProps = {
+type TenantCreateCategoryPageProps = {
     params: Promise<{
         tenantId: string,
     }>;
 };
 
-export default async function TenantMenuPage({
+export default async function TenantCreateCategoryPage({
     params,
-}: TenantMenuPageProps) {
+}: TenantCreateCategoryPageProps) {
     const { tenantId } = await params;
-    const [
-        { data: tenant },
-        { data: categories },
-    ] = await Promise.all([
-        tenantService.getById(tenantId),
-        categoryService.getAll(tenantId),
-    ]);
+    const { data: tenant } = await tenantService.getById(tenantId);
 
     return (
         <>
@@ -31,7 +24,7 @@ export default async function TenantMenuPage({
                         {tenant.name}
                     </Link>
                 }
-                title={"Menü"}
+                title={"Kategori ekle"}
             />
 
             <AppBreadcrumb
@@ -42,14 +35,17 @@ export default async function TenantMenuPage({
                     },
                     {
                         title: "Menü",
+                        href: `/d/${tenantId}/menu`
+                    },
+                    {
+                        title: "Kategori ekle",
                     }
                 ]}
             />
 
             <section className="container">
-                <CategoryList
+                <CreateCategoryForm
                     tenant={tenant}
-                    categories={categories}
                 />
             </section>
         </>

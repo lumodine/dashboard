@@ -51,7 +51,7 @@ export const Hero = ({ supTitle, title, description, image, button }: HeroProps)
                             <div className="relative ms-4">
                                 <Image
                                     src={image}
-                                    alt={`${title} image`}
+                                    alt={title}
                                     width={500}
                                     height={300}
                                     loading="lazy"
