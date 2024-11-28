@@ -35,10 +35,12 @@ export default async function DashboardPage() {
                 ]}
             />
 
-            <CreateTenantForm
-                languages={languages}
-                currencies={currencies}
-            />
+            <section className="container">
+                <CreateTenantForm
+                    languages={languages}
+                    currencies={currencies}
+                />
+            </section>
         </>
     );
 }
