@@ -15,6 +15,9 @@ import { PRODUCT_TYPES } from "@/constants/product";
 import {
     Draggable
 } from "@hello-pangea/dnd";
+import updateProductType from "@/actions/product/updateProductType";
+import updateProductStatus from "@/actions/product/updateProductStatus";
+import { toast } from "react-toastify";
 
 export type ProductItemProps = {
     tenant: any;
@@ -24,6 +27,26 @@ export type ProductItemProps = {
 };
 
 export const ProductItem = ({ tenant, category, product, index }: ProductItemProps) => {
+    const handleType = async (type: string) => {
+        const response = await updateProductType(tenant._id, category._id, product._id, type);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
+    const handleStatus = async (status: string) => {
+        const response = await updateProductStatus(tenant._id, category._id, product._id, status);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <Draggable
             key={product._id}
@@ -79,7 +102,10 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                 <span className="text-xs">
                                     Görünüm
                                 </span>
-                                <Select defaultValue={product.type}>
+                                <Select
+                                    defaultValue={product.type}
+                                    onValueChange={(value) => handleType(value)}
+                                >
                                     <SelectTrigger>
                                         <SelectValue />
                                     </SelectTrigger>
@@ -107,6 +133,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                             title="Gizle"
                                             size={"icon"}
                                             variant={"outline"}
+                                            onClick={() => handleStatus("not_available")}
                                         >
                                             <Eye />
                                         </Button>
@@ -118,6 +145,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                             title="Göster"
                                             size={"icon"}
                                             variant={"outline"}
+                                            onClick={() => handleStatus("published")}
                                         >
                                             <EyeOff />
                                         </Button>
