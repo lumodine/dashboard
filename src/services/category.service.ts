@@ -36,10 +36,28 @@ const updateSort = async (tenantId: string, items: any[]) => {
   return data;
 };
 
+const updateStatus = async (tenantId: string, categoryId: string, status: string) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/status`, {
+    status,
+  });
+
+  return data;
+};
+
+const updateType = async (tenantId: string, categoryId: string, type: string) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/type`, {
+    type,
+  });
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
   create,
   update,
   updateSort,
+  updateStatus,
+  updateType,
 };

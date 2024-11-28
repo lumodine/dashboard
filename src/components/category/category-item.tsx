@@ -15,6 +15,9 @@ import { CATEGORY_TYPES } from "@/constants/category";
 import {
     Draggable
 } from "@hello-pangea/dnd";
+import updateCategoryType from "@/actions/category/updateCategoryType";
+import { toast } from "react-toastify";
+import updateCategoryStatus from "@/actions/category/updateCategoryStatus";
 
 export type CategoryItemProps = {
     tenant: any;
@@ -23,6 +26,26 @@ export type CategoryItemProps = {
 };
 
 export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => {
+    const handleType = async (type: string) => {
+        const response = await updateCategoryType(tenant._id, category._id, type);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
+    const handleStatus = async (status: string) => {
+        const response = await updateCategoryStatus(tenant._id, category._id, status);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <Draggable
             key={category._id}
@@ -77,7 +100,10 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                 <span className="text-xs">
                                     Görünüm
                                 </span>
-                                <Select defaultValue={category.type}>
+                                <Select
+                                    defaultValue={category.type}
+                                    onValueChange={(value) => handleType(value)}
+                                >
                                     <SelectTrigger>
                                         <SelectValue />
                                     </SelectTrigger>
@@ -105,6 +131,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                             title="Gizle"
                                             size={"icon"}
                                             variant={"outline"}
+                                            onClick={() => handleStatus("not_available")}
                                         >
                                             <Eye />
                                         </Button>
@@ -116,6 +143,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                             title="Göster"
                                             size={"icon"}
                                             variant={"outline"}
+                                            onClick={() => handleStatus("published")}
                                         >
                                             <EyeOff />
                                         </Button>
