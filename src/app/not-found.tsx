@@ -20,7 +20,7 @@ export default function NotFoundPage() {
         </p>
 
         <Link href={"/d"}>
-          <Button variant="secondary">
+          <Button variant={"default"}>
             Ana sayfaya dön
           </Button>
         </Link>
