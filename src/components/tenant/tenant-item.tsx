@@ -24,20 +24,23 @@ export const TenantItem = ({ tenant }: TenantItemProps) => {
             className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
             <div className="flex gap-2">
-                {
-                    tenant.logo && (
-                        <div className="w-36">
+
+                <div className="rounded-lg overflow-hidden">
+                    {
+                        tenant.logo ? (
                             <Image
                                 src={tenant.logo}
                                 alt={tenant.name}
                                 width={100}
                                 height={100}
                                 loading="lazy"
-                                className="h-full w-full"
+                                className="w-[100px]"
                             />
-                        </div>
-                    )
-                }
+                        ) : (
+                            <div className="w-[100px]"></div>
+                        )
+                    }
+                </div>
                 <div className="w-full p-2 flex flex-col gap-2">
                     <b>
                         {tenant.name}
