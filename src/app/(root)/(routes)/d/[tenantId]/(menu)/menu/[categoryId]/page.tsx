@@ -13,6 +13,7 @@ import {
 import { ProductList } from "@/components/product/product-list";
 import productService from "@/services/product.service";
 import { UpdateCategoryForm } from "@/components/category/update-category-form";
+import { RemoveCategoryForm } from "@/components/category/remove-category-form";
 
 type TenantMenuProductsPageProps = {
     params: Promise<{
@@ -88,8 +89,12 @@ export default async function TenantMenuProductsPage({
                         />
                     </TabsContent>
                     <TabsContent value="settings">
-                        <div>
+                        <div className="flex flex-col gap-4">
                             <UpdateCategoryForm
+                                tenant={tenant}
+                                category={category}
+                            />
+                            <RemoveCategoryForm
                                 tenant={tenant}
                                 category={category}
                             />

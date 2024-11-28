@@ -56,7 +56,7 @@ export const UpdateTenantLanguageSettingsForm = ({
 
         if (response.message) {
             toast(response.message, {
-              type: response.success ? "success" : "error",
+                type: response.success ? "success" : "error",
             });
         }
     }
@@ -109,111 +109,109 @@ export const UpdateTenantLanguageSettingsForm = ({
     }
 
     return (
-        <section className="container my-3">
-            <form action={clientAction} className="flex flex-col gap-4">
-                <Input
-                    type="hidden"
-                    name="defaultLanguage"
-                    defaultValue={defaultLanguage._id}
-                />
+        <form action={clientAction} className="flex flex-col gap-4">
+            <Input
+                type="hidden"
+                name="defaultLanguage"
+                defaultValue={defaultLanguage._id}
+            />
 
-                <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label htmlFor="defaultLanguage">
-                            Ana dil
-                        </Label>
-                    </div>
-                    <span>
-                        {defaultLanguage.name} ({defaultLanguage.shortName})
-                    </span>
+            <div className="grid gap-2">
+                <div className="flex items-center">
+                    <Label htmlFor="defaultLanguage">
+                        Ana dil
+                    </Label>
                 </div>
+                <span>
+                    {defaultLanguage.name} ({defaultLanguage.shortName})
+                </span>
+            </div>
 
-                <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label>
-                            Diğer diller
-                        </Label>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        {
-                            otherLanguages.length === 0 && (
-                                <NotFound
-                                    title="Diğer dil eklemediniz. Hemen diğer dili ekle."
+            <div className="grid gap-2">
+                <div className="flex items-center">
+                    <Label>
+                        Diğer diller
+                    </Label>
+                </div>
+                <div className="flex flex-col gap-2">
+                    {
+                        otherLanguages.length === 0 && (
+                            <NotFound
+                                title="Diğer dil eklemediniz. Hemen diğer dili ekle."
+                            />
+                        )
+                    }
+                    {
+                        otherLanguages.map((language: any, languageIndex: number) => (
+                            <div
+                                key={languageIndex}
+                                className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+                            >
+                                <Input
+                                    type="hidden"
+                                    name="otherLanguages"
+                                    defaultValue={language._id}
                                 />
-                            )
-                        }
-                        {
-                            otherLanguages.map((language: any, languageIndex: number) => (
-                                <div
-                                    key={languageIndex}
-                                    className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+                                <div className="flex gap-2 items-center">
+                                    <Button
+                                        size={"sm"}
+                                        variant={"outline"}
+                                        type="button"
+                                        onClick={() => addDefaultLanguage(language)}
+                                    >
+                                        Ana dil yap
+                                    </Button>
+                                    <span>
+                                        {language.name} ({language.shortName})
+                                    </span>
+                                </div>
+                                <Button
+                                    variant={"destructive"}
+                                    type="button"
+                                    onClick={() => removeLanguage(language)}
                                 >
-                                    <Input
-                                        type="hidden"
-                                        name="otherLanguages"
-                                        defaultValue={language._id}
-                                    />
-                                    <div className="flex gap-2 items-center">
-                                        <Button
-                                            size={"sm"}
-                                            variant={"outline"}
-                                            type="button"
-                                            onClick={() => addDefaultLanguage(language)}
-                                        >
-                                            Ana dil yap
-                                        </Button>
-                                        <span>
-                                            {language.name} ({language.shortName})
-                                        </span>
-                                    </div>
-                                    <Button
-                                        variant={"destructive"}
-                                        type="button"
-                                        onClick={() => removeLanguage(language)}
-                                    >
-                                        <Trash size={14} /> Sil
-                                    </Button>
-                                </div>
-                            ))
-                        }
+                                    <Trash size={14} /> Sil
+                                </Button>
+                            </div>
+                        ))
+                    }
 
-                        {
-                            addableLanguages.length > 0 && (
-                                <div className="flex items-center gap-2">
-                                    <Select onValueChange={(value) => setNewLanguageId(value)}>
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {
-                                                addableLanguages.map((language: any, languageIndex: number) => (
-                                                    <SelectItem
-                                                        key={languageIndex}
-                                                        value={language._id}
-                                                    >
-                                                        {language.name} ({language.shortName})
-                                                    </SelectItem>
-                                                ))
-                                            }
-                                        </SelectContent>
-                                    </Select>
-                                    <Button
-                                        type="button"
-                                        onClick={addNewLanguage}
-                                    >
-                                        <Plus size={14} /> Dil ekle
-                                    </Button>
-                                </div>
-                            )
-                        }
-                    </div>
+                    {
+                        addableLanguages.length > 0 && (
+                            <div className="flex items-center gap-2">
+                                <Select onValueChange={(value) => setNewLanguageId(value)}>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {
+                                            addableLanguages.map((language: any, languageIndex: number) => (
+                                                <SelectItem
+                                                    key={languageIndex}
+                                                    value={language._id}
+                                                >
+                                                    {language.name} ({language.shortName})
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </SelectContent>
+                                </Select>
+                                <Button
+                                    type="button"
+                                    onClick={addNewLanguage}
+                                >
+                                    <Plus size={14} /> Dil ekle
+                                </Button>
+                            </div>
+                        )
+                    }
                 </div>
+            </div>
 
-                <Button type="submit" className="w-full">
-                    <Save /> Kaydet
-                </Button>
-            </form>
-        </section>
+            <Button type="submit" className="w-full">
+                <Save /> Kaydet
+            </Button>
+        </form>
     );
 };
 UpdateTenantLanguageSettingsForm.displayName = "UpdateTenantLanguageSettingsForm";

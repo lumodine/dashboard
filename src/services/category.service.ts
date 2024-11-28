@@ -52,6 +52,12 @@ const updateType = async (tenantId: string, categoryId: string, type: string) =>
   return data;
 };
 
+const remove = async (tenantId: string, categoryId: string) => {
+  const { data } = await axios.delete(`/tenants/${tenantId}/categories/${categoryId}`);
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
@@ -60,4 +66,5 @@ export default {
   updateSort,
   updateStatus,
   updateType,
+  remove,
 };

@@ -18,44 +18,42 @@ export const UpdateTenantThemeForm = ({ tenant, themes }: UpdateTenantThemeFormP
 
         if (response.message) {
             toast(response.message, {
-              type: response.success ? "success" : "error",
+                type: response.success ? "success" : "error",
             });
         }
     }
 
     return (
-        <section className="container my-3">
-            <form action={clientAction} className="flex flex-col gap-4">
-                <RadioGroup
-                    name="theme"
-                    defaultValue={tenant.theme}
-                    className="flex items-center justify-center flex-wrap gap-2"
-                >
-                    {
-                        themes.map((theme: any, themeIndex: number) => (
-                            <Label
-                                key={themeIndex}
-                                htmlFor={theme}
-                                className="cursor-pointer hover:scale-95"
-                            >
-                                <div className={`flex flex-col items-center justify-center gap-3 bg-gray-100 rounded-lg p-4 theme-${theme}`}>
-                                    <div className="p-6 rounded-full bg-primary w-10 h-10"></div>
-                                    <div className="flex items-center gap-1">
-                                        <RadioGroupItem
-                                            value={theme}
-                                            id={theme}
-                                        />
-                                    </div>
+        <form action={clientAction} className="flex flex-col gap-4">
+            <RadioGroup
+                name="theme"
+                defaultValue={tenant.theme}
+                className="flex items-center justify-center flex-wrap gap-2"
+            >
+                {
+                    themes.map((theme: any, themeIndex: number) => (
+                        <Label
+                            key={themeIndex}
+                            htmlFor={theme}
+                            className="cursor-pointer hover:scale-95"
+                        >
+                            <div className={`flex flex-col items-center justify-center gap-3 bg-gray-100 rounded-lg p-4 theme-${theme}`}>
+                                <div className="p-6 rounded-full bg-primary w-10 h-10"></div>
+                                <div className="flex items-center gap-1">
+                                    <RadioGroupItem
+                                        value={theme}
+                                        id={theme}
+                                    />
                                 </div>
-                            </Label>
-                        ))
-                    }
-                </RadioGroup>
-                <Button type="submit" className="w-full">
-                    <Save /> Kaydet
-                </Button>
-            </form>
-        </section>
+                            </div>
+                        </Label>
+                    ))
+                }
+            </RadioGroup>
+            <Button type="submit" className="w-full">
+                <Save /> Kaydet
+            </Button>
+        </form>
     );
 };
 UpdateTenantThemeForm.displayName = "UpdateTenantThemeForm";

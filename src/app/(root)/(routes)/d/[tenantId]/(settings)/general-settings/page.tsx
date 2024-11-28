@@ -41,7 +41,7 @@ export default async function TenantGeneralSettingsPage({
                 ]}
             />
 
-            <section className="container flex flex-col gap-2">
+            <section className="container flex flex-col gap-4">
                 <UpdateTenantSettingsForm
                     tenant={tenant}
                 />

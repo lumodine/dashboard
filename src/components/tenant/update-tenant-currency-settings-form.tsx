@@ -56,7 +56,7 @@ export const UpdateTenantCurrencySettingsForm = ({
 
         if (response.message) {
             toast(response.message, {
-              type: response.success ? "success" : "error",
+                type: response.success ? "success" : "error",
             });
         }
     }
@@ -109,111 +109,109 @@ export const UpdateTenantCurrencySettingsForm = ({
     }
 
     return (
-        <section className="container my-3">
-            <form action={clientAction} className="flex flex-col gap-4">
-                <Input
-                    type="hidden"
-                    name="defaultCurrency"
-                    defaultValue={defaultCurrency._id}
-                />
+        <form action={clientAction} className="flex flex-col gap-4">
+            <Input
+                type="hidden"
+                name="defaultCurrency"
+                defaultValue={defaultCurrency._id}
+            />
 
-                <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label htmlFor="defaultCurrency">
-                            Ana para birimi
-                        </Label>
-                    </div>
-                    <span>
-                        {defaultCurrency.code} ({defaultCurrency.symbol})
-                    </span>
+            <div className="grid gap-2">
+                <div className="flex items-center">
+                    <Label htmlFor="defaultCurrency">
+                        Ana para birimi
+                    </Label>
                 </div>
+                <span>
+                    {defaultCurrency.code} ({defaultCurrency.symbol})
+                </span>
+            </div>
 
-                <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label>
-                            Diğer para birimleri
-                        </Label>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        {
-                            otherCurrencies.length === 0 && (
-                                <NotFound
-                                    title="Diğer para birimi eklemediniz. Hemen diğer para birimini ekle."
+            <div className="grid gap-2">
+                <div className="flex items-center">
+                    <Label>
+                        Diğer para birimleri
+                    </Label>
+                </div>
+                <div className="flex flex-col gap-2">
+                    {
+                        otherCurrencies.length === 0 && (
+                            <NotFound
+                                title="Diğer para birimi eklemediniz. Hemen diğer para birimini ekle."
+                            />
+                        )
+                    }
+                    {
+                        otherCurrencies.map((currency: any, currencyIndex: number) => (
+                            <div
+                                key={currencyIndex}
+                                className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+                            >
+                                <Input
+                                    type="hidden"
+                                    name="otherCurrencies"
+                                    defaultValue={currency._id}
                                 />
-                            )
-                        }
-                        {
-                            otherCurrencies.map((currency: any, currencyIndex: number) => (
-                                <div
-                                    key={currencyIndex}
-                                    className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+                                <div className="flex gap-2 items-center">
+                                    <Button
+                                        size={"sm"}
+                                        variant={"outline"}
+                                        type="button"
+                                        onClick={() => addDefaultCurrency(currency)}
+                                    >
+                                        Ana para birimi yap
+                                    </Button>
+                                    <span>
+                                        {currency.code} ({currency.symbol})
+                                    </span>
+                                </div>
+                                <Button
+                                    variant={"destructive"}
+                                    type="button"
+                                    onClick={() => removeCurrency(currency)}
                                 >
-                                    <Input
-                                        type="hidden"
-                                        name="otherCurrencies"
-                                        defaultValue={currency._id}
-                                    />
-                                    <div className="flex gap-2 items-center">
-                                        <Button
-                                            size={"sm"}
-                                            variant={"outline"}
-                                            type="button"
-                                            onClick={() => addDefaultCurrency(currency)}
-                                        >
-                                            Ana para birimi yap
-                                        </Button>
-                                        <span>
-                                            {currency.code} ({currency.symbol})
-                                        </span>
-                                    </div>
-                                    <Button
-                                        variant={"destructive"}
-                                        type="button"
-                                        onClick={() => removeCurrency(currency)}
-                                    >
-                                        <Trash size={14} /> Sil
-                                    </Button>
-                                </div>
-                            ))
-                        }
+                                    <Trash size={14} /> Sil
+                                </Button>
+                            </div>
+                        ))
+                    }
 
-                        {
-                            addableCurrencies.length > 0 && (
-                                <div className="flex items-center gap-2">
-                                    <Select onValueChange={(value) => setNewCurrencyId(value)}>
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {
-                                                addableCurrencies.map((currency: any, currencyIndex: number) => (
-                                                    <SelectItem
-                                                        key={currencyIndex}
-                                                        value={currency._id}
-                                                    >
-                                                        {currency.code} ({currency.symbol})
-                                                    </SelectItem>
-                                                ))
-                                            }
-                                        </SelectContent>
-                                    </Select>
-                                    <Button
-                                        type="button"
-                                        onClick={addNewCurrency}
-                                    >
-                                        <Plus size={14} /> Para birimi ekle
-                                    </Button>
-                                </div>
-                            )
-                        }
-                    </div>
+                    {
+                        addableCurrencies.length > 0 && (
+                            <div className="flex items-center gap-2">
+                                <Select onValueChange={(value) => setNewCurrencyId(value)}>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {
+                                            addableCurrencies.map((currency: any, currencyIndex: number) => (
+                                                <SelectItem
+                                                    key={currencyIndex}
+                                                    value={currency._id}
+                                                >
+                                                    {currency.code} ({currency.symbol})
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </SelectContent>
+                                </Select>
+                                <Button
+                                    type="button"
+                                    onClick={addNewCurrency}
+                                >
+                                    <Plus size={14} /> Para birimi ekle
+                                </Button>
+                            </div>
+                        )
+                    }
                 </div>
+            </div>
 
-                <Button type="submit" className="w-full">
-                    <Save /> Kaydet
-                </Button>
-            </form>
-        </section>
+            <Button type="submit" className="w-full">
+                <Save /> Kaydet
+            </Button>
+        </form>
     );
 };
 UpdateTenantCurrencySettingsForm.displayName = "UpdateTenantCurrencySettingsForm";
