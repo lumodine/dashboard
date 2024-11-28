@@ -3,6 +3,7 @@ import { Hero } from "@/components/common/hero";
 import { UpdateTenantCurrencySettingsForm } from "@/components/tenant/update-tenant-currency-settings-form";
 import currencyService from "@/services/currency.service";
 import tenantService from "@/services/tenant.service";
+import { Banknote, Building2 } from "lucide-react";
 import Link from "next/link";
 
 type TenantCurrencySettingsPageProps = {
@@ -38,10 +39,12 @@ export default async function TenantCurrencySettingsPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: Banknote,
                         title: "Para birimi ayarları",
                     }
                 ]}

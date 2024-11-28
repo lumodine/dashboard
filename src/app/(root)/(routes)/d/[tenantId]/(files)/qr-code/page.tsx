@@ -2,7 +2,7 @@ import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
 import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
-import { Download } from "lucide-react";
+import { Building2, Download, QrCode } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -56,10 +56,12 @@ export default async function TenantQrCodePage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: QrCode,
                         title: "Karekod",
                     }
                 ]}

@@ -15,6 +15,7 @@ import productService from "@/services/product.service";
 import { UpdateCategoryForm } from "@/components/category/update-category-form";
 import { UpdateProductForm } from "@/components/product/update-product-form";
 import { RemoveProductForm } from "@/components/product/remove-product-form";
+import { Box, Building2, SquareMenu, TableOfContents } from "lucide-react";
 
 type TenantMenuProductsPageProps = {
     params: Promise<{
@@ -61,18 +62,22 @@ export default async function TenantMenuProductsPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: SquareMenu,
                         title: "Menü",
                         href: `/d/${tenantId}/menu`
                     },
                     {
+                        icon: TableOfContents,
                         title: category.translations[0].name,
                         href: `/d/${tenantId}/menu/${category._id}`
                     },
                     {
+                        icon: Box,
                         title: product.translations[0].name,
                     },
                 ]}

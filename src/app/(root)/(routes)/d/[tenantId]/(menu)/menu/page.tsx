@@ -4,6 +4,7 @@ import { CategoryList } from "@/components/category/category-list";
 import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
+import { Building2, SquareMenu } from "lucide-react";
 
 type TenantMenuPageProps = {
     params: Promise<{
@@ -37,10 +38,12 @@ export default async function TenantMenuPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: SquareMenu,
                         title: "Menü",
                     }
                 ]}

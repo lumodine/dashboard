@@ -4,6 +4,7 @@ import { Hero } from "@/components/common/hero";
 import currencyService from "@/services/currency.service";
 import languageService from "@/services/language.service";
 import Link from "next/link";
+import { Building2 } from "lucide-react";
 
 export default async function DashboardPage() {
     const [
@@ -28,6 +29,7 @@ export default async function DashboardPage() {
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: "İşletme ekle",
                     },
                 ]}

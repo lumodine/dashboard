@@ -2,6 +2,7 @@ import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
 import { UpdateTenantThemeForm } from "@/components/tenant/update-tenant-theme-form";
 import tenantService from "@/services/tenant.service";
+import { Building2, Palette } from "lucide-react";
 import Link from "next/link";
 
 type TenantThemePageProps = {
@@ -37,10 +38,12 @@ export default async function TenantThemePage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: Palette,
                         title: "Tema",
                     }
                 ]}

@@ -3,7 +3,7 @@ import { Hero } from "@/components/common/hero";
 import { TenantMenuList } from "@/components/tenant/tenant-menu-list";
 import { Button } from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
-import { ExternalLink } from "lucide-react";
+import { Building2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 type TenantPageProps = {
@@ -43,6 +43,7 @@ export default async function TenantPage({ params }: TenantPageProps) {
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                     }
                 ]}

@@ -3,6 +3,7 @@ import { Hero } from "@/components/common/hero";
 import { RemoveTenantForm } from "@/components/tenant/remove-tenant-form";
 import { UpdateTenantSettingsForm } from "@/components/tenant/update-tenant-settings-form";
 import tenantService from "@/services/tenant.service";
+import { Building2, Settings } from "lucide-react";
 import Link from "next/link";
 
 type TenantGeneralSettingsPageProps = {
@@ -32,10 +33,12 @@ export default async function TenantGeneralSettingsPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: Settings,
                         title: "Genel ayarlar",
                     }
                 ]}

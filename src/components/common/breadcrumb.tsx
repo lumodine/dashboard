@@ -6,9 +6,11 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Home, LucideIcon } from "lucide-react";
 
 export type AppBreadcrumbProps = {
     items: {
+        icon?: LucideIcon;
         title: string;
         href?: string;
     }[];
@@ -16,12 +18,13 @@ export type AppBreadcrumbProps = {
 
 export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
     const count = items?.length || 0;
-    
+
     if (count == 0) {
         return null;
     }
 
     items.unshift({
+        icon: Home,
         title: "Ana sayfa",
         href: "/",
     });
@@ -39,16 +42,29 @@ export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
                                     <BreadcrumbItem key={itemIndex}>
                                         {
                                             item.href
-                                            ? (
-                                                <BreadcrumbLink href={item.href}>
-                                                    {item.title}
-                                                </BreadcrumbLink>
-                                            )
-                                            : (
-                                                <BreadcrumbPage>
-                                                    {item.title}
-                                                </BreadcrumbPage>
-                                            )
+                                                ? (
+                                                    <BreadcrumbLink
+                                                        href={item.href}
+                                                        className="flex items-center gap-1"
+                                                    >
+                                                        {
+                                                            item.icon && (
+                                                                <item.icon size={16} />
+                                                            )
+                                                        } {item.title}
+                                                    </BreadcrumbLink>
+                                                )
+                                                : (
+                                                    <BreadcrumbPage
+                                                        className="flex items-center gap-1"
+                                                    >
+                                                        {
+                                                            item.icon && (
+                                                                <item.icon size={16} />
+                                                            )
+                                                        } {item.title}
+                                                    </BreadcrumbPage>
+                                                )
                                         }
                                     </BreadcrumbItem>
                                     {

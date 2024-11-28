@@ -3,6 +3,7 @@ import { Hero } from "@/components/common/hero";
 import { CreateCategoryForm } from "@/components/category/create-category-form";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
+import { Building2, SquareMenu, TableOfContents } from "lucide-react";
 
 type TenantCreateCategoryPageProps = {
     params: Promise<{
@@ -30,14 +31,17 @@ export default async function TenantCreateCategoryPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: SquareMenu,
                         title: "Menü",
                         href: `/d/${tenantId}/menu`
                     },
                     {
+                        icon: TableOfContents,
                         title: "Kategori ekle",
                     }
                 ]}

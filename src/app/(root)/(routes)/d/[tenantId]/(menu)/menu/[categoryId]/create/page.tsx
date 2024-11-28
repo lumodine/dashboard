@@ -3,6 +3,7 @@ import { Hero } from "@/components/common/hero";
 import { CreateProductForm } from "@/components/product/create-product-form";
 import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
+import { Box, Building2, SquareMenu, TableOfContents } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -47,18 +48,22 @@ export default async function TenantMenuCreateProductPage({
             <AppBreadcrumb
                 items={[
                     {
+                        icon: Building2,
                         title: tenant.name,
                         href: `/d/${tenantId}`
                     },
                     {
+                        icon: SquareMenu,
                         title: "Menü",
                         href: `/d/${tenantId}/menu`
                     },
                     {
+                        icon: TableOfContents,
                         title: category.translations[0].name,
                         href: `/d/${tenantId}/menu/${category._id}`
                     },
                     {
+                        icon: Box,
                         title: "Ürün ekle",
                     },
                 ]}
