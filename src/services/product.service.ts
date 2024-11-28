@@ -22,6 +22,15 @@ const create = async (tenantId: string, categoryId: string, translations: any[],
   return data;
 };
 
+const update = async (tenantId: string, categoryId: string, productId: string, translations: any[], prices: any[]) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/products/${productId}`, {
+    translations,
+    prices,
+  });
+
+  return data;
+};
+
 const updateSort = async (tenantId: string, categoryId: string, items: any[]) => {
   const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/products/sort`, {
     items,
@@ -50,6 +59,7 @@ export default {
   getAll,
   getById,
   create,
+  update,
   updateSort,
   updateStatus,
   updateType,
