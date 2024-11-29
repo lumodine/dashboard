@@ -138,7 +138,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                         size={"sm"}
                                         className="p-0"
                                     >
-                                        Detayına git
+                                        Ürün bilgilerini gör/düzenle
                                     </Button>
                                 </Link>
                             </div>

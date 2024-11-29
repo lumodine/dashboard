@@ -4,15 +4,7 @@ import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger
-} from "@/components/ui/tabs";
-import { ProductList } from "@/components/product/product-list";
 import productService from "@/services/product.service";
-import { UpdateCategoryForm } from "@/components/category/update-category-form";
 import { UpdateProductForm } from "@/components/product/update-product-form";
 import { RemoveProductForm } from "@/components/product/remove-product-form";
 import { Box, Building2, SquareMenu, TableOfContents } from "lucide-react";
@@ -84,27 +76,18 @@ export default async function TenantMenuProductsPage({
             />
 
             <section className="container">
-                <Tabs defaultValue="settings">
-                    <TabsList>
-                        <TabsTrigger value="settings">
-                            Ayarlar
-                        </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="settings">
-                        <div className="flex flex-col gap-4">
-                            <UpdateProductForm
-                                tenant={tenant}
-                                category={category}
-                                product={product}
-                            />
-                            <RemoveProductForm
-                                tenant={tenant}
-                                category={category}
-                                product={product}
-                            />
-                        </div>
-                    </TabsContent>
-                </Tabs>
+                <div className="flex flex-col gap-4">
+                    <UpdateProductForm
+                        tenant={tenant}
+                        category={category}
+                        product={product}
+                    />
+                    <RemoveProductForm
+                        tenant={tenant}
+                        category={category}
+                        product={product}
+                    />
+                </div>
             </section>
         </>
     );

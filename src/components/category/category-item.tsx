@@ -139,7 +139,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                         size={"sm"}
                                         className="p-0"
                                     >
-                                        Detayına git
+                                        Ürünleri gör/düzenle
                                     </Button>
                                 </Link>
                             </div>
