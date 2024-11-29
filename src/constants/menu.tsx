@@ -11,7 +11,7 @@ import {
 export const MENUS = (id: string) => [
     {
         items: [
-            /*{
+            {
                 title: "Dil ayarları",
                 href: `/d/${id}/language-settings`,
                 icon: Globe,
@@ -20,7 +20,7 @@ export const MENUS = (id: string) => [
                 title: "Para birimi ayarları",
                 href: `/d/${id}/currency-settings`,
                 icon: Banknote,
-            },*/
+            },
             {
                 title: "Logo ve arkaplan",
                 href: `/d/${id}/images`,
