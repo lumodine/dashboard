@@ -44,14 +44,6 @@ const updateStatus = async (tenantId: string, categoryId: string, status: string
   return data;
 };
 
-const updateType = async (tenantId: string, categoryId: string, type: string) => {
-  const { data } = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/type`, {
-    type,
-  });
-
-  return data;
-};
-
 const remove = async (tenantId: string, categoryId: string) => {
   const { data } = await axios.delete(`/tenants/${tenantId}/categories/${categoryId}`);
 
@@ -71,7 +63,6 @@ export default {
   update,
   updateSort,
   updateStatus,
-  updateType,
   remove,
   uploadImage,
 };

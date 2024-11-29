@@ -11,11 +11,10 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
-import { CATEGORY_STATUS, CATEGORY_TYPES } from "@/constants/category";
+import { CATEGORY_STATUS } from "@/constants/category";
 import {
     Draggable
 } from "@hello-pangea/dnd";
-import updateCategoryType from "@/actions/category/updateCategoryType";
 import { toast } from "react-toastify";
 import updateCategoryStatus from "@/actions/category/updateCategoryStatus";
 import uploadCategoryImage from "@/actions/category/uploadCategoryImage";
@@ -31,16 +30,6 @@ export type CategoryItemProps = {
 };
 
 export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => {
-    const handleType = async (type: string) => {
-        const response = await updateCategoryType(tenant._id, category._id, type);
-
-        if (response.message) {
-            toast(response.message, {
-                type: response.success ? "success" : "error",
-            });
-        }
-    };
-
     const handleStatus = async (status: string) => {
         const response = await updateCategoryStatus(tenant._id, category._id, status);
 
@@ -142,31 +131,6 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                         Ürünleri gör/düzenle
                                     </Button>
                                 </Link>
-                            </div>
-                            <div className="flex flex-col items-center gap-1">
-                                <span className="text-xs">
-                                    Görünüm
-                                </span>
-                                <Select
-                                    defaultValue={category.type}
-                                    onValueChange={(value) => handleType(value)}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {
-                                            CATEGORY_TYPES.map((categoryType: any, categoryTypeIndex: number) => (
-                                                <SelectItem
-                                                    key={categoryTypeIndex}
-                                                    value={categoryType.key}
-                                                >
-                                                    {categoryType.name}
-                                                </SelectItem>
-                                            ))
-                                        }
-                                    </SelectContent>
-                                </Select>
                             </div>
                             <div className="flex flex-col items-center gap-1">
                                 <span className="text-xs">
