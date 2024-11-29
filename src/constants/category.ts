@@ -8,3 +8,14 @@ export const CATEGORY_TYPES = [
         name: "Kutu",
     },
 ];
+
+export const CATEGORY_STATUS = [
+    {
+        key: "hidden",
+        name: "Gizle",
+    },
+    {
+        key: "published",
+        name: "Görünür yap",
+    },
+];

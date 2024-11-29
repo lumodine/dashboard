@@ -8,3 +8,18 @@ export const PRODUCT_TYPES = [
         name: "Kutu",
     },
 ];
+
+export const PRODUCT_STATUS = [
+    {
+        key: "hidden",
+        name: "Gizle",
+    },
+    {
+        key: "not_available",
+        name: "Geçici olarak gizle",
+    },
+    {
+        key: "published",
+        name: "Görünür yap",
+    },
+];

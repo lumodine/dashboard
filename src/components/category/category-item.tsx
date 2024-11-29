@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, Eye, EyeOff } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -11,7 +11,7 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
-import { CATEGORY_TYPES } from "@/constants/category";
+import { CATEGORY_STATUS, CATEGORY_TYPES } from "@/constants/category";
 import {
     Draggable
 } from "@hello-pangea/dnd";
@@ -172,30 +172,26 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                 <span className="text-xs">
                                     Durum
                                 </span>
-                                {
-                                    category.status === "published" && (
-                                        <Button
-                                            title="Gizle"
-                                            size={"icon"}
-                                            variant={"outline"}
-                                            onClick={() => handleStatus("not_available")}
-                                        >
-                                            <Eye />
-                                        </Button>
-                                    )
-                                }
-                                {
-                                    category.status === "not_available" && (
-                                        <Button
-                                            title="Göster"
-                                            size={"icon"}
-                                            variant={"outline"}
-                                            onClick={() => handleStatus("published")}
-                                        >
-                                            <EyeOff />
-                                        </Button>
-                                    )
-                                }
+                                <Select
+                                    defaultValue={category.status}
+                                    onValueChange={(value) => handleStatus(value)}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {
+                                            CATEGORY_STATUS.map((categoryStatus: any, categoryStatusIndex: number) => (
+                                                <SelectItem
+                                                    key={categoryStatusIndex}
+                                                    value={categoryStatus.key}
+                                                >
+                                                    {categoryStatus.name}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>

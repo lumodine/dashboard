@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, Eye, EyeOff } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -11,7 +11,7 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
-import { PRODUCT_TYPES } from "@/constants/product";
+import { PRODUCT_STATUS, PRODUCT_TYPES } from "@/constants/product";
 import {
     Draggable
 } from "@hello-pangea/dnd";
@@ -171,30 +171,26 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                 <span className="text-xs">
                                     Durum
                                 </span>
-                                {
-                                    product.status === "published" && (
-                                        <Button
-                                            title="Gizle"
-                                            size={"icon"}
-                                            variant={"outline"}
-                                            onClick={() => handleStatus("not_available")}
-                                        >
-                                            <Eye />
-                                        </Button>
-                                    )
-                                }
-                                {
-                                    product.status === "not_available" && (
-                                        <Button
-                                            title="Göster"
-                                            size={"icon"}
-                                            variant={"outline"}
-                                            onClick={() => handleStatus("published")}
-                                        >
-                                            <EyeOff />
-                                        </Button>
-                                    )
-                                }
+                                <Select
+                                    defaultValue={product.status}
+                                    onValueChange={(value) => handleStatus(value)}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {
+                                            PRODUCT_STATUS.map((productStatus: any, productStatusIndex: number) => (
+                                                <SelectItem
+                                                    key={productStatusIndex}
+                                                    value={productStatus.key}
+                                                >
+                                                    {productStatus.name}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
