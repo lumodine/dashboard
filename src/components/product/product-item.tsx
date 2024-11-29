@@ -18,6 +18,11 @@ import {
 import updateProductType from "@/actions/product/updateProductType";
 import updateProductStatus from "@/actions/product/updateProductStatus";
 import { toast } from "react-toastify";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { cn } from "@/utils/shadcn";
+import { ChangeEvent } from "react";
+import uploadProductImage from "@/actions/product/uploadProductImage";
 
 export type ProductItemProps = {
     tenant: any;
@@ -47,6 +52,24 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
         }
     };
 
+    const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files?.length === 0) {
+            return;
+        }
+
+        const imageFile = e.target.files[0];
+        const formData = new FormData();
+        formData.append("image", imageFile);
+
+        const response = await uploadProductImage(tenant._id, category._id, product._id, formData);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <Draggable
             key={product._id}
@@ -65,22 +88,43 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                             >
                                 <ChevronsUpDown strokeWidth={1} />
                             </div>
-                            
-                            <div className="rounded-lg overflow-hidden">
-                                {
-                                    product.image ? (
-                                        <Image
-                                            src={product.image}
-                                            alt={product.translations[0].name}
-                                            width={100}
-                                            height={100}
-                                            loading="lazy"
-                                            className="w-[100px]"
-                                        />
-                                    ) : (
-                                        <div className="w-[100px]"></div>
-                                    )
-                                }
+                            <div>
+                                <Label
+                                    htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
+                                    className="text-center"
+                                >
+                                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[100px] h-[100px] cursor-pointer group">
+                                        {
+                                            product.image && (
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.translations[0].name}
+                                                    width={100}
+                                                    height={100}
+                                                    loading="lazy"
+                                                />
+                                            )
+                                        }
+                                        <span
+                                            className={
+                                                cn(
+                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-primary-foreground",
+                                                    product.image && "hidden group-hover:flex",
+                                                    !product.image && "flex",
+                                                )
+                                            }
+                                        >
+                                            Resim yükle (400x400)
+                                        </span>
+                                    </div>
+                                </Label>
+                                <Input
+                                    type="file"
+                                    name={`image-${tenant._id}-${category._id}-${product._id}`}
+                                    id={`image-${tenant._id}-${category._id}-${product._id}`}
+                                    className="hidden"
+                                    onChange={handleUploadImage}
+                                />
                             </div>
                             <div className="w-full flex flex-col gap-1 items-start">
                                 <b>

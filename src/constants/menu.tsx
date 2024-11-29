@@ -1,6 +1,7 @@
 import {
     Banknote,
     Globe,
+    FileImage,
     Palette,
     QrCode,
     Settings,
@@ -19,6 +20,11 @@ export const MENUS = (id: string) => [
                 title: "Para birimi ayarları",
                 href: `/d/${id}/currency-settings`,
                 icon: Banknote,
+            },
+            {
+                title: "Logo ve arkaplan",
+                href: `/d/${id}/images`,
+                icon: FileImage,
             },
             {
                 title: "Menü",
