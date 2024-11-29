@@ -1,7 +1,7 @@
 import axios from "@/lib/axios";
 import tokenService from "./token.service";
 
-const me = async () => {
+const getMe = async () => {
   const { data } = await axios.get("/auth/me");
 
   return data;
@@ -55,11 +55,41 @@ const resetPassword = async (token: string, password: string, confirmPassword: s
 
 const logout = async () => await tokenService.removeToken();
 
+const updateMeInfo = async (name: string, surname: string) => {
+  const { data } = await axios.put("/auth/me/info", {
+    name,
+    surname,
+  });
+
+  return data;
+};
+
+const updateMeEmail = async (email: string) => {
+  const { data } = await axios.put("/auth/me/email", {
+    email,
+  });
+
+  return data;
+};
+
+const updateMePassword = async (currentPassword: string, newPassword: string, confirmNewPassword: string) => {
+  const { data } = await axios.put("/auth/me/password", {
+    currentPassword,
+    newPassword,
+    confirmNewPassword,
+  });
+
+  return data;
+};
+
 export default {
-  me,
+  getMe,
   login,
   register,
   logout,
   forgotPassword,
   resetPassword,
+  updateMeInfo,
+  updateMeEmail,
+  updateMePassword,
 };
