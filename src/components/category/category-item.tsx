@@ -115,7 +115,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                                 )
                                             }
                                         >
-                                            Resim yükle (800x400)
+                                            Resim yükle
                                         </span>
                                     </div>
                                 </Label>

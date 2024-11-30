@@ -7,6 +7,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import uploadTenantBackground from "@/actions/tenant/uploadTenantBackground";
 import Image from "next/image";
+import { cn } from "@/utils/shadcn";
 
 export type UploadTenantImagesFormProps = {
     tenant: any;
@@ -60,28 +61,31 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                         Logo
                     </span>
                     <p className="text-muted-foreground">
-                        İşletmenize ait logonuzu buradan yükleyebilirsiniz. 400x400px boyutunda yüklemenizi öneririz.
+                        İşletmenize ait logonuzu buradan yükleyebilirsiniz.
                     </p>
-                    <div
-                        className="relative flex items-center justify-center cursor-pointer border hover:scale-95 w-[400px] min-h-[400px] h-auto rounded-lg bg-gray-50 overflow-hidden"
-                    >
+                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[400px] h-[400px] cursor-pointer group">
                         {
-                            tenant.logo
-                                ? (
-                                    <Image
-                                        src={tenant.logo}
-                                        alt={tenant.name}
-                                        width={400}
-                                        height={400}
-                                        loading="lazy"
-                                    />
-                                )
-                                : (
-                                    <span className="text-muted-foreground">
-                                        Logo yükle (400x400)
-                                    </span>
-                                )
+                            tenant.logo && (
+                                <Image
+                                    src={tenant.logo}
+                                    alt={tenant.name}
+                                    width={400}
+                                    height={400}
+                                    loading="lazy"
+                                />
+                            )
                         }
+                        <span
+                            className={
+                                cn(
+                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-primary-foreground",
+                                    tenant.logo && "hidden group-hover:flex",
+                                    !tenant.logo && "flex",
+                                )
+                            }
+                        >
+                            Logo yükle
+                        </span>
                     </div>
                 </Label>
                 <Input
@@ -101,28 +105,32 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                         Arkaplan
                     </span>
                     <p className="text-muted-foreground">
-                        İşletmenize ait arkaplan resminizi buradan yükleyebilirsiniz. 800x400px boyutunda yüklemenizi öneririz.
+                        İşletmenize ait arkaplan resminizi buradan yükleyebilirsiniz.
                     </p>
-                    <div
-                        className="relative flex items-center justify-center cursor-pointer border hover:scale-95 w-[800px] min-h-[400px] h-auto rounded-lg bg-gray-50 overflow-hidden"
-                    >
+
+                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[800px] h-[400px] cursor-pointer group">
                         {
-                            tenant.background
-                                ? (
-                                    <Image
-                                        src={tenant.background}
-                                        alt={tenant.name}
-                                        width={800}
-                                        height={400}
-                                        loading="lazy"
-                                    />
-                                )
-                                : (
-                                    <span className="text-muted-foreground">
-                                        Arkaplan yükle (800x400)
-                                    </span>
-                                )
+                            tenant.background && (
+                                <Image
+                                    src={tenant.background}
+                                    alt={tenant.name}
+                                    width={800}
+                                    height={400}
+                                    loading="lazy"
+                                />
+                            )
                         }
+                        <span
+                            className={
+                                cn(
+                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-primary-foreground",
+                                    tenant.background && "hidden group-hover:flex",
+                                    !tenant.background && "flex",
+                                )
+                            }
+                        >
+                            Arkaplan yükle
+                        </span>
                     </div>
                 </Label>
                 <Input

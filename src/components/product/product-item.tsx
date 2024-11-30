@@ -114,7 +114,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                                 )
                                             }
                                         >
-                                            Resim yükle (400x400)
+                                            Resim yükle
                                         </span>
                                     </div>
                                 </Label>
