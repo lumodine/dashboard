@@ -63,6 +63,7 @@ export const RemoveTenantForm = ({ tenant }: RemoveTenantFormProps) => {
                                 id="name"
                                 name="name"
                                 required
+                                placeholder={tenant.name}
                                 pattern={tenant.name}
                             />
                         </div>

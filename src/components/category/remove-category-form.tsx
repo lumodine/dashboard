@@ -64,6 +64,7 @@ export const RemoveCategoryForm = ({ tenant, category }: RemoveCategoryFormProps
                                 id="name"
                                 name="name"
                                 required
+                                placeholder={category.translations[0].name}
                                 pattern={category.translations[0].name}
                             />
                         </div>

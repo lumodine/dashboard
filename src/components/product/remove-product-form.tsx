@@ -65,6 +65,7 @@ export const RemoveProductForm = ({ tenant, category, product }: RemoveProductFo
                                 id="name"
                                 name="name"
                                 required
+                                placeholder={product.translations[0].name}
                                 pattern={product.translations[0].name}
                             />
                         </div>
