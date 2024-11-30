@@ -11,6 +11,8 @@ import {
 } from "@hello-pangea/dnd";
 import updateCategorySort from "@/actions/category/updateCategorySort";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { reOrder } from "@/utils/array";
 
 export type CategoryListProps = {
     tenant: any;
@@ -18,20 +20,30 @@ export type CategoryListProps = {
 };
 
 export const CategoryList = ({ tenant, categories }: CategoryListProps) => {
+    const [dragCategories, setDragCategories] = useState(categories);
+
     const count = categories?.length || 0;
     const hasCategories = count > 0;
 
     const onDragEnd = async (result: any) => {
-        const { destination, draggableId } = result;
+        const { destination, source } = result;
 
         if (!destination) {
             return;
         }
 
-        const response = await updateCategorySort(
-            tenant._id,
-            draggableId,
-            destination.index + 1);
+        const items = reOrder(dragCategories, source.index, destination.index);
+
+        setDragCategories(items);
+        
+        const orderedItems = items.map((item: any, index: number) => {
+            return {
+                categoryId: item._id,
+                sort: index,
+            };
+        });
+
+        const response = await updateCategorySort(tenant._id, orderedItems);
 
         if (response.message) {
             toast(response.message, {
@@ -69,7 +81,7 @@ export const CategoryList = ({ tenant, categories }: CategoryListProps) => {
                                         className="grid grid-cols-1 gap-3"
                                     >
                                         {
-                                            categories.map((category: any, categoryIndex: number) => (
+                                            dragCategories.map((category: any, categoryIndex: number) => (
                                                 <CategoryItem
                                                     key={categoryIndex}
                                                     tenant={tenant}

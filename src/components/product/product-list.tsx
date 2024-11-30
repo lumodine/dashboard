@@ -13,6 +13,8 @@ import {
 } from "@hello-pangea/dnd";
 import updateProductSort from "@/actions/product/updateProductSort";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { reOrder } from "@/utils/array";
 
 export type ProductListProps = {
     tenant: any;
@@ -21,21 +23,30 @@ export type ProductListProps = {
 };
 
 export const ProductList = ({ tenant, category, products }: ProductListProps) => {
+    const [dragProducts, setDragProducts] = useState(products);
+
     const count = products?.length || 0;
     const hasProducts = count > 0;
 
     const onDragEnd = async (result: any) => {
-        const { destination, draggableId } = result;
+        const { destination, source } = result;
 
         if (!destination) {
             return;
         }
 
-        const response = await updateProductSort(
-            tenant._id,
-            category._id,
-            draggableId,
-            destination.index + 1);
+        const items = reOrder(dragProducts, source.index, destination.index);
+        
+        setDragProducts(items);
+        
+        const orderedItems = items.map((item: any, index: number) => {
+            return {
+                categoryId: item._id,
+                sort: index,
+            };
+        });
+
+        const response = await updateProductSort(tenant._id, category._id, orderedItems);
 
         if (response.message) {
             toast(response.message, {
@@ -74,7 +85,7 @@ export const ProductList = ({ tenant, category, products }: ProductListProps) =>
                                         className="grid grid-cols-1 gap-3"
                                     >
                                         {
-                                            products.map((product: any, productIndex: number) => (
+                                            dragProducts.map((product: any, productIndex: number) => (
                                                 <ProductItem
                                                     key={productIndex}
                                                     tenant={tenant}
