@@ -84,17 +84,14 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     <span>
                         Logo
                     </span>
-                    <p className="text-muted-foreground">
-                        İşletmenize ait logonuzu buradan yükleyebilirsiniz.
-                    </p>
-                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[400px] h-[400px] cursor-pointer group">
+                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[200px] h-[200px] cursor-pointer group">
                         {
                             tenant.logo && (
                                 <Image
                                     src={tenant.logo}
                                     alt={tenant.name}
-                                    width={400}
-                                    height={400}
+                                    width={200}
+                                    height={200}
                                     loading="lazy"
                                 />
                             )
@@ -139,18 +136,15 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     <span>
                         Arkaplan
                     </span>
-                    <p className="text-muted-foreground">
-                        İşletmenize ait arkaplan resminizi buradan yükleyebilirsiniz.
-                    </p>
 
-                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[800px] h-[400px] cursor-pointer group">
+                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[400px] h-[200px] cursor-pointer group">
                         {
                             tenant.background && (
                                 <Image
                                     src={tenant.background}
                                     alt={tenant.name}
-                                    width={800}
-                                    height={400}
+                                    width={400}
+                                    height={200}
                                     loading="lazy"
                                 />
                             )
