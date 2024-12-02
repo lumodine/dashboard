@@ -110,6 +110,18 @@ const uploadBackground = async (tenantId: string, formData: FormData) => {
   return data;
 };
 
+const removeLogo = async (tenantId: string) => {
+  const { data } = await axios.delete(`/tenants/${tenantId}/upload/logo`);
+
+  return data;
+};
+
+const removeBackground = async (tenantId: string) => {
+  const { data } = await axios.delete(`/tenants/${tenantId}/upload/background`);
+
+  return data;
+};
+
 export default {
   getAll,
   getAllThemes,
@@ -122,4 +134,6 @@ export default {
   remove,
   uploadLogo,
   uploadBackground,
+  removeLogo,
+  removeBackground,
 };

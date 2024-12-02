@@ -8,6 +8,10 @@ import { Input } from "../ui/input";
 import uploadTenantBackground from "@/actions/tenant/uploadTenantBackground";
 import Image from "next/image";
 import { cn } from "@/utils/shadcn";
+import removeTenantLogo from "@/actions/tenant/removeTenantLogo";
+import removeTenantBackground from "@/actions/tenant/removeTenantBackground";
+import { Button } from "../ui/button";
+import { Trash } from "lucide-react";
 
 export type UploadTenantImagesFormProps = {
     tenant: any;
@@ -50,9 +54,29 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
         }
     };
 
+    const handleRemoveLogo = async () => {
+        const response = await removeTenantLogo(tenant._id);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
+    const handleRemoveBackground = async () => {
+        const response = await removeTenantBackground(tenant._id);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <div className="flex flex-col gap-4">
-            <div>
+            <div className="flex flex-col gap-2 items-start">
                 <Label
                     htmlFor="logo"
                     className="inline-flex flex-col gap-2"
@@ -95,8 +119,15 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     className="hidden"
                     onChange={handleUploadLogo}
                 />
+                <Button
+                    variant={"destructive"}
+                    size={"sm"}
+                    onClick={handleRemoveLogo}
+                >
+                    <Trash/> Logoyu sil
+                </Button>
             </div>
-            <div>
+            <div className="flex flex-col gap-2 items-start">
                 <Label
                     htmlFor="background"
                     className="inline-flex flex-col gap-2"
@@ -140,6 +171,13 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     className="hidden"
                     onChange={handleUploadBackground}
                 />
+                <Button
+                    variant={"destructive"}
+                    size={"sm"}
+                    onClick={handleRemoveLogo}
+                >
+                    <Trash/> Arkaplanı sil
+                </Button>
             </div>
         </div>
     );
