@@ -32,6 +32,7 @@ export const TenantMenuList = ({ tenant }: TenantMenuListProps) => {
                                 <li key={menuItemIndex}>
                                     <TenantMenuItem
                                         menu={menuItem}
+                                        number={`${menuIndex + 1}.${menuItemIndex + 1}.`}
                                     />
                                 </li>
                             ))}
