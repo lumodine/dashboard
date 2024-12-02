@@ -43,10 +43,9 @@ type UpdateSettingsProps = {
   alias: string;
 };
 
-const updateSettings = async ({ tenantId, name, address, alias }: UpdateSettingsProps) => {
+const updateSettings = async ({ tenantId, name, alias }: UpdateSettingsProps) => {
   const { data } = await axios.put(`/tenants/${tenantId}/settings`, {
     name,
-    address,
     alias,
   });
 

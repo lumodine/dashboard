@@ -45,19 +45,6 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
                 />
             </div>
             <div className="grid gap-2">
-                <div className="flex items-center">
-                    <Label htmlFor="address">
-                        Adres
-                    </Label>
-                </div>
-                <Input
-                    id="address"
-                    type="text"
-                    name="address"
-                    defaultValue={tenant.address}
-                />
-            </div>
-            <div className="grid gap-2">
                 <Label htmlFor="alias">
                     Web adresi (*)
                 </Label>
