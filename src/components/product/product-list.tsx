@@ -41,7 +41,7 @@ export const ProductList = ({ tenant, category, products }: ProductListProps) =>
         
         const orderedItems = items.map((item: any, index: number) => {
             return {
-                categoryId: item._id,
+                productId: item._id,
                 sort: index,
             };
         });
@@ -85,7 +85,7 @@ export const ProductList = ({ tenant, category, products }: ProductListProps) =>
                                         className="grid grid-cols-1 gap-3"
                                     >
                                         {
-                                            products.map((product: any, productIndex: number) => (
+                                            dragProducts.map((product: any, productIndex: number) => (
                                                 <ProductItem
                                                     key={productIndex}
                                                     tenant={tenant}
