@@ -119,13 +119,17 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     className="hidden"
                     onChange={handleUploadLogo}
                 />
-                <Button
-                    variant={"destructive"}
-                    size={"sm"}
-                    onClick={handleRemoveLogo}
-                >
-                    <Trash/> Logoyu sil
-                </Button>
+                {
+                    tenant.logo && (
+                        <Button
+                            variant={"destructive"}
+                            size={"sm"}
+                            onClick={handleRemoveLogo}
+                        >
+                            <Trash /> Logoyu sil
+                        </Button>
+                    )
+                }
             </div>
             <div className="flex flex-col gap-2 items-start">
                 <Label
@@ -171,13 +175,17 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                     className="hidden"
                     onChange={handleUploadBackground}
                 />
-                <Button
-                    variant={"destructive"}
-                    size={"sm"}
-                    onClick={handleRemoveBackground}
-                >
-                    <Trash/> Arkaplanı sil
-                </Button>
+                {
+                    tenant.background && (
+                        <Button
+                            variant={"destructive"}
+                            size={"sm"}
+                            onClick={handleRemoveBackground}
+                        >
+                            <Trash /> Arkaplanı sil
+                        </Button>
+                    )
+                }
             </div>
         </div>
     );
