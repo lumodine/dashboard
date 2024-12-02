@@ -129,6 +129,7 @@ export const UpdateProductForm = ({ tenant, category, product }: UpdateProductFo
                                         id="amounts"
                                         type="number"
                                         name="amounts"
+                                        step={0.01}
                                         defaultValue={item?.amount}
                                     />
                                 </div>

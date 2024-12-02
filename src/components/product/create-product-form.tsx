@@ -112,6 +112,7 @@ export const CreateProductForm = ({ tenant, category }: CreateProductFormProps) 
                                     id="amounts"
                                     type="number"
                                     name="amounts"
+                                    step={0.01}
                                 />
                             </div>
                         ))
