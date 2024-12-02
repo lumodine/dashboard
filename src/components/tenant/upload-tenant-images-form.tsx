@@ -174,7 +174,7 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                 <Button
                     variant={"destructive"}
                     size={"sm"}
-                    onClick={handleRemoveLogo}
+                    onClick={handleRemoveBackground}
                 >
                     <Trash/> Arkaplanı sil
                 </Button>
