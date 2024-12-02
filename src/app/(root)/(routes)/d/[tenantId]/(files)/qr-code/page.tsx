@@ -12,29 +12,6 @@ type TenantQrCodePageProps = {
     }>;
 };
 
-const QR_CODE_SIZES = {
-    small: {
-        title: 'Küçük',
-        width: 256,
-        height: 256,
-    },
-    medium: {
-        title: 'Orta',
-        width: 512,
-        height: 512,
-    },
-    large: {
-        title: 'Büyük',
-        width: 1024,
-        height: 1024,
-    },
-    xlarge: {
-        title: 'En büyük',
-        width: 2048,
-        height: 2048,
-    },
-}
-
 export default async function TenantQrCodePage({
     params
 }: TenantQrCodePageProps) {
@@ -68,40 +45,25 @@ export default async function TenantQrCodePage({
             />
 
             <section className="container">
-                <div className="flex flex-col gap-5">
-                    {
-                        Object.entries(tenant.qrCodes).map(([key, value]) => {
-                            const qrSize = QR_CODE_SIZES[key];
-
-                            return (
-                                <div key={key}>
-                                    <span className="font-semibold">
-                                        {qrSize.width}x{qrSize.height}
-                                    </span>
-                                    <div className="relative">
-                                        <Image
-                                            src={value}
-                                            width={qrSize.width}
-                                            height={qrSize.height}
-                                            alt={`${tenant.name} karekod`}
-                                        />
-                                        <a
-                                            href={value}
-                                            download={`${tenant.name} ${qrSize.title} karekod.png`}
-                                        >
-                                            <Button
-                                                variant={"outline"}
-                                                size={"sm"}
-                                            >
-                                                <Download />
-                                                Karekodu indir
-                                            </Button>
-                                        </a>
-                                    </div>
-                                </div>
-                            );
-                        })
-                    }
+                <div className="w-52">
+                    <Image
+                        src={tenant.qrCode}
+                        width={2048}
+                        height={2048}
+                        alt={`${tenant.name} karekod`}
+                    />
+                    <a
+                        href={tenant.qrCode}
+                        download={`${tenant.name} qr.png`}
+                    >
+                        <Button
+                            variant={"outline"}
+                            size={"sm"}
+                        >
+                            <Download />
+                            Karekodu indir
+                        </Button>
+                    </a>
                 </div>
             </section>
         </>
