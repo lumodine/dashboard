@@ -111,7 +111,7 @@ export const UpdateProductForm = ({ tenant, category, product }: UpdateProductFo
             <div className="grid gap-2">
                 <div className="flex items-center">
                     <Label>
-                        Fiyat (*)
+                        Fiyat
                     </Label>
                 </div>
                 <div className="pl-3 mt-2 flex flex-col gap-2">
@@ -123,14 +123,13 @@ export const UpdateProductForm = ({ tenant, category, product }: UpdateProductFo
                             return (
                                 <div key={currencyIndex}>
                                     <Label htmlFor="amounts">
-                                        {currency.currency.code} - {currency.currency.symbol} (*)
+                                        {currency.currency.code} - {currency.currency.symbol}
                                     </Label>
                                     <Input
                                         id="amounts"
                                         type="number"
                                         name="amounts"
                                         defaultValue={item?.amount}
-                                        required
                                     />
                                 </div>
                             );
