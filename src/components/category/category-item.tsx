@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -23,6 +23,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "@/utils/shadcn";
 import updateCategoryType from "@/actions/category/updateCategoryType";
+import removeCategoryImage from "@/actions/category/removeCategoryImage";
 
 export type CategoryItemProps = {
     tenant: any;
@@ -69,6 +70,16 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
         }
     };
 
+    const handleRemoveImage = async () => {
+        const response = await removeCategoryImage(tenant._id, category._id);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <Draggable
             key={category._id}
@@ -93,7 +104,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                     className="text-center"
                                 >
                                     <div
-                                        className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[100px] h-[100px] cursor-pointer group"
+                                        className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group"
                                     >
                                         {
                                             category.image && (
@@ -109,7 +120,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                         <span
                                             className={
                                                 cn(
-                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-primary-foreground",
+                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-primary-foreground z-10",
                                                     category.image && "hidden group-hover:flex",
                                                     !category.image && "flex",
                                                 )
@@ -117,6 +128,18 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                         >
                                             Resim yükle
                                         </span>
+                                        {
+                                            category.image && (
+                                                <Button
+                                                    variant={"destructive"}
+                                                    size={"icon"}
+                                                    className="absolute -top-1 -right-1 z-20"
+                                                    onClick={handleRemoveImage}
+                                                >
+                                                    <Trash />
+                                                </Button>
+                                            )
+                                        }
                                     </div>
                                 </Label>
                                 <Input

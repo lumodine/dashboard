@@ -67,6 +67,12 @@ const uploadImage = async (tenantId: string, categoryId: string, productId: stri
   return data;
 };
 
+const removeImage = async (tenantId: string, categoryId: string, productId: string) => {
+  const { data } = await axios.delete(`/tenants/${tenantId}/categories/${categoryId}/products/${productId}/upload/image`);
+
+  return data;
+};
+
 export default {
   getAll,
   getById,
@@ -77,4 +83,5 @@ export default {
   updateType,
   remove,
   uploadImage,
+  removeImage,
 };

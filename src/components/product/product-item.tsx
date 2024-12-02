@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -23,6 +23,7 @@ import { Input } from "../ui/input";
 import { cn } from "@/utils/shadcn";
 import { ChangeEvent } from "react";
 import uploadProductImage from "@/actions/product/uploadProductImage";
+import removeProductImage from "@/actions/product/removeProductImage";
 
 export type ProductItemProps = {
     tenant: any;
@@ -70,6 +71,16 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
         }
     };
 
+    const handleRemoveImage = async () => {
+        const response = await removeProductImage(tenant._id, category._id, product._id);
+
+        if (response.message) {
+            toast(response.message, {
+                type: response.success ? "success" : "error",
+            });
+        }
+    };
+
     return (
         <Draggable
             key={product._id}
@@ -93,7 +104,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                     htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
                                     className="text-center"
                                 >
-                                    <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[100px] h-[100px] cursor-pointer group">
+                                    <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
                                         {
                                             product.image && (
                                                 <Image
@@ -116,6 +127,18 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                         >
                                             Resim yükle
                                         </span>
+                                        {
+                                            product.image && (
+                                                <Button
+                                                    variant={"destructive"}
+                                                    size={"icon"}
+                                                    className="absolute -top-1 -right-1 z-20"
+                                                    onClick={handleRemoveImage}
+                                                >
+                                                    <Trash />
+                                                </Button>
+                                            )
+                                        }
                                     </div>
                                 </Label>
                                 <Input
