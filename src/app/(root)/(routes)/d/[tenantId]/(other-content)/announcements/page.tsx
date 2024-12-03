@@ -1,7 +1,47 @@
-export default async function TenantAnnouncementsPage() {
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
+import tenantService from "@/services/tenant.service";
+import { Building2, Megaphone } from "lucide-react";
+import Link from "next/link";
+
+type TenantAnnouncementsPageProps = {
+    params: Promise<{
+        tenantId: string,
+    }>;
+};
+
+export default async function TenantAnnouncementsPage({ params }: TenantAnnouncementsPageProps) {
+    const { tenantId } = await params;
+    const { data: tenant } = await tenantService.getById(tenantId);
+
     return (
-        <div>
-            TenantAnnouncementsPage
-        </div>
+        <>
+            <Hero
+                supTitle={
+                    <Link href={`/d/${tenant._id}`}>
+                        {tenant.name}
+                    </Link>
+                }
+                title={"Duyurular"}
+            />
+
+            <AppBreadcrumb
+                items={[
+                    {
+                        icon: Building2,
+                        title: tenant.name,
+                        href: `/d/${tenantId}`
+                    },
+                    {
+                        icon: Megaphone,
+                        title: "Duyurular",
+                    }
+                ]}
+            />
+
+            <section className="container">
+                TenantAnnouncementsPage
+            </section>
+        </>
     );
 }
