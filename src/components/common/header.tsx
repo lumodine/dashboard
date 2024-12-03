@@ -23,7 +23,7 @@ export const Header = () => {
                         className="flex gap-2 items-center justify-center"
                     >
                         <Image
-                            src="https://picsum.photos/300/300"
+                            src="https://cdn.lumodine.com/public/logo.jpg"
                             alt={`${process.env.NEXT_PUBLIC_APP_NAME} logo`}
                             loading="lazy"
                             width={50}

@@ -6,7 +6,7 @@ export const Header = () => {
         <header>
             <Link href={process.env.NEXT_PUBLIC_LANDING_URL!} target="_blank">
                 <Image
-                    src="https://picsum.photos/80/80"
+                    src="https://cdn.lumodine.com/public/logo.jpg"
                     alt={`${process.env.NEXT_PUBLIC_APP_NAME} logo`}
                     loading="lazy"
                     width={80}
