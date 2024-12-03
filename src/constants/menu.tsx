@@ -6,6 +6,13 @@ import {
     QrCode,
     Settings,
     SquareMenu,
+    Tag,
+    Megaphone,
+    CaseSensitive,
+    FileUser,
+    ChartBar,
+    MapPinHouse,
+    Contact,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -25,7 +32,7 @@ export const MENUS = (id: string) => [
         ],
     },
     {
-        title: "İçerik",
+        title: "Temel içerikler",
         items: [
             {
                 title: "Menü",
@@ -35,12 +42,17 @@ export const MENUS = (id: string) => [
         ],
     },
     {
-        title: "Baskı",
+        title: "Diğer içerikler",
         items: [
             {
-                title: "Karekod",
-                href: `/d/${id}/qr-code`,
-                icon: QrCode,
+                title: "Etiketler",
+                href: `/d/${id}/tags`,
+                icon: Tag,
+            },
+            {
+                title: "Duyurular",
+                href: `/d/${id}/announcements`,
+                icon: Megaphone,
             },
         ],
     },
@@ -57,11 +69,51 @@ export const MENUS = (id: string) => [
                 href: `/d/${id}/theme`,
                 icon: Palette,
             },
+            {
+                title: "Yazı tipi",
+                href: `/d/${id}/font`,
+                icon: CaseSensitive,
+            },
+        ],
+    },
+    {
+        title: "Analiz",
+        items: [
+            {
+                title: "Anket sonuçları",
+                href: `/d/${id}/survey-results`,
+                icon: FileUser,
+            },
+            {
+                title: "Etkileşim raporları",
+                href: `/d/${id}/interaction-reports`,
+                icon: ChartBar,
+            },
+        ],
+    },
+    {
+        title: "Baskı",
+        items: [
+            {
+                title: "Karekod",
+                href: `/d/${id}/qr-code`,
+                icon: QrCode,
+            },
         ],
     },
     {
         title: "Diğer ayarlar",
         items: [
+            {
+                title: "Adres",
+                href: `/d/${id}/address`,
+                icon: MapPinHouse,
+            },
+            {
+                title: "Sosyal medya",
+                href: `/d/${id}/social-media`,
+                icon: Contact,
+            },
             {
                 title: "Genel ayarlar",
                 href: `/d/${id}/general-settings`,

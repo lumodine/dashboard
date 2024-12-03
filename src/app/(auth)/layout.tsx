@@ -1,3 +1,4 @@
+import { Footer } from "@/components/common/footer";
 import { Header } from "./components/header";
 
 type AuthLayoutProps = {
@@ -11,6 +12,7 @@ export default function AuthLayout({
     <div className="flex flex-col sm:h-screen w-full items-center justify-center p-4 gap-4">
       <Header />
       {children}
+      <Footer />
     </div>
   );
 }
