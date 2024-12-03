@@ -31,8 +31,11 @@ export default function RootLayout({
   children,
 }: Readonly<RootLayoutProps>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="tr-TR">
+      <head>
+        <link rel="stylesheet" href="https://cdn.lumodine.com/public/theme.css" />
+      </head>
+      <body className="theme-yellow">
         {children}
 
         <ToastContainer
