@@ -13,6 +13,7 @@ import {
     ChartBar,
     MapPinHouse,
     Contact,
+    Users,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -113,6 +114,11 @@ export const MENUS = (id: string) => [
                 title: "Sosyal medya",
                 href: `/d/${id}/social-media`,
                 icon: Contact,
+            },
+            {
+                title: "Kullanıcılar",
+                href: `/d/${id}/users`,
+                icon: Users,
             },
             {
                 title: "Genel ayarlar",

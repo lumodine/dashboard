@@ -55,7 +55,7 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
                     Web adresi (*)
                 </Label>
                 <div className="flex">
-                    <span className="bg-primary text-white py-1 px-2 rounded-l-lg">
+                    <span className="bg-primary text-primary-foreground py-1 px-2 rounded-l-lg">
                         {websiteScheme}
                     </span>
                     <Input
@@ -65,7 +65,7 @@ export const CreateTenantForm = ({ languages, currencies }: CreateTenantFormProp
                         required
                         className="rounded-none"
                     />
-                    <span className="bg-primary text-white py-1 px-2 rounded-r-lg">
+                    <span className="bg-primary text-primary-foreground py-1 px-2 rounded-r-lg">
                         {websiteHost}
                     </span>
                 </div>
