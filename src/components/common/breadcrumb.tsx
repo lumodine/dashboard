@@ -51,7 +51,7 @@ export const AppBreadcrumb = ({ items }: AppBreadcrumbProps) => {
                                                             item.icon && (
                                                                 <item.icon size={16} />
                                                             )
-                                                        } {item.title}
+                                                        }
                                                     </BreadcrumbLink>
                                                 )
                                                 : (
