@@ -10,7 +10,7 @@ export const Footer = () => {
         : `${startYear}-${currentYear}`;
 
     return (
-        <footer className="border-t my-3 pt-3">
+        <footer className="my-12">
             <div className="container flex flex-col items-center justify-center gap-6">
                 <p className="text-xs">
                     &copy; {year} &#x2022; <Link

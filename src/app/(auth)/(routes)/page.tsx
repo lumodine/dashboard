@@ -26,7 +26,7 @@ export default function AuthSignInPage() {
   }
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle className="text-2xl">
           Giriş yap
