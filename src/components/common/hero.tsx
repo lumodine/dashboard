@@ -37,7 +37,7 @@ export const Hero = ({ supTitle, title, description, image, button }: HeroProps)
                         </h1>
                         {
                             description && (
-                                <p className="text-lg text-white">
+                                <p className="text-lg text-primary-foreground">
                                     {description}
                                 </p>
                             )
