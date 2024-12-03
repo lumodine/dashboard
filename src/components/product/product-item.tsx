@@ -119,7 +119,7 @@ export const ProductItem = ({ tenant, category, product, index }: ProductItemPro
                                         <span
                                             className={
                                                 cn(
-                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-primary-foreground",
+                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-white",
                                                     product.image && "hidden group-hover:flex",
                                                     !product.image && "flex",
                                                 )

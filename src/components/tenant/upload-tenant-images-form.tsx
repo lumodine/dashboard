@@ -99,7 +99,7 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                         <span
                             className={
                                 cn(
-                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-primary-foreground",
+                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-white",
                                     tenant.logo && "hidden group-hover:flex",
                                     !tenant.logo && "flex",
                                 )
@@ -152,7 +152,7 @@ export const UploadTenantImagesForm = ({ tenant }: UploadTenantImagesFormProps) 
                         <span
                             className={
                                 cn(
-                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-primary-foreground",
+                                    "absolute top-0 left-0 h-full w-full items-center justify-center bg-black/50 text-white",
                                     tenant.background && "hidden group-hover:flex",
                                     !tenant.background && "flex",
                                 )

@@ -120,7 +120,7 @@ export const CategoryItem = ({ tenant, category, index }: CategoryItemProps) => 
                                         <span
                                             className={
                                                 cn(
-                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-primary-foreground z-10",
+                                                    "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-white",
                                                     category.image && "hidden group-hover:flex",
                                                     !category.image && "flex",
                                                 )
