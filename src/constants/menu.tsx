@@ -120,7 +120,6 @@ export const MENUS = (id: string) => [
                 title: "Sosyal medya",
                 href: `/d/${id}/social-media`,
                 icon: Contact,
-                isDisabled: true,
             },
             {
                 title: "Kullanıcılar",

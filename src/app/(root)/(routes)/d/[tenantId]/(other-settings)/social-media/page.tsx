@@ -1,5 +1,6 @@
 import { AppBreadcrumb } from "@/components/common/breadcrumb";
 import { Hero } from "@/components/common/hero";
+import { UpdateTenantSocialMediaForm } from "@/components/tenant/update-tenant-social-media-form";
 import tenantService from "@/services/tenant.service";
 import { Building2, Contact } from "lucide-react";
 import Link from "next/link";
@@ -40,7 +41,9 @@ export default async function TenantSocialMediaPage({ params }: TenantSocialMedi
             />
 
             <section className="container">
-                TenantSocialMediaPage
+                <UpdateTenantSocialMediaForm
+                    tenant={tenant}
+                />
             </section>
         </>
     );

@@ -121,6 +121,14 @@ const removeBackground = async (tenantId: string) => {
   return data;
 };
 
+const updateSocialMedia = async (tenantId: string, socialMedias: any[]) => {
+  const { data } = await axios.put(`/tenants/${tenantId}/social-media`, {
+    socialMedias
+  });
+
+  return data;
+};
+
 export default {
   getAll,
   getAllThemes,
@@ -135,4 +143,5 @@ export default {
   uploadBackground,
   removeLogo,
   removeBackground,
+  updateSocialMedia,
 };
