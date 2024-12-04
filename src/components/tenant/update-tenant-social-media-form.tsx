@@ -88,7 +88,7 @@ export const UpdateTenantSocialMediaForm = ({ tenant }: UpdateTenantSocialMediaF
             <div className="grid gap-2">
                 <div className="flex items-center">
                     <Label htmlFor="website">
-                        Website
+                        Web site
                     </Label>
                 </div>
                 <Input
