@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Save } from "lucide-react";
 import { formatDate } from "@/utils/date";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
+import { TENANT_STATUS } from "@/constants/tenant";
 
 export type UpdateTenantSettingsFormProps = {
     tenant: any;
@@ -23,7 +31,7 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
 
         if (response.message) {
             toast(response.message, {
-              type: response.success ? "success" : "error",
+                type: response.success ? "success" : "error",
             });
         }
     }
@@ -64,6 +72,33 @@ export const UpdateTenantSettingsForm = ({ tenant }: UpdateTenantSettingsFormPro
                         {websiteHost}
                     </span>
                 </div>
+            </div>
+            <div className="grid gap-2">
+                <div className="flex items-center">
+                    <Label htmlFor="status">
+                        Durum (*)
+                    </Label>
+                </div>
+                <Select
+                    name="status"
+                    defaultValue={tenant.status}
+                >
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent id="status">
+                        {
+                            TENANT_STATUS.map((tenantStatus: any, tenantStatusIndex: number) => (
+                                <SelectItem
+                                    key={tenantStatusIndex}
+                                    value={tenantStatus.key}
+                                >
+                                    {tenantStatus.name}
+                                </SelectItem>
+                            ))
+                        }
+                    </SelectContent>
+                </Select>
             </div>
             <span className="text-xs">
                 (*) Zorunlu alan
