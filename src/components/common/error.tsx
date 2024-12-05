@@ -1,14 +1,12 @@
 export type NotFoundProps = {
-    title: string;
+  title: string;
 };
 
-export const NotFound = ({ title }: NotFoundProps) => {
-    return (
-        <div>
-            <p>
-                {title}
-            </p>
-        </div>
-    );
+export const NotFound = ({title}: NotFoundProps) => {
+  return (
+    <div>
+      <p>{title}</p>
+    </div>
+  );
 };
 NotFound.displayName = "NotFound";

@@ -1,11 +1,11 @@
-import { padZero } from "./number";
+import {padZero} from "./number";
 
 export const formatDate = (date: string) => {
-    const dateObj = new Date(date);
+  const dateObj = new Date(date);
 
-    const dateStr = `${padZero(dateObj.getDate())}-${padZero(dateObj.getMonth() + 1)}-${padZero(dateObj.getFullYear())}`;
+  const dateStr = `${padZero(dateObj.getDate())}-${padZero(dateObj.getMonth() + 1)}-${padZero(dateObj.getFullYear())}`;
 
-    const timeStr = `${padZero(dateObj.getHours())}:${padZero(dateObj.getMinutes())}`;
+  const timeStr = `${padZero(dateObj.getHours())}:${padZero(dateObj.getMinutes())}`;
 
-    return `${dateStr} ${timeStr}`;
+  return `${dateStr} ${timeStr}`;
 };

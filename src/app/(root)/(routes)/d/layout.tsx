@@ -1,13 +1,12 @@
-import { Footer } from "@/components/common/footer";
-import { Header } from "@/components/common/header";
+import React from "react";
+import {Footer} from "@/components/common/footer";
+import {Header} from "@/components/common/header";
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function DashboardLayout({
-  children,
-}: Readonly<DashboardLayoutProps>) { 
+export default async function DashboardLayout({children}: Readonly<DashboardLayoutProps>) {
   return (
     <>
       <Header />

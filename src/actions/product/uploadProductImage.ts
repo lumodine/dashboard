@@ -1,14 +1,19 @@
 "use server";
 
+import {revalidatePath} from "next/cache";
 import productService from "@/services/product.service";
-import { revalidatePath } from "next/cache";
 
-export default async function (tenantId: string, categoryId: string, productId: string, formData: FormData) {
-    const response = await productService.uploadImage(tenantId, categoryId, productId, formData);
+export default async function (
+  tenantId: string,
+  categoryId: string,
+  productId: string,
+  formData: FormData,
+) {
+  const response = await productService.uploadImage(tenantId, categoryId, productId, formData);
 
-    if (response.success) {
-        revalidatePath("/", "layout");
-    }
+  if (response.success) {
+    revalidatePath("/", "layout");
+  }
 
-    return response;
+  return response;
 }

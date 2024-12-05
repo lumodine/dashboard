@@ -1,14 +1,14 @@
 "use server";
 
+import {revalidatePath} from "next/cache";
 import tenantService from "@/services/tenant.service";
-import { revalidatePath } from "next/cache";
 
 export default async function (tenantId: string) {
-    const response = await tenantService.removeBackground(tenantId);
+  const response = await tenantService.removeBackground(tenantId);
 
-    if (response.success) {
-        revalidatePath("/", "layout");
-    }
+  if (response.success) {
+    revalidatePath("/", "layout");
+  }
 
-    return response;
+  return response;
 }

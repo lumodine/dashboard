@@ -1,26 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {useSearchParams} from "next/navigation";
+import {toast} from "react-toastify";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
 import resetPassword from "@/actions/auth/resetPassword";
-import { useSearchParams } from "next/navigation";
-import { toast } from "react-toastify";
 
 export default function AuthResetPasswordPage() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   const clientAction = async (formData: FormData) => {
     const t = searchParams.get("t") as string;
-    
+
     const response = await resetPassword(t, formData);
 
     if (response.message) {
@@ -28,14 +22,12 @@ export default function AuthResetPasswordPage() {
         type: response.success ? "success" : "error",
       });
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-96">
       <CardHeader>
-        <CardTitle className="text-2xl">
-          Şifremi sıfırla
-        </CardTitle>
+        <CardTitle className="text-2xl">Şifremi sıfırla</CardTitle>
         <CardDescription>
           Yeni şifrenizi oluşturmak için aşağıdaki bilgileri doldurunuz
         </CardDescription>
@@ -43,43 +35,27 @@ export default function AuthResetPasswordPage() {
       <CardContent>
         <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="password">
-              Yeni şifre (*)
-            </Label>
-            <Input
-              id="password"
-              type="password"
-              name="password"
-              required
-            />
+            <Label htmlFor="password">Yeni şifre (*)</Label>
+            <Input required id="password" name="password" type="password" />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="confirmPassword">
-              Şifreyi onayla (*)
-            </Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              required
-            />
+            <Label htmlFor="confirmPassword">Şifreyi onayla (*)</Label>
+            <Input required id="confirmPassword" name="confirmPassword" type="password" />
           </div>
-          <span className="text-xs">
-            (*) Zorunlu alan
-          </span>
-          <Button type="submit" className="w-full">
+          <span className="text-xs">(*) Zorunlu alan</span>
+          <Button className="w-full" type="submit">
             Şifremi yenile
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">
           Hesabınız yok mu?{" "}
-          <Link href={"/sign-up"} className="underline">
+          <Link className="underline" href={"/sign-up"}>
             Kayıt ol
           </Link>
         </div>
         <div className="mt-4 text-center text-sm">
           Hesabınız var mı?{" "}
-          <Link href={"/sign-in"} className="underline">
+          <Link className="underline" href={"/sign-in"}>
             Giriş yap
           </Link>
         </div>

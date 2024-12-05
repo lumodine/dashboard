@@ -1,18 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {toast} from "react-toastify";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
 import forgotPassword from "@/actions/auth/forgotPassword";
-import { toast } from "react-toastify";
 
 export default function AuthForgotPasswordPage() {
   const clientAction = async (formData: FormData) => {
@@ -23,14 +17,12 @@ export default function AuthForgotPasswordPage() {
         type: response.success ? "success" : "error",
       });
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-96">
       <CardHeader>
-        <CardTitle className="text-2xl">
-          Şifremi unuttum
-        </CardTitle>
+        <CardTitle className="text-2xl">Şifremi unuttum</CardTitle>
         <CardDescription>
           Şifrenizi sıfırlayabilmek için aşağıdaki bilgileri doldurunuz
         </CardDescription>
@@ -38,32 +30,23 @@ export default function AuthForgotPasswordPage() {
       <CardContent>
         <form action={clientAction} className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">
-              E-posta (*)
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              name="email"
-              required
-            />
+            <Label htmlFor="email">E-posta (*)</Label>
+            <Input required id="email" name="email" type="email" />
           </div>
-          <span className="text-xs">
-            (*) Zorunlu alan
-          </span>
-          <Button type="submit" className="w-full">
+          <span className="text-xs">(*) Zorunlu alan</span>
+          <Button className="w-full" type="submit">
             Şifremi sıfırla
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">
           Hesabınız yok mu?{" "}
-          <Link href={"/sign-up"} className="underline">
+          <Link className="underline" href={"/sign-up"}>
             Kayıt ol
           </Link>
         </div>
         <div className="mt-4 text-center text-sm">
           Hesabınız var mı?{" "}
-          <Link href={"/sign-in"} className="underline">
+          <Link className="underline" href={"/sign-in"}>
             Giriş yap
           </Link>
         </div>

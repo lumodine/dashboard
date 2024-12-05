@@ -1,16 +1,16 @@
-import axios from "@/lib/axios";
 import tokenService from "./token.service";
+import axios from "@/lib/axios";
 
 const getMe = async () => {
-  const { data } = await axios.get("/auth/me");
+  const {data} = await axios.get("/auth/me");
 
   return data;
 };
 
 const login = async (email: string, password: string) => {
-  const { data } = await axios.post("/auth/login", {
+  const {data} = await axios.post("/auth/login", {
     email,
-    password
+    password,
   });
 
   if (data.success) {
@@ -20,13 +20,19 @@ const login = async (email: string, password: string) => {
   return data;
 };
 
-const register = async (email: string, name: string, surname: string, password: string, confirmPassword: string) => {
-  const { data } = await axios.post("/auth/register", {
+const register = async (
+  email: string,
+  name: string,
+  surname: string,
+  password: string,
+  confirmPassword: string,
+) => {
+  const {data} = await axios.post("/auth/register", {
     email,
     name,
     surname,
     password,
-    confirmPassword
+    confirmPassword,
   });
 
   if (data.success) {
@@ -37,7 +43,7 @@ const register = async (email: string, name: string, surname: string, password: 
 };
 
 const forgotPassword = async (email: string) => {
-  const { data } = await axios.post("/auth/forgot-password", {
+  const {data} = await axios.post("/auth/forgot-password", {
     email,
   });
 
@@ -45,7 +51,7 @@ const forgotPassword = async (email: string) => {
 };
 
 const resetPassword = async (token: string, password: string, confirmPassword: string) => {
-  const { data } = await axios.post(`/auth/reset-password?t=${token}`, {
+  const {data} = await axios.post(`/auth/reset-password?t=${token}`, {
     password,
     confirmPassword,
   });
@@ -56,7 +62,7 @@ const resetPassword = async (token: string, password: string, confirmPassword: s
 const logout = async () => await tokenService.removeToken();
 
 const updateMeInfo = async (name: string, surname: string) => {
-  const { data } = await axios.put("/auth/me/info", {
+  const {data} = await axios.put("/auth/me/info", {
     name,
     surname,
   });
@@ -65,15 +71,19 @@ const updateMeInfo = async (name: string, surname: string) => {
 };
 
 const updateMeEmail = async (email: string) => {
-  const { data } = await axios.put("/auth/me/email", {
+  const {data} = await axios.put("/auth/me/email", {
     email,
   });
 
   return data;
 };
 
-const updateMePassword = async (currentPassword: string, newPassword: string, confirmNewPassword: string) => {
-  const { data } = await axios.put("/auth/me/password", {
+const updateMePassword = async (
+  currentPassword: string,
+  newPassword: string,
+  confirmNewPassword: string,
+) => {
+  const {data} = await axios.put("/auth/me/password", {
     currentPassword,
     newPassword,
     confirmNewPassword,

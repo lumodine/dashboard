@@ -1,94 +1,73 @@
 "use client";
 
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "react-toastify";
-import { Plus } from "lucide-react";
+import {toast} from "react-toastify";
+import {Plus} from "lucide-react";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
 import createCategory from "@/actions/category/createCategory";
 
 export type CreateCategoryFormProps = {
-    tenant: any;
+  tenant: any;
 };
 
-export const CreateCategoryForm = ({ tenant }: CreateCategoryFormProps) => {
-    const clientAction = async (formData: FormData) => {
-        const response = await createCategory(tenant._id, formData);
+export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
+  const clientAction = async (formData: FormData) => {
+    const response = await createCategory(tenant._id, formData);
 
-        if (response.message) {
-            toast(response.message, {
-                type: response.success ? "success" : "error",
-            });
-        }
+    if (response.message) {
+      toast(response.message, {
+        type: response.success ? "success" : "error",
+      });
     }
+  };
 
-    return (
-        <form action={clientAction} className="flex flex-col gap-4">
-            {
-                tenant.languages.map((language: any, languageIndex: number) => (
-                    <Input
-                        key={languageIndex}
-                        type="hidden"
-                        name="languages"
-                        defaultValue={language.language._id}
-                    />
-                ))
-            }
+  return (
+    <form action={clientAction} className="flex flex-col gap-4">
+      {tenant.languages.map((language: any, languageIndex: number) => (
+        <Input
+          key={languageIndex}
+          defaultValue={language.language._id}
+          name="languages"
+          type="hidden"
+        />
+      ))}
 
-            <div className="grid gap-2">
-                <div className="flex items-center">
-                    <Label>
-                        Ad (*)
-                    </Label>
-                </div>
-                <div className="pl-3 mt-2 flex flex-col gap-2">
-                    {
-                        tenant.languages.map((language: any, languageIndex: number) => (
-                            <div key={languageIndex}>
-                                <Label htmlFor="names">
-                                    {language.language.name} - {language.language.shortName} (*)
-                                </Label>
-                                <Input
-                                    id="names"
-                                    type="text"
-                                    name="names"
-                                    required
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label>Ad (*)</Label>
+        </div>
+        <div className="pl-3 mt-2 flex flex-col gap-2">
+          {tenant.languages.map((language: any, languageIndex: number) => (
+            <div key={languageIndex}>
+              <Label htmlFor="names">
+                {language.language.name} - {language.language.shortName} (*)
+              </Label>
+              <Input required id="names" name="names" type="text" />
             </div>
-            <div className="grid gap-2">
-                <div className="flex items-center">
-                    <Label>
-                        Açıklama
-                    </Label>
-                </div>
-                <div className="pl-3 mt-2 flex flex-col gap-2">
-                    {
-                        tenant.languages.map((language: any, languageIndex: number) => (
-                            <div key={languageIndex}>
-                                <Label htmlFor="descriptions">
-                                    {language.language.name} - {language.language.shortName}
-                                </Label>
-                                <Input
-                                    id="descriptions"
-                                    type="text"
-                                    name="descriptions"
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
+          ))}
+        </div>
+      </div>
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label>Açıklama</Label>
+        </div>
+        <div className="pl-3 mt-2 flex flex-col gap-2">
+          {tenant.languages.map((language: any, languageIndex: number) => (
+            <div key={languageIndex}>
+              <Label htmlFor="descriptions">
+                {language.language.name} - {language.language.shortName}
+              </Label>
+              <Input id="descriptions" name="descriptions" type="text" />
             </div>
-            <span className="text-xs">
-                (*) Zorunlu alan
-            </span>
-            <Button type="submit" className="w-full">
-                <Plus /> Kategori oluştur
-            </Button>
-        </form>
-    );
+          ))}
+        </div>
+      </div>
+      <span className="text-xs">(*) Zorunlu alan</span>
+      <Button className="w-full" type="submit">
+        <Plus /> Kategori oluştur
+      </Button>
+    </form>
+  );
 };
 CreateCategoryForm.displayName = "CreateCategoryForm";
