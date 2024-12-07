@@ -20,8 +20,9 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, categoryId, productId} = await params;
 
-  const [{data: tenant}, {data: category}, {data: product}] = await Promise.all([
+  const [{data: tenant}, {data: categories}, {data: category}, {data: product}] = await Promise.all([
     tenantService.getById(tenantId),
+    categoryService.getAll(tenantId),
     categoryService.getById(tenantId, categoryId),
     productService.getById(tenantId, categoryId, productId),
   ]);
@@ -63,7 +64,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
 
       <section className="container">
         <div className="flex flex-col gap-4">
-          <UpdateProductForm category={category} product={product} tenant={tenant} />
+          <UpdateProductForm categories={categories} category={category} product={product} tenant={tenant} />
           <RemoveProductForm category={category} product={product} tenant={tenant} />
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use server";
 import {revalidatePath} from "next/cache";
 import productService from "@/services/product.service";
+import { redirect } from "next/navigation";
 
 export default async function (
   tenantId: string,
@@ -14,6 +15,8 @@ export default async function (
 
   const currencies = formData.getAll("currencies") as string[];
   const amounts = formData.getAll("amounts") as string[];
+
+  const category = formData.get("category") as string;
 
   const translations = [];
 
@@ -38,12 +41,17 @@ export default async function (
     tenantId,
     categoryId,
     productId,
+    category,
     translations,
     prices,
   );
 
   if (response.success) {
-    revalidatePath("/", "layout");
+    if (categoryId !== category) {
+      redirect(`/d/${tenantId}/menu/${category}/${productId}`);
+    } else {
+      revalidatePath("/", "layout");
+    }
   }
 
   return response;

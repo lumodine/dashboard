@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {CATEGORY_STATUS, CATEGORY_TYPES} from "@/constants/category";
+import {CATEGORY_TYPES} from "@/constants/category";
 import updateCategoryStatus from "@/actions/category/updateCategoryStatus";
 import uploadCategoryImage from "@/actions/category/uploadCategoryImage";
 import {Label} from "@/components/ui/label";

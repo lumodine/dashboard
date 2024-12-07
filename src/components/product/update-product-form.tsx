@@ -1,20 +1,28 @@
 "use client";
 
-import {toast} from "react-toastify";
-import {Save} from "lucide-react";
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { Save } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import updateProduct from "@/actions/product/updateProduct";
-import {formatDate} from "@/utils/date";
+import { formatDate } from "@/utils/date";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export type UpdateProductFormProps = {
   tenant: any;
+  categories: any[];
   category: any;
   product: any;
 };
 
-export const UpdateProductForm = ({tenant, category, product}: UpdateProductFormProps) => {
+export const UpdateProductForm = ({ tenant, categories, category, product }: UpdateProductFormProps) => {
   const clientAction = async (formData: FormData) => {
     const response = await updateProduct(tenant._id, category._id, product._id, formData);
 
@@ -43,6 +51,24 @@ export const UpdateProductForm = ({tenant, category, product}: UpdateProductForm
           type="hidden"
         />
       ))}
+
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label>Kategori (*)</Label>
+        </div>
+        <Select name="category" defaultValue={product.category}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map((category: any, categoryIndex: number) => (
+              <SelectItem key={categoryIndex} value={category._id}>
+                {category.translations[0].name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
       <div className="grid gap-2">
         <div className="flex items-center">

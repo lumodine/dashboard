@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {PRODUCT_STATUS, PRODUCT_TYPES} from "@/constants/product";
+import {PRODUCT_TYPES} from "@/constants/product";
 import updateProductType from "@/actions/product/updateProductType";
 import updateProductStatus from "@/actions/product/updateProductStatus";
 import {Label} from "@/components/ui/label";
