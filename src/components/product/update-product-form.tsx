@@ -1,12 +1,12 @@
 "use client";
 
-import { toast } from "react-toastify";
-import { Save } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import {toast} from "react-toastify";
+import {Save} from "lucide-react";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
 import updateProduct from "@/actions/product/updateProduct";
-import { formatDate } from "@/utils/date";
+import {formatDate} from "@/utils/date";
 import {
   Select,
   SelectContent,
@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UpdateProductFormProps = {
   tenant: any;
@@ -22,7 +23,14 @@ export type UpdateProductFormProps = {
   product: any;
 };
 
-export const UpdateProductForm = ({ tenant, categories, category, product }: UpdateProductFormProps) => {
+export const UpdateProductForm = ({
+  tenant,
+  categories,
+  category,
+  product,
+}: UpdateProductFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const clientAction = async (formData: FormData) => {
     const response = await updateProduct(tenant._id, category._id, product._id, formData);
 
@@ -31,6 +39,8 @@ export const UpdateProductForm = ({ tenant, categories, category, product }: Upd
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (

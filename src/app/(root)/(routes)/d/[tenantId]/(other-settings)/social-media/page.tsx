@@ -4,6 +4,8 @@ import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import {UpdateTenantSocialMediaForm} from "@/components/tenant/update-tenant-social-media-form";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantSocialMediaPageProps = {
   params: Promise<{
@@ -37,7 +39,10 @@ export default async function TenantSocialMediaPage({params}: TenantSocialMediaP
       />
 
       <section className="container">
-        <UpdateTenantSocialMediaForm tenant={tenant} />
+        <TenantIframeGroup>
+          <UpdateTenantSocialMediaForm tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

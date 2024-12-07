@@ -22,6 +22,7 @@ import {Input} from "@/components/ui/input";
 import {cn} from "@/utils/shadcn";
 import updateCategoryType from "@/actions/category/updateCategoryType";
 import removeCategoryImage from "@/actions/category/removeCategoryImage";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type CategoryItemProps = {
   tenant: any;
@@ -30,6 +31,8 @@ export type CategoryItemProps = {
 };
 
 export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const handleStatus = async (status: string) => {
     const response = await updateCategoryStatus(tenant._id, category._id, status);
 
@@ -38,6 +41,8 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleType = async (type: string) => {
@@ -48,6 +53,8 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +74,8 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleRemoveImage = async () => {
@@ -77,6 +86,8 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (

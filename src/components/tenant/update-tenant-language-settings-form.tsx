@@ -15,6 +15,7 @@ import {
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantLanguageSettingsFormProps = {
   languages: any[];
@@ -25,6 +26,8 @@ export const UpdateTenantLanguageSettingsForm = ({
   languages,
   tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const _tenantLanguages = languages.filter((language) =>
     tenant.languages.some((tenantLanguage: any) => tenantLanguage.language._id === language._id),
   );
@@ -59,6 +62,8 @@ export const UpdateTenantLanguageSettingsForm = ({
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const removeLanguage = (language: any) => {
@@ -118,7 +123,7 @@ export const UpdateTenantLanguageSettingsForm = ({
   };
 
   return (
-    <form action={clientAction} className="flex flex-col gap-4">
+    <form action={clientAction} className="w-full flex flex-col gap-4">
       <Input defaultValue={defaultLanguage._id} name="defaultLanguage" type="hidden" />
 
       <div className="grid gap-2">

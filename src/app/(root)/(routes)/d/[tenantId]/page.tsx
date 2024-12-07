@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import {TenantMenuList} from "@/components/tenant/tenant-menu-list";
 import {Button} from "@/components/ui/button";
 import tenantService from "@/services/tenant.service";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 
 type TenantPageProps = {
   params: Promise<{
@@ -43,7 +45,10 @@ export default async function TenantPage({params}: TenantPageProps) {
       />
 
       <section className="container">
-        <TenantMenuList tenant={tenant} />
+        <TenantIframeGroup>
+          <TenantMenuList tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

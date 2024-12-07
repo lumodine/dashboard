@@ -8,6 +8,8 @@ import tenantService from "@/services/tenant.service";
 import productService from "@/services/product.service";
 import {UpdateProductForm} from "@/components/product/update-product-form";
 import {RemoveProductForm} from "@/components/product/remove-product-form";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -20,12 +22,14 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, categoryId, productId} = await params;
 
-  const [{data: tenant}, {data: categories}, {data: category}, {data: product}] = await Promise.all([
-    tenantService.getById(tenantId),
-    categoryService.getAll(tenantId),
-    categoryService.getById(tenantId, categoryId),
-    productService.getById(tenantId, categoryId, productId),
-  ]);
+  const [{data: tenant}, {data: categories}, {data: category}, {data: product}] = await Promise.all(
+    [
+      tenantService.getById(tenantId),
+      categoryService.getAll(tenantId),
+      categoryService.getById(tenantId, categoryId),
+      productService.getById(tenantId, categoryId, productId),
+    ],
+  );
 
   if (!category || !product) {
     return notFound();
@@ -63,10 +67,18 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
       />
 
       <section className="container">
-        <div className="flex flex-col gap-4">
-          <UpdateProductForm categories={categories} category={category} product={product} tenant={tenant} />
-          <RemoveProductForm category={category} product={product} tenant={tenant} />
-        </div>
+        <TenantIframeGroup>
+          <div className="w-full flex flex-col gap-4">
+            <UpdateProductForm
+              categories={categories}
+              category={category}
+              product={product}
+              tenant={tenant}
+            />
+            <RemoveProductForm category={category} product={product} tenant={tenant} />
+          </div>
+          <TenantIframe tenant={tenant} path={`/${categoryId}`} />
+        </TenantIframeGroup>
       </section>
     </>
   );

@@ -4,6 +4,8 @@ import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import {UpdateTenantThemeForm} from "@/components/tenant/update-tenant-theme-form";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantThemePageProps = {
   params: Promise<{
@@ -41,7 +43,10 @@ export default async function TenantThemePage({params}: TenantThemePageProps) {
       />
 
       <section className="container">
-        <UpdateTenantThemeForm tenant={tenant} themes={themes} />
+        <TenantIframeGroup>
+          <UpdateTenantThemeForm tenant={tenant} themes={themes} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

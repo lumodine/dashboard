@@ -15,7 +15,7 @@ export const TenantMenuList = ({tenant}: TenantMenuListProps) => {
   }
 
   return (
-    <>
+    <div>
       {menus.map((menu: any, menuIndex: number) => (
         <div key={menuIndex} className="mb-4">
           {menu.title && (
@@ -37,7 +37,7 @@ export const TenantMenuList = ({tenant}: TenantMenuListProps) => {
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 TenantMenuList.displayName = "TenantMenuList";

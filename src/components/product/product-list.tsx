@@ -10,6 +10,7 @@ import updateProductSort from "@/actions/product/updateProductSort";
 import {Button} from "@/components/ui/button";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type ProductListProps = {
   tenant: any;
@@ -18,6 +19,8 @@ export type ProductListProps = {
 };
 
 export const ProductList = ({tenant, category, products}: ProductListProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const [dragProducts, setDragProducts] = useState(products);
 
   const count = products?.length || 0;
@@ -48,6 +51,8 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (

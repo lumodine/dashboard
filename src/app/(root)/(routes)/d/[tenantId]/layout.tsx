@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 import React from "react";
 import tenantService from "@/services/tenant.service";
+import { IframeReloadProvider } from "@/contexts/iframeReloadContext";
 
 type TenantLayoutProps = {
   children: React.ReactNode;
@@ -17,5 +18,5 @@ export default async function TenantLayout({children, params}: Readonly<TenantLa
     return notFound();
   }
 
-  return <>{children}</>;
+  return <IframeReloadProvider>{children}</IframeReloadProvider>;
 }

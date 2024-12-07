@@ -15,6 +15,7 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantCurrencySettingsFormProps = {
   currencies: any[];
@@ -25,6 +26,8 @@ export const UpdateTenantCurrencySettingsForm = ({
   currencies,
   tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const _tenantCurrencies = currencies.filter((currency) =>
     tenant.currencies.some((tenantCurrency: any) => tenantCurrency.currency._id === currency._id),
   );
@@ -59,6 +62,8 @@ export const UpdateTenantCurrencySettingsForm = ({
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const removeCurrency = (currency: any) => {
@@ -118,7 +123,7 @@ export const UpdateTenantCurrencySettingsForm = ({
   };
 
   return (
-    <form action={clientAction} className="flex flex-col gap-4">
+    <form action={clientAction} className="w-full flex flex-col gap-4">
       <Input defaultValue={defaultCurrency._id} name="defaultCurrency" type="hidden" />
 
       <div className="grid gap-2">

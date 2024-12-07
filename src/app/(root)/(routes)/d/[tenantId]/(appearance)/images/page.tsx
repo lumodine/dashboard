@@ -4,6 +4,8 @@ import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import {UploadTenantImagesForm} from "@/components/tenant/upload-tenant-images-form";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantImagesPageProps = {
   params: Promise<{
@@ -38,7 +40,10 @@ export default async function TenantImagesPage({params}: TenantImagesPageProps) 
       />
 
       <section className="container">
-        <UploadTenantImagesForm tenant={tenant} />
+        <TenantIframeGroup>
+          <UploadTenantImagesForm tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

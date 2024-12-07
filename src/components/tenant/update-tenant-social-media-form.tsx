@@ -6,12 +6,15 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import updateTenantSocialMedia from "@/actions/tenant/updateTenantSocialMedia";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantSocialMediaFormProps = {
   tenant: any;
 };
 
 export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+
   const clientAction = async (formData: FormData) => {
     const response = await updateTenantSocialMedia(tenant._id, formData);
 
@@ -20,6 +23,8 @@ export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFor
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const findSocialMediaByType = (type: string) => {
@@ -27,7 +32,7 @@ export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFor
   };
 
   return (
-    <form action={clientAction} className="flex flex-col gap-4 w-full">
+    <form action={clientAction} className="w-full flex flex-col gap-4 w-full">
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label htmlFor="instagram">Instagram</Label>

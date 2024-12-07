@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import {UpdateTenantLanguageSettingsForm} from "@/components/tenant/update-tenant-language-settings-form";
 import languageService from "@/services/language.service";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantLanguageSettingsPageProps = {
   params: Promise<{
@@ -44,7 +46,10 @@ export default async function TenantLanguageSettingsPage({
       />
 
       <section className="container">
-        <UpdateTenantLanguageSettingsForm languages={languages} tenant={tenant} />
+        <TenantIframeGroup>
+          <UpdateTenantLanguageSettingsForm languages={languages} tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

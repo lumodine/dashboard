@@ -12,12 +12,15 @@ import {cn} from "@/utils/shadcn";
 import removeTenantLogo from "@/actions/tenant/removeTenantLogo";
 import removeTenantBackground from "@/actions/tenant/removeTenantBackground";
 import {Button} from "@/components/ui/button";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UploadTenantImagesFormProps = {
   tenant: any;
 };
 
 export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const handleUploadLogo = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files?.length === 0) {
       return;
@@ -35,6 +38,8 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleUploadBackground = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +59,8 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleRemoveLogo = async () => {
@@ -64,6 +71,8 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   const handleRemoveBackground = async () => {
@@ -74,10 +83,12 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col gap-2 items-start">
         <Label className="inline-flex flex-col gap-2" htmlFor="logo">
           <span>Logo</span>

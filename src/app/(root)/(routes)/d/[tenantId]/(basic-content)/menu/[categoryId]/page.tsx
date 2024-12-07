@@ -10,6 +10,8 @@ import {ProductList} from "@/components/product/product-list";
 import productService from "@/services/product.service";
 import {UpdateCategoryForm} from "@/components/category/update-category-form";
 import {RemoveCategoryForm} from "@/components/category/remove-category-form";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -58,21 +60,24 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
       />
 
       <section className="container">
-        <Tabs defaultValue="products">
-          <TabsList>
-            <TabsTrigger value="products">Ürünler</TabsTrigger>
-            <TabsTrigger value="settings">Ayarlar</TabsTrigger>
-          </TabsList>
-          <TabsContent value="products">
-            <ProductList category={category} products={products} tenant={tenant} />
-          </TabsContent>
-          <TabsContent value="settings">
-            <div className="flex flex-col gap-4">
-              <UpdateCategoryForm category={category} tenant={tenant} />
-              <RemoveCategoryForm category={category} tenant={tenant} />
-            </div>
-          </TabsContent>
-        </Tabs>
+        <TenantIframeGroup>
+          <Tabs className="w-full" defaultValue="products">
+            <TabsList>
+              <TabsTrigger value="products">Ürünler</TabsTrigger>
+              <TabsTrigger value="settings">Ayarlar</TabsTrigger>
+            </TabsList>
+            <TabsContent value="products">
+              <ProductList category={category} products={products} tenant={tenant} />
+            </TabsContent>
+            <TabsContent value="settings">
+              <div className="flex flex-col gap-4">
+                <UpdateCategoryForm category={category} tenant={tenant} />
+                <RemoveCategoryForm category={category} tenant={tenant} />
+              </div>
+            </TabsContent>
+          </Tabs>
+          <TenantIframe tenant={tenant} path={`/${categoryId}`} />
+        </TenantIframeGroup>
       </section>
     </>
   );

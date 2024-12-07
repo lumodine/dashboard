@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import {RemoveTenantForm} from "@/components/tenant/remove-tenant-form";
 import {UpdateTenantSettingsForm} from "@/components/tenant/update-tenant-settings-form";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantGeneralSettingsPageProps = {
   params: Promise<{
@@ -38,9 +40,14 @@ export default async function TenantGeneralSettingsPage({params}: TenantGeneralS
         ]}
       />
 
-      <section className="container flex flex-col gap-4">
-        <UpdateTenantSettingsForm tenant={tenant} />
-        <RemoveTenantForm tenant={tenant} />
+      <section className="container">
+        <TenantIframeGroup>
+          <div className="w-full flex flex-col gap-4">
+            <UpdateTenantSettingsForm tenant={tenant} />
+            <RemoveTenantForm tenant={tenant} />
+          </div>
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

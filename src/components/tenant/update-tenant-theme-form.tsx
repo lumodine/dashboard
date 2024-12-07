@@ -6,6 +6,7 @@ import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import updateTenantTheme from "@/actions/tenant/updateTenantTheme";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantThemeFormProps = {
   tenant: any;
@@ -13,6 +14,8 @@ export type UpdateTenantThemeFormProps = {
 };
 
 export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const clientAction = async (formData: FormData) => {
     const response = await updateTenantTheme(tenant._id, formData);
 
@@ -21,10 +24,12 @@ export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormPro
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (
-    <form action={clientAction} className="flex flex-col gap-4">
+    <form action={clientAction} className="w-full flex flex-col gap-4">
       <RadioGroup
         className="flex items-center justify-center flex-wrap gap-2"
         defaultValue={tenant.theme}

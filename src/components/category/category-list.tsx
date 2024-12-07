@@ -10,6 +10,7 @@ import updateCategorySort from "@/actions/category/updateCategorySort";
 import {Button} from "@/components/ui/button";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 
 export type CategoryListProps = {
   tenant: any;
@@ -17,6 +18,8 @@ export type CategoryListProps = {
 };
 
 export const CategoryList = ({tenant, categories}: CategoryListProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+  
   const [dragCategories, setDragCategories] = useState(categories);
 
   const count = categories?.length || 0;
@@ -47,10 +50,12 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
         type: response.success ? "success" : "error",
       });
     }
+
+    reloadIframe();
   };
 
   return (
-    <>
+    <div className="w-full">
       <div className="inline-flex gap-2 justify-start items-center mb-3">
         <h2 className="text-2xl font-semibold">Kategoriler ({count})</h2>
         <Link href={`/d/${tenant._id}/menu/create`}>
@@ -85,7 +90,7 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
           </Droppable>
         </DragDropContext>
       )}
-    </>
+    </div>
   );
 };
 CategoryList.displayName = "CategoryList";

@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import {UpdateTenantCurrencySettingsForm} from "@/components/tenant/update-tenant-currency-settings-form";
 import currencyService from "@/services/currency.service";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantCurrencySettingsPageProps = {
   params: Promise<{
@@ -44,7 +46,10 @@ export default async function TenantCurrencySettingsPage({
       />
 
       <section className="container">
-        <UpdateTenantCurrencySettingsForm currencies={currencies} tenant={tenant} />
+        <TenantIframeGroup>
+          <UpdateTenantCurrencySettingsForm currencies={currencies} tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

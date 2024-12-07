@@ -3,6 +3,8 @@ import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 
 type TenantFontPageProps = {
   params: Promise<{
@@ -32,7 +34,12 @@ export default async function TenantFontPage({params}: TenantFontPageProps) {
         ]}
       />
 
-      <section className="container">TenantFontPage</section>
+      <section className="container">
+        <TenantIframeGroup>
+          <div className="w-full">TenantFontPage</div>
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
+      </section>
     </>
   );
 }

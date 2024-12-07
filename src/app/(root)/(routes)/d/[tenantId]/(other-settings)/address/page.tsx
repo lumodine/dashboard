@@ -3,6 +3,8 @@ import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantAddressPageProps = {
   params: Promise<{
@@ -32,7 +34,12 @@ export default async function TenantAddressPage({params}: TenantAddressPageProps
         ]}
       />
 
-      <section className="container">TenantAddressPage</section>
+      <section className="container">
+        <TenantIframeGroup>
+          <div className="w-full">TenantAddressPage</div>
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
+      </section>
     </>
   );
 }
