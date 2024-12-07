@@ -15,7 +15,7 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantCurrencySettingsFormProps = {
   currencies: any[];
@@ -27,7 +27,7 @@ export const UpdateTenantCurrencySettingsForm = ({
   tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const _tenantCurrencies = currencies.filter((currency) =>
     tenant.currencies.some((tenantCurrency: any) => tenantCurrency.currency._id === currency._id),
   );

@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {TENANT_STATUS} from "@/constants/tenant";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantSettingsFormProps = {
   tenant: any;
@@ -23,7 +23,7 @@ export type UpdateTenantSettingsFormProps = {
 
 export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const [websiteScheme, websiteHost] = process.env.NEXT_PUBLIC_QR_MENU_URL!.split("{alias}");
 
   const clientAction = async (formData: FormData) => {

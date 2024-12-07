@@ -15,7 +15,7 @@ import {
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantLanguageSettingsFormProps = {
   languages: any[];
@@ -27,7 +27,7 @@ export const UpdateTenantLanguageSettingsForm = ({
   tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const _tenantLanguages = languages.filter((language) =>
     tenant.languages.some((tenantLanguage: any) => tenantLanguage.language._id === language._id),
   );

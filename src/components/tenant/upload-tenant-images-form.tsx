@@ -12,7 +12,7 @@ import {cn} from "@/utils/shadcn";
 import removeTenantLogo from "@/actions/tenant/removeTenantLogo";
 import removeTenantBackground from "@/actions/tenant/removeTenantBackground";
 import {Button} from "@/components/ui/button";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UploadTenantImagesFormProps = {
   tenant: any;
@@ -20,7 +20,7 @@ export type UploadTenantImagesFormProps = {
 
 export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const handleUploadLogo = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files?.length === 0) {
       return;

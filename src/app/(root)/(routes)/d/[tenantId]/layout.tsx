@@ -1,7 +1,7 @@
 import {notFound} from "next/navigation";
 import React from "react";
 import tenantService from "@/services/tenant.service";
-import { IframeReloadProvider } from "@/contexts/iframeReloadContext";
+import {IframeReloadProvider} from "@/contexts/iframeReloadContext";
 
 type TenantLayoutProps = {
   children: React.ReactNode;

@@ -6,7 +6,7 @@ import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import updateTenantTheme from "@/actions/tenant/updateTenantTheme";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantThemeFormProps = {
   tenant: any;
@@ -15,7 +15,7 @@ export type UpdateTenantThemeFormProps = {
 
 export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const clientAction = async (formData: FormData) => {
     const response = await updateTenantTheme(tenant._id, formData);
 

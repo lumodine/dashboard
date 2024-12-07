@@ -6,7 +6,7 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import updateTenantSocialMedia from "@/actions/tenant/updateTenantSocialMedia";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateTenantSocialMediaFormProps = {
   tenant: any;

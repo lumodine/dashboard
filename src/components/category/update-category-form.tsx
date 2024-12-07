@@ -7,7 +7,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import updateCategory from "@/actions/category/updateCategory";
 import {formatDate} from "@/utils/date";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateCategoryFormProps = {
   tenant: any;
@@ -16,7 +16,7 @@ export type UpdateCategoryFormProps = {
 
 export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const clientAction = async (formData: FormData) => {
     const response = await updateCategory(tenant._id, category._id, formData);
 

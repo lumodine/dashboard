@@ -10,7 +10,7 @@ import updateCategorySort from "@/actions/category/updateCategorySort";
 import {Button} from "@/components/ui/button";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type CategoryListProps = {
   tenant: any;
@@ -19,7 +19,7 @@ export type CategoryListProps = {
 
 export const CategoryList = ({tenant, categories}: CategoryListProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const [dragCategories, setDragCategories] = useState(categories);
 
   const count = categories?.length || 0;

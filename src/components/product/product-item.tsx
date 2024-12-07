@@ -22,7 +22,7 @@ import {Input} from "@/components/ui/input";
 import {cn} from "@/utils/shadcn";
 import uploadProductImage from "@/actions/product/uploadProductImage";
 import removeProductImage from "@/actions/product/removeProductImage";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type ProductItemProps = {
   tenant: any;
@@ -33,7 +33,7 @@ export type ProductItemProps = {
 
 export const ProductItem = ({tenant, category, product, index}: ProductItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const handleType = async (type: string) => {
     const response = await updateProductType(tenant._id, category._id, product._id, type);
 

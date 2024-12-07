@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateProductFormProps = {
   tenant: any;
@@ -30,7 +30,7 @@ export const UpdateProductForm = ({
   product,
 }: UpdateProductFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  
+
   const clientAction = async (formData: FormData) => {
     const response = await updateProduct(tenant._id, category._id, product._id, formData);
 
