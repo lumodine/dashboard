@@ -1,6 +1,6 @@
 "use client";
 
-import {ChevronsUpDown, Trash} from "lucide-react";
+import {ChevronsUpDown, Eye, EyeOff, Ghost, Trash} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {Draggable} from "@hello-pangea/dnd";
@@ -136,16 +136,13 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
                 onChange={handleUploadImage}
               />
             </div>
-            <div className="w-full flex flex-col gap-1 items-start">
+            <Link
+              href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
+              className="w-full flex flex-col gap-1 items-start"
+            >
               <b>{product.translations[0].name}</b>
-              <Link href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}>
-                <Button className="p-0" size={"sm"} variant={"link"}>
-                  Ürün bilgilerini gör/düzenle
-                </Button>
-              </Link>
-            </div>
+            </Link>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-xs">Görünüm</span>
               <Select defaultValue={product.type} onValueChange={(value) => handleType(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -160,19 +157,27 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
               </Select>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-xs">Durum</span>
-              <Select defaultValue={product.status} onValueChange={(value) => handleStatus(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {PRODUCT_STATUS.map((productStatus: any, productStatusIndex: number) => (
-                    <SelectItem key={productStatusIndex} value={productStatus.key}>
-                      {productStatus.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Button
+                size={"icon"}
+                variant={product.status === "not_available" ? "default" : "ghost"}
+                onClick={() =>
+                  handleStatus(product.status === "not_available" ? "published" : "not_available")
+                }
+              >
+                <Ghost />
+              </Button>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              {product.status === "published" && (
+                <Button size={"icon"} variant={"ghost"} onClick={() => handleStatus("hidden")}>
+                  <Eye />
+                </Button>
+              )}
+              {product.status === "hidden" && (
+                <Button size={"icon"} variant={"ghost"} onClick={() => handleStatus("published")}>
+                  <EyeOff />
+                </Button>
+              )}
             </div>
           </div>
         </div>

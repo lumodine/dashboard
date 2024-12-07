@@ -73,7 +73,7 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
                 ref={provided.innerRef}
                 className="grid grid-cols-1 gap-3"
               >
-                {dragProducts.map((product: any, productIndex: number) => (
+                {products.map((product: any, productIndex: number) => (
                   <ProductItem
                     key={productIndex}
                     category={category}

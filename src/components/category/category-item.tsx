@@ -1,6 +1,6 @@
 "use client";
 
-import {ChevronsUpDown, Trash} from "lucide-react";
+import {ChevronsUpDown, Eye, EyeOff, Trash} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {Draggable} from "@hello-pangea/dnd";
@@ -132,16 +132,13 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
                 onChange={handleUploadImage}
               />
             </div>
-            <div className="flex-1 w-full flex flex-col gap-1 items-start">
+            <Link
+              href={`/d/${tenant._id}/menu/${category._id}`}
+              className="flex-1 w-full flex flex-col gap-1 items-start"
+            >
               <b>{category.translations[0].name}</b>
-              <Link href={`/d/${tenant._id}/menu/${category._id}`}>
-                <Button className="p-0" size={"sm"} variant={"link"}>
-                  Ürünleri gör/düzenle
-                </Button>
-              </Link>
-            </div>
+            </Link>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-xs">Görünüm</span>
               <Select defaultValue={category.type} onValueChange={(value) => handleType(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -156,19 +153,16 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
               </Select>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-xs">Durum</span>
-              <Select defaultValue={category.status} onValueChange={(value) => handleStatus(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {CATEGORY_STATUS.map((categoryStatus: any, categoryStatusIndex: number) => (
-                    <SelectItem key={categoryStatusIndex} value={categoryStatus.key}>
-                      {categoryStatus.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {category.status === "published" && (
+                <Button size={"icon"} variant={"ghost"} onClick={() => handleStatus("hidden")}>
+                  <Eye />
+                </Button>
+              )}
+              {category.status === "hidden" && (
+                <Button size={"icon"} variant={"ghost"} onClick={() => handleStatus("published")}>
+                  <EyeOff />
+                </Button>
+              )}
             </div>
           </div>
         </div>

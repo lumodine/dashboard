@@ -71,7 +71,7 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
                 ref={provided.innerRef}
                 className="grid grid-cols-1 gap-3"
               >
-                {dragCategories.map((category: any, categoryIndex: number) => (
+                {categories.map((category: any, categoryIndex: number) => (
                   <CategoryItem
                     key={categoryIndex}
                     category={category}
