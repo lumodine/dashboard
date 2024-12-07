@@ -148,8 +148,8 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
               />
             </div>
             <Link
-              href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
               className="w-full flex flex-col gap-1 items-start"
+              href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
             >
               <b>{product.translations[0].name}</b>
             </Link>

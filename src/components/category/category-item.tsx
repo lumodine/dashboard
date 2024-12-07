@@ -144,8 +144,8 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
               />
             </div>
             <Link
-              href={`/d/${tenant._id}/menu/${category._id}`}
               className="flex-1 w-full flex flex-col gap-1 items-start"
+              href={`/d/${tenant._id}/menu/${category._id}`}
             >
               <b>{category.translations[0].name}</b>
             </Link>

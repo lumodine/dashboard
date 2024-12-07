@@ -76,7 +76,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               </div>
             </TabsContent>
           </Tabs>
-          <TenantIframe tenant={tenant} path={`/${categoryId}`} />
+          <TenantIframe path={`/${categoryId}`} tenant={tenant} />
         </TenantIframeGroup>
       </section>
     </>
