@@ -4,9 +4,9 @@ import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import authService from "@/services/auth.service";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {UpdateUserInfoForm} from "@/components/auth/update-user-info-form";
-import {UpdateUserEmailForm} from "@/components/auth/update-user-email-form";
-import {UpdateUserPasswordForm} from "@/components/auth/update-user-password-form";
+import {UpdateUserInfoForm} from "@/components/user/update-user-info-form";
+import {UpdateUserEmailForm} from "@/components/user/update-user-email-form";
+import {UpdateUserPasswordForm} from "@/components/user/update-user-password-form";
 
 export default async function MyAccountPage() {
   const {data: user} = await authService.getMe();
