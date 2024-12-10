@@ -38,7 +38,7 @@ export const AppBreadcrumb = ({items}: AppBreadcrumbProps) => {
 
             return (
               <>
-                <BreadcrumbItem key={itemIndex}>
+                <BreadcrumbItem key={itemIndex} title={item.title}>
                   {item.href ? (
                     <BreadcrumbLink className="flex items-center gap-1" href={item.href}>
                       {item.icon && <item.icon size={16} />}
