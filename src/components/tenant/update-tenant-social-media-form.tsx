@@ -32,7 +32,7 @@ export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFor
   };
 
   return (
-    <form action={clientAction} className="w-full flex flex-col gap-4 w-full">
+    <form action={clientAction} className="w-full flex flex-col gap-4">
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label htmlFor="instagram">Instagram</Label>
