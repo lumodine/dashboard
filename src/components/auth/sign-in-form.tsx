@@ -2,10 +2,22 @@
 
 import {toast} from "react-toastify";
 import Link from "next/link";
+import {useFormStatus} from "react-dom";
+import {LoaderCircle} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import login from "@/actions/auth/login";
+
+export function SubmitButton() {
+  const {pending} = useFormStatus();
+
+  return (
+    <Button className="w-full" disabled={pending} type="submit">
+      Giriş yap {pending && <LoaderCircle className="animate-spin" />}
+    </Button>
+  );
+}
 
 export const SignInForm = () => {
   const clientAction = async (formData: FormData) => {
@@ -35,9 +47,7 @@ export const SignInForm = () => {
           <Input required id="password" name="password" type="password" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
-          Giriş yap
-        </Button>
+        <SubmitButton />
       </form>
     </>
   );
