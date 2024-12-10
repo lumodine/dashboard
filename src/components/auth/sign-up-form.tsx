@@ -4,8 +4,8 @@ import {toast} from "react-toastify";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Checkbox} from "@/components/ui/checkbox";
-import {Button} from "@/components/ui/button";
 import register from "@/actions/auth/register";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export const SignUpForm = () => {
   const clientAction = async (formData: FormData) => {
@@ -51,9 +51,7 @@ export const SignUpForm = () => {
           </Label>
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
-          Kayıt ol
-        </Button>
+        <SubmitButton>Kayıt ol</SubmitButton>
       </form>
     </>
   );

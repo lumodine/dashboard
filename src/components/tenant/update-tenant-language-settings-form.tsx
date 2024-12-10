@@ -16,6 +16,7 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantLanguageSettingsFormProps = {
   languages: any[];
@@ -194,9 +195,9 @@ export const UpdateTenantLanguageSettingsForm = ({
         </div>
       </div>
 
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

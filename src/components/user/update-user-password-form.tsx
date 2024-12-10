@@ -4,8 +4,8 @@ import {toast} from "react-toastify";
 import {Save} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import updateUserPassword from "@/actions/auth/updateUserPassword";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export const UpdateUserPasswordForm = () => {
   const clientAction = async (formData: FormData) => {
@@ -34,9 +34,10 @@ export const UpdateUserPasswordForm = () => {
           <Input required id="confirmNewPassword" name="confirmNewPassword" type="password" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
+
+        <SubmitButton>
           <Save /> Kaydet
-        </Button>
+        </SubmitButton>
       </form>
     </>
   );

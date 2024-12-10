@@ -3,8 +3,8 @@
 import {toast} from "react-toastify";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import forgotPassword from "@/actions/auth/forgotPassword";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export const ForgotPasswordForm = () => {
   const clientAction = async (formData: FormData) => {
@@ -25,9 +25,7 @@ export const ForgotPasswordForm = () => {
           <Input required id="email" name="email" type="email" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
-          Şifremi sıfırla
-        </Button>
+        <SubmitButton>Şifremi sıfırla</SubmitButton>
       </form>
     </>
   );

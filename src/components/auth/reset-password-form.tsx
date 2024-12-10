@@ -1,10 +1,10 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import resetPassword from "@/actions/auth/resetPassword";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type ResetPasswordFormProps = {
   token: string;
@@ -33,9 +33,7 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
           <Input required id="confirmPassword" name="confirmPassword" type="password" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
-          Şifremi yenile
-        </Button>
+        <SubmitButton>Şifremi yenile</SubmitButton>
       </form>
     </>
   );

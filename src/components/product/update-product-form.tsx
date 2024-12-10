@@ -4,7 +4,6 @@ import {toast} from "react-toastify";
 import {Save} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import updateProduct from "@/actions/product/updateProduct";
 import {formatDate} from "@/utils/date";
 import {
@@ -15,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateProductFormProps = {
   tenant: any;
@@ -167,9 +167,9 @@ export const UpdateProductForm = ({
         </span>
       </div>
 
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

@@ -4,10 +4,10 @@ import {toast} from "react-toastify";
 import {Save} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import updateCategory from "@/actions/category/updateCategory";
 import {formatDate} from "@/utils/date";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateCategoryFormProps = {
   tenant: any;
@@ -99,9 +99,9 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
         </span>
       </div>
 
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

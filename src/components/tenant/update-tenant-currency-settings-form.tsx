@@ -16,6 +16,7 @@ import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantCurrencySettingsFormProps = {
   currencies: any[];
@@ -194,9 +195,9 @@ export const UpdateTenantCurrencySettingsForm = ({
         </div>
       </div>
 
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

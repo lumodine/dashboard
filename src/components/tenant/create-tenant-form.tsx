@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {Button} from "@/components/ui/button";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type CreateTenantFormProps = {
   languages: any[];
@@ -87,9 +87,9 @@ export const CreateTenantForm = ({languages, currencies}: CreateTenantFormProps)
         </Select>
       </div>
       <span className="text-xs">(*) Zorunlu alan</span>
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Plus /> İşletmemi oluştur
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

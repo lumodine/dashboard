@@ -4,8 +4,8 @@ import {toast} from "react-toastify";
 import {Plus} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import createProduct from "@/actions/product/createProduct";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type CreateProductFormProps = {
   tenant: any;
@@ -91,9 +91,9 @@ export const CreateProductForm = ({tenant, category}: CreateProductFormProps) =>
       </div>
 
       <span className="text-xs">(*) Zorunlu alan</span>
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Plus /> Ürün oluştur
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

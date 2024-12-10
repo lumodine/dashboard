@@ -2,10 +2,10 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
-import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import updateUserEmail from "@/actions/auth/updateUserEmail";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateUserEmailFormProps = {
   user: any;
@@ -30,9 +30,10 @@ export const UpdateUserEmailForm = ({user}: UpdateUserEmailFormProps) => {
           <Input required defaultValue={user.email} id="email" name="email" type="email" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
+
+        <SubmitButton>
           <Save /> Kaydet
-        </Button>
+        </SubmitButton>
       </form>
     </>
   );

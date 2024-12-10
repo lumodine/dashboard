@@ -2,10 +2,10 @@
 
 import {Save} from "lucide-react";
 import {toast} from "react-toastify";
-import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import updateUserInfo from "@/actions/auth/updateUserInfo";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateUserInfoFormProps = {
   user: any;
@@ -34,9 +34,10 @@ export const UpdateUserInfoForm = ({user}: UpdateUserInfoFormProps) => {
           <Input required defaultValue={user.surname} id="surname" name="surname" type="text" />
         </div>
         <span className="text-xs">(*) Zorunlu alan</span>
-        <Button className="w-full" type="submit">
+
+        <SubmitButton>
           <Save /> Kaydet
-        </Button>
+        </SubmitButton>
       </form>
     </>
   );

@@ -5,7 +5,6 @@ import {Save} from "lucide-react";
 import updateTenantSettings from "@/actions/tenant/updateTenantSettings";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import {formatDate} from "@/utils/date";
 import {
   Select,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import {TENANT_STATUS} from "@/constants/tenant";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantSettingsFormProps = {
   tenant: any;
@@ -91,9 +91,10 @@ export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps
           <b>Güncelleme tarihi</b>: {formatDate(tenant.updatedAt)}
         </span>
       </div>
-      <Button className="w-full" type="submit">
+
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

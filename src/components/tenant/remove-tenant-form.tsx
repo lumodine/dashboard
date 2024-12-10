@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type RemoveTenantFormProps = {
   tenant: any;
@@ -60,9 +61,9 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
                 type="text"
               />
             </div>
-            <Button type="submit" variant={"destructive"}>
+            <SubmitButton variant={"destructive"}>
               <Trash /> İşletmeyi sil
-            </Button>
+            </SubmitButton>
           </form>
         </DialogContent>
       </Dialog>

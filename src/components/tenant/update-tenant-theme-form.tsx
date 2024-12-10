@@ -3,10 +3,10 @@
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
 import {Label} from "@/components/ui/label";
-import {Button} from "@/components/ui/button";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import updateTenantTheme from "@/actions/tenant/updateTenantTheme";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantThemeFormProps = {
   tenant: any;
@@ -48,9 +48,10 @@ export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormPro
           </Label>
         ))}
       </RadioGroup>
-      <Button className="w-full" type="submit">
+
+      <SubmitButton>
         <Save /> Kaydet
-      </Button>
+      </SubmitButton>
     </form>
   );
 };

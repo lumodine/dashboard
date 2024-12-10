@@ -4,8 +4,8 @@ import {toast} from "react-toastify";
 import {Plus} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 import createCategory from "@/actions/category/createCategory";
+import {SubmitButton} from "@/components/common/submit-button";
 
 export type CreateCategoryFormProps = {
   tenant: any;
@@ -64,9 +64,9 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
         </div>
       </div>
       <span className="text-xs">(*) Zorunlu alan</span>
-      <Button className="w-full" type="submit">
+      <SubmitButton>
         <Plus /> Kategori oluştur
-      </Button>
+      </SubmitButton>
     </form>
   );
 };
