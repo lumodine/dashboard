@@ -3,6 +3,10 @@ import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import userService from "@/services/user.service";
+import {TenantUserList} from "@/components/tenant/tenant-user-list";
+import {TenantUserCreateForm} from "@/components/tenant/tenant-user-create-form";
 
 type TenantUsersPageProps = {
   params: Promise<{
@@ -12,7 +16,10 @@ type TenantUsersPageProps = {
 
 export default async function TenantUsersPage({params}: TenantUsersPageProps) {
   const {tenantId} = await params;
-  const {data: tenant} = await tenantService.getById(tenantId);
+  const [{data: tenant}, {data: users}] = await Promise.all([
+    tenantService.getById(tenantId),
+    userService.getAll(tenantId),
+  ]);
 
   return (
     <>
@@ -35,7 +42,20 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
         ]}
       />
 
-      <section className="container">TenantUsersPage</section>
+      <section className="container">
+        <Tabs className="w-full" defaultValue="users">
+          <TabsList>
+            <TabsTrigger value="users">Kullanıcılar</TabsTrigger>
+            <TabsTrigger value="create-user">Kullanıcı ekle</TabsTrigger>
+          </TabsList>
+          <TabsContent value="users">
+            <TenantUserList tenant={tenant} users={users} />
+          </TabsContent>
+          <TabsContent value="create-user">
+            <TenantUserCreateForm tenant={tenant} />
+          </TabsContent>
+        </Tabs>
+      </section>
     </>
   );
 }

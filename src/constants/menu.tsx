@@ -125,7 +125,6 @@ export const MENUS = (id: string) => [
         title: "Kullanıcılar",
         href: `/d/${id}/users`,
         icon: Users,
-        isDisabled: true,
       },
       {
         title: "Genel ayarlar",
