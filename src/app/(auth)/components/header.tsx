@@ -4,7 +4,11 @@ import Link from "next/link";
 export const Header = () => {
   return (
     <header>
-      <Link className="flex gap-2 items-center justify-center" href={process.env.NEXT_PUBLIC_LANDING_URL!} target="_blank">
+      <Link
+        className="flex gap-2 items-center justify-center"
+        href={process.env.NEXT_PUBLIC_LANDING_URL!}
+        target="_blank"
+      >
         <Image
           alt={`${process.env.NEXT_PUBLIC_APP_NAME} logo`}
           height={50}
