@@ -19,7 +19,7 @@ export const Header = () => {
     <header className="flex w-full shrink-0 items-center py-4">
       <nav className="container flex items-center justify-between overflow-hidden">
         <div>
-          <Link className="flex gap-2 items-center justify-center" href={"/d"}>
+          <Link className="flex gap-2 items-center justify-center" href={process.env.NEXT_PUBLIC_LANDING_URL!} target="_blank">
             <Image
               alt={`${process.env.NEXT_PUBLIC_APP_NAME} logo`}
               className="rounded-full h-full"
