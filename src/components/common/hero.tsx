@@ -14,7 +14,7 @@ export const Hero = ({supTitle, title, description, image, button}: HeroProps) =
   const hasImage = !!image;
 
   return (
-    <section className="bg-primary py-3">
+    <section className="bg-primary/30 py-3">
       <div className="container">
         <div
           className={cn(
@@ -23,7 +23,7 @@ export const Hero = ({supTitle, title, description, image, button}: HeroProps) =
           )}
         >
           <div className="flex flex-col gap-3 items-start justify-start">
-            {supTitle && <Badge variant="secondary">{supTitle}</Badge>}
+            {supTitle && <Badge>{supTitle}</Badge>}
             <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl text-primary-foreground">
               {title}
             </h1>
