@@ -30,7 +30,7 @@ export default async function TenantMenuCreateProductPage({
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Ürün ekle"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Add product"} />
 
       <AppBreadcrumb
         items={[
