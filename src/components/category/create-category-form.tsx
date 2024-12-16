@@ -35,7 +35,7 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Ad (*)</Label>
+          <Label>Name (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
@@ -50,7 +50,7 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Açıklama</Label>
+          <Label>Description</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
@@ -63,9 +63,9 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
           ))}
         </div>
       </div>
-      <span className="text-xs">(*) Zorunlu alan</span>
+      <span className="text-xs">(*) Required field</span>
       <SubmitButton>
-        <Plus /> Kategori oluştur
+        <Plus /> Create category
       </SubmitButton>
     </form>
   );

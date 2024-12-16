@@ -18,7 +18,7 @@ export default async function TenantAnnouncementsPage({params}: TenantAnnounceme
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Duyurular"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Announcements"} />
 
       <AppBreadcrumb
         items={[
@@ -29,7 +29,7 @@ export default async function TenantAnnouncementsPage({params}: TenantAnnounceme
           },
           {
             icon: Megaphone,
-            title: "Duyurular",
+            title: "Announcements",
           },
         ]}
       />

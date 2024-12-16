@@ -25,7 +25,7 @@ export const AppBreadcrumb = ({items}: AppBreadcrumbProps) => {
 
   items.unshift({
     icon: Home,
-    title: "Ana sayfa",
+    title: "Home page",
     href: "/",
   });
 

@@ -21,7 +21,7 @@ export default async function TenantSocialMediaPage({params}: TenantSocialMediaP
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Sosyal medya"}
+        title={"Social media"}
       />
 
       <AppBreadcrumb
@@ -33,7 +33,7 @@ export default async function TenantSocialMediaPage({params}: TenantSocialMediaP
           },
           {
             icon: Contact,
-            title: "Sosyal medya",
+            title: "Social media",
           },
         ]}
       />

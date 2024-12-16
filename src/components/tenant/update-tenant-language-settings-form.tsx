@@ -129,7 +129,7 @@ export const UpdateTenantLanguageSettingsForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="defaultLanguage">Ana dil</Label>
+          <Label htmlFor="defaultLanguage">Default language</Label>
         </div>
         <span>
           {defaultLanguage.name} ({defaultLanguage.shortName})
@@ -138,11 +138,11 @@ export const UpdateTenantLanguageSettingsForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Diğer diller</Label>
+          <Label>Other languages</Label>
         </div>
         <div className="flex flex-col gap-2">
           {otherLanguages.length === 0 && (
-            <NotFound title="Diğer dil eklemediniz. Hemen diğer dili ekle." />
+            <NotFound title="You have not added any other languages. Add one now." />
           )}
 
           {addableLanguages.length > 0 && (
@@ -160,13 +160,13 @@ export const UpdateTenantLanguageSettingsForm = ({
                 </SelectContent>
               </Select>
               <Button type="button" onClick={addNewLanguage}>
-                <Plus size={14} /> Dil ekle
+                <Plus size={14} /> Add language
               </Button>
             </div>
           )}
 
           <SubmitButton>
-            <Save /> Kaydet
+            <Save /> Save
           </SubmitButton>
 
           {otherLanguages.map((language: any, languageIndex: number) => (
@@ -182,7 +182,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                   variant={"outline"}
                   onClick={() => addDefaultLanguage(language)}
                 >
-                  Ana dil yap
+                  Make default language
                 </Button>
                 <span>
                   {language.name} ({language.shortName})
@@ -193,7 +193,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                 variant={"destructive"}
                 onClick={() => removeLanguage(language)}
               >
-                <Trash size={14} /> Sil
+                <Trash size={14} /> Remove
               </Button>
             </div>
           ))}

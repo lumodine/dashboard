@@ -22,20 +22,20 @@ export const SignInForm = () => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">E-posta (*)</Label>
+          <Label htmlFor="email">Email (*)</Label>
           <Input required id="email" name="email" type="email" />
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
-            <Label htmlFor="password">Şifre (*)</Label>
+            <Label htmlFor="password">Password (*)</Label>
             <Link className="ml-auto inline-block text-sm underline" href={"/forgot-password"}>
-              Şifreni mi unuttun?
+              Forgot password?
             </Link>
           </div>
           <Input required id="password" name="password" type="password" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
-        <SubmitButton>Giriş yap</SubmitButton>
+        <span className="text-xs">(*) Required field</span>
+        <SubmitButton>Sign in</SubmitButton>
       </form>
     </>
   );

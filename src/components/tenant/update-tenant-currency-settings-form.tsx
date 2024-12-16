@@ -129,7 +129,7 @@ export const UpdateTenantCurrencySettingsForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="defaultCurrency">Ana para birimi</Label>
+          <Label htmlFor="defaultCurrency">Default currency</Label>
         </div>
         <span>
           {defaultCurrency.code} ({defaultCurrency.symbol})
@@ -138,11 +138,11 @@ export const UpdateTenantCurrencySettingsForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Diğer para birimleri</Label>
+          <Label>Other currencies</Label>
         </div>
         <div className="flex flex-col gap-2">
           {otherCurrencies.length === 0 && (
-            <NotFound title="Diğer para birimi eklemediniz. Hemen diğer para birimini ekle." />
+            <NotFound title="You have not added any other currencies. Add one now." />
           )}
 
           {addableCurrencies.length > 0 && (
@@ -160,13 +160,13 @@ export const UpdateTenantCurrencySettingsForm = ({
                 </SelectContent>
               </Select>
               <Button type="button" onClick={addNewCurrency}>
-                <Plus size={14} /> Para birimi ekle
+                <Plus size={14} /> Add currency
               </Button>
             </div>
           )}
 
           <SubmitButton>
-            <Save /> Kaydet
+            <Save /> Save
           </SubmitButton>
 
           {otherCurrencies.map((currency: any, currencyIndex: number) => (
@@ -182,7 +182,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                   variant={"outline"}
                   onClick={() => addDefaultCurrency(currency)}
                 >
-                  Ana para birimi yap
+                  Make default currency
                 </Button>
                 <span>
                   {currency.code} ({currency.symbol})
@@ -193,7 +193,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                 variant={"destructive"}
                 onClick={() => removeCurrency(currency)}
               >
-                <Trash size={14} /> Sil
+                <Trash size={14} /> Remove
               </Button>
             </div>
           ))}

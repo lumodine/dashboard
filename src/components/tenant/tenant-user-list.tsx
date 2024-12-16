@@ -13,16 +13,16 @@ export const TenantUserList = ({tenant, users}: TenantUserListProps) => {
   const hasUsers = count > 0;
 
   if (!hasUsers) {
-    return <p className="text-sm text-muted-foreground">Henüz kullanıcı eklenmemiş.</p>;
+    return <p className="text-sm text-muted-foreground">No users added yet.</p>;
   }
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>E-posta</TableHead>
-          <TableHead>Rol</TableHead>
-          <TableHead>İşlemler</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

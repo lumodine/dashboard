@@ -42,7 +42,7 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Ad (*)</Label>
+          <Label>Name (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {
@@ -63,7 +63,7 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Açıklama</Label>
+          <Label>Description</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {
@@ -88,19 +88,19 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
         </div>
       </div>
 
-      <span className="text-xs">(*) Zorunlu alan</span>
+      <span className="text-xs">(*) Required field</span>
 
       <div className="flex flex-col sm:flex-row justify-between gap-1">
         <span className="text-muted-foreground text-xs">
-          <b>Oluşturma tarihi</b>: {formatDate(category.createdAt)}
+          <b>Creation date</b>: {formatDate(category.createdAt)}
         </span>
         <span className="text-muted-foreground text-xs">
-          <b>Güncelleme tarihi</b>: {formatDate(category.updatedAt)}
+          <b>Update date</b>: {formatDate(category.updatedAt)}
         </span>
       </div>
 
       <SubmitButton>
-        <Save /> Kaydet
+        <Save /> Save
       </SubmitButton>
     </form>
   );

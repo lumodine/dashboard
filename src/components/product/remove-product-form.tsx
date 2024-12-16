@@ -37,22 +37,22 @@ export const RemoveProductForm = ({tenant, category, product}: RemoveProductForm
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full" type="button" variant={"destructive"}>
-            <Trash /> Ürünü sil
+            <Trash /> Remove product
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Ürünü sil</DialogTitle>
+            <DialogTitle>Remove product</DialogTitle>
           </DialogHeader>
           <form action={clientAction} className="flex flex-col gap-6">
             <p>
-              <b>ÖNEMLİ</b>! Ürünü silmeniz sonucunda tüm içeriklerinizi kaybedeceksiniz. Yine de
-              bunu yapmak istiyor musunuz?
+              <b>IMPORTANT</b>! Removing the product will result in the loss of all content. Do
+              you still want to do this?
             </p>
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
-                Silme işlemini doğrulamak için aşağıdaki kutucuğa &quot;
-                <b>{product.translations[0].name}</b>&quot; yazınız.
+                Please enter the following box to confirm the removal process: &quot;
+                <b>{product.translations[0].name}</b>&quot;
               </Label>
               <Input
                 required
@@ -64,7 +64,7 @@ export const RemoveProductForm = ({tenant, category, product}: RemoveProductForm
               />
             </div>
             <SubmitButton variant={"destructive"}>
-              <Trash /> Ürünü sil
+              <Trash /> Remove product
             </SubmitButton>
           </form>
         </DialogContent>

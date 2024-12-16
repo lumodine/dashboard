@@ -24,7 +24,7 @@ export const TenantIframe = ({tenant, path = ""}: TenantIframeProps) => {
         </Button>
         <Link className="flex-1" href={iframeSrc} target="_blank">
           <Button className="w-full" variant={"secondary"}>
-            Menüyü görüntüle <ExternalLink />
+            View menu <ExternalLink />
           </Button>
         </Link>
       </div>

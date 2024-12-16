@@ -21,9 +21,9 @@ export default async function TenantGeneralSettingsPage({params}: TenantGeneralS
   return (
     <>
       <Hero
-        description={"İşletmenize ait genel ayarları buradan güncelleyebilirsiniz."}
+        description={"You can update your tenant's general settings here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Genel ayarlar"}
+        title={"General settings"}
       />
 
       <AppBreadcrumb
@@ -35,7 +35,7 @@ export default async function TenantGeneralSettingsPage({params}: TenantGeneralS
           },
           {
             icon: Settings,
-            title: "Genel ayarlar",
+            title: "General settings",
           },
         ]}
       />

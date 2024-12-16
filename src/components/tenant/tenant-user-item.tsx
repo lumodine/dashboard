@@ -60,7 +60,7 @@ export const TenantUserItem = ({tenant, user}: TenantUserItemProps) => {
       </TableCell>
       <TableCell>
         <Button size={"sm"} variant={"destructive"} onClick={handleDeleteUser}>
-          <Trash /> Kullanıcıyı Sil
+          <Trash /> Delete user
         </Button>
       </TableCell>
     </TableRow>

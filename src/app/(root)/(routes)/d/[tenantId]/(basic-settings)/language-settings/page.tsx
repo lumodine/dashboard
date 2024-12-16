@@ -26,9 +26,9 @@ export default async function TenantLanguageSettingsPage({
   return (
     <>
       <Hero
-        description={"İşletmenize ait dil ayarlarını buradan güncelleyebilirsiniz."}
+        description={"You can update your tenant's language settings here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Dil ayarları"}
+        title={"Language settings"}
       />
 
       <AppBreadcrumb
@@ -40,7 +40,7 @@ export default async function TenantLanguageSettingsPage({
           },
           {
             icon: Globe,
-            title: "Dil ayarları",
+            title: "Language settings",
           },
         ]}
       />

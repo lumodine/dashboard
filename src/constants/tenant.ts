@@ -1,10 +1,10 @@
 export const TENANT_STATUS = [
   {
     key: "maintenance",
-    name: "Geçici olarak gizle",
+    name: "Hide temporarily",
   },
   {
     key: "published",
-    name: "Herkes menümü görsün",
+    name: "Everyone can see my menu",
   },
 ];

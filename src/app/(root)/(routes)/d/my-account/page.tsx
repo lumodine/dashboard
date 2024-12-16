@@ -15,14 +15,14 @@ export default async function MyAccountPage() {
     <>
       <Hero
         supTitle={<Link href={"/d"}>{process.env.NEXT_PUBLIC_APP_NAME!}</Link>}
-        title={"Hesabım"}
+        title={"My account"}
       />
 
       <AppBreadcrumb
         items={[
           {
             icon: User,
-            title: "Hesabım",
+            title: "My account",
           },
         ]}
       />
@@ -30,9 +30,9 @@ export default async function MyAccountPage() {
       <section className="container">
         <Tabs defaultValue="info">
           <TabsList>
-            <TabsTrigger value="info">Bilgiler</TabsTrigger>
-            <TabsTrigger value="email">E-posta</TabsTrigger>
-            <TabsTrigger value="password">Şifre</TabsTrigger>
+            <TabsTrigger value="info">Information</TabsTrigger>
+            <TabsTrigger value="email">Email</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
           </TabsList>
           <TabsContent value="info">
             <UpdateUserInfoForm user={user} />

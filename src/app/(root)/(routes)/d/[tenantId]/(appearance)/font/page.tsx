@@ -18,7 +18,7 @@ export default async function TenantFontPage({params}: TenantFontPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Yazı tipi"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Font"} />
 
       <AppBreadcrumb
         items={[
@@ -29,7 +29,7 @@ export default async function TenantFontPage({params}: TenantFontPageProps) {
           },
           {
             icon: CaseSensitive,
-            title: "Yazı tipi",
+            title: "Font",
           },
         ]}
       />

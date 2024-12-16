@@ -21,11 +21,11 @@ export const ForgotPasswordForm = () => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">E-posta (*)</Label>
+          <Label htmlFor="email">Email (*)</Label>
           <Input required id="email" name="email" type="email" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
-        <SubmitButton>Şifremi sıfırla</SubmitButton>
+        <span className="text-xs">(*) Required field</span>
+        <SubmitButton>Reset Password</SubmitButton>
       </form>
     </>
   );

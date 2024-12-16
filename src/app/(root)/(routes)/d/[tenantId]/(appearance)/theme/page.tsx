@@ -23,9 +23,9 @@ export default async function TenantThemePage({params}: TenantThemePageProps) {
   return (
     <>
       <Hero
-        description={"İşletmenize ait tema ayarlarını buradan güncelleyebilirsiniz."}
+        description={"You can update the theme settings of your business here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Tema"}
+        title={"Theme"}
       />
 
       <AppBreadcrumb
@@ -37,7 +37,7 @@ export default async function TenantThemePage({params}: TenantThemePageProps) {
           },
           {
             icon: Palette,
-            title: "Tema",
+            title: "Theme",
           },
         ]}
       />

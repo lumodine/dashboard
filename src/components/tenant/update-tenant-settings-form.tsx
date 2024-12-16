@@ -42,12 +42,12 @@ export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps
     <form action={clientAction} className="flex flex-col gap-4 w-full">
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="name">Adı (*)</Label>
+          <Label htmlFor="name">Name (*)</Label>
         </div>
         <Input required defaultValue={tenant.name} id="name" name="name" type="text" />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="alias">Web adresi (*)</Label>
+        <Label htmlFor="alias">Web address (*)</Label>
         <div className="flex">
           <span className="bg-primary text-primary-foreground py-1 px-2 rounded-l-lg">
             {websiteScheme}
@@ -67,7 +67,7 @@ export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="status">Durum (*)</Label>
+          <Label htmlFor="status">Status (*)</Label>
         </div>
         <Select defaultValue={tenant.status} name="status">
           <SelectTrigger>
@@ -82,18 +82,18 @@ export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps
           </SelectContent>
         </Select>
       </div>
-      <span className="text-xs">(*) Zorunlu alan</span>
+      <span className="text-xs">(*) Required field</span>
       <div className="flex flex-col sm:flex-row justify-between gap-1">
         <span className="text-muted-foreground text-xs">
-          <b>Oluşturma tarihi</b>: {formatDate(tenant.createdAt)}
+          <b>Creation date</b>: {formatDate(tenant.createdAt)}
         </span>
         <span className="text-muted-foreground text-xs">
-          <b>Güncelleme tarihi</b>: {formatDate(tenant.updatedAt)}
+          <b>Update date</b>: {formatDate(tenant.updatedAt)}
         </span>
       </div>
 
       <SubmitButton>
-        <Save /> Kaydet
+        <Save /> Save
       </SubmitButton>
     </form>
   );

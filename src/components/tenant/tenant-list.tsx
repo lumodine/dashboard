@@ -17,15 +17,15 @@ export const TenantList = ({tenants}: TenantListProps) => {
   return (
     <section>
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">İşletmelerim ({count})</h2>
+        <h2 className="text-2xl font-semibold">My tenants ({count})</h2>
         <Link href={"/d/create"}>
           <Button size={"sm"}>
-            <Plus size={14} /> Yeni işletme ekle
+            <Plus size={14} /> Add new tenant
           </Button>
         </Link>
       </div>
       {!hasTenants && (
-        <NotFound title={"Henüz eklenmiş bir işletmeniz bulunamadı. Hemen bir tane ekle!"} />
+        <NotFound title={"No tenants found. Add one now!"} />
       )}
       {hasTenants && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

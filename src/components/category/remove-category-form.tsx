@@ -36,22 +36,22 @@ export const RemoveCategoryForm = ({tenant, category}: RemoveCategoryFormProps) 
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full" type="button" variant={"destructive"}>
-            <Trash /> Kategoriyi sil
+            <Trash /> Remove category
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Kategoriyi sil</DialogTitle>
+            <DialogTitle>Remove category</DialogTitle>
           </DialogHeader>
           <form action={clientAction} className="flex flex-col gap-6">
             <p>
-              <b>ÖNEMLİ</b>! Kategoriyi silmeniz sonucunda tüm içeriklerinizi kaybedeceksiniz. Yine
-              de bunu yapmak istiyor musunuz?
+              <b>IMPORTANT</b>! Removing the category will result in the loss of all content. Do
+              you still want to do this?
             </p>
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
-                Silme işlemini doğrulamak için aşağıdaki kutucuğa &quot;
-                <b>{category.translations[0].name}</b>&quot; yazınız.
+                Please enter the following box to confirm the removal process: &quot;
+                <b>{category.translations[0].name}</b>&quot;
               </Label>
               <Input
                 required
@@ -63,7 +63,7 @@ export const RemoveCategoryForm = ({tenant, category}: RemoveCategoryFormProps) 
               />
             </div>
             <SubmitButton variant={"destructive"}>
-              <Trash /> Kategoriyi sil
+              <Trash /> Remove category
             </SubmitButton>
           </form>
         </DialogContent>

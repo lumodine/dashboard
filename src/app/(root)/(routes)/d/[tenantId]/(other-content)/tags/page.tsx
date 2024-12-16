@@ -16,7 +16,7 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Etiketler"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Tags"} />
 
       <AppBreadcrumb
         items={[
@@ -27,7 +27,7 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
           },
           {
             icon: Tag,
-            title: "Etiketler",
+            title: "Tags",
           },
         ]}
       />

@@ -18,7 +18,7 @@ export default async function TenantAddressPage({params}: TenantAddressPageProps
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Adres"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Address"} />
 
       <AppBreadcrumb
         items={[
@@ -29,7 +29,7 @@ export default async function TenantAddressPage({params}: TenantAddressPageProps
           },
           {
             icon: MapPinHouse,
-            title: "Adres",
+            title: "Address",
           },
         ]}
       />

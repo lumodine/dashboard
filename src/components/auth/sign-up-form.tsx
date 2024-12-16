@@ -1,6 +1,7 @@
 "use client";
 
 import {toast} from "react-toastify";
+import Link from "next/link";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Checkbox} from "@/components/ui/checkbox";
@@ -22,23 +23,23 @@ export const SignUpForm = () => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">E-posta (*)</Label>
+          <Label htmlFor="email">Email (*)</Label>
           <Input required id="email" name="email" type="email" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="name">Ad (*)</Label>
+          <Label htmlFor="name">Name (*)</Label>
           <Input required id="name" name="name" type="text" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="surname">Soyad (*)</Label>
+          <Label htmlFor="surname">Surname (*)</Label>
           <Input required id="surname" name="surname" type="text" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="password">Şifre (*)</Label>
+          <Label htmlFor="password">Password (*)</Label>
           <Input required id="password" name="password" type="password" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="confirmPassword">Şifreyi onayla (*)</Label>
+          <Label htmlFor="confirmPassword">Confirm password (*)</Label>
           <Input required id="confirmPassword" name="confirmPassword" type="password" />
         </div>
         <div className="flex items-center space-x-2">
@@ -47,11 +48,19 @@ export const SignUpForm = () => {
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             htmlFor="terms"
           >
-            Hüküm ve koşulları kabul edin (*)
+            Accept{" "}
+            <Link
+              className="underline hover:no-underline"
+              href={`${process.env.NEXT_PUBLIC_LANDING_URL}/terms-and-conditions`}
+              target="_blank"
+            >
+              terms and conditions
+            </Link>{" "}
+            (*)
           </Label>
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
-        <SubmitButton>Kayıt ol</SubmitButton>
+        <span className="text-xs">(*) Required field</span>
+        <SubmitButton>Sign up</SubmitButton>
       </form>
     </>
   );

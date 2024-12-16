@@ -30,7 +30,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (
-    <html lang="tr-TR">
+    <html lang="en-GB">
       <head>
         <link href="https://cdn.lumodine.com/public/theme.css" rel="stylesheet" />
       </head>

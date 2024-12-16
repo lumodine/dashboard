@@ -35,22 +35,22 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full" type="button" variant={"destructive"}>
-            <Trash /> İşletmeyi sil
+            <Trash /> Remove tenant
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>İşletmeyi sil</DialogTitle>
+            <DialogTitle>Remove tenant</DialogTitle>
           </DialogHeader>
           <form action={clientAction} className="flex flex-col gap-6">
             <p>
-              <b>ÖNEMLİ</b>! İşletmeyi silmeniz sonucunda tüm içeriklerinizi kaybedeceksiniz. Yine
-              de bunu yapmak istiyor musunuz?
+              <b>IMPORTANT</b>! Removing the tenant will result in the loss of all content. Do you
+              still want to do this?
             </p>
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
-                Silme işlemini doğrulamak için aşağıdaki kutucuğa &quot;<b>{tenant.name}</b>&quot;
-                yazınız.
+                Please enter &quot;<b>{tenant.name}</b>&quot; in the box below to confirm the removal
+                process.
               </Label>
               <Input
                 required
@@ -62,7 +62,7 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
               />
             </div>
             <SubmitButton variant={"destructive"}>
-              <Trash /> İşletmeyi sil
+              <Trash /> Remove tenant
             </SubmitButton>
           </form>
         </DialogContent>

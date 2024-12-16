@@ -50,7 +50,7 @@ export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormPro
       </RadioGroup>
 
       <SubmitButton>
-        <Save /> Kaydet
+        <Save /> Save
       </SubmitButton>
     </form>
   );

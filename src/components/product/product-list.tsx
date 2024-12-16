@@ -58,15 +58,15 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
   return (
     <>
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">Ürünler ({count})</h2>
+        <h2 className="text-2xl font-semibold">Products ({count})</h2>
         <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
           <Button size={"sm"}>
-            <Plus size={14} /> Yeni ürün ekle
+            <Plus size={14} /> New product
           </Button>
         </Link>
       </div>
       {!hasProducts && (
-        <NotFound title={"Henüz eklenmiş bir ürününüz bulunamadı. Hemen bir tane ekle!"} />
+        <NotFound title={"No product found. Add one now!"} />
       )}
 
       {hasProducts && (

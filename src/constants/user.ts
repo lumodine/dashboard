@@ -1,10 +1,10 @@
 export const USER_ROLES = [
   {
     key: "tenant_admin",
-    name: "Yönetici",
+    name: "Admin",
   },
   {
     key: "tenant_user",
-    name: "Kullanıcı",
+    name: "User",
   },
 ];

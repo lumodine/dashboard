@@ -20,9 +20,9 @@ export default async function TenantImagesPage({params}: TenantImagesPageProps) 
   return (
     <>
       <Hero
-        description={"İşletmenize ait logo ve arkaplan görselini buradan güncelleyebilirsiniz."}
+        description={"You can update the logo and background image of your business here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Logo ve arkaplan"}
+        title={"Logo and background"}
       />
 
       <AppBreadcrumb
@@ -34,7 +34,7 @@ export default async function TenantImagesPage({params}: TenantImagesPageProps) 
           },
           {
             icon: FileImage,
-            title: "Logo ve arkaplan",
+            title: "Logo and background",
           },
         ]}
       />

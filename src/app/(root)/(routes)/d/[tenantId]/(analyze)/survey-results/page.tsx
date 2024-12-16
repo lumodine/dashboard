@@ -18,7 +18,7 @@ export default async function TenantSurveyResultsPage({params}: TenantSurveyResu
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Anket sonuçları"}
+        title={"Survey results"}
       />
 
       <AppBreadcrumb
@@ -30,7 +30,7 @@ export default async function TenantSurveyResultsPage({params}: TenantSurveyResu
           },
           {
             icon: FileUser,
-            title: "Anket sonuçları",
+            title: "Survey results",
           },
         ]}
       />

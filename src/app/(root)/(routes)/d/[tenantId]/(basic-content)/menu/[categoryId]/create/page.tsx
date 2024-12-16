@@ -41,7 +41,7 @@ export default async function TenantMenuCreateProductPage({
           },
           {
             icon: SquareMenu,
-            title: "Menü",
+            title: "Menu",
             href: `/d/${tenantId}/menu`,
           },
           {
@@ -51,7 +51,7 @@ export default async function TenantMenuCreateProductPage({
           },
           {
             icon: Box,
-            title: "Ürün ekle",
+            title: "Add product",
           },
         ]}
       />

@@ -57,15 +57,15 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
   return (
     <div className="w-full">
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">Kategoriler ({count})</h2>
+        <h2 className="text-2xl font-semibold">Categories ({count})</h2>
         <Link href={`/d/${tenant._id}/menu/create`}>
           <Button size={"sm"}>
-            <Plus size={14} /> Yeni kategori ekle
+            <Plus size={14} /> New category
           </Button>
         </Link>
       </div>
       {!hasCategories && (
-        <NotFound title={"Henüz eklenmiş bir kategoriniz bulunamadı. Hemen bir tane ekle!"} />
+        <NotFound title={"No category found. Add one now!"} />
       )}
       {hasCategories && (
         <DragDropContext onDragEnd={onDragEnd}>

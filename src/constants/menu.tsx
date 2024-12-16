@@ -18,41 +18,41 @@ import {
 
 export const MENUS = (id: string) => [
   {
-    title: "Başlangıç ayarları",
+    title: "Start settings",
     items: [
       {
-        title: "Dil ayarları",
+        title: "Language settings",
         href: `/d/${id}/language-settings`,
         icon: Globe,
       },
       {
-        title: "Para birimi ayarları",
+        title: "Currency settings",
         href: `/d/${id}/currency-settings`,
         icon: Banknote,
       },
     ],
   },
   {
-    title: "Temel içerikler",
+    title: "Basic contents",
     items: [
       {
-        title: "Menü",
+        title: "Menu",
         href: `/d/${id}/menu`,
         icon: SquareMenu,
       },
     ],
   },
   {
-    title: "Diğer içerikler",
+    title: "Other contents",
     items: [
       {
-        title: "Etiketler",
+        title: "Tags",
         href: `/d/${id}/tags`,
         icon: Tag,
         isDisabled: true,
       },
       {
-        title: "Duyurular",
+        title: "Announcements",
         href: `/d/${id}/announcements`,
         icon: Megaphone,
         isDisabled: true,
@@ -60,20 +60,20 @@ export const MENUS = (id: string) => [
     ],
   },
   {
-    title: "Görünüm",
+    title: "Appearance",
     items: [
       {
-        title: "Logo ve arkaplan",
+        title: "Logo and background",
         href: `/d/${id}/images`,
         icon: FileImage,
       },
       {
-        title: "Tema",
+        title: "Theme",
         href: `/d/${id}/theme`,
         icon: Palette,
       },
       {
-        title: "Yazı tipi",
+        title: "Font",
         href: `/d/${id}/font`,
         icon: CaseSensitive,
         isDisabled: true,
@@ -81,16 +81,16 @@ export const MENUS = (id: string) => [
     ],
   },
   {
-    title: "Analiz",
+    title: "Analytics",
     items: [
       {
-        title: "Anket sonuçları",
+        title: "Survey results",
         href: `/d/${id}/survey-results`,
         icon: FileUser,
         isDisabled: true,
       },
       {
-        title: "Etkileşim raporları",
+        title: "Interaction reports",
         href: `/d/${id}/interaction-reports`,
         icon: ChartBar,
         isDisabled: true,
@@ -98,36 +98,36 @@ export const MENUS = (id: string) => [
     ],
   },
   {
-    title: "Baskı",
+    title: "Print",
     items: [
       {
-        title: "Karekod",
+        title: "QR code",
         href: `/d/${id}/qr-code`,
         icon: QrCode,
       },
     ],
   },
   {
-    title: "Diğer ayarlar",
+    title: "Other settings",
     items: [
       {
-        title: "Adres",
+        title: "Address",
         href: `/d/${id}/address`,
         icon: MapPinHouse,
         isDisabled: true,
       },
       {
-        title: "Sosyal medya",
+        title: "Social media",
         href: `/d/${id}/social-media`,
         icon: Contact,
       },
       {
-        title: "Kullanıcılar",
+        title: "Users",
         href: `/d/${id}/users`,
         icon: Users,
       },
       {
-        title: "Genel ayarlar",
+        title: "General settings",
         href: `/d/${id}/general-settings`,
         icon: Settings,
       },

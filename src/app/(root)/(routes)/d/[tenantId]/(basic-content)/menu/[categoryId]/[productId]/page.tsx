@@ -51,7 +51,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
           },
           {
             icon: SquareMenu,
-            title: "Menü",
+            title: "Menu",
             href: `/d/${tenantId}/menu`,
           },
           {

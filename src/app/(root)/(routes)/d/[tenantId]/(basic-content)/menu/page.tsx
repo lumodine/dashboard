@@ -23,7 +23,7 @@ export default async function TenantMenuPage({params}: TenantMenuPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Menü"} />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Menu"} />
 
       <AppBreadcrumb
         items={[
@@ -34,7 +34,7 @@ export default async function TenantMenuPage({params}: TenantMenuPageProps) {
           },
           {
             icon: SquareMenu,
-            title: "Menü",
+            title: "Menu",
           },
         ]}
       />

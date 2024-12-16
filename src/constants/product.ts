@@ -1,25 +1,25 @@
 export const PRODUCT_TYPES = [
   {
     key: "row",
-    name: "Satır",
+    name: "Row",
   },
   {
     key: "grid",
-    name: "Kutu",
+    name: "Grid",
   },
 ];
 
 export const PRODUCT_STATUS = [
   {
     key: "hidden",
-    name: "Gizle",
+    name: "Hide",
   },
   {
     key: "not_available",
-    name: "Geçici olarak gizle",
+    name: "Temporarily hide",
   },
   {
     key: "published",
-    name: "Görünür yap",
+    name: "Make visible",
   },
 ];

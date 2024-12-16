@@ -125,7 +125,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
                       !product.image && "flex",
                     )}
                   >
-                    Resim yükle
+                    Upload image
                   </span>
                   {product.image && (
                     <Button

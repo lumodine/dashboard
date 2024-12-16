@@ -26,13 +26,13 @@ export const UpdateUserEmailForm = ({user}: UpdateUserEmailFormProps) => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">E-posta (*)</Label>
+          <Label htmlFor="email">Email (*)</Label>
           <Input required defaultValue={user.email} id="email" name="email" type="email" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
+        <span className="text-xs">(*) Required field</span>
 
         <SubmitButton>
-          <Save /> Kaydet
+          <Save /> Save
         </SubmitButton>
       </form>
     </>

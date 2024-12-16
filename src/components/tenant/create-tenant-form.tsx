@@ -36,12 +36,12 @@ export const CreateTenantForm = ({languages, currencies}: CreateTenantFormProps)
     <form action={clientAction} className="flex flex-col gap-4">
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="name">Adı (*)</Label>
+          <Label htmlFor="name">Name (*)</Label>
         </div>
         <Input required id="name" name="name" type="text" />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="alias">Web adresi (*)</Label>
+        <Label htmlFor="alias">Web address (*)</Label>
         <div className="flex">
           <span className="bg-primary text-primary-foreground py-1 px-2 rounded-l-lg">
             {websiteScheme}
@@ -54,7 +54,7 @@ export const CreateTenantForm = ({languages, currencies}: CreateTenantFormProps)
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="language">Ana dil (*)</Label>
+          <Label htmlFor="language">Default language (*)</Label>
         </div>
         <Select defaultValue={languages[0]._id} name="language">
           <SelectTrigger>
@@ -71,7 +71,7 @@ export const CreateTenantForm = ({languages, currencies}: CreateTenantFormProps)
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="currency">Ana para birimi (*)</Label>
+          <Label htmlFor="currency">Default currency (*)</Label>
         </div>
         <Select defaultValue={currencies[0]._id} name="currency">
           <SelectTrigger>
@@ -86,9 +86,9 @@ export const CreateTenantForm = ({languages, currencies}: CreateTenantFormProps)
           </SelectContent>
         </Select>
       </div>
-      <span className="text-xs">(*) Zorunlu alan</span>
+      <span className="text-xs">(*) Required field</span>
       <SubmitButton>
-        <Plus /> İşletmemi oluştur
+        <Plus /> Create tenant
       </SubmitButton>
     </form>
   );

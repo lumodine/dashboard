@@ -64,7 +64,7 @@ export const UpdateProductForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Kategori (*)</Label>
+          <Label>Category (*)</Label>
         </div>
         <Select defaultValue={product.category} name="category">
           <SelectTrigger>
@@ -82,7 +82,7 @@ export const UpdateProductForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Ad (*)</Label>
+          <Label>Name (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {
@@ -103,7 +103,7 @@ export const UpdateProductForm = ({
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Açıklama</Label>
+          <Label>Description</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {
@@ -130,7 +130,7 @@ export const UpdateProductForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Fiyat</Label>
+          <Label>Price</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.currencies.map((currency: any, currencyIndex: number) => {
@@ -156,19 +156,19 @@ export const UpdateProductForm = ({
         </div>
       </div>
 
-      <span className="text-xs">(*) Zorunlu alan</span>
+      <span className="text-xs">(*) Required field</span>
 
       <div className="flex flex-col sm:flex-row justify-between gap-1">
         <span className="text-muted-foreground text-xs">
-          <b>Oluşturma tarihi</b>: {formatDate(product.createdAt)}
+          <b>Creation date</b>: {formatDate(product.createdAt)}
         </span>
         <span className="text-muted-foreground text-xs">
-          <b>Güncelleme tarihi</b>: {formatDate(product.updatedAt)}
+          <b>Update date</b>: {formatDate(product.updatedAt)}
         </span>
       </div>
 
       <SubmitButton>
-        <Save /> Kaydet
+        <Save /> Save
       </SubmitButton>
     </form>
   );

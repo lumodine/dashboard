@@ -19,9 +19,9 @@ export default async function TenantQrCodePage({params}: TenantQrCodePageProps) 
   return (
     <>
       <Hero
-        description={"Baskı için kullanabileceğiniz karekodunuzu aşağıdan indirebilirsiniz."}
+        description={"You can download your QR code for printing below."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Karekod"}
+        title={"QR Code"}
       />
 
       <AppBreadcrumb
@@ -33,18 +33,18 @@ export default async function TenantQrCodePage({params}: TenantQrCodePageProps) 
           },
           {
             icon: QrCode,
-            title: "Karekod",
+            title: "QR Code",
           },
         ]}
       />
 
       <section className="container">
         <div className="w-52">
-          <Image alt={`${tenant.name} karekod`} height={2048} src={tenant.qrCode} width={2048} />
+          <Image alt={`${tenant.name} qr code`} height={2048} src={tenant.qrCode} width={2048} />
           <a download={`${tenant.name} qr.png`} href={tenant.qrCode}>
             <Button size={"sm"} variant={"outline"}>
               <Download />
-              Karekodu indir
+              Download QR Code
             </Button>
           </a>
         </div>

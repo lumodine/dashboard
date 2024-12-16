@@ -16,14 +16,14 @@ export default async function DashboardPage() {
     <>
       <Hero
         supTitle={<Link href={"/d"}>{process.env.NEXT_PUBLIC_APP_NAME!}</Link>}
-        title={"İşletme ekle"}
+        title={"Add tenant"}
       />
 
       <AppBreadcrumb
         items={[
           {
             icon: Building2,
-            title: "İşletme ekle",
+            title: "Add tenant",
           },
         ]}
       />

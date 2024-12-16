@@ -30,10 +30,10 @@ export const CATEGORY_TYPES = [
 export const CATEGORY_STATUS = [
   {
     key: "hidden",
-    name: "Gizle",
+    name: "Hide",
   },
   {
     key: "published",
-    name: "Görünür yap",
+    name: "Make visible",
   },
 ];

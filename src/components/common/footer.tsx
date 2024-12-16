@@ -15,7 +15,7 @@ export const Footer = () => {
           <Link className="underline" href={process.env.NEXT_PUBLIC_LANDING_URL!} target="_blank">
             {process.env.NEXT_PUBLIC_APP_NAME}
           </Link>{" "}
-          &#x2022; Tüm hakları saklıdır
+          &#x2022; All rights reserved
         </p>
       </div>
     </footer>

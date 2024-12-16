@@ -34,11 +34,11 @@ export const TenantUserCreateForm = ({tenant}: TenantUserCreateFormProps) => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">E-posta (*)</Label>
+          <Label htmlFor="email">Email (*)</Label>
           <Input required id="email" name="email" type="email" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="role">Rol (*)</Label>
+          <Label htmlFor="role">Role (*)</Label>
           <Select required name="role">
             <SelectTrigger>
               <SelectValue />
@@ -52,9 +52,9 @@ export const TenantUserCreateForm = ({tenant}: TenantUserCreateFormProps) => {
             </SelectContent>
           </Select>
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
+        <span className="text-xs">(*) Required field</span>
         <SubmitButton>
-          <Plus /> Kullanıcı ekle
+          <Plus /> Add user
         </SubmitButton>
       </form>
     </>

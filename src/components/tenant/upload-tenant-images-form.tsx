@@ -103,20 +103,20 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
                 !tenant.logo && "flex",
               )}
             >
-              Logo yükle
+              Upload logo
             </span>
           </div>
         </Label>
         <Input className="hidden" id="logo" name="logo" type="file" onChange={handleUploadLogo} />
         {tenant.logo && (
           <Button size={"sm"} variant={"destructive"} onClick={handleRemoveLogo}>
-            <Trash /> Logoyu sil
+            <Trash /> Remove logo
           </Button>
         )}
       </div>
       <div className="flex flex-col gap-2 items-start">
         <Label className="inline-flex flex-col gap-2" htmlFor="background">
-          <span>Arkaplan</span>
+          <span>Background</span>
 
           <div className="relative flex items-center justify-center border rounded-lg overflow-hidden w-[400px] h-[200px] cursor-pointer group">
             {tenant.background && (
@@ -135,7 +135,7 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
                 !tenant.background && "flex",
               )}
             >
-              Arkaplan yükle
+              Upload background
             </span>
           </div>
         </Label>
@@ -148,7 +148,7 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
         />
         {tenant.background && (
           <Button size={"sm"} variant={"destructive"} onClick={handleRemoveBackground}>
-            <Trash /> Arkaplanı sil
+            <Trash /> Remove background
           </Button>
         )}
       </div>

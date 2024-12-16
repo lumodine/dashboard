@@ -20,7 +20,7 @@ export default async function TenantInteractionReportsPage({
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Etkileşim raporları"}
+        title={"Interaction reports"}
       />
 
       <AppBreadcrumb
@@ -32,7 +32,7 @@ export default async function TenantInteractionReportsPage({
           },
           {
             icon: ChartBar,
-            title: "Etkileşim raporları",
+            title: "Interaction reports",
           },
         ]}
       />

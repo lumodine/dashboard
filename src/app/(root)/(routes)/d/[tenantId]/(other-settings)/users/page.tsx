@@ -25,7 +25,7 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Kullanıcılar"}
+        title={"Users"}
       />
 
       <AppBreadcrumb
@@ -37,7 +37,7 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
           },
           {
             icon: Users,
-            title: "Kullanıcılar",
+            title: "Users",
           },
         ]}
       />
@@ -45,8 +45,8 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
       <section className="container">
         <Tabs className="w-full" defaultValue="users">
           <TabsList>
-            <TabsTrigger value="users">Kullanıcılar</TabsTrigger>
-            <TabsTrigger value="create-user">Kullanıcı ekle</TabsTrigger>
+            <TabsTrigger value="users">Users</TabsTrigger>
+            <TabsTrigger value="create-user">Add user</TabsTrigger>
           </TabsList>
           <TabsContent value="users">
             <TenantUserList tenant={tenant} users={users} />

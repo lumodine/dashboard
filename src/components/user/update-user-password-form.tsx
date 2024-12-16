@@ -22,21 +22,21 @@ export const UpdateUserPasswordForm = () => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="currentPassword">Var olan şifre (*)</Label>
+          <Label htmlFor="currentPassword">Current password (*)</Label>
           <Input required id="currentPassword" name="currentPassword" type="password" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="newPassword">Yeni şifre (*)</Label>
+          <Label htmlFor="newPassword">New password (*)</Label>
           <Input required id="newPassword" name="newPassword" type="password" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="confirmNewPassword">Şifreyi onayla (*)</Label>
+          <Label htmlFor="confirmNewPassword">Confirm new password (*)</Label>
           <Input required id="confirmNewPassword" name="confirmNewPassword" type="password" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
+        <span className="text-xs">(*) Required field</span>
 
         <SubmitButton>
-          <Save /> Kaydet
+          <Save /> Save
         </SubmitButton>
       </form>
     </>

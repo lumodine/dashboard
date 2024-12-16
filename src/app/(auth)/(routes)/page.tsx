@@ -8,18 +8,16 @@ export default function AuthSignInPage() {
   return (
     <Card className="w-full max-w-96">
       <CardHeader>
-        <CardTitle className="text-2xl">Giriş yap</CardTitle>
-        <CardDescription>
-          Hesabınıza giriş yapmak için aşağıdaki bilgileri doldurunuz
-        </CardDescription>
+        <CardTitle className="text-2xl">Sign in</CardTitle>
+        <CardDescription>Please fill in the following information to sign in</CardDescription>
       </CardHeader>
       <CardContent>
         <SignInForm />
 
         <div className="mt-4 text-center text-sm">
-          Hesabınız yok mu?{" "}
+          Don&apos;t have an account?{" "}
           <Link className="underline" href={"/sign-up"}>
-            Kayıt ol
+            Sign up
           </Link>
         </div>
       </CardContent>

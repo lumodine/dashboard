@@ -19,7 +19,7 @@ export default async function TenantCreateCategoryPage({params}: TenantCreateCat
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Kategori ekle"}
+        title={"Add category"}
       />
 
       <AppBreadcrumb
@@ -31,12 +31,12 @@ export default async function TenantCreateCategoryPage({params}: TenantCreateCat
           },
           {
             icon: SquareMenu,
-            title: "Menü",
+            title: "Menu",
             href: `/d/${tenantId}/menu`,
           },
           {
             icon: TableOfContents,
-            title: "Kategori ekle",
+            title: "Add category",
           },
         ]}
       />

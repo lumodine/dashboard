@@ -49,7 +49,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
           },
           {
             icon: SquareMenu,
-            title: "Menü",
+            title: "Menu",
             href: `/d/${tenantId}/menu`,
           },
           {
@@ -63,8 +63,8 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
         <TenantIframeGroup>
           <Tabs className="w-full" defaultValue="products">
             <TabsList>
-              <TabsTrigger value="products">Ürünler</TabsTrigger>
-              <TabsTrigger value="settings">Ayarlar</TabsTrigger>
+              <TabsTrigger value="products">Products</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
             <TabsContent value="products">
               <ProductList category={category} products={products} tenant={tenant} />

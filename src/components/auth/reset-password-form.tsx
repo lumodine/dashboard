@@ -25,15 +25,15 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="password">Yeni şifre (*)</Label>
+          <Label htmlFor="password">New password (*)</Label>
           <Input required id="password" name="password" type="password" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="confirmPassword">Şifreyi onayla (*)</Label>
+          <Label htmlFor="confirmPassword">Confirm new password (*)</Label>
           <Input required id="confirmPassword" name="confirmPassword" type="password" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
-        <SubmitButton>Şifremi yenile</SubmitButton>
+        <span className="text-xs">(*) Required field</span>
+        <SubmitButton>Reset Password</SubmitButton>
       </form>
     </>
   );

@@ -121,7 +121,7 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
                       !category.image && "flex",
                     )}
                   >
-                    Resim yükle
+                    Upload image
                   </span>
                   {category.image && (
                     <Button

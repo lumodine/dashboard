@@ -89,7 +89,7 @@ export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFor
       </div>
 
       <SubmitButton>
-        <Save /> Kaydet
+        <Save /> Save
       </SubmitButton>
     </form>
   );

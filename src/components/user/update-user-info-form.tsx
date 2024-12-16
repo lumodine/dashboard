@@ -26,17 +26,17 @@ export const UpdateUserInfoForm = ({user}: UpdateUserInfoFormProps) => {
     <>
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="name">Ad (*)</Label>
+          <Label htmlFor="name">Name (*)</Label>
           <Input required defaultValue={user.name} id="name" name="name" type="text" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="surname">Soyad (*)</Label>
+          <Label htmlFor="surname">Surname (*)</Label>
           <Input required defaultValue={user.surname} id="surname" name="surname" type="text" />
         </div>
-        <span className="text-xs">(*) Zorunlu alan</span>
+        <span className="text-xs">(*) Required field</span>
 
         <SubmitButton>
-          <Save /> Kaydet
+          <Save /> Save
         </SubmitButton>
       </form>
     </>

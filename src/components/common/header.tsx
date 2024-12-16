@@ -34,11 +34,11 @@ export const Header = () => {
         <div className="flex gap-2 items-center justify-center">
           <Link href={"/d/my-account"}>
             <Button variant={"ghost"}>
-              <User /> Hesabım
+              <User /> My account
             </Button>
           </Link>
           <Button variant={"destructive"} onClick={handleLogout}>
-            Çıkış yap <LogOut />
+            Log out <LogOut />
           </Button>
         </div>
       </nav>

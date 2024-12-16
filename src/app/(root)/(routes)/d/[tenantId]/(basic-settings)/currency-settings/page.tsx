@@ -26,9 +26,9 @@ export default async function TenantCurrencySettingsPage({
   return (
     <>
       <Hero
-        description={"İşletmenize ait para birimi ayarlarını buradan güncelleyebilirsiniz."}
+        description={"You can update your tenant's currency settings here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Para birimi ayarları"}
+        title={"Currency settings"}
       />
 
       <AppBreadcrumb
@@ -40,7 +40,7 @@ export default async function TenantCurrencySettingsPage({
           },
           {
             icon: Banknote,
-            title: "Para birimi ayarları",
+            title: "Currency settings",
           },
         ]}
       />
