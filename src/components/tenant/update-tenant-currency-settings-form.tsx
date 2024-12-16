@@ -144,6 +144,31 @@ export const UpdateTenantCurrencySettingsForm = ({
           {otherCurrencies.length === 0 && (
             <NotFound title="Diğer para birimi eklemediniz. Hemen diğer para birimini ekle." />
           )}
+
+          {addableCurrencies.length > 0 && (
+            <div className="flex items-center gap-2">
+              <Select onValueChange={(value) => setNewCurrencyId(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {addableCurrencies.map((currency: any, currencyIndex: number) => (
+                    <SelectItem key={currencyIndex} value={currency._id}>
+                      {currency.code} ({currency.symbol})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button type="button" onClick={addNewCurrency}>
+                <Plus size={14} /> Para birimi ekle
+              </Button>
+            </div>
+          )}
+
+          <SubmitButton>
+            <Save /> Kaydet
+          </SubmitButton>
+
           {otherCurrencies.map((currency: any, currencyIndex: number) => (
             <div
               key={currencyIndex}
@@ -172,32 +197,8 @@ export const UpdateTenantCurrencySettingsForm = ({
               </Button>
             </div>
           ))}
-
-          {addableCurrencies.length > 0 && (
-            <div className="flex items-center gap-2">
-              <Select onValueChange={(value) => setNewCurrencyId(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {addableCurrencies.map((currency: any, currencyIndex: number) => (
-                    <SelectItem key={currencyIndex} value={currency._id}>
-                      {currency.code} ({currency.symbol})
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Button type="button" onClick={addNewCurrency}>
-                <Plus size={14} /> Para birimi ekle
-              </Button>
-            </div>
-          )}
         </div>
       </div>
-
-      <SubmitButton>
-        <Save /> Kaydet
-      </SubmitButton>
     </form>
   );
 };

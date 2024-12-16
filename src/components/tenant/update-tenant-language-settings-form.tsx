@@ -144,6 +144,31 @@ export const UpdateTenantLanguageSettingsForm = ({
           {otherLanguages.length === 0 && (
             <NotFound title="Diğer dil eklemediniz. Hemen diğer dili ekle." />
           )}
+
+          {addableLanguages.length > 0 && (
+            <div className="flex items-center gap-2">
+              <Select onValueChange={(value) => setNewLanguageId(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {addableLanguages.map((language: any, languageIndex: number) => (
+                    <SelectItem key={languageIndex} value={language._id}>
+                      {language.name} ({language.shortName})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button type="button" onClick={addNewLanguage}>
+                <Plus size={14} /> Dil ekle
+              </Button>
+            </div>
+          )}
+
+          <SubmitButton>
+            <Save /> Kaydet
+          </SubmitButton>
+
           {otherLanguages.map((language: any, languageIndex: number) => (
             <div
               key={languageIndex}
@@ -172,32 +197,8 @@ export const UpdateTenantLanguageSettingsForm = ({
               </Button>
             </div>
           ))}
-
-          {addableLanguages.length > 0 && (
-            <div className="flex items-center gap-2">
-              <Select onValueChange={(value) => setNewLanguageId(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {addableLanguages.map((language: any, languageIndex: number) => (
-                    <SelectItem key={languageIndex} value={language._id}>
-                      {language.name} ({language.shortName})
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Button type="button" onClick={addNewLanguage}>
-                <Plus size={14} /> Dil ekle
-              </Button>
-            </div>
-          )}
         </div>
       </div>
-
-      <SubmitButton>
-        <Save /> Kaydet
-      </SubmitButton>
     </form>
   );
 };
