@@ -14,7 +14,7 @@ export default function NotFoundPage() {
         <h1 className="font-black text-4xl">Page not found!</h1>
 
         <p className="my-4 text-muted-foreground">
-          Sorry, we couldn't find the page you were looking for.
+          Sorry, we couldn&apos;t find the page you were looking for.
         </p>
 
         <Link href={"/d"}>

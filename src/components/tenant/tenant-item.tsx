@@ -12,12 +12,19 @@ export const TenantItem = ({tenant}: TenantItemProps) => {
   return (
     <Link className="border rounded-lg overflow-hidden hover:bg-gray-50" href={`/d/${tenant._id}`}>
       <div className="flex gap-2">
-        <div className="relative flex items-center justify-center w-[100px] h-[100px] cursor-pointer group">
+        <div className="relative flex items-center justify-center w-[100px] h-[100px] cursor-pointer group p-2">
           {tenant.logo && (
-            <Image alt={tenant.name} height={100} loading="lazy" src={tenant.logo} width={100} />
+            <Image
+              alt={tenant.name}
+              className="rounded-lg"
+              height={100}
+              loading="lazy"
+              src={tenant.logo}
+              width={100}
+            />
           )}
         </div>
-        <div className="w-full p-2 flex flex-col gap-2">
+        <div className="w-full py-4 flex flex-col gap-2">
           <b>{tenant.name}</b>
           <div className="flex gap-2">
             <div className="flex gap-1 item-center">

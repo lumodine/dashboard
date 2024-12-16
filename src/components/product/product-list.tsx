@@ -65,9 +65,7 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
           </Button>
         </Link>
       </div>
-      {!hasProducts && (
-        <NotFound title={"No product found. Add one now!"} />
-      )}
+      {!hasProducts && <NotFound title={"No product found. Add one now!"} />}
 
       {hasProducts && (
         <DragDropContext onDragEnd={onDragEnd}>

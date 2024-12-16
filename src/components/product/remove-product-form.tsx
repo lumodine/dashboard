@@ -46,8 +46,8 @@ export const RemoveProductForm = ({tenant, category, product}: RemoveProductForm
           </DialogHeader>
           <form action={clientAction} className="flex flex-col gap-6">
             <p>
-              <b>IMPORTANT</b>! Removing the product will result in the loss of all content. Do
-              you still want to do this?
+              <b>IMPORTANT</b>! Removing the product will result in the loss of all content. Do you
+              still want to do this?
             </p>
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">

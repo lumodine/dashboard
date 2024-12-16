@@ -49,8 +49,8 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
             </p>
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
-                Please enter &quot;<b>{tenant.name}</b>&quot; in the box below to confirm the removal
-                process.
+                Please enter &quot;<b>{tenant.name}</b>&quot; in the box below to confirm the
+                removal process.
               </Label>
               <Input
                 required

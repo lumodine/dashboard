@@ -64,9 +64,7 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
           </Button>
         </Link>
       </div>
-      {!hasCategories && (
-        <NotFound title={"No category found. Add one now!"} />
-      )}
+      {!hasCategories && <NotFound title={"No category found. Add one now!"} />}
       {hasCategories && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">

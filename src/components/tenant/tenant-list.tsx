@@ -24,9 +24,7 @@ export const TenantList = ({tenants}: TenantListProps) => {
           </Button>
         </Link>
       </div>
-      {!hasTenants && (
-        <NotFound title={"No tenants found. Add one now!"} />
-      )}
+      {!hasTenants && <NotFound title={"No tenants found. Add one now!"} />}
       {hasTenants && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {tenants.map((tenant: any, tenantIndex: number) => (
