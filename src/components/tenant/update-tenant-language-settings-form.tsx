@@ -160,7 +160,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                 </SelectContent>
               </Select>
               <Button type="button" onClick={addNewLanguage}>
-                <Plus size={14} /> Add language
+                <Plus size={14} />
               </Button>
             </div>
           )}
@@ -182,7 +182,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                   variant={"outline"}
                   onClick={() => addDefaultLanguage(language)}
                 >
-                  Make default language
+                  Make default
                 </Button>
                 <span>
                   {language.name} ({language.shortName})
@@ -193,7 +193,7 @@ export const UpdateTenantLanguageSettingsForm = ({
                 variant={"destructive"}
                 onClick={() => removeLanguage(language)}
               >
-                <Trash size={14} /> Remove
+                <Trash size={14} />
               </Button>
             </div>
           ))}

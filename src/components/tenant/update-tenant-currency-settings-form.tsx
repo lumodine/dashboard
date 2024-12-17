@@ -160,7 +160,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                 </SelectContent>
               </Select>
               <Button type="button" onClick={addNewCurrency}>
-                <Plus size={14} /> Add currency
+                <Plus size={14} />
               </Button>
             </div>
           )}
@@ -182,7 +182,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                   variant={"outline"}
                   onClick={() => addDefaultCurrency(currency)}
                 >
-                  Make default currency
+                  Make default
                 </Button>
                 <span>
                   {currency.code} ({currency.symbol})
@@ -193,7 +193,7 @@ export const UpdateTenantCurrencySettingsForm = ({
                 variant={"destructive"}
                 onClick={() => removeCurrency(currency)}
               >
-                <Trash size={14} /> Remove
+                <Trash size={14} />
               </Button>
             </div>
           ))}
