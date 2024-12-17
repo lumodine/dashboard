@@ -68,8 +68,8 @@ export const MENUS = (id: string) => [
         icon: FileImage,
       },
       {
-        title: "Theme",
-        href: `/d/${id}/theme`,
+        title: "Theme color",
+        href: `/d/${id}/theme-color`,
         icon: Palette,
       },
       {

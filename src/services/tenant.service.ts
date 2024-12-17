@@ -6,8 +6,8 @@ const getAll = async () => {
   return data;
 };
 
-const getAllThemes = async () => {
-  const {data} = await axios.get("/tenants/themes");
+const getAllColors = async () => {
+  const {data} = await axios.get("/tenants/theme/colors");
 
   return data;
 };
@@ -55,9 +55,9 @@ const updateCurrencySettings = async (tenantId: string, currencies: any[]) => {
   return data;
 };
 
-const updateTheme = async (tenantId: string, theme: string) => {
-  const {data} = await axios.put(`/tenants/${tenantId}/theme`, {
-    theme,
+const updateColor = async (tenantId: string, color: string) => {
+  const {data} = await axios.put(`/tenants/${tenantId}/theme/color`, {
+    color,
   });
 
   return data;
@@ -103,13 +103,13 @@ const updateSocialMedia = async (tenantId: string, socialMedias: any[]) => {
 
 export default {
   getAll,
-  getAllThemes,
+  getAllColors,
   getById,
   create,
   updateSettings,
   updateLanguageSettings,
   updateCurrencySettings,
-  updateTheme,
+  updateColor,
   remove,
   uploadLogo,
   uploadBackground,

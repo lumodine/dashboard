@@ -4,20 +4,20 @@ import {toast} from "react-toastify";
 import {Save} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
-import updateTenantTheme from "@/actions/tenant/updateTenantTheme";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {SubmitButton} from "@/components/common/submit-button";
+import updateTenantThemeColor from "@/actions/tenant/updateTenantThemeColor";
 
-export type UpdateTenantThemeFormProps = {
+export type UpdateTenantThemeColorFormProps = {
   tenant: any;
-  themes: any[];
+  colors: any[];
 };
 
-export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormProps) => {
+export const UpdateTenantThemeColorForm = ({tenant, colors}: UpdateTenantThemeColorFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateTenantTheme(tenant._id, formData);
+    const response = await updateTenantThemeColor(tenant._id, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -32,17 +32,17 @@ export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormPro
     <form action={clientAction} className="w-full flex flex-col gap-4">
       <RadioGroup
         className="flex items-center justify-center flex-wrap gap-2"
-        defaultValue={tenant.theme}
-        name="theme"
+        defaultValue={tenant.theme.color}
+        name="color"
       >
-        {themes.map((theme: any, themeIndex: number) => (
-          <Label key={themeIndex} className="cursor-pointer hover:scale-95" htmlFor={theme}>
+        {colors.map((color: any, colorIndex: number) => (
+          <Label key={colorIndex} className="cursor-pointer hover:scale-95" htmlFor={color}>
             <div
-              className={`flex flex-col items-center justify-center gap-3 bg-gray-100 rounded-lg p-4 theme-${theme}`}
+              className={`flex flex-col items-center justify-center gap-3 bg-gray-100 rounded-lg p-4 theme-${color}`}
             >
               <div className="p-6 rounded-full bg-primary w-10 h-10" />
               <div className="flex items-center gap-1">
-                <RadioGroupItem id={theme} value={theme} />
+                <RadioGroupItem id={color} value={color} />
               </div>
             </div>
           </Label>
@@ -55,4 +55,4 @@ export const UpdateTenantThemeForm = ({tenant, themes}: UpdateTenantThemeFormPro
     </form>
   );
 };
-UpdateTenantThemeForm.displayName = "UpdateTenantThemeForm";
+UpdateTenantThemeColorForm.displayName = "UpdateTenantThemeColorForm";
