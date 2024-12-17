@@ -25,7 +25,7 @@ export const AppBreadcrumb = ({items}: AppBreadcrumbProps) => {
 
   items.unshift({
     icon: Home,
-    title: "Home page",
+    title: "Home",
     href: "/",
   });
 
@@ -41,7 +41,7 @@ export const AppBreadcrumb = ({items}: AppBreadcrumbProps) => {
                 <BreadcrumbItem key={itemIndex} title={item.title}>
                   {item.href ? (
                     <BreadcrumbLink className="flex items-center gap-1" href={item.href}>
-                      {item.icon && <item.icon size={16} />}
+                      {item.icon && <item.icon size={16} />} {item.title}
                     </BreadcrumbLink>
                   ) : (
                     <BreadcrumbPage className="flex items-center gap-1">
