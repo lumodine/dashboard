@@ -5,7 +5,7 @@ import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
-import { UpdateTenantThemeColorForm } from "@/components/tenant/update-tenant-theme-color-form";
+import {UpdateTenantThemeColorForm} from "@/components/tenant/update-tenant-theme-color-form";
 
 type TenantThemeColorPageProps = {
   params: Promise<{
@@ -44,7 +44,7 @@ export default async function TenantThemeColorPage({params}: TenantThemeColorPag
 
       <section className="container">
         <TenantIframeGroup>
-          <UpdateTenantThemeColorForm tenant={tenant} colors={colors} />
+          <UpdateTenantThemeColorForm colors={colors} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>
