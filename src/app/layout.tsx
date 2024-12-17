@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     {
       rel: "icon",
       type: "image/x-icon",
-      url: "/favicon.ico",
+      url: "https://cdn.lumodine.com/public/favicon.ico?v=1",
     },
     {
       rel: "shortcut icon",
       type: "image/x-icon",
-      url: "/favicon.ico",
+      url: "https://cdn.lumodine.com/public/favicon.ico?v=1",
     },
   ],
   robots: "nofollow, noindex",
