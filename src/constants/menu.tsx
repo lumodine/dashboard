@@ -49,7 +49,6 @@ export const MENUS = (id: string) => [
         title: "Tags",
         href: `/d/${id}/tags`,
         icon: Tag,
-        isDisabled: true,
       },
       {
         title: "Announcements",

@@ -3,6 +3,8 @@ import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
+import tagService from "@/services/tag.service";
+import {TagList} from "@/components/tag/tag-list";
 
 type TenantTagsPageProps = {
   params: Promise<{
@@ -12,7 +14,10 @@ type TenantTagsPageProps = {
 
 export default async function TenantTagsPage({params}: TenantTagsPageProps) {
   const {tenantId} = await params;
-  const {data: tenant} = await tenantService.getById(tenantId);
+  const [{data: tenant}, {data: tags}] = await Promise.all([
+    tenantService.getById(tenantId),
+    tagService.getAll(tenantId),
+  ]);
 
   return (
     <>
@@ -32,7 +37,9 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
         ]}
       />
 
-      <section className="container">TenantTagsPage</section>
+      <section className="container">
+        <TagList tags={tags} tenant={tenant} />
+      </section>
     </>
   );
 }
