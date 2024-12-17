@@ -28,7 +28,7 @@ export default async function TenantCreateTagPage({params}: TenantCreateTagPageP
           },
           {
             icon: Tag,
-            title: "Menu",
+            title: "Tags",
             href: `/d/${tenantId}/tags`,
           },
           {

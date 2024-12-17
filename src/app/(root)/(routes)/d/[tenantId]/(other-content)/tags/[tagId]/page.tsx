@@ -43,7 +43,7 @@ export default async function TenantTagDetailPage({ params }: TenantTagDetailPag
           },
           {
             icon: Tag,
-            title: "Menu",
+            title: "Tags",
             href: `/d/${tenantId}/tags`,
           },
           {
