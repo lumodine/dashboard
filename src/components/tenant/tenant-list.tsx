@@ -17,7 +17,6 @@ export const TenantList = ({tenants}: TenantListProps) => {
   return (
     <section>
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">My tenants ({count})</h2>
         <Link href={"/d/create"}>
           <Button size={"sm"}>
             <Plus size={14} /> Add new tenant

@@ -57,7 +57,6 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
   return (
     <div className="w-full">
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">Categories ({count})</h2>
         <Link href={`/d/${tenant._id}/menu/create`}>
           <Button size={"sm"}>
             <Plus size={14} /> New category

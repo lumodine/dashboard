@@ -58,7 +58,6 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
   return (
     <>
       <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <h2 className="text-2xl font-semibold">Products ({count})</h2>
         <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
           <Button size={"sm"}>
             <Plus size={14} /> New product
