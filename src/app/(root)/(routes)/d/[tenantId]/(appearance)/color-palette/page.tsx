@@ -23,9 +23,9 @@ export default async function TenantThemeColorPage({params}: TenantThemeColorPag
   return (
     <>
       <Hero
-        description={"You can update the theme color settings of your business here."}
+        description={"You can update the color palette of your business here."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Theme Color"}
+        title={"Color palette"}
       />
 
       <AppBreadcrumb
@@ -37,7 +37,7 @@ export default async function TenantThemeColorPage({params}: TenantThemeColorPag
           },
           {
             icon: Palette,
-            title: "Theme",
+            title: "Color palette",
           },
         ]}
       />
