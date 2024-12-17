@@ -1,13 +1,11 @@
 import Link from "next/link";
-import {notFound} from "next/navigation";
-import {Building2, TableOfContents, Tag} from "lucide-react";
-import {AppBreadcrumb} from "@/components/common/breadcrumb";
-import {Hero} from "@/components/common/hero";
+import { notFound } from "next/navigation";
+import { Building2, TableOfContents, Tag } from "lucide-react";
+import { AppBreadcrumb } from "@/components/common/breadcrumb";
+import { Hero } from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
-import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
-import {TenantIframe} from "@/components/tenant/tenant-iframe";
-import {UpdateTagForm} from "@/components/tag/update-tag-form";
-import {RemoveTagForm} from "@/components/tag/remove-tag-form";
+import { UpdateTagForm } from "@/components/tag/update-tag-form";
+import { RemoveTagForm } from "@/components/tag/remove-tag-form";
 import tagService from "@/services/tag.service";
 
 type TenantTagDetailPageProps = {
@@ -17,10 +15,10 @@ type TenantTagDetailPageProps = {
   }>;
 };
 
-export default async function TenantTagDetailPage({params}: TenantTagDetailPageProps) {
-  const {tenantId, tagId} = await params;
+export default async function TenantTagDetailPage({ params }: TenantTagDetailPageProps) {
+  const { tenantId, tagId } = await params;
 
-  const [{data: tenant}, {data: tag}] = await Promise.all([
+  const [{ data: tenant }, { data: tag }] = await Promise.all([
     tenantService.getById(tenantId),
     tagService.getById(tenantId, tagId),
   ]);
@@ -56,13 +54,10 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
       />
 
       <section className="container">
-        <TenantIframeGroup>
-          <div className="w-full flex flex-col gap-4">
-            <UpdateTagForm tag={tag} tenant={tenant} />
-            <RemoveTagForm tag={tag} tenant={tenant} />
-          </div>
-          <TenantIframe tenant={tenant} />
-        </TenantIframeGroup>
+        <div className="w-full flex flex-col gap-4">
+          <UpdateTagForm tag={tag} tenant={tenant} />
+          <RemoveTagForm tag={tag} tenant={tenant} />
+        </div>
       </section>
     </>
   );
