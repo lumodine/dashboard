@@ -12,17 +12,24 @@ const getById = async (tenantId: string, tagId: string) => {
   return data;
 };
 
-const create = async (tenantId: string, translations: any[]) => {
+const create = async (tenantId: string, translations: any[], isShowInMenu: boolean) => {
   const {data} = await axios.post(`/tenants/${tenantId}/tags`, {
     translations,
+    isShowInMenu,
   });
 
   return data;
 };
 
-const update = async (tenantId: string, tagId: string, translations: any[]) => {
+const update = async (
+  tenantId: string,
+  tagId: string,
+  translations: any[],
+  isShowInMenu: boolean,
+) => {
   const {data} = await axios.put(`/tenants/${tenantId}/tags/${tagId}`, {
     translations,
+    isShowInMenu,
   });
 
   return data;

@@ -2,6 +2,7 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
+import {Checkbox} from "@/components/ui/checkbox";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {formatDate} from "@/utils/date";
@@ -86,6 +87,16 @@ export const UpdateTagForm = ({tenant, tag}: UpdateTagFormProps) => {
             );
           })}
         </div>
+      </div>
+      <div className="flex items-center space-x-2">
+        {tag.isShowInMenu && <Checkbox defaultChecked id="isShowInMenu" name="isShowInMenu" />}
+        {!tag.isShowInMenu && <Checkbox id="isShowInMenu" name="isShowInMenu" />}
+        <Label
+          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          htmlFor="isShowInMenu"
+        >
+          Show in menu
+        </Label>
       </div>
 
       <span className="text-xs">(*) Required field</span>

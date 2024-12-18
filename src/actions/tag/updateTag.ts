@@ -6,6 +6,7 @@ export default async function (tenantId: string, tagId: string, formData: FormDa
   const languages = formData.getAll("languages") as string[];
   const names = formData.getAll("names") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
+  const isShowInMenu = formData.get("isShowInMenu") as string;
 
   const translations = [];
 
@@ -17,7 +18,7 @@ export default async function (tenantId: string, tagId: string, formData: FormDa
     });
   }
 
-  const response = await tagService.update(tenantId, tagId, translations);
+  const response = await tagService.update(tenantId, tagId, translations, isShowInMenu === "on");
 
   if (response.success) {
     revalidatePath("/", "layout");
