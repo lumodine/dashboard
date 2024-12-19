@@ -7,6 +7,8 @@ import tenantService from "@/services/tenant.service";
 import {UpdateTagForm} from "@/components/tag/update-tag-form";
 import {RemoveTagForm} from "@/components/tag/remove-tag-form";
 import tagService from "@/services/tag.service";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantTagDetailPageProps = {
   params: Promise<{
@@ -54,10 +56,13 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
       />
 
       <section className="container">
-        <div className="w-full flex flex-col gap-4">
-          <UpdateTagForm tag={tag} tenant={tenant} />
-          <RemoveTagForm tag={tag} tenant={tenant} />
-        </div>
+        <TenantIframeGroup>
+          <div className="w-full flex flex-col gap-4">
+            <UpdateTagForm tag={tag} tenant={tenant} />
+            <RemoveTagForm tag={tag} tenant={tenant} />
+          </div>
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );

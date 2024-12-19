@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import tagService from "@/services/tag.service";
 import {TagList} from "@/components/tag/tag-list";
+import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import {TenantIframe} from "@/components/tenant/tenant-iframe";
 
 type TenantTagsPageProps = {
   params: Promise<{
@@ -38,7 +40,10 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
       />
 
       <section className="container">
-        <TagList tags={tags} tenant={tenant} />
+        <TenantIframeGroup>
+          <TagList tags={tags} tenant={tenant} />
+          <TenantIframe tenant={tenant} />
+        </TenantIframeGroup>
       </section>
     </>
   );
