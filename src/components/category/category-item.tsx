@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {CATEGORY_TYPES} from "@/constants/category";
+import {ITEM_TYPES} from "@/constants/item";
 import uploadCategoryImage from "@/actions/category/uploadCategoryImage";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -155,9 +155,9 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {CATEGORY_TYPES.map((categoryType: any, categoryTypeIndex: number) => (
-                    <SelectItem key={categoryTypeIndex} value={categoryType.key}>
-                      {categoryType.name}
+                  {ITEM_TYPES.map((itemType: any, itemTypeIndex: number) => (
+                    <SelectItem key={itemTypeIndex} value={itemType.key}>
+                      {itemType.name}
                     </SelectItem>
                   ))}
                 </SelectContent>

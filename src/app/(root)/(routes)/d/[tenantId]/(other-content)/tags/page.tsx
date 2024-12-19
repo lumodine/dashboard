@@ -1,12 +1,13 @@
-import {Building2, Tag} from "lucide-react";
+import {Building2, Plus, Tags} from "lucide-react";
 import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import tagService from "@/services/tag.service";
-import {TagList} from "@/components/tag/tag-list";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import {ItemList} from "@/components/item/item-list";
+import {Button} from "@/components/ui/button";
 
 type TenantTagsPageProps = {
   params: Promise<{
@@ -33,15 +34,23 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
             href: `/d/${tenantId}`,
           },
           {
-            icon: Tag,
+            icon: Tags,
             title: "Tags",
           },
         ]}
       />
 
       <section className="container">
+        <div className="inline-flex gap-2 justify-start items-center mb-3">
+          <Link href={`/d/${tenant._id}/tags/create`}>
+            <Button size={"sm"}>
+              <Plus size={14} /> New tag
+            </Button>
+          </Link>
+        </div>
+
         <TenantIframeGroup>
-          <TagList tags={tags} tenant={tenant} />
+          <ItemList items={tags} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>

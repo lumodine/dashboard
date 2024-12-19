@@ -1,12 +1,13 @@
 import Link from "next/link";
-import {Building2, SquareMenu} from "lucide-react";
+import {Building2, Plus, SquareMenu} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
-import {CategoryList} from "@/components/category/category-list";
-import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import itemService from "@/services/item.service";
+import {ItemList} from "@/components/item/item-list";
+import {Button} from "@/components/ui/button";
 
 type TenantMenuPageProps = {
   params: Promise<{
@@ -16,9 +17,9 @@ type TenantMenuPageProps = {
 
 export default async function TenantMenuPage({params}: TenantMenuPageProps) {
   const {tenantId} = await params;
-  const [{data: tenant}, {data: categories}] = await Promise.all([
+  const [{data: tenant}, {data: items}] = await Promise.all([
     tenantService.getById(tenantId),
-    categoryService.getAll(tenantId),
+    itemService.getAll(tenantId),
   ]);
 
   return (
@@ -40,8 +41,16 @@ export default async function TenantMenuPage({params}: TenantMenuPageProps) {
       />
 
       <section className="container">
+        <div className="inline-flex gap-2 justify-start items-center mb-3">
+          <Link href={`/d/${tenant._id}/menu/create`}>
+            <Button size={"sm"}>
+              <Plus size={14} /> New category
+            </Button>
+          </Link>
+        </div>
+
         <TenantIframeGroup>
-          <CategoryList categories={categories} tenant={tenant} />
+          <ItemList items={items} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>

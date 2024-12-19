@@ -6,7 +6,6 @@ import {
   QrCode,
   Settings,
   SquareMenu,
-  Tag,
   Megaphone,
   CaseSensitive,
   FileUser,
@@ -14,6 +13,7 @@ import {
   MapPinHouse,
   Contact,
   Users,
+  Tags,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -48,7 +48,7 @@ export const MENUS = (id: string) => [
       {
         title: "Tags",
         href: `/d/${id}/tags`,
-        icon: Tag,
+        icon: Tags,
       },
       {
         title: "Announcements",

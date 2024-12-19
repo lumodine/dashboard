@@ -1,4 +1,4 @@
-export const CATEGORY_TYPES = [
+export const ITEM_TYPES = [
   {
     key: "row-1-col-1",
     name: "1/1",
@@ -27,10 +27,14 @@ export const CATEGORY_TYPES = [
   },
 ];
 
-export const CATEGORY_STATUS = [
+export const ITEM_STATUS = [
   {
     key: "hidden",
     name: "Hide",
+  },
+  {
+    key: "not_available",
+    name: "Temporarily hide",
   },
   {
     key: "published",

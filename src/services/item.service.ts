@@ -1,5 +1,15 @@
 import axios from "@/lib/axios";
 
+const getAll = async (tenantId: string, itemId?: string) => {
+  const url = `/tenants/${tenantId}/items`;
+  const params = {
+    itemId,
+  };
+  const {data} = await axios.get(url, {params});
+
+  return data;
+};
+
 const updateSort = async (tenantId: string, items: any[]) => {
   const {data} = await axios.put(`/tenants/${tenantId}/items/sort`, {
     items,
@@ -25,6 +35,7 @@ const updateType = async (tenantId: string, itemId: string, type: string) => {
 };
 
 export default {
+  getAll,
   updateSort,
   updateStatus,
   updateType,

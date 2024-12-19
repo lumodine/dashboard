@@ -8,18 +8,3 @@ export const PRODUCT_TYPES = [
     name: "Grid",
   },
 ];
-
-export const PRODUCT_STATUS = [
-  {
-    key: "hidden",
-    name: "Hide",
-  },
-  {
-    key: "not_available",
-    name: "Temporarily hide",
-  },
-  {
-    key: "published",
-    name: "Make visible",
-  },
-];

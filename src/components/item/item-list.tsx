@@ -1,29 +1,27 @@
 "use client";
 
-import Link from "next/link";
-import {Plus} from "lucide-react";
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
-import {CategoryItem} from "./category-item";
-import {Button} from "@/components/ui/button";
+import {CategoryItem} from "../category/category-item";
+import {TagItem} from "../tag/tag-item";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemSort from "@/actions/item/updateItemSort";
 
-export type CategoryListProps = {
+export type ItemListProps = {
   tenant: any;
-  categories: any[];
+  items: any[];
 };
 
-export const CategoryList = ({tenant, categories}: CategoryListProps) => {
+export const ItemList = ({tenant, items}: ItemListProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
-  const [dragCategories, setDragCategories] = useState(categories);
+  const [dragItems, setDragItems] = useState(items);
 
-  const count = categories?.length || 0;
-  const hasCategories = count > 0;
+  const count = items?.length || 0;
+  const hasItems = count > 0;
 
   const onDragEnd = async (result: any) => {
     const {destination, source} = result;
@@ -32,9 +30,9 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
       return;
     }
 
-    const items = reOrder(dragCategories, source.index, destination.index);
+    const items = reOrder(dragItems, source.index, destination.index);
 
-    setDragCategories(items);
+    setDragItems(items);
 
     const orderedItems = items.map((item: any, index: number) => {
       return {
@@ -56,15 +54,8 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
 
   return (
     <div className="w-full">
-      <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <Link href={`/d/${tenant._id}/menu/create`}>
-          <Button size={"sm"}>
-            <Plus size={14} /> New category
-          </Button>
-        </Link>
-      </div>
-      {!hasCategories && <NotFound title={"No category found. Add one now!"} />}
-      {hasCategories && (
+      {!hasItems && <NotFound title={"No item found. Add one now!"} />}
+      {hasItems && (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided) => (
@@ -73,14 +64,22 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
                 ref={provided.innerRef}
                 className="grid grid-cols-1 gap-3"
               >
-                {categories.map((category: any, categoryIndex: number) => (
-                  <CategoryItem
-                    key={categoryIndex}
-                    category={category}
-                    index={categoryIndex}
-                    tenant={tenant}
-                  />
-                ))}
+                {items.map((item: any, itemIndex: number) => {
+                  if (item.kind === "category") {
+                    return (
+                      <CategoryItem
+                        key={itemIndex}
+                        category={item}
+                        index={itemIndex}
+                        tenant={tenant}
+                      />
+                    );
+                  }
+
+                  if (item.kind === "tag") {
+                    return <TagItem key={itemIndex} index={itemIndex} tag={item} tenant={tenant} />;
+                  }
+                })}
                 {provided.placeholder}
               </div>
             )}
@@ -90,4 +89,4 @@ export const CategoryList = ({tenant, categories}: CategoryListProps) => {
     </div>
   );
 };
-CategoryList.displayName = "CategoryList";
+ItemList.displayName = "ItemList";
