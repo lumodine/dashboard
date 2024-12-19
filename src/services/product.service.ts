@@ -44,46 +44,6 @@ const update = async (
   return data;
 };
 
-const updateSort = async (tenantId: string, categoryId: string, items: any[]) => {
-  const {data} = await axios.put(`/tenants/${tenantId}/categories/${categoryId}/products/sort`, {
-    items,
-  });
-
-  return data;
-};
-
-const updateStatus = async (
-  tenantId: string,
-  categoryId: string,
-  productId: string,
-  status: string,
-) => {
-  const {data} = await axios.put(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}/status`,
-    {
-      status,
-    },
-  );
-
-  return data;
-};
-
-const updateType = async (
-  tenantId: string,
-  categoryId: string,
-  productId: string,
-  type: string,
-) => {
-  const {data} = await axios.put(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}/type`,
-    {
-      type,
-    },
-  );
-
-  return data;
-};
-
 const remove = async (tenantId: string, categoryId: string, productId: string) => {
   const {data} = await axios.delete(
     `/tenants/${tenantId}/categories/${categoryId}/products/${productId}`,
@@ -119,9 +79,6 @@ export default {
   getById,
   create,
   update,
-  updateSort,
-  updateStatus,
-  updateType,
   remove,
   uploadImage,
   removeImage,

@@ -6,11 +6,11 @@ import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
 import {ProductItem} from "./product-item";
-import updateProductSort from "@/actions/product/updateProductSort";
 import {Button} from "@/components/ui/button";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import updateItemSort from "@/actions/item/updateItemSort";
 
 export type ProductListProps = {
   tenant: any;
@@ -39,12 +39,12 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
 
     const orderedItems = items.map((item: any, index: number) => {
       return {
-        productId: item._id,
+        itemId: item._id,
         sort: index,
       };
     });
 
-    const response = await updateProductSort(tenant._id, category._id, orderedItems);
+    const response = await updateItemSort(tenant._id, orderedItems);
 
     if (response.message) {
       toast(response.message, {

@@ -15,14 +15,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {PRODUCT_TYPES} from "@/constants/product";
-import updateProductType from "@/actions/product/updateProductType";
-import updateProductStatus from "@/actions/product/updateProductStatus";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {cn} from "@/utils/shadcn";
 import uploadProductImage from "@/actions/product/uploadProductImage";
 import removeProductImage from "@/actions/product/removeProductImage";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import updateItemStatus from "@/actions/item/updateItemStatus";
+import updateItemType from "@/actions/item/updateItemType";
 
 export type ProductItemProps = {
   tenant: any;
@@ -35,7 +35,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
   const {reloadIframe} = useIframeReloadContext();
 
   const handleType = async (type: string) => {
-    const response = await updateProductType(tenant._id, category._id, product._id, type);
+    const response = await updateItemType(tenant._id, product._id, type);
 
     if (response.message) {
       toast(response.message, {
@@ -47,7 +47,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
   };
 
   const handleStatus = async (status: string) => {
-    const response = await updateProductStatus(tenant._id, category._id, product._id, status);
+    const response = await updateItemStatus(tenant._id, product._id, status);
 
     if (response.message) {
       toast(response.message, {

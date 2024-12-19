@@ -15,14 +15,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {CATEGORY_TYPES} from "@/constants/category";
-import updateCategoryStatus from "@/actions/category/updateCategoryStatus";
 import uploadCategoryImage from "@/actions/category/uploadCategoryImage";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {cn} from "@/utils/shadcn";
-import updateCategoryType from "@/actions/category/updateCategoryType";
 import removeCategoryImage from "@/actions/category/removeCategoryImage";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import updateItemStatus from "@/actions/item/updateItemStatus";
+import updateItemType from "@/actions/item/updateItemType";
 
 export type CategoryItemProps = {
   tenant: any;
@@ -34,7 +34,7 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const handleStatus = async (status: string) => {
-    const response = await updateCategoryStatus(tenant._id, category._id, status);
+    const response = await updateItemStatus(tenant._id, category._id, status);
 
     if (response.message) {
       toast(response.message, {
@@ -46,7 +46,7 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
   };
 
   const handleType = async (type: string) => {
-    const response = await updateCategoryType(tenant._id, category._id, type);
+    const response = await updateItemType(tenant._id, category._id, type);
 
     if (response.message) {
       toast(response.message, {
