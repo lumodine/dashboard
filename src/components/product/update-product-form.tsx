@@ -66,7 +66,7 @@ export const UpdateProductForm = ({
         <div className="flex items-center">
           <Label>Category (*)</Label>
         </div>
-        <Select defaultValue={product.category} name="category">
+        <Select defaultValue={product.parentItem} name="category">
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
