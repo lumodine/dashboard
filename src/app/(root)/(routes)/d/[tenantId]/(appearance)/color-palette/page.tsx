@@ -6,6 +6,7 @@ import tenantService from "@/services/tenant.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
 import {UpdateTenantThemeColorForm} from "@/components/tenant/update-tenant-theme-color-form";
+import themeService from "@/services/theme.service";
 
 type TenantThemeColorPageProps = {
   params: Promise<{
@@ -17,7 +18,7 @@ export default async function TenantThemeColorPage({params}: TenantThemeColorPag
   const {tenantId} = await params;
   const [{data: tenant}, {data: colors}] = await Promise.all([
     tenantService.getById(tenantId),
-    tenantService.getAllColors(),
+    themeService.getAllColors(),
   ]);
 
   return (

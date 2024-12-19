@@ -7,12 +7,14 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {SubmitButton} from "@/components/common/submit-button";
 import createTag from "@/actions/tag/createTag";
+import {ColorRadioGroup} from "@/components/common/color-radio-group";
 
 export type CreateTagFormProps = {
   tenant: any;
+  colors: any[];
 };
 
-export const CreateTagForm = ({tenant}: CreateTagFormProps) => {
+export const CreateTagForm = ({tenant, colors}: CreateTagFormProps) => {
   const clientAction = async (formData: FormData) => {
     const response = await createTag(tenant._id, formData);
 
@@ -64,6 +66,7 @@ export const CreateTagForm = ({tenant}: CreateTagFormProps) => {
           ))}
         </div>
       </div>
+
       <div className="flex items-center space-x-2">
         <Checkbox id="isShowInMenu" name="isShowInMenu" />
         <Label
@@ -73,6 +76,9 @@ export const CreateTagForm = ({tenant}: CreateTagFormProps) => {
           Show in menu
         </Label>
       </div>
+
+      <ColorRadioGroup colors={colors} />
+
       <span className="text-xs">(*) Required field</span>
       <SubmitButton>
         <Plus /> Create tag

@@ -9,13 +9,15 @@ import {formatDate} from "@/utils/date";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {SubmitButton} from "@/components/common/submit-button";
 import updateTag from "@/actions/tag/updateTag";
+import {ColorRadioGroup} from "@/components/common/color-radio-group";
 
 export type UpdateTagFormProps = {
   tenant: any;
   tag: any;
+  colors: any[];
 };
 
-export const UpdateTagForm = ({tenant, tag}: UpdateTagFormProps) => {
+export const UpdateTagForm = ({tenant, tag, colors}: UpdateTagFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
@@ -88,6 +90,7 @@ export const UpdateTagForm = ({tenant, tag}: UpdateTagFormProps) => {
           })}
         </div>
       </div>
+
       <div className="flex items-center space-x-2">
         {tag.isShowInMenu && <Checkbox defaultChecked id="isShowInMenu" name="isShowInMenu" />}
         {!tag.isShowInMenu && <Checkbox id="isShowInMenu" name="isShowInMenu" />}
@@ -98,6 +101,8 @@ export const UpdateTagForm = ({tenant, tag}: UpdateTagFormProps) => {
           Show in menu
         </Label>
       </div>
+
+      <ColorRadioGroup colors={colors} defaultValue={tag.color} />
 
       <span className="text-xs">(*) Required field</span>
 

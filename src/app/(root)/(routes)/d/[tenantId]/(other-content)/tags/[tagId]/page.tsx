@@ -9,6 +9,7 @@ import {RemoveTagForm} from "@/components/tag/remove-tag-form";
 import tagService from "@/services/tag.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import themeService from "@/services/theme.service";
 
 type TenantTagDetailPageProps = {
   params: Promise<{
@@ -20,9 +21,10 @@ type TenantTagDetailPageProps = {
 export default async function TenantTagDetailPage({params}: TenantTagDetailPageProps) {
   const {tenantId, tagId} = await params;
 
-  const [{data: tenant}, {data: tag}] = await Promise.all([
+  const [{data: tenant}, {data: tag}, {data: colors}] = await Promise.all([
     tenantService.getById(tenantId),
     tagService.getById(tenantId, tagId),
+    themeService.getAllColors(),
   ]);
 
   if (!tag) {
@@ -58,7 +60,7 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
       <section className="container">
         <TenantIframeGroup>
           <div className="w-full flex flex-col gap-4">
-            <UpdateTagForm tag={tag} tenant={tenant} />
+            <UpdateTagForm colors={colors} tag={tag} tenant={tenant} />
             <RemoveTagForm tag={tag} tenant={tenant} />
           </div>
           <TenantIframe tenant={tenant} />

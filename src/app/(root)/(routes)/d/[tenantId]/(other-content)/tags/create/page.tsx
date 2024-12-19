@@ -4,6 +4,7 @@ import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import {CreateTagForm} from "@/components/tag/create-tag-form";
+import themeService from "@/services/theme.service";
 
 type TenantCreateTagPageProps = {
   params: Promise<{
@@ -13,7 +14,10 @@ type TenantCreateTagPageProps = {
 
 export default async function TenantCreateTagPage({params}: TenantCreateTagPageProps) {
   const {tenantId} = await params;
-  const {data: tenant} = await tenantService.getById(tenantId);
+  const [{data: tenant}, {data: colors}] = await Promise.all([
+    tenantService.getById(tenantId),
+    themeService.getAllColors(),
+  ]);
 
   return (
     <>
@@ -39,7 +43,7 @@ export default async function TenantCreateTagPage({params}: TenantCreateTagPageP
       />
 
       <section className="container">
-        <CreateTagForm tenant={tenant} />
+        <CreateTagForm colors={colors} tenant={tenant} />
       </section>
     </>
   );

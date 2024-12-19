@@ -6,12 +6,6 @@ const getAll = async () => {
   return data;
 };
 
-const getAllColors = async () => {
-  const {data} = await axios.get("/tenants/theme/colors");
-
-  return data;
-};
-
 const getById = async (id: string) => {
   const {data} = await axios.get(`/tenants/${id}`);
 
@@ -103,7 +97,6 @@ const updateSocialMedia = async (tenantId: string, socialMedias: any[]) => {
 
 export default {
   getAll,
-  getAllColors,
   getById,
   create,
   updateSettings,
