@@ -102,7 +102,7 @@ export const UpdateTagForm = ({tenant, tag, colors}: UpdateTagFormProps) => {
         </Label>
       </div>
 
-      <ColorRadioGroup colors={colors} defaultValue={tag.color} />
+      <ColorRadioGroup colors={colors} defaultValue={tag.theme.color} />
 
       <span className="text-xs">(*) Required field</span>
 

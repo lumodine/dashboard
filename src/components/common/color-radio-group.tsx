@@ -12,7 +12,7 @@ export const ColorRadioGroup = ({colors, defaultValue}: ColorRadioGroupProps) =>
   return (
     <RadioGroup
       className="flex items-center justify-center flex-wrap gap-2"
-      defaultValue={defaultValue}
+      defaultValue={defaultValue || colors[0]}
       name="color"
     >
       {colors.map((color: any, colorIndex: number) => (
