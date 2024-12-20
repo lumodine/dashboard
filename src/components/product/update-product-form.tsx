@@ -37,7 +37,7 @@ export const UpdateProductForm = ({
   const {reloadIframe} = useIframeReloadContext();
 
   const _productTags = tags.filter((tag) =>
-    product.parentItems.some((productTag: any) => productTag.item === tag._id),
+    product.parentItems.some((productTag: any) => productTag.item._id === tag._id),
   );
 
   const _addableTags = tags.filter(
@@ -100,7 +100,7 @@ export const UpdateProductForm = ({
   };
 
   const selectedCategory = categories.find((category: any) =>
-    product.parentItems.find((item: any) => item.item === category._id),
+    product.parentItems.find((item: any) => item.item._id === category._id),
   );
 
   return (
