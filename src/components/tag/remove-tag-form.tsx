@@ -5,6 +5,7 @@ import {Trash} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -55,6 +56,7 @@ export const RemoveTagForm = ({tenant, tag}: RemoveTagFormProps) => {
               </Label>
               <Input
                 required
+                autoComplete="off"
                 id="name"
                 name="name"
                 pattern={tag.translations[0].name}
@@ -62,9 +64,16 @@ export const RemoveTagForm = ({tenant, tag}: RemoveTagFormProps) => {
                 type="text"
               />
             </div>
-            <SubmitButton variant={"destructive"}>
-              <Trash /> Remove tag
-            </SubmitButton>
+            <div className="flex justify-center items-center gap-2">
+              <DialogClose asChild>
+                <Button className="flex-1 w-full" type="button" variant="secondary">
+                  Cancel
+                </Button>
+              </DialogClose>
+              <SubmitButton className="w-auto" variant={"destructive"}>
+                <Trash />
+              </SubmitButton>
+            </div>
           </form>
         </DialogContent>
       </Dialog>

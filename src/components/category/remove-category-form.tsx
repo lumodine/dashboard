@@ -6,6 +6,7 @@ import {Button} from "@/components/ui/button";
 import removeCategory from "@/actions/category/removeCategory";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -55,6 +56,7 @@ export const RemoveCategoryForm = ({tenant, category}: RemoveCategoryFormProps) 
               </Label>
               <Input
                 required
+                autoComplete="off"
                 id="name"
                 name="name"
                 pattern={category.translations[0].name}
@@ -62,9 +64,16 @@ export const RemoveCategoryForm = ({tenant, category}: RemoveCategoryFormProps) 
                 type="text"
               />
             </div>
-            <SubmitButton variant={"destructive"}>
-              <Trash /> Remove category
-            </SubmitButton>
+            <div className="flex justify-center items-center gap-2">
+              <DialogClose asChild>
+                <Button className="flex-1 w-full" type="button" variant="secondary">
+                  Cancel
+                </Button>
+              </DialogClose>
+              <SubmitButton className="w-auto" variant={"destructive"}>
+                <Trash />
+              </SubmitButton>
+            </div>
           </form>
         </DialogContent>
       </Dialog>

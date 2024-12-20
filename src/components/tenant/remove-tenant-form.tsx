@@ -6,6 +6,7 @@ import {Button} from "@/components/ui/button";
 import removeTenant from "@/actions/tenant/removeTenant";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -54,6 +55,7 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
               </Label>
               <Input
                 required
+                autoComplete="off"
                 id="name"
                 name="name"
                 pattern={tenant.name}
@@ -61,9 +63,16 @@ export const RemoveTenantForm = ({tenant}: RemoveTenantFormProps) => {
                 type="text"
               />
             </div>
-            <SubmitButton variant={"destructive"}>
-              <Trash /> Remove tenant
-            </SubmitButton>
+            <div className="flex justify-center items-center gap-2">
+              <DialogClose asChild>
+                <Button className="flex-1 w-full" type="button" variant="secondary">
+                  Cancel
+                </Button>
+              </DialogClose>
+              <SubmitButton className="w-auto" variant={"destructive"}>
+                <Trash />
+              </SubmitButton>
+            </div>
           </form>
         </DialogContent>
       </Dialog>
