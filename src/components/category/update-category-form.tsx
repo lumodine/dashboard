@@ -4,7 +4,7 @@ import {toast} from "react-toastify";
 import {Camera, Save, Trash} from "lucide-react";
 import {ChangeEvent} from "react";
 import Image from "next/image";
-import {Button} from "../ui/button";
+import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import updateCategory from "@/actions/category/updateCategory";

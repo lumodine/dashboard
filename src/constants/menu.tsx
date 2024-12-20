@@ -54,7 +54,6 @@ export const MENUS = (id: string) => [
         title: "Announcements",
         href: `/d/${id}/announcements`,
         icon: Megaphone,
-        isDisabled: true,
       },
     ],
   },

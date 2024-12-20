@@ -3,9 +3,15 @@
 import {toast} from "react-toastify";
 import {Plus, Trash} from "lucide-react";
 import {useState} from "react";
-import {NotFound} from "../common/error";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../ui/select";
-import {Button} from "../ui/button";
+import {NotFound} from "@/components/common/error";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import createProduct from "@/actions/product/createProduct";
