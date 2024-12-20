@@ -7,11 +7,11 @@ import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {ProductList} from "@/components/product/product-list";
-import productService from "@/services/product.service";
 import {UpdateCategoryForm} from "@/components/category/update-category-form";
 import {RemoveCategoryForm} from "@/components/category/remove-category-form";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import itemService from "@/services/item.service";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -23,10 +23,10 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, categoryId} = await params;
 
-  const [{data: tenant}, {data: category}, {data: products}] = await Promise.all([
+  const [{data: tenant}, {data: category}, {data: items}] = await Promise.all([
     tenantService.getById(tenantId),
     categoryService.getById(tenantId, categoryId),
-    productService.getAll(tenantId, categoryId),
+    itemService.getAll(tenantId, categoryId),
   ]);
 
   if (!category) {
@@ -67,7 +67,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
             <TabsContent value="products">
-              <ProductList category={category} products={products} tenant={tenant} />
+              <ProductList category={category} products={items} tenant={tenant} />
             </TabsContent>
             <TabsContent value="settings">
               <div className="flex flex-col gap-4">

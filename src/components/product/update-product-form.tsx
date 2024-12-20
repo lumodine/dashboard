@@ -43,6 +43,10 @@ export const UpdateProductForm = ({
     reloadIframe();
   };
 
+  const selectedCategory = categories.find((category: any) =>
+    product.parentItems.find((item: any) => item.item === category._id),
+  );
+
   return (
     <form action={clientAction} className="flex flex-col gap-4">
       {tenant.languages.map((language: any, languageIndex: number) => (
@@ -66,7 +70,7 @@ export const UpdateProductForm = ({
         <div className="flex items-center">
           <Label>Category (*)</Label>
         </div>
-        <Select defaultValue={product.parentItem} name="category">
+        <Select defaultValue={selectedCategory._id} name="category">
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
