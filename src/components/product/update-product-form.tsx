@@ -1,7 +1,10 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Save} from "lucide-react";
+import {Plus, Save, Trash} from "lucide-react";
+import {useState} from "react";
+import {Button} from "../ui/button";
+import {NotFound} from "../common/error";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import updateProduct from "@/actions/product/updateProduct";
@@ -21,6 +24,7 @@ export type UpdateProductFormProps = {
   categories: any[];
   category: any;
   product: any;
+  tags: any[];
 };
 
 export const UpdateProductForm = ({
@@ -28,8 +32,60 @@ export const UpdateProductForm = ({
   categories,
   category,
   product,
+  tags,
 }: UpdateProductFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
+
+  const _productTags = tags.filter((tag) =>
+    product.parentItems.some((productTag: any) => productTag.item === tag._id),
+  );
+
+  const _addableTags = tags.filter(
+    (tag) => !_productTags.some((productTag: any) => productTag._id === tag._id),
+  );
+
+  const [otherTags, setOtherTags] = useState<any[]>(_productTags);
+
+  const [addableTags, setAddableTags] = useState<any[]>(_addableTags);
+  const [newTagId, setNewTagId] = useState<string>();
+
+  const removeTag = (tag: any) => {
+    let tempOtherTags = [...otherTags];
+
+    tempOtherTags = tempOtherTags.filter((tempOtherTag) => tempOtherTag._id !== tag._id);
+
+    setOtherTags(tempOtherTags);
+
+    let tempAddableTags = [...addableTags];
+
+    tempAddableTags.push(tag);
+
+    setAddableTags(tempAddableTags);
+
+    setNewTagId("");
+  };
+
+  const addNewTag = () => {
+    if (!newTagId) {
+      return;
+    }
+
+    const tag = addableTags.find((addableTag) => addableTag._id === newTagId);
+
+    let tempAddableTags = [...addableTags];
+
+    tempAddableTags = tempAddableTags.filter((tempAddableTag) => tempAddableTag._id !== tag._id);
+
+    setAddableTags(tempAddableTags);
+
+    let tempOtherTags = [...otherTags];
+
+    tempOtherTags.push(tag);
+
+    setOtherTags(tempOtherTags);
+
+    setNewTagId("");
+  };
 
   const clientAction = async (formData: FormData) => {
     const response = await updateProduct(tenant._id, category._id, product._id, formData);
@@ -157,6 +213,56 @@ export const UpdateProductForm = ({
               </div>
             );
           })}
+        </div>
+      </div>
+
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label>Tags</Label>
+        </div>
+        <div className="flex flex-col gap-2">
+          {otherTags.length === 0 && <NotFound title="You have not added any tags. Add one now." />}
+
+          {addableTags.length > 0 && (
+            <div className="flex items-center gap-2">
+              <Select onValueChange={(value) => setNewTagId(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {addableTags.map((tag: any, tagIndex: number) => (
+                    <SelectItem key={tagIndex} value={tag._id}>
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`}
+                        />
+                        <span>{tag.translations[0].name}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button type="button" onClick={addNewTag}>
+                <Plus size={14} />
+              </Button>
+            </div>
+          )}
+
+          {otherTags.map((tag: any, tagIndex: number) => (
+            <div
+              key={tagIndex}
+              className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+            >
+              <Input defaultValue={tag._id} name="tags" type="hidden" />
+              <div className="flex gap-2 items-center">
+                <div className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`} />
+                <span>{tag.translations[0].name}</span>
+              </div>
+              <Button type="button" variant={"destructive"} onClick={() => removeTag(tag)}>
+                <Trash size={14} />
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
 

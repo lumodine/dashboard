@@ -18,6 +18,8 @@ export default async function (
 
   const category = formData.get("category") as string;
 
+  const tags = formData.getAll("tags") as string[];
+
   const translations = [];
 
   for (const i in languages) {
@@ -44,6 +46,7 @@ export default async function (
     category,
     translations,
     prices,
+    tags,
   );
 
   if (response.success) {

@@ -6,6 +6,7 @@ import {Hero} from "@/components/common/hero";
 import {CreateProductForm} from "@/components/product/create-product-form";
 import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
+import tagService from "@/services/tag.service";
 
 type TenantMenuCreateProductPageProps = {
   params: Promise<{
@@ -19,9 +20,10 @@ export default async function TenantMenuCreateProductPage({
 }: TenantMenuCreateProductPageProps) {
   const {tenantId, categoryId} = await params;
 
-  const [{data: tenant}, {data: category}] = await Promise.all([
+  const [{data: tenant}, {data: category}, {data: tags}] = await Promise.all([
     tenantService.getById(tenantId),
     categoryService.getById(tenantId, categoryId),
+    tagService.getAll(tenantId),
   ]);
 
   if (!category) {
@@ -57,7 +59,7 @@ export default async function TenantMenuCreateProductPage({
       />
 
       <section className="container">
-        <CreateProductForm category={category} tenant={tenant} />
+        <CreateProductForm category={category} tags={tags} tenant={tenant} />
       </section>
     </>
   );

@@ -10,6 +10,8 @@ export default async function (tenantId: string, categoryId: string, formData: F
   const currencies = formData.getAll("currencies") as string[];
   const amounts = formData.getAll("amounts") as string[];
 
+  const tags = formData.getAll("tags") as string[];
+
   const translations = [];
 
   for (const i in languages) {
@@ -29,7 +31,7 @@ export default async function (tenantId: string, categoryId: string, formData: F
     });
   }
 
-  const response = await productService.create(tenantId, categoryId, translations, prices);
+  const response = await productService.create(tenantId, categoryId, translations, prices, tags);
 
   if (response.success) {
     redirect(`/d/${tenantId}/menu/${categoryId}`);

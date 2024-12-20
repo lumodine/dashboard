@@ -10,6 +10,7 @@ import {UpdateProductForm} from "@/components/product/update-product-form";
 import {RemoveProductForm} from "@/components/product/remove-product-form";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import tagService from "@/services/tag.service";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -22,14 +23,14 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, categoryId, productId} = await params;
 
-  const [{data: tenant}, {data: categories}, {data: category}, {data: product}] = await Promise.all(
-    [
+  const [{data: tenant}, {data: categories}, {data: category}, {data: product}, {data: tags}] =
+    await Promise.all([
       tenantService.getById(tenantId),
       categoryService.getAll(tenantId),
       categoryService.getById(tenantId, categoryId),
       productService.getById(tenantId, categoryId, productId),
-    ],
-  );
+      tagService.getAll(tenantId),
+    ]);
 
   if (!category || !product) {
     return notFound();
@@ -73,6 +74,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               categories={categories}
               category={category}
               product={product}
+              tags={tags}
               tenant={tenant}
             />
             <RemoveProductForm category={category} product={product} tenant={tenant} />

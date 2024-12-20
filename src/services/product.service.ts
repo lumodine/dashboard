@@ -14,11 +14,18 @@ const getById = async (tenantId: string, categoryId: string, productId: string) 
   return data;
 };
 
-const create = async (tenantId: string, categoryId: string, translations: any[], prices: any[]) => {
+const create = async (
+  tenantId: string,
+  categoryId: string,
+  translations: any[],
+  prices: any[],
+  tags: any[],
+) => {
   const {data} = await axios.post(`/tenants/${tenantId}/categories/${categoryId}/products`, {
     category: categoryId,
     translations,
     prices,
+    tags,
   });
 
   return data;
@@ -31,6 +38,7 @@ const update = async (
   category: string,
   translations: any[],
   prices: any[],
+  tags: any[],
 ) => {
   const {data} = await axios.put(
     `/tenants/${tenantId}/categories/${categoryId}/products/${productId}`,
@@ -38,6 +46,7 @@ const update = async (
       category,
       translations,
       prices,
+      tags,
     },
   );
 
