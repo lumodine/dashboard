@@ -1,8 +1,9 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Plus, Save, Trash} from "lucide-react";
-import {useState} from "react";
+import {Camera, Plus, Save, Trash} from "lucide-react";
+import {ChangeEvent, useState} from "react";
+import Image from "next/image";
 import {Button} from "../ui/button";
 import {NotFound} from "../common/error";
 import {Label} from "@/components/ui/label";
@@ -18,6 +19,9 @@ import {
 } from "@/components/ui/select";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {SubmitButton} from "@/components/common/submit-button";
+import uploadProductImage from "@/actions/product/uploadProductImage";
+import removeProductImage from "@/actions/product/removeProductImage";
+import {cn} from "@/utils/shadcn";
 
 export type UpdateProductFormProps = {
   tenant: any;
@@ -99,6 +103,39 @@ export const UpdateProductForm = ({
     reloadIframe();
   };
 
+  const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files?.length === 0) {
+      return;
+    }
+
+    const imageFile = e.target.files[0];
+    const formData = new FormData();
+
+    formData.append("image", imageFile);
+
+    const response = await uploadProductImage(tenant._id, category._id, product._id, formData);
+
+    if (response.message) {
+      toast(response.message, {
+        type: response.success ? "success" : "error",
+      });
+    }
+
+    reloadIframe();
+  };
+
+  const handleRemoveImage = async () => {
+    const response = await removeProductImage(tenant._id, category._id, product._id);
+
+    if (response.message) {
+      toast(response.message, {
+        type: response.success ? "success" : "error",
+      });
+    }
+
+    reloadIframe();
+  };
+
   const selectedCategory = categories.find((category: any) =>
     product.parentItems.find((item: any) => item.item._id === category._id),
   );
@@ -121,6 +158,47 @@ export const UpdateProductForm = ({
           type="hidden"
         />
       ))}
+
+      <div className="flex flex-col gap-2 justify-center items-center">
+        <div className="relative w-[100px] h-[100px] cursor-pointer group">
+          <Label
+            className="text-center inline-block cursor-pointer"
+            htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
+          >
+            {product.image && (
+              <Image
+                alt={product.translations[0].name}
+                height={100}
+                loading="lazy"
+                src={product.image}
+                width={100}
+              />
+            )}
+            <span
+              className={cn(
+                "absolute top-0 left-0 h-full w-full items-center justify-center text-xs bg-black/50 text-white",
+                product.image && "hidden group-hover:flex",
+                !product.image && "flex",
+              )}
+            >
+              <Camera size={36} />
+            </span>
+          </Label>
+        </div>
+        {product.image && (
+          <Button size={"sm"} type="button" variant={"destructive"} onClick={handleRemoveImage}>
+            <Trash /> Remove image
+          </Button>
+        )}
+        <Input
+          accept="image/*"
+          className="hidden"
+          id={`image-${tenant._id}-${category._id}-${product._id}`}
+          name={`image-${tenant._id}-${category._id}-${product._id}`}
+          type="file"
+          onChange={handleUploadImage}
+        />
+      </div>
 
       <div className="grid gap-2">
         <div className="flex items-center">

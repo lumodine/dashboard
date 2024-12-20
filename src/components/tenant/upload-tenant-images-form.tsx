@@ -3,7 +3,7 @@
 import {ChangeEvent} from "react";
 import {toast} from "react-toastify";
 import Image from "next/image";
-import {Trash} from "lucide-react";
+import {Camera, Trash} from "lucide-react";
 import uploadTenantLogo from "@/actions/tenant/uploadTenantLogo";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -103,7 +103,7 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
                 !tenant.logo && "flex",
               )}
             >
-              Upload logo
+              <Camera size={36} />
             </span>
           </div>
         </Label>
@@ -142,7 +142,7 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
                 !tenant.background && "flex",
               )}
             >
-              Upload background
+              <Camera size={36} />
             </span>
           </div>
         </Label>

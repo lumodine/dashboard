@@ -1,6 +1,6 @@
 "use client";
 
-import {ChevronsUpDown, Eye, EyeOff, Trash} from "lucide-react";
+import {Camera, ChevronsUpDown, Eye, EyeOff, Trash} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {Draggable} from "@hello-pangea/dnd";
@@ -121,7 +121,7 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
                       !category.image && "flex",
                     )}
                   >
-                    Upload image
+                    <Camera size={36} />
                   </span>
                   {category.image && (
                     <Button
