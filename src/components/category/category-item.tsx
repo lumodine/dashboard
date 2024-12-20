@@ -136,6 +136,7 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
                 </div>
               </Label>
               <Input
+                accept="image/*"
                 className="hidden"
                 id={`image-${tenant._id}-${category._id}`}
                 name={`image-${tenant._id}-${category._id}`}

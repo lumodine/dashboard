@@ -140,6 +140,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
                 </div>
               </Label>
               <Input
+                accept="image/*"
                 className="hidden"
                 id={`image-${tenant._id}-${category._id}-${product._id}`}
                 name={`image-${tenant._id}-${category._id}-${product._id}`}

@@ -107,7 +107,14 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
             </span>
           </div>
         </Label>
-        <Input className="hidden" id="logo" name="logo" type="file" onChange={handleUploadLogo} />
+        <Input
+          accept="image/*"
+          className="hidden"
+          id="logo"
+          name="logo"
+          type="file"
+          onChange={handleUploadLogo}
+        />
         {tenant.logo && (
           <Button size={"sm"} variant={"destructive"} onClick={handleRemoveLogo}>
             <Trash /> Remove logo
@@ -140,6 +147,7 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
           </div>
         </Label>
         <Input
+          accept="image/*"
           className="hidden"
           id="background"
           name="background"
