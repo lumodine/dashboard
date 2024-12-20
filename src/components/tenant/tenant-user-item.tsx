@@ -18,9 +18,10 @@ import deleteUser from "@/actions/user/deleteUser";
 export type TenantUserItemProps = {
   tenant: any;
   user: any;
+  index: number;
 };
 
-export const TenantUserItem = ({tenant, user}: TenantUserItemProps) => {
+export const TenantUserItem = ({tenant, user, index}: TenantUserItemProps) => {
   const handleUpdateUserRole = async (role: string) => {
     const response = await updateUser(tenant._id, user.user._id, role);
 
@@ -43,6 +44,10 @@ export const TenantUserItem = ({tenant, user}: TenantUserItemProps) => {
 
   return (
     <TableRow>
+      <TableCell>{index + 1}</TableCell>
+      <TableCell>
+        {user.user.name} {user.user.surname}
+      </TableCell>
       <TableCell>{user.user.email}</TableCell>
       <TableCell>
         <Select defaultValue={user.role} onValueChange={handleUpdateUserRole}>

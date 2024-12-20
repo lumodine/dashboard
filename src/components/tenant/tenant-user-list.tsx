@@ -20,14 +20,16 @@ export const TenantUserList = ({tenant, users}: TenantUserListProps) => {
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead />
+          <TableHead>Name Surname</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Role</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead />
         </TableRow>
       </TableHeader>
       <TableBody>
         {users.map((user: any, userIndex: number) => (
-          <TenantUserItem key={userIndex} tenant={tenant} user={user} />
+          <TenantUserItem key={userIndex} index={userIndex} tenant={tenant} user={user} />
         ))}
       </TableBody>
     </Table>
