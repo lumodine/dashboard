@@ -303,6 +303,9 @@ export const UpdateProductForm = ({
 
           {addableTags.length > 0 && (
             <div className="flex items-center gap-2">
+              <Button type="button" onClick={addNewTag}>
+                <Plus size={14} />
+              </Button>
               <Select onValueChange={(value) => setNewTagId(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -320,9 +323,6 @@ export const UpdateProductForm = ({
                   ))}
                 </SelectContent>
               </Select>
-              <Button type="button" onClick={addNewTag}>
-                <Plus size={14} />
-              </Button>
             </div>
           )}
 

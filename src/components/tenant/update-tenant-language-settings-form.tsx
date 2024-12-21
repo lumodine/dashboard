@@ -1,7 +1,7 @@
 "use client";
 
-import {Plus, Save, Trash} from "lucide-react";
-import {useState} from "react";
+import {Plus, Trash} from "lucide-react";
+import {useRef, useState} from "react";
 import {toast} from "react-toastify";
 import updateTenantLanguageSettings from "@/actions/tenant/updateTenantLanguageSettings";
 import {Label} from "@/components/ui/label";
@@ -16,7 +16,6 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
-import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantLanguageSettingsFormProps = {
   languages: any[];
@@ -28,6 +27,7 @@ export const UpdateTenantLanguageSettingsForm = ({
   tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const _tenantLanguages = languages.filter((language) =>
     tenant.languages.some((tenantLanguage: any) => tenantLanguage.language._id === language._id),
@@ -81,6 +81,8 @@ export const UpdateTenantLanguageSettingsForm = ({
     tempAddableLanguages.push(language);
 
     setAddableLanguages(tempAddableLanguages);
+
+    formRef.current?.requestSubmit();
   };
 
   const addDefaultLanguage = (language: any) => {
@@ -95,6 +97,8 @@ export const UpdateTenantLanguageSettingsForm = ({
     setOtherLanguages(tempOtherLanguages);
 
     setDefaultLanguage(language);
+
+    formRef.current?.requestSubmit();
   };
 
   const addNewLanguage = () => {
@@ -121,10 +125,12 @@ export const UpdateTenantLanguageSettingsForm = ({
     setOtherLanguages(tempOtherLanguages);
 
     setNewLanguageId("");
+
+    formRef.current?.requestSubmit();
   };
 
   return (
-    <form action={clientAction} className="w-full flex flex-col gap-4">
+    <form ref={formRef} action={clientAction} className="w-full flex flex-col gap-4">
       <Input defaultValue={defaultLanguage._id} name="defaultLanguage" type="hidden" />
 
       <div className="grid gap-2">
@@ -147,6 +153,9 @@ export const UpdateTenantLanguageSettingsForm = ({
 
           {addableLanguages.length > 0 && (
             <div className="flex items-center gap-2">
+              <Button type="button" onClick={addNewLanguage}>
+                <Plus size={14} />
+              </Button>
               <Select onValueChange={(value) => setNewLanguageId(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -159,15 +168,8 @@ export const UpdateTenantLanguageSettingsForm = ({
                   ))}
                 </SelectContent>
               </Select>
-              <Button type="button" onClick={addNewLanguage}>
-                <Plus size={14} />
-              </Button>
             </div>
           )}
-
-          <SubmitButton>
-            <Save /> Save
-          </SubmitButton>
 
           {otherLanguages.map((language: any, languageIndex: number) => (
             <div

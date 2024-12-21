@@ -1,7 +1,7 @@
 "use client";
 
-import {Plus, Save, Trash} from "lucide-react";
-import {useState} from "react";
+import {Plus, Trash} from "lucide-react";
+import {useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {Label} from "@/components/ui/label";
 import {
@@ -16,7 +16,6 @@ import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
-import {SubmitButton} from "@/components/common/submit-button";
 
 export type UpdateTenantCurrencySettingsFormProps = {
   currencies: any[];
@@ -28,6 +27,7 @@ export const UpdateTenantCurrencySettingsForm = ({
   tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const _tenantCurrencies = currencies.filter((currency) =>
     tenant.currencies.some((tenantCurrency: any) => tenantCurrency.currency._id === currency._id),
@@ -81,6 +81,8 @@ export const UpdateTenantCurrencySettingsForm = ({
     tempAddableCurrencies.push(currency);
 
     setAddableCurrencies(tempAddableCurrencies);
+
+    formRef.current?.requestSubmit();
   };
 
   const addDefaultCurrency = (currency: any) => {
@@ -95,6 +97,8 @@ export const UpdateTenantCurrencySettingsForm = ({
     setOtherCurrencies(tempOtherCurrencies);
 
     setDefaultCurrency(currency);
+
+    formRef.current?.requestSubmit();
   };
 
   const addNewCurrency = () => {
@@ -121,6 +125,8 @@ export const UpdateTenantCurrencySettingsForm = ({
     setOtherCurrencies(tempOtherCurrencies);
 
     setNewCurrencyId("");
+
+    formRef.current?.requestSubmit();
   };
 
   return (
@@ -147,6 +153,9 @@ export const UpdateTenantCurrencySettingsForm = ({
 
           {addableCurrencies.length > 0 && (
             <div className="flex items-center gap-2">
+              <Button type="button" onClick={addNewCurrency}>
+                <Plus size={14} />
+              </Button>
               <Select onValueChange={(value) => setNewCurrencyId(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -159,15 +168,8 @@ export const UpdateTenantCurrencySettingsForm = ({
                   ))}
                 </SelectContent>
               </Select>
-              <Button type="button" onClick={addNewCurrency}>
-                <Plus size={14} />
-              </Button>
             </div>
           )}
-
-          <SubmitButton>
-            <Save /> Save
-          </SubmitButton>
 
           {otherCurrencies.map((currency: any, currencyIndex: number) => (
             <div
