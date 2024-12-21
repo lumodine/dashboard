@@ -28,6 +28,22 @@ const update = async (tenantId: string, announcementId: string, translations: an
   return data;
 };
 
+const updateSort = async (tenantId: string, items: any[]) => {
+  const {data} = await axios.put(`/tenants/${tenantId}/announcements/sort`, {
+    items,
+  });
+
+  return data;
+};
+
+const updateStatus = async (tenantId: string, announcementId: string, status: string) => {
+  const {data} = await axios.put(`/tenants/${tenantId}/announcements/${announcementId}/status`, {
+    status,
+  });
+
+  return data;
+};
+
 const remove = async (tenantId: string, announcementId: string) => {
   const {data} = await axios.delete(`/tenants/${tenantId}/announcements/${announcementId}`);
 
@@ -39,5 +55,7 @@ export default {
   getById,
   create,
   update,
+  updateSort,
+  updateStatus,
   remove,
 };
