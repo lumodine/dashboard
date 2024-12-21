@@ -40,10 +40,10 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
             <div key={languageIndex}>
-              <Label htmlFor="names">
+              <Label htmlFor={`names-${language.language._id}`}>
                 {language.language.name} - {language.language.shortName} (*)
               </Label>
-              <Input required id="names" name="names" type="text" />
+              <Input required id={`names-${language.language._id}`} name="names" type="text" />
             </div>
           ))}
         </div>
@@ -55,10 +55,10 @@ export const CreateCategoryForm = ({tenant}: CreateCategoryFormProps) => {
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
             <div key={languageIndex}>
-              <Label htmlFor="descriptions">
+              <Label htmlFor={`descriptions-${language.language._id}`}>
                 {language.language.name} - {language.language.shortName}
               </Label>
-              <Input id="descriptions" name="descriptions" type="text" />
+              <Input id={`descriptions-${language.language._id}`} name="descriptions" type="text" />
             </div>
           ))}
         </div>

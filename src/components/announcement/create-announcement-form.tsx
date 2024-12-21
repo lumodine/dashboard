@@ -40,10 +40,10 @@ export const CreateAnnouncementForm = ({tenant}: CreateAnnouncementFormProps) =>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
             <div key={languageIndex}>
-              <Label htmlFor="titles">
+              <Label htmlFor={`titles-${language.language._id}`}>
                 {language.language.name} - {language.language.shortName} (*)
               </Label>
-              <Input required id="titles" name="titles" type="text" />
+              <Input required id={`titles-${language.language._id}`} name="titles" type="text" />
             </div>
           ))}
         </div>
@@ -55,10 +55,10 @@ export const CreateAnnouncementForm = ({tenant}: CreateAnnouncementFormProps) =>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
             <div key={languageIndex}>
-              <Label htmlFor="descriptions">
+              <Label htmlFor={`descriptions-${language.language._id}`}>
                 {language.language.name} - {language.language.shortName}
               </Label>
-              <Input id="descriptions" name="descriptions" type="text" />
+              <Input id={`descriptions-${language.language._id}`} name="descriptions" type="text" />
             </div>
           ))}
         </div>

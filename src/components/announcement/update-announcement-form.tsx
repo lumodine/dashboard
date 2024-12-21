@@ -52,10 +52,16 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
 
             return (
               <div key={languageIndex}>
-                <Label htmlFor="titles">
+                <Label htmlFor={`titles-${language.language._id}`}>
                   {language.language.name} - {language.language.shortName} (*)
                 </Label>
-                <Input required defaultValue={item?.title} id="titles" name="titles" type="text" />
+                <Input
+                  required
+                  defaultValue={item?.title}
+                  id={`titles-${language.language._id}`}
+                  name="titles"
+                  type="text"
+                />
               </div>
             );
           })}
@@ -73,12 +79,12 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
 
             return (
               <div key={languageIndex}>
-                <Label htmlFor="descriptions">
+                <Label htmlFor={`descriptions-${language.language._id}`}>
                   {language.language.name} - {language.language.shortName}
                 </Label>
                 <Input
                   defaultValue={item?.description}
-                  id="descriptions"
+                  id={`descriptions-${language.language._id}`}
                   name="descriptions"
                   type="text"
                 />

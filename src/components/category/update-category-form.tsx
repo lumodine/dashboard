@@ -132,10 +132,16 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
 
             return (
               <div key={languageIndex}>
-                <Label htmlFor="names">
+                <Label htmlFor={`names-${language.language._id}`}>
                   {language.language.name} - {language.language.shortName} (*)
                 </Label>
-                <Input required defaultValue={item?.name} id="names" name="names" type="text" />
+                <Input
+                  required
+                  defaultValue={item?.name}
+                  id={`names-${language.language._id}`}
+                  name="names"
+                  type="text"
+                />
               </div>
             );
           })}
@@ -153,12 +159,12 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
 
             return (
               <div key={languageIndex}>
-                <Label htmlFor="descriptions">
+                <Label htmlFor={`descriptions-${language.language._id}`}>
                   {language.language.name} - {language.language.shortName}
                 </Label>
                 <Input
                   defaultValue={item?.description}
-                  id="descriptions"
+                  id={`descriptions-${language.language._id}`}
                   name="descriptions"
                   type="text"
                 />
