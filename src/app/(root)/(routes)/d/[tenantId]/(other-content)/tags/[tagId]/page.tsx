@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {Building2, TableOfContents, Tags} from "lucide-react";
+import {Building2, Tag, Tags} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
@@ -51,7 +51,7 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
             href: `/d/${tenantId}/tags`,
           },
           {
-            icon: TableOfContents,
+            icon: Tag,
             title: tag.translations[0].name,
           },
         ]}

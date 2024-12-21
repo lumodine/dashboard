@@ -1,10 +1,13 @@
-import {Building2, Megaphone} from "lucide-react";
+import {Building2, Megaphone, Plus} from "lucide-react";
 import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import {Button} from "@/components/ui/button";
+import announcementService from "@/services/announcement.service";
+import {AnnouncementList} from "@/components/announcement/announcement-list";
 
 type TenantAnnouncementsPageProps = {
   params: Promise<{
@@ -14,7 +17,10 @@ type TenantAnnouncementsPageProps = {
 
 export default async function TenantAnnouncementsPage({params}: TenantAnnouncementsPageProps) {
   const {tenantId} = await params;
-  const {data: tenant} = await tenantService.getById(tenantId);
+  const [{data: tenant}, {data: announcements}] = await Promise.all([
+    tenantService.getById(tenantId),
+    announcementService.getAll(tenantId),
+  ]);
 
   return (
     <>
@@ -38,8 +44,16 @@ export default async function TenantAnnouncementsPage({params}: TenantAnnounceme
       />
 
       <section className="container">
+        <div className="inline-flex gap-2 justify-start items-center mb-3">
+          <Link href={`/d/${tenant._id}/announcements/create`}>
+            <Button size={"sm"}>
+              <Plus size={14} /> New announcement
+            </Button>
+          </Link>
+        </div>
+
         <TenantIframeGroup>
-          <div className="w-full">TenantAnnouncementsPage</div>
+          <AnnouncementList announcements={announcements} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>
