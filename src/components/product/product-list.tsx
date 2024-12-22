@@ -1,12 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import {Plus} from "lucide-react";
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
 import {ProductItem} from "./product-item";
-import {Button} from "@/components/ui/button";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
@@ -57,13 +54,6 @@ export const ProductList = ({tenant, category, products}: ProductListProps) => {
 
   return (
     <>
-      <div className="inline-flex gap-2 justify-start items-center mb-3">
-        <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
-          <Button size={"sm"}>
-            <Plus size={14} /> New product
-          </Button>
-        </Link>
-      </div>
       {!hasProducts && <NotFound title={"No product found. Add one now!"} />}
 
       {hasProducts && (

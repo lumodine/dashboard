@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {Building2, SquareMenu, TableOfContents} from "lucide-react";
+import {Building2, Plus, SquareMenu, TableOfContents} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import categoryService from "@/services/category.service";
@@ -12,6 +12,7 @@ import {RemoveCategoryForm} from "@/components/category/remove-category-form";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
 import itemService from "@/services/item.service";
+import {Button} from "@/components/ui/button";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -67,6 +68,14 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
             <TabsContent value="products">
+              <div className="inline-flex gap-2 justify-start items-center mb-3">
+                <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
+                  <Button size={"sm"}>
+                    <Plus size={14} /> New product
+                  </Button>
+                </Link>
+              </div>
+
               <ProductList category={category} products={items} tenant={tenant} />
             </TabsContent>
             <TabsContent value="settings">
