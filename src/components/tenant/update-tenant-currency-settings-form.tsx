@@ -1,8 +1,9 @@
 "use client";
 
-import {Plus, Trash} from "lucide-react";
-import {useRef, useState} from "react";
+import {Plus, Save, Trash} from "lucide-react";
+import {useState} from "react";
 import {toast} from "react-toastify";
+import {SubmitButton} from "../common/submit-button";
 import {Label} from "@/components/ui/label";
 import {
   Select,
@@ -27,7 +28,6 @@ export const UpdateTenantCurrencySettingsForm = ({
   tenant,
 }: UpdateTenantCurrencySettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  const formRef = useRef<HTMLFormElement>(null);
 
   const _tenantCurrencies = currencies.filter((currency) =>
     tenant.currencies.some((tenantCurrency: any) => tenantCurrency.currency._id === currency._id),
@@ -81,8 +81,6 @@ export const UpdateTenantCurrencySettingsForm = ({
     tempAddableCurrencies.push(currency);
 
     setAddableCurrencies(tempAddableCurrencies);
-
-    formRef.current?.requestSubmit();
   };
 
   const addDefaultCurrency = (currency: any) => {
@@ -97,8 +95,6 @@ export const UpdateTenantCurrencySettingsForm = ({
     setOtherCurrencies(tempOtherCurrencies);
 
     setDefaultCurrency(currency);
-
-    formRef.current?.requestSubmit();
   };
 
   const addNewCurrency = () => {
@@ -125,8 +121,6 @@ export const UpdateTenantCurrencySettingsForm = ({
     setOtherCurrencies(tempOtherCurrencies);
 
     setNewCurrencyId("");
-
-    formRef.current?.requestSubmit();
   };
 
   return (
@@ -199,6 +193,10 @@ export const UpdateTenantCurrencySettingsForm = ({
               </Button>
             </div>
           ))}
+
+          <SubmitButton>
+            <Save /> Save
+          </SubmitButton>
         </div>
       </div>
     </form>

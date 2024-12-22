@@ -1,8 +1,9 @@
 "use client";
 
-import {Plus, Trash} from "lucide-react";
-import {useRef, useState} from "react";
+import {Plus, Save, Trash} from "lucide-react";
+import {useState} from "react";
 import {toast} from "react-toastify";
+import {SubmitButton} from "../common/submit-button";
 import updateTenantLanguageSettings from "@/actions/tenant/updateTenantLanguageSettings";
 import {Label} from "@/components/ui/label";
 import {
@@ -27,7 +28,6 @@ export const UpdateTenantLanguageSettingsForm = ({
   tenant,
 }: UpdateTenantLanguageSettingsFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
-  const formRef = useRef<HTMLFormElement>(null);
 
   const _tenantLanguages = languages.filter((language) =>
     tenant.languages.some((tenantLanguage: any) => tenantLanguage.language._id === language._id),
@@ -81,8 +81,6 @@ export const UpdateTenantLanguageSettingsForm = ({
     tempAddableLanguages.push(language);
 
     setAddableLanguages(tempAddableLanguages);
-
-    formRef.current?.requestSubmit();
   };
 
   const addDefaultLanguage = (language: any) => {
@@ -97,8 +95,6 @@ export const UpdateTenantLanguageSettingsForm = ({
     setOtherLanguages(tempOtherLanguages);
 
     setDefaultLanguage(language);
-
-    formRef.current?.requestSubmit();
   };
 
   const addNewLanguage = () => {
@@ -125,12 +121,10 @@ export const UpdateTenantLanguageSettingsForm = ({
     setOtherLanguages(tempOtherLanguages);
 
     setNewLanguageId("");
-
-    formRef.current?.requestSubmit();
   };
 
   return (
-    <form ref={formRef} action={clientAction} className="w-full flex flex-col gap-4">
+    <form action={clientAction} className="w-full flex flex-col gap-4">
       <Input defaultValue={defaultLanguage._id} name="defaultLanguage" type="hidden" />
 
       <div className="grid gap-2">
@@ -199,6 +193,10 @@ export const UpdateTenantLanguageSettingsForm = ({
               </Button>
             </div>
           ))}
+
+          <SubmitButton>
+            <Save /> Save
+          </SubmitButton>
         </div>
       </div>
     </form>
