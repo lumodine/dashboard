@@ -1,24 +1,26 @@
-import {Building2, MapPinHouse} from "lucide-react";
+import {Building2, MapPinHouse, MapPinPlus} from "lucide-react";
 import Link from "next/link";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
-import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
-import {TenantIframe} from "@/components/tenant/tenant-iframe";
+import {CreateTenantBranchForm} from "@/components/tenantBranch/create-tenant-branch-form";
 
-type TenantAddressPageProps = {
+type TenantBranchCreatePageProps = {
   params: Promise<{
     tenantId: string;
   }>;
 };
 
-export default async function TenantAddressPage({params}: TenantAddressPageProps) {
+export default async function TenantBranchCreatePage({params}: TenantBranchCreatePageProps) {
   const {tenantId} = await params;
   const {data: tenant} = await tenantService.getById(tenantId);
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Address"} />
+      <Hero
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Create branch"}
+      />
 
       <AppBreadcrumb
         items={[
@@ -29,16 +31,18 @@ export default async function TenantAddressPage({params}: TenantAddressPageProps
           },
           {
             icon: MapPinHouse,
-            title: "Address",
+            title: "Branches",
+            href: `/d/${tenantId}/branches`,
+          },
+          {
+            icon: MapPinPlus,
+            title: "Create branch",
           },
         ]}
       />
 
       <section className="container">
-        <TenantIframeGroup>
-          <div className="w-full">TenantAddressPage</div>
-          <TenantIframe tenant={tenant} />
-        </TenantIframeGroup>
+        <CreateTenantBranchForm tenant={tenant} />
       </section>
     </>
   );

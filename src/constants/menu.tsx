@@ -113,10 +113,9 @@ export const MENUS = (id: string) => [
     title: "Other settings",
     items: [
       {
-        title: "Address",
-        href: `/d/${id}/address`,
+        title: "Branches",
+        href: `/d/${id}/branches`,
         icon: MapPinHouse,
-        isDisabled: true,
       },
       {
         title: "Social media",
