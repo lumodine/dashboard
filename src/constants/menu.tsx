@@ -93,10 +93,9 @@ export const MENUS = (id: string) => [
         isDisabled: true,
       },
       {
-        title: "Interaction reports",
-        href: `/d/${id}/interaction-reports`,
+        title: "Events",
+        href: `/d/${id}/events`,
         icon: ChartBar,
-        isDisabled: true,
       },
     ],
   },
