@@ -69,7 +69,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
             </TabsList>
             <TabsContent value="products">
               <div className="inline-flex gap-2 justify-start items-center mb-3">
-                <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
+                <Link href={`/d/${tenant._id}/menu/${category._id}/create-product`}>
                   <Button size={"sm"}>
                     <Plus size={14} /> New product
                   </Button>
