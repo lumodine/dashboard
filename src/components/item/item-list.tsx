@@ -13,9 +13,11 @@ import updateItemSort from "@/actions/item/updateItemSort";
 export type ItemListProps = {
   tenant: any;
   items: any[];
+  isDropDisabled?: boolean;
+  isDragDisabled?: boolean;
 };
 
-export const ItemList = ({tenant, items}: ItemListProps) => {
+export const ItemList = ({tenant, items, isDropDisabled, isDragDisabled}: ItemListProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const [dragItems, setDragItems] = useState(items);
@@ -57,7 +59,7 @@ export const ItemList = ({tenant, items}: ItemListProps) => {
       {!hasItems && <NotFound title={"No item found. Add one now!"} />}
       {hasItems && (
         <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable">
+          <Droppable droppableId="droppable" isDropDisabled={isDropDisabled}>
             {(provided) => (
               <div
                 {...provided.droppableProps}
@@ -71,13 +73,22 @@ export const ItemList = ({tenant, items}: ItemListProps) => {
                         key={itemIndex}
                         category={item}
                         index={itemIndex}
+                        isDragDisabled={isDragDisabled}
                         tenant={tenant}
                       />
                     );
                   }
 
                   if (item.kind === "tag") {
-                    return <TagItem key={itemIndex} index={itemIndex} tag={item} tenant={tenant} />;
+                    return (
+                      <TagItem
+                        key={itemIndex}
+                        index={itemIndex}
+                        isDragDisabled={isDragDisabled}
+                        tag={item}
+                        tenant={tenant}
+                      />
+                    );
                   }
                 })}
                 {provided.placeholder}

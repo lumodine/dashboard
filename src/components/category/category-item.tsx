@@ -28,9 +28,10 @@ export type CategoryItemProps = {
   tenant: any;
   category: any;
   index: number;
+  isDragDisabled?: boolean;
 };
 
-export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
+export const CategoryItem = ({tenant, category, index, isDragDisabled}: CategoryItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const handleStatus = async (status: string) => {
@@ -91,7 +92,12 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
   };
 
   return (
-    <Draggable key={category._id} draggableId={category._id} index={index}>
+    <Draggable
+      key={category._id}
+      draggableId={category._id}
+      index={index}
+      isDragDisabled={isDragDisabled}
+    >
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -99,9 +105,11 @@ export const CategoryItem = ({tenant, category, index}: CategoryItemProps) => {
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
           <div className="flex gap-4 p-4 items-center justify-start w-full">
-            <div {...provided.dragHandleProps}>
-              <ChevronsUpDown strokeWidth={1} />
-            </div>
+            {!isDragDisabled && (
+              <div {...provided.dragHandleProps}>
+                <ChevronsUpDown strokeWidth={1} />
+              </div>
+            )}
             <div>
               <Label className="text-center" htmlFor={`image-${tenant._id}-${category._id}`}>
                 <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">

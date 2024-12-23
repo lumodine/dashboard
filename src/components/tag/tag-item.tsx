@@ -21,9 +21,10 @@ export type TagItemProps = {
   tenant: any;
   tag: any;
   index: number;
+  isDragDisabled?: boolean;
 };
 
-export const TagItem = ({tenant, tag, index}: TagItemProps) => {
+export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const handleStatus = async (status: string) => {
@@ -51,7 +52,7 @@ export const TagItem = ({tenant, tag, index}: TagItemProps) => {
   };
 
   return (
-    <Draggable key={tag._id} draggableId={tag._id} index={index}>
+    <Draggable key={tag._id} draggableId={tag._id} index={index} isDragDisabled={isDragDisabled}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -59,9 +60,11 @@ export const TagItem = ({tenant, tag, index}: TagItemProps) => {
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
           <div className="flex gap-4 p-4 items-center justify-start w-full">
-            <div {...provided.dragHandleProps}>
-              <ChevronsUpDown strokeWidth={1} />
-            </div>
+            {!isDragDisabled && (
+              <div {...provided.dragHandleProps}>
+                <ChevronsUpDown strokeWidth={1} />
+              </div>
+            )}
 
             <div className={`rounded-full bg-primary w-6 h-6 theme-${tag.theme?.color}`} />
 

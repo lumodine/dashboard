@@ -50,7 +50,7 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
         </div>
 
         <TenantIframeGroup>
-          <ItemList items={tags} tenant={tenant} />
+          <ItemList isDragDisabled={true} isDropDisabled={true} items={tags} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>
