@@ -76,14 +76,26 @@ export const CreateTenantBranchForm = ({tenant}: CreateTenantBranchFormProps) =>
         <div className="flex items-center">
           <Label htmlFor="lat">Latitude (*)</Label>
         </div>
-        <Input required id="lat" name="lat" step={0.01} type="number" />
+        <Input
+          required
+          id="lat"
+          name="lat"
+          step={0.00000000000000000000000000000001}
+          type="number"
+        />
       </div>
 
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label htmlFor="lng">Longitude (*)</Label>
         </div>
-        <Input required id="lng" name="lng" step={0.01} type="number" />
+        <Input
+          required
+          id="lng"
+          name="lng"
+          step={0.00000000000000000000000000000001}
+          type="number"
+        />
       </div>
 
       <span className="text-xs">(*) Required field</span>

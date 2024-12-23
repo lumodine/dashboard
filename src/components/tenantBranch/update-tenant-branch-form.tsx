@@ -117,7 +117,7 @@ export const UpdateTenantBranchForm = ({tenant, tenantBranch}: UpdateTenantBranc
           defaultValue={tenantBranch?.coordinates?.lat}
           id="lat"
           name="lat"
-          step={0.01}
+          step={0.00000000000000000000000000000001}
           type="number"
         />
       </div>
@@ -131,7 +131,7 @@ export const UpdateTenantBranchForm = ({tenant, tenantBranch}: UpdateTenantBranc
           defaultValue={tenantBranch?.coordinates?.lng}
           id="lng"
           name="lng"
-          step={0.01}
+          step={0.00000000000000000000000000000001}
           type="number"
         />
       </div>

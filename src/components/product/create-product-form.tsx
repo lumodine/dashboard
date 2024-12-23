@@ -140,7 +140,7 @@ export const CreateProductForm = ({tenant, category, tags}: CreateProductFormPro
               <Input
                 id={`amounts-${currency.currency._id}`}
                 name="amounts"
-                step={0.01}
+                step={0.00000000000000000000000000000001}
                 type="number"
               />
             </div>
