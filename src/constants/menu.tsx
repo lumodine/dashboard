@@ -14,6 +14,7 @@ import {
   Contact,
   Users,
   Tags,
+  LayoutDashboard,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -74,6 +75,11 @@ export const MENUS = (id: string) => [
         title: "Font",
         href: `/d/${id}/font`,
         icon: CaseSensitive,
+      },
+      {
+        title: "Layout",
+        href: `/d/${id}/layout`,
+        icon: LayoutDashboard,
       },
     ],
   },

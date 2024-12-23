@@ -65,6 +65,14 @@ const updateFont = async (tenantId: string, font: string) => {
   return data;
 };
 
+const updateLayout = async (tenantId: string, headerPosition: string) => {
+  const {data} = await axios.put(`/tenants/${tenantId}/theme/layout`, {
+    headerPosition,
+  });
+
+  return data;
+};
+
 const remove = async (tenantId: string) => {
   const {data} = await axios.delete(`/tenants/${tenantId}`);
 
@@ -112,6 +120,7 @@ export default {
   updateCurrencySettings,
   updateColor,
   updateFont,
+  updateLayout,
   remove,
   uploadLogo,
   uploadBackground,
