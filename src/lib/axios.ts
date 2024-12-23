@@ -1,5 +1,6 @@
 import axios, {AxiosInstance} from "axios";
 import tokenService from "@/services/token.service";
+import { redirect } from "next/navigation";
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -26,6 +27,11 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error.response?.status === 403) {
+      redirect("/forbidden");
+      return;
+    }
+
     return Promise.reject(error);
   },
 );
