@@ -74,7 +74,6 @@ export const MENUS = (id: string) => [
         title: "Font",
         href: `/d/${id}/font`,
         icon: CaseSensitive,
-        isDisabled: true,
       },
     ],
   },

@@ -6,6 +6,13 @@ const getAllColors = async () => {
   return data;
 };
 
+const getAllFonts = async () => {
+  const {data} = await axios.get("/theme/fonts");
+
+  return data;
+};
+
 export default {
   getAllColors,
+  getAllFonts,
 };

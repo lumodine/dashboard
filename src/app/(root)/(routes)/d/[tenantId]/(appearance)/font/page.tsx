@@ -5,6 +5,8 @@ import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
+import themeService from "@/services/theme.service";
+import {UpdateTenantThemeFontForm} from "@/components/tenant/update-tenant-theme-font-form";
 
 type TenantFontPageProps = {
   params: Promise<{
@@ -14,7 +16,10 @@ type TenantFontPageProps = {
 
 export default async function TenantFontPage({params}: TenantFontPageProps) {
   const {tenantId} = await params;
-  const {data: tenant} = await tenantService.getById(tenantId);
+  const [{data: tenant}, {data: fonts}] = await Promise.all([
+    tenantService.getById(tenantId),
+    themeService.getAllFonts(),
+  ]);
 
   return (
     <>
@@ -36,7 +41,7 @@ export default async function TenantFontPage({params}: TenantFontPageProps) {
 
       <section className="container">
         <TenantIframeGroup>
-          <div className="w-full">TenantFontPage</div>
+          <UpdateTenantThemeFontForm fonts={fonts} tenant={tenant} />
           <TenantIframe tenant={tenant} />
         </TenantIframeGroup>
       </section>
