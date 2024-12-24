@@ -19,7 +19,11 @@ export default async function TenantLayoutPage({params}: TenantLayoutPageProps) 
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Layout"} />
+      <Hero
+        description={"Experiment with different layout options to optimize your design."}
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Layout"}
+      />
 
       <AppBreadcrumb
         items={[

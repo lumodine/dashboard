@@ -26,7 +26,9 @@ export default async function TenantLanguageSettingsPage({
   return (
     <>
       <Hero
-        description={"You can update your tenant's language settings here."}
+        description={
+          "Here you can configure your language preferences to make your platform multilingual."
+        }
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Language settings"}
       />

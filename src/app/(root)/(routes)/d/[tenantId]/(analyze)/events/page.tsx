@@ -23,7 +23,11 @@ export default async function TenantInteractionReportsPage({
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Events"} />
+      <Hero
+        description={"Track user behavior and examine your activity data."}
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Events"}
+      />
 
       <AppBreadcrumb
         items={[

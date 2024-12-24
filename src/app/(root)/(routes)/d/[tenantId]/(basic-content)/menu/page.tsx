@@ -24,7 +24,13 @@ export default async function TenantMenuPage({params}: TenantMenuPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Menu"} />
+      <Hero
+        description={
+          "Customize your menu and add categories and products specific to your business."
+        }
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Menu"}
+      />
 
       <AppBreadcrumb
         items={[

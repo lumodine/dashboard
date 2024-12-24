@@ -20,6 +20,7 @@ export default async function TenantSocialMediaPage({params}: TenantSocialMediaP
   return (
     <>
       <Hero
+        description={"Strengthen your digital presence by connecting your social media accounts."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Social media"}
       />

@@ -21,7 +21,9 @@ export default async function TenantGeneralSettingsPage({params}: TenantGeneralS
   return (
     <>
       <Hero
-        description={"You can update your tenant's general settings here."}
+        description={
+          "Configure the general settings of your system to keep everything running smoothly."
+        }
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"General settings"}
       />

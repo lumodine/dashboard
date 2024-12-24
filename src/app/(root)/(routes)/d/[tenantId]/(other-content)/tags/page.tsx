@@ -24,7 +24,13 @@ export default async function TenantTagsPage({params}: TenantTagsPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Tags"} />
+      <Hero
+        description={
+          "Create tags for your products and categories and organize your content more easily."
+        }
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Tags"}
+      />
 
       <AppBreadcrumb
         items={[

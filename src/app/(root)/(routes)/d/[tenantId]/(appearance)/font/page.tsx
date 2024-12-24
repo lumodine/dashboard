@@ -23,7 +23,11 @@ export default async function TenantFontPage({params}: TenantFontPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Font"} />
+      <Hero
+        description={"Get a professional look by choosing fonts that match your brand style."}
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Font"}
+      />
 
       <AppBreadcrumb
         items={[

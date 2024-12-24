@@ -26,7 +26,7 @@ export default async function TenantCurrencySettingsPage({
   return (
     <>
       <Hero
-        description={"You can update your tenant's currency settings here."}
+        description={"Choose the appropriate currencies to manage your prices and transactions."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Currency settings"}
       />

@@ -25,6 +25,9 @@ export default async function TenantAnnouncementsPage({params}: TenantAnnounceme
   return (
     <>
       <Hero
+        description={
+          "Make announcements to your customers and share important news about your business."
+        }
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Announcements"}
       />

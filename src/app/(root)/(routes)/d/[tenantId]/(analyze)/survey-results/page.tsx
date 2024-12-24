@@ -17,6 +17,7 @@ export default async function TenantSurveyResultsPage({params}: TenantSurveyResu
   return (
     <>
       <Hero
+        description={"Analyze the results of your surveys and evaluate customer feedback."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Survey results"}
       />

@@ -23,7 +23,11 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Users"} />
+      <Hero
+        description={"Manage user accounts and authorization for your team."}
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Users"}
+      />
 
       <AppBreadcrumb
         items={[

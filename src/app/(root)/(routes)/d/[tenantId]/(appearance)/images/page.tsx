@@ -20,7 +20,7 @@ export default async function TenantImagesPage({params}: TenantImagesPageProps) 
   return (
     <>
       <Hero
-        description={"You can update the logo and background image of your business here."}
+        description={"Add your custom logo and background to reflect your brand."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Logo and background"}
       />

@@ -24,7 +24,11 @@ export default async function TenantBranchesPage({params}: TenantBranchesPagePro
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Branches"} />
+      <Hero
+        description={"Manage and organize information for your multiple branches."}
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Branches"}
+      />
 
       <AppBreadcrumb
         items={[

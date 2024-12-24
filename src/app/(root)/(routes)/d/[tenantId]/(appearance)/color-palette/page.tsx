@@ -24,7 +24,7 @@ export default async function TenantThemeColorPage({params}: TenantThemeColorPag
   return (
     <>
       <Hero
-        description={"You can update the color palette of your business here."}
+        description={"Choose color palettes to customize your theme and enhance your design."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"Color palette"}
       />

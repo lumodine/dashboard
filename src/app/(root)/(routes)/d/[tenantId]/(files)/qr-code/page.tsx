@@ -19,7 +19,7 @@ export default async function TenantQrCodePage({params}: TenantQrCodePageProps) 
   return (
     <>
       <Hero
-        description={"You can download your QR code for printing below."}
+        description={"Create your QR codes and digitize your menus."}
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
         title={"QR Code"}
       />
