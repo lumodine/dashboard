@@ -7,4 +7,8 @@ export const USER_ROLES = [
     key: "tenant_user",
     name: "User",
   },
+  {
+    key: "tenant_viewer",
+    name: "Viewer",
+  },
 ];
