@@ -40,6 +40,7 @@ export const MENUS = (id: string) => [
         title: "Menu",
         href: `/d/${id}/menu`,
         icon: SquareMenu,
+        className: "menu",
       },
     ],
   },

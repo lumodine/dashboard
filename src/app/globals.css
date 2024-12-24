@@ -10,3 +10,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.menu {
+  @apply bg-primary text-primary-foreground hover:bg-primary/60 !important;
+}
