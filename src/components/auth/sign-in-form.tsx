@@ -2,6 +2,7 @@
 
 import {toast} from "react-toastify";
 import Link from "next/link";
+import {PasswordInput} from "../common/password-input";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import login from "@/actions/auth/login";
@@ -32,7 +33,7 @@ export const SignInForm = () => {
               Forgot password?
             </Link>
           </div>
-          <Input required id="password" name="password" type="password" />
+          <PasswordInput required id="password" name="password" />
         </div>
         <span className="text-xs">(*) Required field</span>
         <SubmitButton>Sign in</SubmitButton>

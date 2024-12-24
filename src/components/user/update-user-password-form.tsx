@@ -2,8 +2,8 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
+import {PasswordInput} from "../common/password-input";
 import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
 import updateUserPassword from "@/actions/auth/updateUserPassword";
 import {SubmitButton} from "@/components/common/submit-button";
 
@@ -23,15 +23,15 @@ export const UpdateUserPasswordForm = () => {
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
           <Label htmlFor="currentPassword">Current password (*)</Label>
-          <Input required id="currentPassword" name="currentPassword" type="password" />
+          <PasswordInput required id="currentPassword" name="currentPassword" />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="newPassword">New password (*)</Label>
-          <Input required id="newPassword" name="newPassword" type="password" />
+          <PasswordInput required id="newPassword" name="newPassword" />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="confirmNewPassword">Confirm new password (*)</Label>
-          <Input required id="confirmNewPassword" name="confirmNewPassword" type="password" />
+          <PasswordInput required id="confirmNewPassword" name="confirmNewPassword" />
         </div>
         <span className="text-xs">(*) Required field</span>
 

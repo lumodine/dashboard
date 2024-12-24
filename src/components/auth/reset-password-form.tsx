@@ -1,7 +1,7 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Input} from "@/components/ui/input";
+import {PasswordInput} from "../common/password-input";
 import {Label} from "@/components/ui/label";
 import resetPassword from "@/actions/auth/resetPassword";
 import {SubmitButton} from "@/components/common/submit-button";
@@ -26,11 +26,11 @@ export const ResetPasswordForm = ({token}: ResetPasswordFormProps) => {
       <form action={clientAction} className="grid gap-4">
         <div className="grid gap-2">
           <Label htmlFor="password">New password (*)</Label>
-          <Input required id="password" name="password" type="password" />
+          <PasswordInput required id="password" name="password" />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="confirmPassword">Confirm new password (*)</Label>
-          <Input required id="confirmPassword" name="confirmPassword" type="password" />
+          <PasswordInput required id="confirmPassword" name="confirmPassword" />
         </div>
         <span className="text-xs">(*) Required field</span>
         <SubmitButton>Reset Password</SubmitButton>
