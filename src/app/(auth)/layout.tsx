@@ -1,5 +1,5 @@
 import React from "react";
-import {Header} from "./components/header";
+import {AuthHeader} from "./components/auth-header";
 import {Footer} from "@/components/common/footer";
 
 type AuthLayoutProps = {
@@ -9,7 +9,7 @@ type AuthLayoutProps = {
 export default function AuthLayout({children}: Readonly<AuthLayoutProps>) {
   return (
     <div className="flex flex-col sm:h-screen w-full items-center justify-center p-4 gap-4">
-      <Header />
+      <AuthHeader />
       {children}
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const Header = () => {
+export const AuthHeader = () => {
   return (
     <header>
       <Link
@@ -21,3 +21,4 @@ export const Header = () => {
     </header>
   );
 };
+AuthHeader.displayName = "AuthHeader";
