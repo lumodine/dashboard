@@ -10,15 +10,21 @@ type TenantUpdateAllAmountsPageProps = {
   params: Promise<{
     tenantId: string;
   }>;
+  searchParams: Promise<{
+    item: string;
+  }>;
 };
 
 export default async function TenantUpdateAllAmountsPage({
   params,
+  searchParams,
 }: TenantUpdateAllAmountsPageProps) {
   const {tenantId} = await params;
+  const {item} = await searchParams;
+
   const [{data: tenant}, {data: content}] = await Promise.all([
     tenantService.getById(tenantId),
-    contentService.getAllTranslatableCurrencies(tenantId),
+    contentService.getAllTranslatableCurrencies(tenantId, item),
   ]);
 
   return (

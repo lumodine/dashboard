@@ -1,13 +1,21 @@
 import axios from "@/lib/axios";
 
-const getAllTranslatableContents = async (tenantId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/content/translatable/contents`);
+const getAllTranslatableContents = async (tenantId: string, item: string) => {
+  const {data} = await axios.get(`/tenants/${tenantId}/content/translatable/contents`, {
+    params: {
+      item,
+    },
+  });
 
   return data;
 };
 
-const getAllTranslatableCurrencies = async (tenantId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/content/translatable/currencies`);
+const getAllTranslatableCurrencies = async (tenantId: string, item: string) => {
+  const {data} = await axios.get(`/tenants/${tenantId}/content/translatable/currencies`, {
+    params: {
+      item,
+    },
+  });
 
   return data;
 };

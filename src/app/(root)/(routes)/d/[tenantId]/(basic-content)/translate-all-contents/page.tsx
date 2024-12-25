@@ -10,15 +10,21 @@ type TenantTranslateAllContentsPageProps = {
   params: Promise<{
     tenantId: string;
   }>;
+  searchParams: Promise<{
+    item: string;
+  }>;
 };
 
 export default async function TenantTranslateAllContentsPage({
   params,
+  searchParams,
 }: TenantTranslateAllContentsPageProps) {
   const {tenantId} = await params;
+  const {item} = await searchParams;
+
   const [{data: tenant}, {data: content}] = await Promise.all([
     tenantService.getById(tenantId),
-    contentService.getAllTranslatableContents(tenantId),
+    contentService.getAllTranslatableContents(tenantId, item),
   ]);
 
   return (

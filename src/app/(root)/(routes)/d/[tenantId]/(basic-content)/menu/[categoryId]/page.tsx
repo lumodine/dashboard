@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {Building2, Plus, SquareMenu, TableOfContents} from "lucide-react";
+import {Building2, Landmark, Plus, SquareMenu, TableOfContents} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import categoryService from "@/services/category.service";
@@ -67,8 +67,20 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               <TabsTrigger value="products">Products</TabsTrigger>
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
-            <TabsContent value="products">
-              <div className="inline-flex gap-2 justify-start items-center mb-3">
+            <TabsContent className="flex flex-col gap-2" value="products">
+              <div className="inline-flex gap-2 justify-start items-center">
+                <Link href={`/d/${tenant._id}/translate-all-contents?item=${category._id}`}>
+                  <Button size={"sm"} variant={"secondary"}>
+                    <TableOfContents size={14} /> Translate contents
+                  </Button>
+                </Link>
+                <Link href={`/d/${tenant._id}/update-all-amounts?item=${category._id}`}>
+                  <Button size={"sm"} variant={"secondary"}>
+                    <Landmark size={14} /> Update amounts
+                  </Button>
+                </Link>
+              </div>
+              <div className="inline-flex gap-2 justify-start items-center">
                 <Link href={`/d/${tenant._id}/menu/${category._id}/create-product`}>
                   <Button size={"sm"}>
                     <Plus size={14} /> New product
