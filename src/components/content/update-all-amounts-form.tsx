@@ -1,6 +1,7 @@
 "use client";
 
 import {Save} from "lucide-react";
+import {toast} from "react-toastify";
 import {SubmitButton} from "../common/submit-button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Label} from "@/components/ui/label";
@@ -9,14 +10,15 @@ import updateAllAmounts from "@/actions/content/updateAllAmounts";
 
 type UpdateAllAmountsFormGroupProps = {
   type: string;
-  order: number;
   tenant: any;
   item: any;
 };
 
-const UpdateAllAmountsFormGroup = ({type, order, tenant, item}: UpdateAllAmountsFormGroupProps) => {
+const UpdateAllAmountsFormGroup = ({type, tenant, item}: UpdateAllAmountsFormGroupProps) => {
   return (
     <div className="border rounded-sm p-4 mt-4 flex flex-col gap-2">
+      <Input defaultValue={item._id} name={`${type}_items`} type="hidden" />
+
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title</Label>
@@ -62,7 +64,7 @@ const UpdateAllAmountsFormGroup = ({type, order, tenant, item}: UpdateAllAmounts
                 <Input
                   defaultValue={price?.amount}
                   id={`amounts-${item._id}-${currency.currency._id}`}
-                  name={`${type}[${order}][item][${item._id}][currency][${currency.currency._id}][amount]`}
+                  name={`${type}[${item._id}][${currency.currency._id}][amount]`}
                   step={0.00000000000000000000000000000001}
                   type="number"
                 />
@@ -80,30 +82,59 @@ type UpdateAllAmountsFormProps = {
   content: any;
 };
 
+const tabs = [
+  {
+    title: "Products",
+    type: "products",
+  },
+];
+
 const UpdateAllAmountsForm = ({tenant, content}: UpdateAllAmountsFormProps) => {
   const clientAction = async (formData: FormData) => {
-    await updateAllAmounts(tenant._id, formData);
+    const response = await updateAllAmounts(tenant._id, formData);
+
+    if (response.message) {
+      toast(response.message, {
+        type: response.success ? "success" : "error",
+      });
+    }
   };
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      <Tabs defaultValue="products">
+      {tenant.currencies.map((currency: any, currencyIndex: number) => (
+        <Input
+          key={currencyIndex}
+          required
+          defaultValue={currency.currency._id}
+          name="currencies"
+          type="hidden"
+        />
+      ))}
+
+      <Tabs defaultValue={tabs[0].type}>
         <TabsList>
-          <TabsTrigger value="products">Products ({content.products.length})</TabsTrigger>
+          {tabs.map((tab: any, tabIndex: number) => (
+            <TabsTrigger key={tabIndex} value={tab.type}>
+              {tab.title} ({content[tab.type].length})
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="products">
-          {content.products.map((product: any, productIndex: number) => {
-            return (
-              <UpdateAllAmountsFormGroup
-                key={productIndex}
-                item={product}
-                order={productIndex + 1}
-                tenant={tenant}
-                type={"products"}
-              />
-            );
-          })}
-        </TabsContent>
+        {tabs.map((tab: any, tabIndex: number) => (
+          <TabsContent key={tabIndex} value={tab.type}>
+            <Input required defaultValue={tab.type} name="type" type="hidden" />
+            {content[tab.type].map((item: any, itemIndex: number) => {
+              return (
+                <UpdateAllAmountsFormGroup
+                  key={`${tab.type}-${itemIndex}`}
+                  item={item}
+                  tenant={tenant}
+                  type={tab.type}
+                />
+              );
+            })}
+          </TabsContent>
+        ))}
       </Tabs>
 
       <SubmitButton className="w-full sticky left-0 bottom-5 my-5">
