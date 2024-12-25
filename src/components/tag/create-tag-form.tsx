@@ -38,15 +38,15 @@ export const CreateTagForm = ({tenant, colors}: CreateTagFormProps) => {
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Name (*)</Label>
+          <Label>Title (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => (
             <div key={languageIndex}>
-              <Label htmlFor={`names-${language.language._id}`}>
+              <Label htmlFor={`titles-${language.language._id}`}>
                 {language.language.name} - {language.language.shortName} (*)
               </Label>
-              <Input required id={`names-${language.language._id}`} name="names" type="text" />
+              <Input required id={`titles-${language.language._id}`} name="titles" type="text" />
             </div>
           ))}
         </div>

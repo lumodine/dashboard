@@ -40,7 +40,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={product.translations[0].name}
+        title={product.translations[0].title}
       />
 
       <AppBreadcrumb
@@ -57,12 +57,12 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
           },
           {
             icon: TableOfContents,
-            title: category.translations[0].name,
+            title: category.translations[0].title,
             href: `/d/${tenantId}/menu/${category._id}`,
           },
           {
             icon: Box,
-            title: product.translations[0].name,
+            title: product.translations[0].title,
           },
         ]}
       />

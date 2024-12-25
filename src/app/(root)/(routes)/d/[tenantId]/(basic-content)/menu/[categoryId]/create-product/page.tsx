@@ -48,7 +48,7 @@ export default async function TenantMenuCreateProductPage({
           },
           {
             icon: TableOfContents,
-            title: category.translations[0].name,
+            title: category.translations[0].title,
             href: `/d/${tenantId}/menu/${category._id}`,
           },
           {

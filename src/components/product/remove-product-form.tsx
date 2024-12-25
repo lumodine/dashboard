@@ -53,15 +53,15 @@ export const RemoveProductForm = ({tenant, category, product}: RemoveProductForm
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
                 Please enter the following box to confirm the removal process: &quot;
-                <b>{product.translations[0].name}</b>&quot;
+                <b>{product.translations[0].title}</b>&quot;
               </Label>
               <Input
                 required
                 autoComplete="off"
                 id="name"
                 name="name"
-                pattern={product.translations[0].name}
-                placeholder={product.translations[0].name}
+                pattern={product.translations[0].title}
+                placeholder={product.translations[0].title}
                 type="text"
               />
             </div>

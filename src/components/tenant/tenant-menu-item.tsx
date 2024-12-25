@@ -5,10 +5,9 @@ import {cn} from "@/utils/shadcn";
 
 export type TenantMenuItemProps = {
   menu: any;
-  number: string;
 };
 
-export const TenantMenuItem = ({menu, number}: TenantMenuItemProps) => {
+export const TenantMenuItem = ({menu}: TenantMenuItemProps) => {
   return (
     <Link
       className={cn(
@@ -20,9 +19,7 @@ export const TenantMenuItem = ({menu, number}: TenantMenuItemProps) => {
       title={menu.title}
     >
       {menu.icon && <menu.icon size={48} strokeWidth={1} />}
-      <span className="text-sm font-semibold">
-        {number} {menu.title}
-      </span>
+      <span className="text-sm font-semibold">{menu.title}</span>
     </Link>
   );
 };

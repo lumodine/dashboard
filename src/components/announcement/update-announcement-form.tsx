@@ -42,7 +42,7 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Name (*)</Label>
+          <Label>Title (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {

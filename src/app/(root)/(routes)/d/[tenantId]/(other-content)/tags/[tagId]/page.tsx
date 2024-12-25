@@ -35,7 +35,7 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={tag.translations[0].name}
+        title={tag.translations[0].title}
       />
 
       <AppBreadcrumb
@@ -52,7 +52,7 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
           },
           {
             icon: Tag,
-            title: tag.translations[0].name,
+            title: tag.translations[0].title,
           },
         ]}
       />

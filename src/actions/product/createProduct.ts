@@ -4,7 +4,7 @@ import productService from "@/services/product.service";
 
 export default async function (tenantId: string, categoryId: string, formData: FormData) {
   const languages = formData.getAll("languages") as string[];
-  const names = formData.getAll("names") as string[];
+  const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
 
   const currencies = formData.getAll("currencies") as string[];
@@ -17,7 +17,7 @@ export default async function (tenantId: string, categoryId: string, formData: F
   for (const i in languages) {
     translations.push({
       language: languages[i],
-      name: names[i],
+      name: titles[i],
       description: descriptions[i],
     });
   }

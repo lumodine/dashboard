@@ -111,7 +111,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
                 <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
                   {product.image && (
                     <Image
-                      alt={product.translations[0].name}
+                      alt={product.translations[0].title}
                       height={100}
                       loading="lazy"
                       src={product.image}
@@ -152,7 +152,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
               className="w-full flex flex-col gap-1 items-start"
               href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
             >
-              <b>{product.translations[0].name}</b>
+              <b>{product.translations[0].title}</b>
             </Link>
             <div className="flex flex-col items-center gap-1">
               <Select defaultValue={product.type} onValueChange={(value) => handleType(value)}>

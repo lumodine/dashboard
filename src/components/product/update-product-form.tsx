@@ -167,7 +167,7 @@ export const UpdateProductForm = ({
           >
             {product.image && (
               <Image
-                alt={product.translations[0].name}
+                alt={product.translations[0].title}
                 height={100}
                 loading="lazy"
                 src={product.image}
@@ -211,7 +211,7 @@ export const UpdateProductForm = ({
           <SelectContent>
             {categories.map((category: any, categoryIndex: number) => (
               <SelectItem key={categoryIndex} value={category._id}>
-                {category.translations[0].name}
+                {category.translations[0].title}
               </SelectItem>
             ))}
           </SelectContent>
@@ -220,7 +220,7 @@ export const UpdateProductForm = ({
 
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label>Name (*)</Label>
+          <Label>Title (*)</Label>
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.languages.map((language: any, languageIndex: number) => {
@@ -230,14 +230,14 @@ export const UpdateProductForm = ({
 
             return (
               <div key={languageIndex}>
-                <Label htmlFor={`names-${language.language._id}`}>
+                <Label htmlFor={`titles-${language.language._id}`}>
                   {language.language.name} - {language.language.shortName} (*)
                 </Label>
                 <Input
                   required
-                  defaultValue={item?.name}
-                  id={`names-${language.language._id}`}
-                  name="names"
+                  defaultValue={item?.title}
+                  id={`titles-${language.language._id}`}
+                  name="titles"
                   type="text"
                 />
               </div>
@@ -323,7 +323,7 @@ export const UpdateProductForm = ({
                         <div
                           className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`}
                         />
-                        <span>{tag.translations[0].name}</span>
+                        <span>{tag.translations[0].title}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -340,7 +340,7 @@ export const UpdateProductForm = ({
               <Input defaultValue={tag._id} name="tags" type="hidden" />
               <div className="flex gap-2 items-center">
                 <div className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`} />
-                <span>{tag.translations[0].name}</span>
+                <span>{tag.translations[0].title}</span>
               </div>
               <Button type="button" variant={"destructive"} onClick={() => removeTag(tag)}>
                 <Trash size={14} />

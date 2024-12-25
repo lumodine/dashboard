@@ -69,7 +69,7 @@ export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
             <div className={`rounded-full bg-primary w-6 h-6 theme-${tag.theme?.color}`} />
 
             <Link className="flex-1 w-full" href={`/d/${tenant._id}/tags/${tag._id}`}>
-              <Tag className="inline-block" size={16} /> <b>{tag.translations[0].name}</b>
+              <Tag className="inline-block" size={16} /> <b>{tag.translations[0].title}</b>
             </Link>
             <div className="flex flex-col items-center gap-1">
               <Select defaultValue={tag.type} onValueChange={(value) => handleType(value)}>

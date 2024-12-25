@@ -52,15 +52,15 @@ export const RemoveCategoryForm = ({tenant, category}: RemoveCategoryFormProps) 
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
                 Please enter the following box to confirm the removal process: &quot;
-                <b>{category.translations[0].name}</b>&quot;
+                <b>{category.translations[0].title}</b>&quot;
               </Label>
               <Input
                 required
                 autoComplete="off"
                 id="name"
                 name="name"
-                pattern={category.translations[0].name}
-                placeholder={category.translations[0].name}
+                pattern={category.translations[0].title}
+                placeholder={category.translations[0].title}
                 type="text"
               />
             </div>

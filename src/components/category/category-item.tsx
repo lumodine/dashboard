@@ -115,7 +115,7 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
                 <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
                   {category.image && (
                     <Image
-                      alt={category.translations[0].name}
+                      alt={category.translations[0].title}
                       height={100}
                       loading="lazy"
                       src={category.image}
@@ -156,7 +156,7 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
               className="flex-1 w-full flex flex-col gap-1 items-start"
               href={`/d/${tenant._id}/menu/${category._id}`}
             >
-              <b>{category.translations[0].name}</b>
+              <b>{category.translations[0].title}</b>
             </Link>
             <div className="flex flex-col items-center gap-1">
               <Select defaultValue={category.type} onValueChange={(value) => handleType(value)}>

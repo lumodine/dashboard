@@ -10,7 +10,7 @@ export default async function (
   formData: FormData,
 ) {
   const languages = formData.getAll("languages") as string[];
-  const names = formData.getAll("names") as string[];
+  const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
 
   const currencies = formData.getAll("currencies") as string[];
@@ -25,7 +25,7 @@ export default async function (
   for (const i in languages) {
     translations.push({
       language: languages[i],
-      name: names[i],
+      name: titles[i],
       description: descriptions[i],
     });
   }

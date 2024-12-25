@@ -35,7 +35,7 @@ export default async function TenantAnnouncementDetailPage({
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={announcement.translations[0].name}
+        title={announcement.translations[0].title}
       />
 
       <AppBreadcrumb

@@ -52,15 +52,15 @@ export const RemoveTagForm = ({tenant, tag}: RemoveTagFormProps) => {
             <div className="flex flex-col gap-3">
               <Label htmlFor="name">
                 Please enter the following box to confirm the removal process: &quot;
-                <b>{tag.translations[0].name}</b>&quot;
+                <b>{tag.translations[0].title}</b>&quot;
               </Label>
               <Input
                 required
                 autoComplete="off"
                 id="name"
                 name="name"
-                pattern={tag.translations[0].name}
-                placeholder={tag.translations[0].name}
+                pattern={tag.translations[0].title}
+                placeholder={tag.translations[0].title}
                 type="text"
               />
             </div>

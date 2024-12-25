@@ -33,7 +33,7 @@ export default async function TenantBranchDetailPage({params}: TenantBranchDetai
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={tenantBranch.translations[0].name}
+        title={tenantBranch.translations[0].title}
       />
 
       <AppBreadcrumb
