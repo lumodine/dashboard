@@ -1,15 +1,13 @@
+import itemService from "./item.service";
 import axios from "@/lib/axios";
+import {ITEM_KINDS} from "@/constants/item";
 
 const getAll = async (tenantId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/tags`);
-
-  return data;
+  return await itemService.getAll(tenantId, undefined, ITEM_KINDS.TAG);
 };
 
 const getById = async (tenantId: string, tagId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/tags/${tagId}`);
-
-  return data;
+  return await itemService.getById(tenantId, tagId, ITEM_KINDS.TAG);
 };
 
 const create = async (
@@ -18,7 +16,7 @@ const create = async (
   isShowInMenu: boolean,
   color: string,
 ) => {
-  const {data} = await axios.post(`/tenants/${tenantId}/tags`, {
+  const {data} = await axios.post(`/tenants/${tenantId}/items/tags`, {
     translations,
     isShowInMenu,
     color,
@@ -34,7 +32,7 @@ const update = async (
   isShowInMenu: boolean,
   color: string,
 ) => {
-  const {data} = await axios.put(`/tenants/${tenantId}/tags/${tagId}`, {
+  const {data} = await axios.put(`/tenants/${tenantId}/items/tags/${tagId}`, {
     translations,
     isShowInMenu,
     color,
@@ -44,7 +42,7 @@ const update = async (
 };
 
 const remove = async (tenantId: string, tagId: string) => {
-  const {data} = await axios.delete(`/tenants/${tenantId}/tags/${tagId}`);
+  const {data} = await axios.delete(`/tenants/${tenantId}/items/tags/${tagId}`);
 
   return data;
 };

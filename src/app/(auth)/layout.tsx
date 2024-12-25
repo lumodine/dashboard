@@ -1,5 +1,5 @@
 import React from "react";
-import {AuthHeader} from "./components/auth-header";
+import {AuthHeader} from "@/components/auth/auth-header";
 import {Footer} from "@/components/common/footer";
 
 type AuthLayoutProps = {

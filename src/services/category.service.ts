@@ -1,19 +1,17 @@
+import itemService from "./item.service";
 import axios from "@/lib/axios";
+import {ITEM_KINDS} from "@/constants/item";
 
 const getAll = async (tenantId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/categories`);
-
-  return data;
+  return await itemService.getAll(tenantId, undefined, ITEM_KINDS.CATEGORY);
 };
 
 const getById = async (tenantId: string, categoryId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/categories/${categoryId}`);
-
-  return data;
+  return await itemService.getById(tenantId, categoryId, ITEM_KINDS.CATEGORY);
 };
 
 const create = async (tenantId: string, translations: any[]) => {
-  const {data} = await axios.post(`/tenants/${tenantId}/categories`, {
+  const {data} = await axios.post(`/tenants/${tenantId}/items/categories`, {
     translations,
   });
 
@@ -21,7 +19,7 @@ const create = async (tenantId: string, translations: any[]) => {
 };
 
 const update = async (tenantId: string, categoryId: string, translations: any[]) => {
-  const {data} = await axios.put(`/tenants/${tenantId}/categories/${categoryId}`, {
+  const {data} = await axios.put(`/tenants/${tenantId}/items/categories/${categoryId}`, {
     translations,
   });
 
@@ -29,14 +27,14 @@ const update = async (tenantId: string, categoryId: string, translations: any[])
 };
 
 const remove = async (tenantId: string, categoryId: string) => {
-  const {data} = await axios.delete(`/tenants/${tenantId}/categories/${categoryId}`);
+  const {data} = await axios.delete(`/tenants/${tenantId}/items/categories/${categoryId}`);
 
   return data;
 };
 
 const uploadImage = async (tenantId: string, categoryId: string, formData: FormData) => {
   const {data} = await axios.post(
-    `/tenants/${tenantId}/categories/${categoryId}/upload/image`,
+    `/tenants/${tenantId}/items/categories/${categoryId}/upload/image`,
     formData,
   );
 
@@ -44,7 +42,9 @@ const uploadImage = async (tenantId: string, categoryId: string, formData: FormD
 };
 
 const removeImage = async (tenantId: string, categoryId: string) => {
-  const {data} = await axios.delete(`/tenants/${tenantId}/categories/${categoryId}/upload/image`);
+  const {data} = await axios.delete(
+    `/tenants/${tenantId}/items/categories/${categoryId}/upload/image`,
+  );
 
   return data;
 };

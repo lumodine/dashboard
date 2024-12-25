@@ -1,11 +1,22 @@
 import axios from "@/lib/axios";
 
-const getAll = async (tenantId: string, itemId?: string) => {
-  const url = `/tenants/${tenantId}/items`;
-  const params = {
-    itemId,
-  };
-  const {data} = await axios.get(url, {params});
+const getAll = async (tenantId: string, itemId?: string, kind?: string) => {
+  const {data} = await axios.get(`/tenants/${tenantId}/items`, {
+    params: {
+      itemId,
+      kind,
+    },
+  });
+
+  return data;
+};
+
+const getById = async (tenantId: string, itemId: string, kind?: string) => {
+  const {data} = await axios.get(`/tenants/${tenantId}/items/${itemId}`, {
+    params: {
+      kind,
+    },
+  });
 
   return data;
 };
@@ -36,6 +47,7 @@ const updateType = async (tenantId: string, itemId: string, type: string) => {
 
 export default {
   getAll,
+  getById,
   updateSort,
   updateStatus,
   updateType,

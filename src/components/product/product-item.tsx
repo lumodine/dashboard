@@ -23,16 +23,21 @@ import removeProductImage from "@/actions/product/removeProductImage";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemStatus from "@/actions/item/updateItemStatus";
 import updateItemType from "@/actions/item/updateItemType";
+import {ITEM_KINDS} from "@/constants/item";
 
 export type ProductItemProps = {
   tenant: any;
-  category: any;
   product: any;
   index: number;
+  isDragDisabled?: boolean;
 };
 
-export const ProductItem = ({tenant, category, product, index}: ProductItemProps) => {
+export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
+
+  const category = product.parentItems.find(
+    (parentItem: any) => parentItem.kind === ITEM_KINDS.CATEGORY,
+  );
 
   const handleType = async (type: string) => {
     const response = await updateItemType(tenant._id, product._id, type);
@@ -68,7 +73,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
 
     formData.append("image", imageFile);
 
-    const response = await uploadProductImage(tenant._id, category._id, product._id, formData);
+    const response = await uploadProductImage(tenant._id, product._id, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -80,7 +85,7 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
   };
 
   const handleRemoveImage = async () => {
-    const response = await removeProductImage(tenant._id, category._id, product._id);
+    const response = await removeProductImage(tenant._id, product._id);
 
     if (response.message) {
       toast(response.message, {
@@ -92,7 +97,12 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
   };
 
   return (
-    <Draggable key={product._id} draggableId={product._id} index={index}>
+    <Draggable
+      key={product._id}
+      draggableId={product._id}
+      index={index}
+      isDragDisabled={isDragDisabled}
+    >
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -100,13 +110,16 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
           <div className="flex gap-4 p-4 items-center">
-            <div {...provided.dragHandleProps}>
-              <ChevronsUpDown strokeWidth={1} />
-            </div>
+            {!isDragDisabled && (
+              <div {...provided.dragHandleProps}>
+                <ChevronsUpDown strokeWidth={1} />
+              </div>
+            )}
+
             <div>
               <Label
                 className="text-center"
-                htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
+                htmlFor={`image-${tenant._id}-${category.item._id}-${product._id}`}
               >
                 <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
                   {product.image && (
@@ -142,15 +155,15 @@ export const ProductItem = ({tenant, category, product, index}: ProductItemProps
               <Input
                 accept="image/*"
                 className="hidden"
-                id={`image-${tenant._id}-${category._id}-${product._id}`}
-                name={`image-${tenant._id}-${category._id}-${product._id}`}
+                id={`image-${tenant._id}-${category.item._id}-${product._id}`}
+                name={`image-${tenant._id}-${category.item._id}-${product._id}`}
                 type="file"
                 onChange={handleUploadImage}
               />
             </div>
             <Link
               className="w-full flex flex-col gap-1 items-start"
-              href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
+              href={`/d/${tenant._id}/menu/${category.item._id}/${product._id}`}
             >
               <b>{product.translations[0].title}</b>
             </Link>

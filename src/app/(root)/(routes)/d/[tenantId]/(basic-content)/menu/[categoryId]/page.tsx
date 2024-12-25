@@ -6,7 +6,7 @@ import {Hero} from "@/components/common/hero";
 import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {ProductList} from "@/components/product/product-list";
+import {ItemList} from "@/components/item/item-list";
 import {UpdateCategoryForm} from "@/components/category/update-category-form";
 import {RemoveCategoryForm} from "@/components/category/remove-category-form";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
@@ -88,7 +88,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
                 </Link>
               </div>
 
-              <ProductList category={category} products={items} tenant={tenant} />
+              <ItemList items={items} tenant={tenant} />
             </TabsContent>
             <TabsContent value="settings">
               <div className="flex flex-col gap-4">

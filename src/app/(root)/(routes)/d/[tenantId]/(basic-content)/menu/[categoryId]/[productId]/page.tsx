@@ -28,7 +28,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
       tenantService.getById(tenantId),
       categoryService.getAll(tenantId),
       categoryService.getById(tenantId, categoryId),
-      productService.getById(tenantId, categoryId, productId),
+      productService.getById(tenantId, productId),
       tagService.getAll(tenantId),
     ]);
 

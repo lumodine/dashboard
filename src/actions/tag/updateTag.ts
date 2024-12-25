@@ -14,7 +14,7 @@ export default async function (tenantId: string, tagId: string, formData: FormDa
   for (const i in languages) {
     translations.push({
       language: languages[i],
-      name: titles[i],
+      title: titles[i],
       description: descriptions[i],
     });
   }

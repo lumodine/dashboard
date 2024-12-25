@@ -25,7 +25,7 @@ export default async function (
   for (const i in languages) {
     translations.push({
       language: languages[i],
-      name: titles[i],
+      title: titles[i],
       description: descriptions[i],
     });
   }
@@ -41,7 +41,6 @@ export default async function (
 
   const response = await productService.update(
     tenantId,
-    categoryId,
     productId,
     category,
     translations,

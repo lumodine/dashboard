@@ -1,17 +1,13 @@
+import itemService from "./item.service";
 import axios from "@/lib/axios";
+import {ITEM_KINDS} from "@/constants/item";
 
 const getAll = async (tenantId: string, categoryId: string) => {
-  const {data} = await axios.get(`/tenants/${tenantId}/categories/${categoryId}/products`);
-
-  return data;
+  return await itemService.getAll(tenantId, categoryId, ITEM_KINDS.PRODUCT);
 };
 
-const getById = async (tenantId: string, categoryId: string, productId: string) => {
-  const {data} = await axios.get(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}`,
-  );
-
-  return data;
+const getById = async (tenantId: string, productId: string) => {
+  return await itemService.getById(tenantId, productId, ITEM_KINDS.PRODUCT);
 };
 
 const create = async (
@@ -21,7 +17,7 @@ const create = async (
   prices: any[],
   tags: any[],
 ) => {
-  const {data} = await axios.post(`/tenants/${tenantId}/categories/${categoryId}/products`, {
+  const {data} = await axios.post(`/tenants/${tenantId}/items/products`, {
     category: categoryId,
     translations,
     prices,
@@ -33,51 +29,40 @@ const create = async (
 
 const update = async (
   tenantId: string,
-  categoryId: string,
   productId: string,
   category: string,
   translations: any[],
   prices: any[],
   tags: any[],
 ) => {
-  const {data} = await axios.put(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}`,
-    {
-      category,
-      translations,
-      prices,
-      tags,
-    },
-  );
+  const {data} = await axios.put(`/tenants/${tenantId}/items/products/${productId}`, {
+    category,
+    translations,
+    prices,
+    tags,
+  });
 
   return data;
 };
 
-const remove = async (tenantId: string, categoryId: string, productId: string) => {
-  const {data} = await axios.delete(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}`,
-  );
+const remove = async (tenantId: string, productId: string) => {
+  const {data} = await axios.delete(`/tenants/${tenantId}/items/products/${productId}`);
 
   return data;
 };
 
-const uploadImage = async (
-  tenantId: string,
-  categoryId: string,
-  productId: string,
-  formData: FormData,
-) => {
+const uploadImage = async (tenantId: string, productId: string, formData: FormData) => {
   const {data} = await axios.post(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}/upload/image`,
+    `/tenants/${tenantId}/items/products/${productId}/upload/image`,
     formData,
   );
 
   return data;
 };
 
-const removeImage = async (tenantId: string, categoryId: string, productId: string) => {
+const removeImage = async (tenantId: string, productId: string) => {
   const {data} = await axios.delete(
-    `/tenants/${tenantId}/categories/${categoryId}/products/${productId}/upload/image`,
+    `/tenants/${tenantId}/items/products/${productId}/upload/image`,
   );
 
   return data;

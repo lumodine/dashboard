@@ -17,7 +17,7 @@ export default async function (tenantId: string, categoryId: string, formData: F
   for (const i in languages) {
     translations.push({
       language: languages[i],
-      name: titles[i],
+      title: titles[i],
       description: descriptions[i],
     });
   }

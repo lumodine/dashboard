@@ -3,12 +3,14 @@
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
+import {ProductItem} from "../product/product-item";
 import {CategoryItem} from "@/components/category/category-item";
 import {TagItem} from "@/components/tag/tag-item";
 import {NotFound} from "@/components/common/error";
 import {reOrder} from "@/utils/array";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemSort from "@/actions/item/updateItemSort";
+import {ITEM_KINDS} from "@/constants/item";
 
 export type ItemListProps = {
   tenant: any;
@@ -67,7 +69,7 @@ export const ItemList = ({tenant, items, isDropDisabled, isDragDisabled}: ItemLi
                 className="grid grid-cols-1 gap-3"
               >
                 {items.map((item: any, itemIndex: number) => {
-                  if (item.kind === "category") {
+                  if (item.kind === ITEM_KINDS.CATEGORY) {
                     return (
                       <CategoryItem
                         key={itemIndex}
@@ -79,13 +81,25 @@ export const ItemList = ({tenant, items, isDropDisabled, isDragDisabled}: ItemLi
                     );
                   }
 
-                  if (item.kind === "tag") {
+                  if (item.kind === ITEM_KINDS.TAG) {
                     return (
                       <TagItem
                         key={itemIndex}
                         index={itemIndex}
                         isDragDisabled={isDragDisabled}
                         tag={item}
+                        tenant={tenant}
+                      />
+                    );
+                  }
+
+                  if (item.kind === ITEM_KINDS.PRODUCT) {
+                    return (
+                      <ProductItem
+                        key={itemIndex}
+                        index={itemIndex}
+                        isDragDisabled={isDragDisabled}
+                        product={item}
                         tenant={tenant}
                       />
                     );

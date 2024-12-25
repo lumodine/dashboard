@@ -113,7 +113,7 @@ export const UpdateProductForm = ({
 
     formData.append("image", imageFile);
 
-    const response = await uploadProductImage(tenant._id, category._id, product._id, formData);
+    const response = await uploadProductImage(tenant._id, product._id, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -125,7 +125,7 @@ export const UpdateProductForm = ({
   };
 
   const handleRemoveImage = async () => {
-    const response = await removeProductImage(tenant._id, category._id, product._id);
+    const response = await removeProductImage(tenant._id, product._id);
 
     if (response.message) {
       toast(response.message, {
