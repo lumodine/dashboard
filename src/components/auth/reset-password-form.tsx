@@ -1,7 +1,7 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {PasswordInput} from "../common/password-input";
+import {PasswordInput} from "@/components/common/password-input";
 import {Label} from "@/components/ui/label";
 import resetPassword from "@/actions/auth/resetPassword";
 import {SubmitButton} from "@/components/common/submit-button";

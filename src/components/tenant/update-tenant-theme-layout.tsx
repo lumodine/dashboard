@@ -2,8 +2,14 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
-import {Label} from "../ui/label";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../ui/select";
+import {Label} from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {SubmitButton} from "@/components/common/submit-button";
 import updateTenantThemeLayout from "@/actions/tenant/updateTenantThemeLayout";

@@ -2,8 +2,8 @@
 
 import {Save} from "lucide-react";
 import {toast} from "react-toastify";
-import {SubmitButton} from "../common/submit-button";
-import {NotFound} from "../common/error";
+import {SubmitButton} from "@/components/common/submit-button";
+import {NotFound} from "@/components/common/error";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";

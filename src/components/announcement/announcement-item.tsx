@@ -4,7 +4,7 @@ import {Draggable} from "@hello-pangea/dnd";
 import {ChevronsUpDown, Eye, EyeOff} from "lucide-react";
 import Link from "next/link";
 import {toast} from "react-toastify";
-import {Button} from "../ui/button";
+import {Button} from "@/components/ui/button";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateAnnouncementStatus from "@/actions/announcement/updateAnnouncementStatus";
 

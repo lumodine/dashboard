@@ -15,7 +15,7 @@ export const TenantMenuList = ({tenant}: TenantMenuListProps) => {
   }
 
   return (
-    <div>
+    <div className="w-full">
       {menus.map((menu: any, menuIndex: number) => (
         <div key={menuIndex} className="mb-4">
           {menu.title && <h3 className="text-xl font-bold">{menu.title}</h3>}

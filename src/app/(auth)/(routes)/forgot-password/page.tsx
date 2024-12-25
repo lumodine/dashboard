@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {BackButton} from "../../components/back-button";
+import {BackButton} from "@/components/back-button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {ForgotPasswordForm} from "@/components/auth/forgot-password-form";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis} from "recharts";
-import {ChartContainer} from "../ui/chart";
+import {ChartContainer} from "@/components/ui/chart";
 
 export type TenantEventChartProps = {
   chartData: any[];

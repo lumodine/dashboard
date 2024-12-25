@@ -2,7 +2,7 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
-import {FontRadioGroup} from "../common/font-radio-group";
+import {FontRadioGroup} from "@/components/common/font-radio-group";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {SubmitButton} from "@/components/common/submit-button";
 import updateTenantThemeFont from "@/actions/tenant/updateTenantThemeFont";

@@ -3,8 +3,8 @@
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {NotFound} from "../common/error";
 import {AnnouncementItem} from "./announcement-item";
+import {NotFound} from "@/components/common/error";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {reOrder} from "@/utils/array";
 import updateAnnouncementSort from "@/actions/announcement/updateAnnouncementSort";

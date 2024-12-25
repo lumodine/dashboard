@@ -1,7 +1,7 @@
 "use client";
 
-import {NotFound} from "../common/error";
 import {TenantBranchItem} from "./tenant-branch-item";
+import {NotFound} from "@/components/common/error";
 
 export type TenantBranchListProps = {
   tenant: any;

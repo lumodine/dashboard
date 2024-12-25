@@ -2,7 +2,7 @@
 
 import {toast} from "react-toastify";
 import {Save} from "lucide-react";
-import {PasswordInput} from "../common/password-input";
+import {PasswordInput} from "@/components/common/password-input";
 import {Label} from "@/components/ui/label";
 import updateUserPassword from "@/actions/auth/updateUserPassword";
 import {SubmitButton} from "@/components/common/submit-button";

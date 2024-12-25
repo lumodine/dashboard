@@ -2,7 +2,7 @@
 
 import {toast} from "react-toastify";
 import Link from "next/link";
-import {PasswordInput} from "../common/password-input";
+import {PasswordInput} from "@/components/common/password-input";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import login from "@/actions/auth/login";

@@ -3,7 +3,7 @@
 import {Plus, Save, Trash} from "lucide-react";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {SubmitButton} from "../common/submit-button";
+import {SubmitButton} from "@/components/common/submit-button";
 import updateTenantLanguageSettings from "@/actions/tenant/updateTenantLanguageSettings";
 import {Label} from "@/components/ui/label";
 import {
