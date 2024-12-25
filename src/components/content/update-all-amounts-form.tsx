@@ -3,6 +3,7 @@
 import {Save} from "lucide-react";
 import {toast} from "react-toastify";
 import {SubmitButton} from "../common/submit-button";
+import {NotFound} from "../common/error";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -116,30 +117,39 @@ const UpdateAllAmountsForm = ({tenant, content}: UpdateAllAmountsFormProps) => {
         <TabsList>
           {tabs.map((tab: any, tabIndex: number) => (
             <TabsTrigger key={tabIndex} value={tab.type}>
-              {tab.title} ({content[tab.type].length})
+              {tab.title} ({content[tab.type]?.length || 0})
             </TabsTrigger>
           ))}
         </TabsList>
-        {tabs.map((tab: any, tabIndex: number) => (
-          <TabsContent key={tabIndex} value={tab.type}>
-            <Input required defaultValue={tab.type} name="type" type="hidden" />
-            {content[tab.type].map((item: any, itemIndex: number) => {
-              return (
-                <UpdateAllAmountsFormGroup
-                  key={`${tab.type}-${itemIndex}`}
-                  item={item}
-                  tenant={tenant}
-                  type={tab.type}
-                />
-              );
-            })}
-          </TabsContent>
-        ))}
-      </Tabs>
+        {tabs.map((tab: any, tabIndex: number) => {
+          const hasItems = content[tab.type]?.length > 0;
 
-      <SubmitButton className="w-full sticky left-0 bottom-5 my-5">
-        <Save /> Save
-      </SubmitButton>
+          return (
+            <TabsContent key={tabIndex} value={tab.type}>
+              {!hasItems && <NotFound title={"Items not found."} />}
+              {hasItems && (
+                <>
+                  <Input required defaultValue={tab.type} name="type" type="hidden" />
+                  {content[tab.type].map((item: any, itemIndex: number) => {
+                    return (
+                      <UpdateAllAmountsFormGroup
+                        key={`${tab.type}-${itemIndex}`}
+                        item={item}
+                        tenant={tenant}
+                        type={tab.type}
+                      />
+                    );
+                  })}
+
+                  <SubmitButton className="w-full sticky left-0 bottom-5 my-5">
+                    <Save /> Save
+                  </SubmitButton>
+                </>
+              )}
+            </TabsContent>
+          );
+        })}
+      </Tabs>
     </form>
   );
 };
