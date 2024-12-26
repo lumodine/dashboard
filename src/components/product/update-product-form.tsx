@@ -1,7 +1,7 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Camera, Plus, Save, Trash} from "lucide-react";
+import {Camera, Plus, Save, Tag, Trash} from "lucide-react";
 import {ChangeEvent, useState} from "react";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
@@ -328,7 +328,8 @@ export const UpdateProductForm = ({
                         <div
                           className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`}
                         />
-                        <span>{tag.translations[0].title}</span>
+                        <Tag className="inline-block" size={14} />{" "}
+                        <b>{tag.translations[0].title}</b>
                       </div>
                     </SelectItem>
                   ))}
@@ -345,7 +346,7 @@ export const UpdateProductForm = ({
               <Input defaultValue={tag._id} name="tags" type="hidden" />
               <div className="flex gap-2 items-center">
                 <div className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`} />
-                <span>{tag.translations[0].title}</span>
+                <Tag className="inline-block" size={16} /> <b>{tag.translations[0].title}</b>
               </div>
               <Button type="button" variant={"destructive"} onClick={() => removeTag(tag)}>
                 <Trash size={14} />

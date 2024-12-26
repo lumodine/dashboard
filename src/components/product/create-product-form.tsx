@@ -1,7 +1,7 @@
 "use client";
 
 import {toast} from "react-toastify";
-import {Plus, Trash} from "lucide-react";
+import {Plus, Tag, Trash} from "lucide-react";
 import {useState} from "react";
 import {NotFound} from "@/components/common/error";
 import {
@@ -171,7 +171,8 @@ export const CreateProductForm = ({tenant, category, tags}: CreateProductFormPro
                         <div
                           className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`}
                         />
-                        <span>{tag.translations[0].title}</span>
+                        <Tag className="inline-block" size={14} />{" "}
+                        <b>{tag.translations[0].title}</b>
                       </div>
                     </SelectItem>
                   ))}
@@ -188,7 +189,7 @@ export const CreateProductForm = ({tenant, category, tags}: CreateProductFormPro
               <Input defaultValue={tag._id} name="tags" type="hidden" />
               <div className="flex gap-2 items-center">
                 <div className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`} />
-                <span>{tag.translations[0].title}</span>
+                <Tag className="inline-block" size={16} /> <b>{tag.translations[0].title}</b>
               </div>
               <Button type="button" variant={"destructive"} onClick={() => removeTag(tag)}>
                 <Trash size={14} />
