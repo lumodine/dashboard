@@ -22,6 +22,7 @@ import {SubmitButton} from "@/components/common/submit-button";
 import uploadProductImage from "@/actions/product/uploadProductImage";
 import removeProductImage from "@/actions/product/removeProductImage";
 import {cn} from "@/utils/shadcn";
+import {ITEM_KINDS} from "@/constants/item";
 
 export type UpdateProductFormProps = {
   tenant: any;
@@ -39,6 +40,10 @@ export const UpdateProductForm = ({
   tags,
 }: UpdateProductFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
+
+  const productVariants = product?.childItems.filter(
+    (childItem: any) => childItem.kind === ITEM_KINDS.PRODUCT_VARIANT,
+  );
 
   const _productTags = tags.filter((tag) =>
     product.parentItems.some((productTag: any) => productTag.item._id === tag._id),
@@ -345,6 +350,28 @@ export const UpdateProductForm = ({
               <Button type="button" variant={"destructive"} onClick={() => removeTag(tag)}>
                 <Trash size={14} />
               </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label>Variants</Label>
+        </div>
+        <div className="flex flex-col gap-2">
+          {productVariants?.length === 0 && (
+            <NotFound title="You have not added any variants. Add one now." />
+          )}
+
+          {productVariants?.map((productVariant: any, productVariantIndex: number) => (
+            <div
+              key={productVariantIndex}
+              className="flex justify-between items-center gap-3 p-2 border rounded-lg"
+            >
+              <div className="flex gap-2 items-center">
+                <span>{productVariant.item.translations[0].title}</span>
+              </div>
             </div>
           ))}
         </div>
