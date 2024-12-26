@@ -45,17 +45,17 @@ export const UpdateProductForm = ({
     (childItem: any) => childItem.kind === ITEM_KINDS.PRODUCT_VARIANT,
   );
 
-  const _productTags = tags.filter((tag) =>
+  const _productTags = tags?.filter((tag) =>
     product.parentItems.some((productTag: any) => productTag.item._id === tag._id),
   );
 
-  const _addableTags = tags.filter(
+  const _addableTags = tags?.filter(
     (tag) => !_productTags.some((productTag: any) => productTag._id === tag._id),
   );
 
-  const [otherTags, setOtherTags] = useState<any[]>(_productTags);
+  const [otherTags, setOtherTags] = useState<any[]>(_productTags || []);
 
-  const [addableTags, setAddableTags] = useState<any[]>(_addableTags);
+  const [addableTags, setAddableTags] = useState<any[]>(_addableTags || []);
   const [newTagId, setNewTagId] = useState<string>();
 
   const removeTag = (tag: any) => {

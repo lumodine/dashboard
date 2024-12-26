@@ -26,7 +26,7 @@ export type CreateProductFormProps = {
 export const CreateProductForm = ({tenant, category, tags}: CreateProductFormProps) => {
   const [otherTags, setOtherTags] = useState<any[]>([]);
 
-  const [addableTags, setAddableTags] = useState<any[]>(tags);
+  const [addableTags, setAddableTags] = useState<any[]>(tags || []);
   const [newTagId, setNewTagId] = useState<string>();
 
   const removeTag = (tag: any) => {
