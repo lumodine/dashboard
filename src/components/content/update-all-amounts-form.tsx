@@ -88,6 +88,10 @@ const tabs = [
     title: "Products",
     type: "products",
   },
+  {
+    title: "Product Variants",
+    type: "productVariants",
+  },
 ];
 
 const UpdateAllAmountsForm = ({tenant, content}: UpdateAllAmountsFormProps) => {

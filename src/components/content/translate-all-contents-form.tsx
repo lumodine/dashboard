@@ -95,6 +95,10 @@ const tabs = [
     type: "products",
   },
   {
+    title: "Product Variants",
+    type: "productVariants",
+  },
+  {
     title: "Tags",
     type: "tags",
   },
