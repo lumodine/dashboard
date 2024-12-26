@@ -46,7 +46,7 @@ export const UpdateProductForm = ({
   );
 
   const _productTags = tags?.filter((tag) =>
-    product.parentItems.some((productTag: any) => productTag.item._id === tag._id),
+    product.parentItems.some((productTag: any) => productTag._id === tag._id),
   );
 
   const _addableTags = tags?.filter(
@@ -142,7 +142,7 @@ export const UpdateProductForm = ({
   };
 
   const selectedCategory = categories.find((category: any) =>
-    product.parentItems.find((item: any) => item.item._id === category._id),
+    product.parentItems.find((item: any) => item._id === category._id),
   );
 
   return (
@@ -370,7 +370,7 @@ export const UpdateProductForm = ({
               className="flex justify-between items-center gap-3 p-2 border rounded-lg"
             >
               <div className="flex gap-2 items-center">
-                <span>{productVariant.item.translations[0].title}</span>
+                <span>{productVariant.translations[0].title}</span>
               </div>
             </div>
           ))}

@@ -119,7 +119,7 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
             <div>
               <Label
                 className="text-center"
-                htmlFor={`image-${tenant._id}-${category.item._id}-${product._id}`}
+                htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
               >
                 <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
                   {product.image && (
@@ -155,15 +155,15 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
               <Input
                 accept="image/*"
                 className="hidden"
-                id={`image-${tenant._id}-${category.item._id}-${product._id}`}
-                name={`image-${tenant._id}-${category.item._id}-${product._id}`}
+                id={`image-${tenant._id}-${category._id}-${product._id}`}
+                name={`image-${tenant._id}-${category._id}-${product._id}`}
                 type="file"
                 onChange={handleUploadImage}
               />
             </div>
             <Link
               className="w-full flex flex-col gap-1 items-start"
-              href={`/d/${tenant._id}/menu/${category.item._id}/${product._id}`}
+              href={`/d/${tenant._id}/menu/${category._id}/${product._id}`}
             >
               <b>{product.translations[0].title}</b>
             </Link>
