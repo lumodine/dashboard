@@ -51,7 +51,7 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
         currency: currency.currency._id,
         amount: undefined,
       }));
-      newItem.variants = [];
+      newItem.items = [];
     }
 
     newItems[itemIndex].items.push(newItem);
@@ -62,8 +62,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
     const newItems = [...items];
     const item = newItems[itemIndex].items[subItemIndex];
 
-    if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
-      item.variants.push({
+    if (item.kind === ITEM_KINDS.PRODUCT && item.items) {
+      item.items.push({
         kind: ITEM_KINDS.PRODUCT_VARIANT,
         translations: languages.map((language: any) => ({
           language: language.language._id,
@@ -83,8 +83,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
     const newItems = [...items];
     const item = newItems[itemIndex].items[subItemIndex];
 
-    if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
-      item.variants.splice(variantIndex, 1);
+    if (item.kind === ITEM_KINDS.PRODUCT && item.items) {
+      item.items.splice(variantIndex, 1);
       setItems(newItems);
     }
   };
@@ -100,8 +100,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
     const newItems = [...items];
     const item = newItems[itemIndex].items[subItemIndex];
 
-    if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
-      const variant = item.variants[variantIndex];
+    if (item.kind === ITEM_KINDS.PRODUCT && item.items) {
+      const variant = item.items[variantIndex];
       const translationIndex = variant.translations.findIndex(
         (t: any) => t.language === languageId,
       );
@@ -123,8 +123,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
     const newItems = [...items];
     const item = newItems[itemIndex].items[subItemIndex];
 
-    if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
-      const variant = item.variants[variantIndex];
+    if (item.kind === ITEM_KINDS.PRODUCT && item.items) {
+      const variant = item.items[variantIndex];
       const priceIndex = variant.prices.findIndex((p: any) => p.currency === currencyId);
 
       if (priceIndex !== -1 && amount !== undefined) {
@@ -251,9 +251,9 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
                   updateSubItemTranslation(itemIndex, subItemIndex, languageId, field, value)
                 }
               >
-                {subItem.kind === ITEM_KINDS.PRODUCT && subItem.variants && (
+                {subItem.kind === ITEM_KINDS.PRODUCT && subItem.items && (
                   <div className="mt-4 space-y-4">
-                    {subItem.variants.map((variant: any, variantIndex: number) => (
+                    {subItem.items.map((variant: any, variantIndex: number) => (
                       <VariantForm
                         key={itemIndex + "-" + subItemIndex + "-" + variantIndex}
                         currencies={currencies}
