@@ -15,8 +15,6 @@ import {
   Users,
   Tags,
   LayoutDashboard,
-  TableOfContents,
-  Landmark,
 } from "lucide-react";
 
 export const MENUS = (id: string) => [
@@ -43,16 +41,6 @@ export const MENUS = (id: string) => [
         href: `/d/${id}/menu`,
         icon: SquareMenu,
         className: "menu",
-      },
-      {
-        title: "Translate all contents",
-        href: `/d/${id}/translate-all-contents`,
-        icon: TableOfContents,
-      },
-      {
-        title: "Update all amounts",
-        href: `/d/${id}/update-all-amounts`,
-        icon: Landmark,
       },
     ],
   },

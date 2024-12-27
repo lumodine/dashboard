@@ -4,6 +4,7 @@ import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
 import {ProductItem} from "../product/product-item";
+import {SubCategoryItem} from "../subCategory/sub-category-item";
 import {CategoryItem} from "@/components/category/category-item";
 import {TagItem} from "@/components/tag/tag-item";
 import {NotFound} from "@/components/common/error";
@@ -76,6 +77,18 @@ export const ItemList = ({tenant, items, isDropDisabled, isDragDisabled}: ItemLi
                         category={item}
                         index={itemIndex}
                         isDragDisabled={isDragDisabled}
+                        tenant={tenant}
+                      />
+                    );
+                  }
+
+                  if (item.kind === ITEM_KINDS.SUB_CATEGORY) {
+                    return (
+                      <SubCategoryItem
+                        key={itemIndex}
+                        index={itemIndex}
+                        isDragDisabled={isDragDisabled}
+                        subCategory={item}
                         tenant={tenant}
                       />
                     );

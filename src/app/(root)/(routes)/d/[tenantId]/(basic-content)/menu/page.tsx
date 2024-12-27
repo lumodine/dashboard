@@ -50,7 +50,7 @@ export default async function TenantMenuPage({params}: TenantMenuPageProps) {
         <div className="inline-flex gap-2 justify-start items-center mb-3">
           <Link href={`/d/${tenant._id}/menu/create`}>
             <Button size={"sm"}>
-              <Plus size={14} /> New category
+              <Plus size={14} /> Create menu
             </Button>
           </Link>
         </div>

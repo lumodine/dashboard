@@ -66,6 +66,7 @@ export const CreateProductForm = ({tenant, category, tags}: CreateProductFormPro
 
     setNewTagId("");
   };
+
   const clientAction = async (formData: FormData) => {
     const response = await createProduct(tenant._id, category._id, formData);
 

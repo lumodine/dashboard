@@ -2,16 +2,16 @@ import Link from "next/link";
 import {Building2, SquareMenu, TableOfContents} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
-import {CreateCategoryForm} from "@/components/category/create-category-form";
 import tenantService from "@/services/tenant.service";
+import {CreateMenuForm} from "@/components/menu/create-menu-form";
 
-type TenantCreateCategoryPageProps = {
+type TenantCreateMenuPageProps = {
   params: Promise<{
     tenantId: string;
   }>;
 };
 
-export default async function TenantCreateCategoryPage({params}: TenantCreateCategoryPageProps) {
+export default async function TenantCreateMenuPage({params}: TenantCreateMenuPageProps) {
   const {tenantId} = await params;
   const {data: tenant} = await tenantService.getById(tenantId);
 
@@ -19,7 +19,7 @@ export default async function TenantCreateCategoryPage({params}: TenantCreateCat
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Add category"}
+        title={"Add menu items"}
       />
 
       <AppBreadcrumb
@@ -36,13 +36,13 @@ export default async function TenantCreateCategoryPage({params}: TenantCreateCat
           },
           {
             icon: TableOfContents,
-            title: "Add category",
+            title: "Add menu items",
           },
         ]}
       />
 
       <section className="container">
-        <CreateCategoryForm tenant={tenant} />
+        <CreateMenuForm tenant={tenant} />
       </section>
     </>
   );
