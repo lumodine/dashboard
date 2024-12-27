@@ -251,9 +251,9 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
                   updateSubItemTranslation(itemIndex, subItemIndex, languageId, field, value)
                 }
               >
-                {item.kind === ITEM_KINDS.PRODUCT && item.variants && (
+                {subItem.kind === ITEM_KINDS.PRODUCT && subItem.variants && (
                   <div className="mt-4 space-y-4">
-                    {item.variants.map((variant: any, variantIndex: number) => (
+                    {subItem.variants.map((variant: any, variantIndex: number) => (
                       <VariantForm
                         key={itemIndex + "-" + subItemIndex + "-" + variantIndex}
                         currencies={currencies}
