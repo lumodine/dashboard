@@ -17,17 +17,17 @@ import {Button} from "@/components/ui/button";
 type TenantMenuProductsPageProps = {
   params: Promise<{
     tenantId: string;
-    categoryId: string;
+    itemId: string;
   }>;
 };
 
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
-  const {tenantId, categoryId} = await params;
+  const {tenantId, itemId} = await params;
 
   const [{data: tenant}, {data: category}, {data: items}] = await Promise.all([
     tenantService.getById(tenantId),
-    categoryService.getById(tenantId, categoryId),
-    itemService.getAll(tenantId, categoryId),
+    categoryService.getById(tenantId, itemId),
+    itemService.getAll(tenantId, itemId),
   ]);
 
   if (!category) {
@@ -62,14 +62,14 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
 
       <section className="container">
         <TenantIframeGroup>
-          <Tabs className="w-full" defaultValue="products">
+          <Tabs className="w-full" defaultValue="items">
             <TabsList>
-              <TabsTrigger value="products">Products</TabsTrigger>
+              <TabsTrigger value="items">Items</TabsTrigger>
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
-            <TabsContent className="flex flex-col gap-2" value="products">
+            <TabsContent className="flex flex-col gap-2" value="items">
               <div className="inline-flex gap-2 justify-start items-center">
-                <Link href={`/d/${tenant._id}/menu/${category._id}/create-product`}>
+                <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
                   <Button size={"sm"}>
                     <Plus size={14} /> New product
                   </Button>
@@ -85,7 +85,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
               </div>
             </TabsContent>
           </Tabs>
-          <TenantIframe path={`/${categoryId}`} tenant={tenant} />
+          <TenantIframe path={`/${itemId}`} tenant={tenant} />
         </TenantIframeGroup>
       </section>
     </>

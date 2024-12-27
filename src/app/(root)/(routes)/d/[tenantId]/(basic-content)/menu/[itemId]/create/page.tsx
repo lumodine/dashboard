@@ -8,21 +8,21 @@ import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import tagService from "@/services/tag.service";
 
-type TenantMenuCreateProductPageProps = {
+type TenantMenuCreateSubItemPageProps = {
   params: Promise<{
     tenantId: string;
-    categoryId: string;
+    itemId: string;
   }>;
 };
 
-export default async function TenantMenuCreateProductPage({
+export default async function TenantMenuCreateSubItemPage({
   params,
-}: TenantMenuCreateProductPageProps) {
-  const {tenantId, categoryId} = await params;
+}: TenantMenuCreateSubItemPageProps) {
+  const {tenantId, itemId} = await params;
 
   const [{data: tenant}, {data: category}, {data: tags}] = await Promise.all([
     tenantService.getById(tenantId),
-    categoryService.getById(tenantId, categoryId),
+    categoryService.getById(tenantId, itemId),
     tagService.getAll(tenantId),
   ]);
 

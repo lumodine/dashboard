@@ -15,20 +15,20 @@ import tagService from "@/services/tag.service";
 type TenantMenuProductsPageProps = {
   params: Promise<{
     tenantId: string;
-    categoryId: string;
-    productId: string;
+    itemId: string;
+    subItem: string;
   }>;
 };
 
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
-  const {tenantId, categoryId, productId} = await params;
+  const {tenantId, itemId, subItem} = await params;
 
   const [{data: tenant}, {data: categories}, {data: category}, {data: product}, {data: tags}] =
     await Promise.all([
       tenantService.getById(tenantId),
       categoryService.getAll(tenantId),
-      categoryService.getById(tenantId, categoryId),
-      productService.getById(tenantId, productId),
+      categoryService.getById(tenantId, itemId),
+      productService.getById(tenantId, subItem),
       tagService.getAll(tenantId),
     ]);
 
@@ -79,7 +79,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
             />
             <RemoveProductForm category={category} product={product} tenant={tenant} />
           </div>
-          <TenantIframe path={`/${categoryId}`} tenant={tenant} />
+          <TenantIframe path={`/${itemId}`} tenant={tenant} />
         </TenantIframeGroup>
       </section>
     </>
