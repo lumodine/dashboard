@@ -104,7 +104,7 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
           {...provided.draggableProps}
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
-          <div className="flex gap-4 p-4 items-center justify-start w-full">
+          <div className="flex gap-2 p-2 items-center justify-start w-full">
             {!isDragDisabled && (
               <div {...provided.dragHandleProps}>
                 <ChevronsUpDown strokeWidth={1} />
@@ -112,14 +112,14 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
             )}
             <div>
               <Label className="text-center" htmlFor={`image-${tenant._id}-${category._id}`}>
-                <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
+                <div className="relative flex items-center justify-center border rounded-lg w-[60px] h-[60px] cursor-pointer group">
                   {category.image && (
                     <Image
                       alt={category.translations[0].title}
-                      height={100}
+                      height={60}
                       loading="lazy"
                       src={category.image}
-                      width={100}
+                      width={60}
                     />
                   )}
                   <span
@@ -129,11 +129,11 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
                       !category.image && "flex",
                     )}
                   >
-                    <Camera size={36} />
+                    <Camera size={24} />
                   </span>
                   {category.image && (
                     <Button
-                      className="absolute -top-1 -right-1 z-20"
+                      className="absolute -top-1 -right-1 z-20 h-6 w-6"
                       size={"icon"}
                       variant={"destructive"}
                       onClick={handleRemoveImage}

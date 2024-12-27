@@ -48,7 +48,7 @@ export const SubCategoryItem = ({
           {...provided.draggableProps}
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
-          <div className="flex gap-4 p-4 items-center justify-start w-full">
+          <div className="flex gap-2 p-2 items-center justify-start w-full">
             {!isDragDisabled && (
               <div {...provided.dragHandleProps}>
                 <ChevronsUpDown strokeWidth={1} />

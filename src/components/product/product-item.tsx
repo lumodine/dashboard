@@ -109,7 +109,7 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
           {...provided.draggableProps}
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
-          <div className="flex gap-4 p-4 items-center">
+          <div className="flex gap-2 p-2 items-center">
             {!isDragDisabled && (
               <div {...provided.dragHandleProps}>
                 <ChevronsUpDown strokeWidth={1} />
@@ -121,14 +121,14 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
                 className="text-center"
                 htmlFor={`image-${tenant._id}-${category._id}-${product._id}`}
               >
-                <div className="relative flex items-center justify-center border rounded-lg w-[100px] h-[100px] cursor-pointer group">
+                <div className="relative flex items-center justify-center border rounded-lg w-[60px] h-[60px] cursor-pointer group">
                   {product.image && (
                     <Image
                       alt={product.translations[0].title}
-                      height={100}
+                      height={60}
                       loading="lazy"
                       src={product.image}
-                      width={100}
+                      width={60}
                     />
                   )}
                   <span
@@ -138,11 +138,11 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
                       !product.image && "flex",
                     )}
                   >
-                    <Camera size={36} />
+                    <Camera size={24} />
                   </span>
                   {product.image && (
                     <Button
-                      className="absolute -top-1 -right-1 z-20"
+                      className="absolute -top-1 -right-1 z-20 h-6 w-6"
                       size={"icon"}
                       variant={"destructive"}
                       onClick={handleRemoveImage}

@@ -1,10 +1,10 @@
 "use client";
 
-import {Draggable} from "@hello-pangea/dnd";
-import {ChevronsUpDown, Eye, EyeOff, Tag} from "lucide-react";
+import { Draggable } from "@hello-pangea/dnd";
+import { ChevronsUpDown, Eye, EyeOff, Tag } from "lucide-react";
 import Link from "next/link";
-import {toast} from "react-toastify";
-import {Button} from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,10 +12,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
+import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
 import updateItemType from "@/actions/item/updateItemType";
 import updateItemStatus from "@/actions/item/updateItemStatus";
-import {ITEM_TYPES} from "@/constants/item";
+import { ITEM_TYPES } from "@/constants/item";
 
 export type TagItemProps = {
   tenant: any;
@@ -24,8 +24,8 @@ export type TagItemProps = {
   isDragDisabled?: boolean;
 };
 
-export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
-  const {reloadIframe} = useIframeReloadContext();
+export const TagItem = ({ tenant, tag, index, isDragDisabled }: TagItemProps) => {
+  const { reloadIframe } = useIframeReloadContext();
 
   const handleStatus = async (status: string) => {
     const response = await updateItemStatus(tenant._id, tag._id, status);
@@ -59,18 +59,19 @@ export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
           {...provided.draggableProps}
           className="border rounded-lg overflow-hidden hover:bg-gray-50"
         >
-          <div className="flex gap-4 p-4 items-center justify-start w-full">
+          <div className="flex gap-2 p-2 items-center justify-start w-full">
             {!isDragDisabled && (
               <div {...provided.dragHandleProps}>
                 <ChevronsUpDown strokeWidth={1} />
               </div>
             )}
 
-            <div className={`rounded-full bg-primary w-6 h-6 theme-${tag.theme?.color}`} />
+            <div className={`rounded-full bg-primary w-4 h-4 theme-${tag.theme?.color}`} />
 
             <Link className="flex-1 w-full" href={`/d/${tenant._id}/tags/${tag._id}`}>
               <Tag className="inline-block" size={16} /> <b>{tag.translations[0].title}</b>
             </Link>
+
             <div className="flex flex-col items-center gap-1">
               <Select defaultValue={tag.type} onValueChange={(value) => handleType(value)}>
                 <SelectTrigger>
