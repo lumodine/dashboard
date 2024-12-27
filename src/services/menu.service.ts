@@ -1,8 +1,8 @@
 import axios from "@/lib/axios";
 
-const create = async (tenantId: string, categories: any[]) => {
+const create = async (tenantId: string, items: any[]) => {
   const {data} = await axios.post(`/tenants/${tenantId}/items/menu`, {
-    categories,
+    items,
   });
 
   return data;

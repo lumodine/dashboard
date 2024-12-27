@@ -18,11 +18,11 @@ export type CreateMenuFormProps = {
 export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
   const languages = tenant.languages;
   const currencies = tenant.currencies;
-  const [categories, setCategories] = useState<any[]>([]);
+  const [items, setItems] = useState<any[]>([]);
 
   const addCategory = () => {
-    setCategories([
-      ...categories,
+    setItems([
+      ...items,
       {
         kind: ITEM_KINDS.CATEGORY,
         translations: languages.map((language: any) => ({
@@ -35,8 +35,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
     ]);
   };
 
-  const addItem = (categoryIndex: number, kind: string) => {
-    const newCategories = [...categories];
+  const addItem = (itemIndex: number, kind: string) => {
+    const newItems = [...items];
     const newItem: any = {
       kind,
       translations: languages.map((language: any) => ({
@@ -54,13 +54,13 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
       newItem.variants = [];
     }
 
-    newCategories[categoryIndex].items.push(newItem);
-    setCategories(newCategories);
+    newItems[itemIndex].items.push(newItem);
+    setItems(newItems);
   };
 
-  const addVariant = (categoryIndex: number, itemIndex: number) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+  const addVariant = (itemIndex: number, subItemIndex: number) => {
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
 
     if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
       item.variants.push({
@@ -75,30 +75,30 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
           amount: undefined,
         })),
       });
-      setCategories(newCategories);
+      setItems(newItems);
     }
   };
 
-  const removeVariant = (categoryIndex: number, itemIndex: number, variantIndex: number) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+  const removeVariant = (itemIndex: number, subItemIndex: number, variantIndex: number) => {
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
 
     if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
       item.variants.splice(variantIndex, 1);
-      setCategories(newCategories);
+      setItems(newItems);
     }
   };
 
   const updateVariantTranslation = (
-    categoryIndex: number,
     itemIndex: number,
+    subItemIndex: number,
     variantIndex: number,
     languageId: string,
     field: keyof any,
     value: string,
   ) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
 
     if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
       const variant = item.variants[variantIndex];
@@ -108,20 +108,20 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
 
       if (translationIndex !== -1) {
         variant.translations[translationIndex][field] = value;
-        setCategories(newCategories);
+        setItems(newItems);
       }
     }
   };
 
   const updateVariantPrice = (
-    categoryIndex: number,
     itemIndex: number,
+    subItemIndex: number,
     variantIndex: number,
     currencyId: string,
     amount: string,
   ) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
 
     if (item.kind === ITEM_KINDS.PRODUCT && item.variants) {
       const variant = item.variants[variantIndex];
@@ -129,82 +129,82 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
 
       if (priceIndex !== -1 && amount !== undefined) {
         variant.prices[priceIndex].amount = parseFloat(amount);
-        setCategories(newCategories);
+        setItems(newItems);
       }
     }
   };
 
-  const removeCategory = (categoryIndex: number) => {
-    const newCategories = [...categories];
+  const removeItem = (itemIndex: number) => {
+    const newItems = [...items];
 
-    newCategories.splice(categoryIndex, 1);
-    setCategories(newCategories);
+    newItems.splice(itemIndex, 1);
+    setItems(newItems);
   };
 
-  const removeItem = (categoryIndex: number, itemIndex: number) => {
-    const newCategories = [...categories];
+  const removeSubItem = (itemIndex: number, subItemIndex: number) => {
+    const newItems = [...items];
 
-    newCategories[categoryIndex].items.splice(itemIndex, 1);
-    setCategories(newCategories);
-  };
-
-  const updateCategoryTranslation = (
-    categoryIndex: number,
-    languageId: string,
-    field: keyof any,
-    value: string,
-  ) => {
-    const newCategories = [...categories];
-    const category = newCategories[categoryIndex];
-    const translationIndex = category.translations.findIndex((t: any) => t.language === languageId);
-
-    if (translationIndex !== -1) {
-      category.translations[translationIndex][field] = value;
-      setCategories(newCategories);
-    }
+    newItems[itemIndex].items.splice(subItemIndex, 1);
+    setItems(newItems);
   };
 
   const updateItemTranslation = (
-    categoryIndex: number,
     itemIndex: number,
     languageId: string,
     field: keyof any,
     value: string,
   ) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+    const newItems = [...items];
+    const item = newItems[itemIndex];
     const translationIndex = item.translations.findIndex((t: any) => t.language === languageId);
 
     if (translationIndex !== -1) {
       item.translations[translationIndex][field] = value;
-      setCategories(newCategories);
+      setItems(newItems);
+    }
+  };
+
+  const updateSubItemTranslation = (
+    itemIndex: number,
+    subItemIndex: number,
+    languageId: string,
+    field: keyof any,
+    value: string,
+  ) => {
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
+    const translationIndex = item.translations.findIndex((t: any) => t.language === languageId);
+
+    if (translationIndex !== -1) {
+      item.translations[translationIndex][field] = value;
+      setItems(newItems);
     }
   };
 
   const updatePrice = (
-    categoryIndex: number,
     itemIndex: number,
+    subItemIndex: number,
     currencyId: string,
     amount: string,
   ) => {
-    const newCategories = [...categories];
-    const item = newCategories[categoryIndex].items[itemIndex];
+    const newItems = [...items];
+    const item = newItems[itemIndex].items[subItemIndex];
 
     if (item.prices) {
       const priceIndex = item.prices.findIndex((p: any) => p.currency === currencyId);
 
       if (priceIndex !== -1 && amount !== undefined) {
         item.prices[priceIndex].amount = parseFloat(amount);
-        setCategories(newCategories);
+        setItems(newItems);
       }
     }
   };
 
   const clientAction = async () => {
-    const response = await createMenu(tenant._id, categories);
+    const response = await createMenu(tenant._id, items);
 
     if (response.success) {
-      setCategories([]);
+      setItems([]);
     }
 
     if (response.message) {
@@ -216,54 +216,54 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
 
   return (
     <form action={clientAction} className="space-y-4">
-      {categories.map((category, categoryIndex) => (
-        <div key={categoryIndex} className="space-y-4 p-4 border rounded-lg relative">
+      {items.map((item, itemIndex) => (
+        <div key={itemIndex} className="space-y-4 p-4 border rounded-lg relative">
           <Button
             className="absolute right-2 top-2"
             size="icon"
             type="button"
             variant="ghost"
-            onClick={() => removeCategory(categoryIndex)}
+            onClick={() => removeItem(itemIndex)}
           >
             <X className="h-4 w-4" />
           </Button>
 
           <TranslationFields
             languages={languages}
-            translations={category.translations}
+            translations={item.translations}
             onUpdate={(languageId: string, field: keyof any, value: string) =>
-              updateCategoryTranslation(categoryIndex, languageId, field, value)
+              updateItemTranslation(itemIndex, languageId, field, value)
             }
           />
 
           <div className="mt-4 space-y-4">
-            {category.items.map((item: any, itemIndex: number) => (
+            {item.items.map((subItem: any, subItemIndex: number) => (
               <ItemForm
-                key={categoryIndex + "-" + itemIndex}
+                key={itemIndex + "-" + subItemIndex}
                 currencies={currencies}
-                item={item}
+                item={subItem}
                 languages={languages}
-                onRemove={() => removeItem(categoryIndex, itemIndex)}
+                onRemove={() => removeSubItem(itemIndex, subItemIndex)}
                 onUpdatePrice={(currencyId: string, amount: string) =>
-                  updatePrice(categoryIndex, itemIndex, currencyId, amount)
+                  updatePrice(itemIndex, subItemIndex, currencyId, amount)
                 }
                 onUpdateTranslation={(languageId: string, field: keyof any, value: string) =>
-                  updateItemTranslation(categoryIndex, itemIndex, languageId, field, value)
+                  updateSubItemTranslation(itemIndex, subItemIndex, languageId, field, value)
                 }
               >
                 {item.kind === ITEM_KINDS.PRODUCT && item.variants && (
                   <div className="mt-4 space-y-4">
                     {item.variants.map((variant: any, variantIndex: number) => (
                       <VariantForm
-                        key={categoryIndex + "-" + itemIndex + "-" + variantIndex}
+                        key={itemIndex + "-" + subItemIndex + "-" + variantIndex}
                         currencies={currencies}
                         languages={languages}
                         variant={variant}
-                        onRemove={() => removeVariant(categoryIndex, itemIndex, variantIndex)}
+                        onRemove={() => removeVariant(itemIndex, subItemIndex, variantIndex)}
                         onUpdatePrice={(currencyId: string, amount: string) =>
                           updateVariantPrice(
-                            categoryIndex,
                             itemIndex,
+                            subItemIndex,
                             variantIndex,
                             currencyId,
                             amount,
@@ -275,8 +275,8 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
                           value: string,
                         ) =>
                           updateVariantTranslation(
-                            categoryIndex,
                             itemIndex,
+                            subItemIndex,
                             variantIndex,
                             languageId,
                             field,
@@ -289,7 +289,7 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
                     <Button
                       type="button"
                       variant="outline"
-                      onClick={() => addVariant(categoryIndex, itemIndex)}
+                      onClick={() => addVariant(itemIndex, subItemIndex)}
                     >
                       Add variant
                     </Button>
@@ -302,14 +302,14 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => addItem(categoryIndex, ITEM_KINDS.SUB_CATEGORY)}
+                onClick={() => addItem(itemIndex, ITEM_KINDS.SUB_CATEGORY)}
               >
                 Add sub category
               </Button>
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => addItem(categoryIndex, ITEM_KINDS.PRODUCT)}
+                onClick={() => addItem(itemIndex, ITEM_KINDS.PRODUCT)}
               >
                 Add product
               </Button>
@@ -324,7 +324,7 @@ export const CreateMenuForm = ({tenant}: CreateMenuFormProps) => {
         </Button>
       </div>
 
-      {categories.length > 0 && (
+      {items.length > 0 && (
         <div className="space-y-4">
           <SubmitButton>
             <Save /> Save
