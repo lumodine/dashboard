@@ -3,10 +3,10 @@
 import {useState} from "react";
 import {Save, X} from "lucide-react";
 import {toast} from "react-toastify";
-import {SubmitButton} from "../common/submit-button";
-import {TranslationFields} from "./translation-fields";
-import {ItemForm} from "./item-form";
-import {VariantForm} from "./variant-form";
+import {SubmitButton} from "@/components/common/submit-button";
+import {TranslationFields} from "@/components/menu/translation-fields";
+import {ItemForm} from "@/components/menu/item-form";
+import {VariantForm} from "@/components/menu/variant-form";
 import {Button} from "@/components/ui/button";
 import createMenu from "@/actions/menu/createMenu";
 import {ITEM_KINDS} from "@/constants/item";

@@ -1,4 +1,4 @@
-import itemService from "./item.service";
+import itemService from "@/services/item.service";
 import axios from "@/lib/axios";
 import {ITEM_KINDS} from "@/constants/item";
 

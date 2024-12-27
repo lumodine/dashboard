@@ -3,7 +3,7 @@
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {AnnouncementItem} from "./announcement-item";
+import {AnnouncementItem} from "@/components/announcement/announcement-item";
 import {NotFound} from "@/components/common/error";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import {reOrder} from "@/utils/array";

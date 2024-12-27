@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import "./globals.css";
+import "@/app/globals.css";
 import React, {Suspense} from "react";
 
 export const metadata: Metadata = {

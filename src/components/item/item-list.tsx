@@ -3,8 +3,8 @@
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {toast} from "react-toastify";
 import {useState} from "react";
-import {ProductItem} from "../product/product-item";
-import {SubCategoryItem} from "../subCategory/sub-category-item";
+import {ProductItem} from "@/components/product/product-item";
+import {SubCategoryItem} from "@/components/subCategory/sub-category-item";
 import {CategoryItem} from "@/components/category/category-item";
 import {TagItem} from "@/components/tag/tag-item";
 import {NotFound} from "@/components/common/error";

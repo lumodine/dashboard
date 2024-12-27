@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import {X} from "lucide-react";
-import {TranslationFields} from "./translation-fields";
-import {PriceFields} from "./price-fields";
+import {TranslationFields} from "@/components/menu/translation-fields";
+import {PriceFields} from "@/components/menu/price-fields";
 import {Button} from "@/components/ui/button";
 import {ITEM_KINDS} from "@/constants/item";
 

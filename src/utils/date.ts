@@ -1,4 +1,4 @@
-import {padZero} from "./number";
+import {padZero} from "@/utils/number";
 
 export const formatDate = (date: string) => {
   const dateObj = new Date(date);

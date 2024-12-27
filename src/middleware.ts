@@ -1,6 +1,6 @@
 import type {NextRequest} from "next/server";
 import {NextResponse} from "next/server";
-import tokenService from "./services/token.service";
+import tokenService from "@/services/token.service";
 
 const publicRoutes = ["/reset-password", "/forgot-password"];
 

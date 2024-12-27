@@ -1,6 +1,6 @@
 import {X} from "lucide-react";
-import {TranslationFields} from "./translation-fields";
-import {PriceFields} from "./price-fields";
+import {TranslationFields} from "@/components/menu/translation-fields";
+import {PriceFields} from "@/components/menu/price-fields";
 import {Button} from "@/components/ui/button";
 
 type VariantFormProps = {

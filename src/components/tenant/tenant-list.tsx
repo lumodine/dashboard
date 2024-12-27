@@ -1,6 +1,6 @@
 "use client";
 
-import {TenantItem} from "./tenant-item";
+import {TenantItem} from "@/components/tenant/tenant-item";
 import {NotFound} from "@/components/common/error";
 
 export type TenantListProps = {

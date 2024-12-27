@@ -1,6 +1,6 @@
 "use client";
 
-import {TenantUserItem} from "./tenant-user-item";
+import {TenantUserItem} from "@/components/tenant/tenant-user-item";
 import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 
 export type TenantUserListProps = {

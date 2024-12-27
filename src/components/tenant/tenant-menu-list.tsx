@@ -1,6 +1,6 @@
 "use client";
 
-import {TenantMenuItem} from "./tenant-menu-item";
+import {TenantMenuItem} from "@/components/tenant/tenant-menu-item";
 import {MENUS} from "@/constants/menu";
 
 export type TenantMenuListProps = {

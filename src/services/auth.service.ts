@@ -1,4 +1,4 @@
-import tokenService from "./token.service";
+import tokenService from "@/services/token.service";
 import axios from "@/lib/axios";
 
 const getMe = async () => {
