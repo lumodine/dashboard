@@ -1,10 +1,10 @@
 "use client";
 
-import { Draggable } from "@hello-pangea/dnd";
-import { ChevronsUpDown, Eye, EyeOff, Tag } from "lucide-react";
+import {Draggable} from "@hello-pangea/dnd";
+import {ChevronsUpDown, Eye, EyeOff, Tag} from "lucide-react";
 import Link from "next/link";
-import { toast } from "react-toastify";
-import { Button } from "@/components/ui/button";
+import {toast} from "react-toastify";
+import {Button} from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,10 +12,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useIframeReloadContext } from "@/contexts/iframeReloadContext";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemType from "@/actions/item/updateItemType";
 import updateItemStatus from "@/actions/item/updateItemStatus";
-import { ITEM_TYPES } from "@/constants/item";
+import {ITEM_TYPES} from "@/constants/item";
 
 export type TagItemProps = {
   tenant: any;
@@ -24,8 +24,8 @@ export type TagItemProps = {
   isDragDisabled?: boolean;
 };
 
-export const TagItem = ({ tenant, tag, index, isDragDisabled }: TagItemProps) => {
-  const { reloadIframe } = useIframeReloadContext();
+export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
+  const {reloadIframe} = useIframeReloadContext();
 
   const handleStatus = async (status: string) => {
     const response = await updateItemStatus(tenant._id, tag._id, status);

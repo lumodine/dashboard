@@ -4,7 +4,7 @@ export const PRODUCT_TYPES = [
     name: "Row",
   },
   {
-    key: "grid",
-    name: "Grid",
+    key: "card",
+    name: "Card",
   },
 ];

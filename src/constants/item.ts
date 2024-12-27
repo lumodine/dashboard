@@ -27,21 +27,6 @@ export const ITEM_TYPES = [
   },
 ];
 
-export const ITEM_STATUS = [
-  {
-    key: "hidden",
-    name: "Hide",
-  },
-  {
-    key: "not_available",
-    name: "Temporarily hide",
-  },
-  {
-    key: "published",
-    name: "Make visible",
-  },
-];
-
 export const ITEM_KINDS = {
   CATEGORY: "category",
   SUB_CATEGORY: "sub-category",
