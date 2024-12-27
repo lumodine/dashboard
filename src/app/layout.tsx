@@ -41,7 +41,6 @@ export default function RootLayout({children}: Readonly<RootLayoutProps>) {
           <ToastContainer
             closeOnClick
             draggable
-            pauseOnFocusLoss
             pauseOnHover
             autoClose={3000}
             hideProgressBar={false}
