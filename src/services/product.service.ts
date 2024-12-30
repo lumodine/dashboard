@@ -30,13 +30,13 @@ const create = async (
 const update = async (
   tenantId: string,
   productId: string,
-  category: string,
+  categoryId: string,
   translations: any[],
   prices: any[],
   tags: any[],
 ) => {
   const {data} = await axios.put(`/tenants/${tenantId}/items/products/${productId}`, {
-    category,
+    category: categoryId,
     translations,
     prices,
     tags,
