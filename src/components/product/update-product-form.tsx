@@ -26,19 +26,12 @@ import {ITEM_KINDS} from "@/constants/item";
 
 export type UpdateProductFormProps = {
   tenant: any;
-  categories: any[];
   category: any;
   product: any;
   tags: any[];
 };
 
-export const UpdateProductForm = ({
-  tenant,
-  categories,
-  category,
-  product,
-  tags,
-}: UpdateProductFormProps) => {
+export const UpdateProductForm = ({tenant, category, product, tags}: UpdateProductFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const productVariants = product?.childItems.filter(
@@ -141,10 +134,6 @@ export const UpdateProductForm = ({
     reloadIframe();
   };
 
-  const selectedCategory = categories.find((category: any) =>
-    product.parentItems.find((item: any) => item._id === category._id),
-  );
-
   return (
     <form action={clientAction} className="flex flex-col gap-4">
       {tenant.languages.map((language: any, languageIndex: number) => (
@@ -203,24 +192,6 @@ export const UpdateProductForm = ({
           type="file"
           onChange={handleUploadImage}
         />
-      </div>
-
-      <div className="grid gap-2">
-        <div className="flex items-center">
-          <Label>Category (*)</Label>
-        </div>
-        <Select defaultValue={selectedCategory._id} name="category">
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category: any, categoryIndex: number) => (
-              <SelectItem key={categoryIndex} value={category._id}>
-                {category.translations[0].title}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
       </div>
 
       <div className="grid gap-2">

@@ -3,7 +3,6 @@ import {notFound} from "next/navigation";
 import {Building2, Plus, SquareMenu, TableOfContents} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
-import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {ItemList} from "@/components/item/item-list";
@@ -24,13 +23,13 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, itemId} = await params;
 
-  const [{data: tenant}, {data: category}, {data: items}] = await Promise.all([
+  const [{data: tenant}, {data: items}, {data: item}] = await Promise.all([
     tenantService.getById(tenantId),
-    categoryService.getById(tenantId, itemId),
     itemService.getAll(tenantId, itemId),
+    itemService.getById(tenantId, itemId),
   ]);
 
-  if (!category) {
+  if (!item) {
     return notFound();
   }
 
@@ -38,7 +37,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
     <>
       <Hero
         supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={category.translations[0].title}
+        title={item.translations[0].title}
       />
 
       <AppBreadcrumb
@@ -55,7 +54,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
           },
           {
             icon: TableOfContents,
-            title: category.translations[0].title,
+            title: item.translations[0].title,
           },
         ]}
       />
@@ -69,7 +68,7 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
             </TabsList>
             <TabsContent className="flex flex-col gap-2" value="items">
               <div className="inline-flex gap-2 justify-start items-center">
-                <Link href={`/d/${tenant._id}/menu/${category._id}/create`}>
+                <Link href={`/d/${tenant._id}/menu/${item._id}/create`}>
                   <Button size={"sm"}>
                     <Plus size={14} /> New product
                   </Button>
@@ -80,8 +79,8 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
             </TabsContent>
             <TabsContent value="settings">
               <div className="flex flex-col gap-4">
-                <UpdateCategoryForm category={category} tenant={tenant} />
-                <RemoveCategoryForm category={category} tenant={tenant} />
+                <UpdateCategoryForm category={item} tenant={tenant} />
+                <RemoveCategoryForm category={item} tenant={tenant} />
               </div>
             </TabsContent>
           </Tabs>

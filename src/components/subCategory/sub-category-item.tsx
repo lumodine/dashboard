@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 import {Button} from "@/components/ui/button";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemStatus from "@/actions/item/updateItemStatus";
-import { ITEM_KINDS } from "@/constants/item";
+import {ITEM_KINDS} from "@/constants/item";
 
 export type SubCategoryItemProps = {
   tenant: any;
