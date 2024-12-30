@@ -283,7 +283,7 @@ export const UpdateProductForm = ({
         </div>
         <div className="pl-3 mt-2 flex flex-col gap-2">
           {tenant.currencies.map((currency: any, currencyIndex: number) => {
-            const item = product.prices.find(
+            const item = product?.prices?.find(
               (price: any) => price.currency._id === currency.currency._id,
             );
 

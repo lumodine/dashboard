@@ -7,6 +7,7 @@ import {toast} from "react-toastify";
 import {Button} from "@/components/ui/button";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 import updateItemStatus from "@/actions/item/updateItemStatus";
+import { ITEM_KINDS } from "@/constants/item";
 
 export type SubCategoryItemProps = {
   tenant: any;
@@ -22,6 +23,10 @@ export const SubCategoryItem = ({
   isDragDisabled,
 }: SubCategoryItemProps) => {
   const {reloadIframe} = useIframeReloadContext();
+
+  const category = subCategory.parentItems.find(
+    (parentItem: any) => parentItem.kind === ITEM_KINDS.CATEGORY,
+  );
 
   const handleStatus = async (status: string) => {
     const response = await updateItemStatus(tenant._id, subCategory._id, status);
@@ -56,7 +61,7 @@ export const SubCategoryItem = ({
             )}
             <Link
               className="flex-1 w-full flex flex-col gap-1 items-start"
-              href={`/d/${tenant._id}/menu/${subCategory._id}`}
+              href={`/d/${tenant._id}/menu/${category._id}/${subCategory._id}`}
             >
               <b>{subCategory.translations[0].title}</b>
             </Link>
