@@ -2,7 +2,6 @@
 
 import {toast} from "react-toastify";
 import {Plus} from "lucide-react";
-import {Checkbox} from "@/components/ui/checkbox";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {SubmitButton} from "@/components/common/submit-button";
@@ -65,16 +64,6 @@ export const CreateTagForm = ({tenant, colors}: CreateTagFormProps) => {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="flex items-center space-x-2">
-        <Checkbox id="isShowInMenu" name="isShowInMenu" />
-        <Label
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          htmlFor="isShowInMenu"
-        >
-          Show in menu
-        </Label>
       </div>
 
       <ColorRadioGroup colors={colors} />

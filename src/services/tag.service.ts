@@ -10,31 +10,18 @@ const getById = async (tenantId: string, tagId: string) => {
   return await itemService.getById(tenantId, tagId, ITEM_KINDS.TAG);
 };
 
-const create = async (
-  tenantId: string,
-  translations: any[],
-  isShowInMenu: boolean,
-  color: string,
-) => {
+const create = async (tenantId: string, translations: any[], color: string) => {
   const {data} = await axios.post(`/tenants/${tenantId}/items/tags`, {
     translations,
-    isShowInMenu,
     color,
   });
 
   return data;
 };
 
-const update = async (
-  tenantId: string,
-  tagId: string,
-  translations: any[],
-  isShowInMenu: boolean,
-  color: string,
-) => {
+const update = async (tenantId: string, tagId: string, translations: any[], color: string) => {
   const {data} = await axios.put(`/tenants/${tenantId}/items/tags/${tagId}`, {
     translations,
-    isShowInMenu,
     color,
   });
 
