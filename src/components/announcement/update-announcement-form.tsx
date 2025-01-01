@@ -18,7 +18,12 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateAnnouncement(tenant._id, announcement._id, formData);
+    const response = await updateAnnouncement(
+      tenant._id,
+      tenant.languages,
+      announcement._id,
+      formData,
+    );
 
     if (response.message) {
       toast(response.message, {
@@ -31,15 +36,6 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title (*)</Label>

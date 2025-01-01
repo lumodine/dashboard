@@ -2,8 +2,7 @@
 import {redirect} from "next/navigation";
 import tenantBranchService from "@/services/tenantBranch.service";
 
-export default async function (tenantId: string, formData: FormData) {
-  const languages = formData.getAll("languages") as string[];
+export default async function (tenantId: string, languages: any[], formData: FormData) {
   const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
   const address = formData.get("address") as string;
@@ -16,7 +15,7 @@ export default async function (tenantId: string, formData: FormData) {
 
   for (const i in languages) {
     translations.push({
-      language: languages[i],
+      language: languages[i].language._id,
       title: titles[i],
       description: descriptions[i],
     });

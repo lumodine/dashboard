@@ -18,7 +18,12 @@ export const UpdateTenantBranchForm = ({tenant, tenantBranch}: UpdateTenantBranc
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateTenantBranch(tenant._id, tenantBranch._id, formData);
+    const response = await updateTenantBranch(
+      tenant._id,
+      tenant.languages,
+      tenantBranch._id,
+      formData,
+    );
 
     if (response.message) {
       toast(response.message, {
@@ -31,15 +36,6 @@ export const UpdateTenantBranchForm = ({tenant, tenantBranch}: UpdateTenantBranc
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title (*)</Label>

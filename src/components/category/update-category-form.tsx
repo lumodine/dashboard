@@ -24,7 +24,7 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateCategory(tenant._id, category._id, formData);
+    const response = await updateCategory(tenant._id, tenant.languages, category._id, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -70,15 +70,6 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="flex flex-col gap-2 justify-center items-center">
         <div className="relative w-[100px] h-[100px] cursor-pointer group">
           <Label

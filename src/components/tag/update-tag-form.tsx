@@ -20,7 +20,7 @@ export const UpdateTagForm = ({tenant, tag, colors}: UpdateTagFormProps) => {
   const {reloadIframe} = useIframeReloadContext();
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateTag(tenant._id, tag._id, formData);
+    const response = await updateTag(tenant._id, tenant.languages, tag._id, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -33,15 +33,6 @@ export const UpdateTagForm = ({tenant, tag, colors}: UpdateTagFormProps) => {
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title (*)</Label>

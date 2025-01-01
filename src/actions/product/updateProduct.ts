@@ -4,24 +4,23 @@ import productService from "@/services/product.service";
 
 export default async function (
   tenantId: string,
+  languages: any[],
+  currencies: any[],
+  otherTags: any[],
   categoryId: string,
   productId: string,
   formData: FormData,
 ) {
-  const languages = formData.getAll("languages") as string[];
   const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
 
-  const currencies = formData.getAll("currencies") as string[];
   const amounts = formData.getAll("amounts") as string[];
-
-  const tags = formData.getAll("tags") as string[];
 
   const translations = [];
 
   for (const i in languages) {
     translations.push({
-      language: languages[i],
+      language: languages[i].language._id,
       title: titles[i],
       description: descriptions[i],
     });
@@ -31,7 +30,7 @@ export default async function (
 
   for (const i in currencies) {
     prices.push({
-      currency: currencies[i],
+      currency: currencies[i].currency._id,
       amount: amounts[i],
     });
   }
@@ -42,7 +41,7 @@ export default async function (
     categoryId,
     translations,
     prices,
-    tags,
+    otherTags,
   );
 
   if (response.success) {

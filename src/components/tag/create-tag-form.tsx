@@ -15,7 +15,7 @@ export type CreateTagFormProps = {
 
 export const CreateTagForm = ({tenant, colors}: CreateTagFormProps) => {
   const clientAction = async (formData: FormData) => {
-    const response = await createTag(tenant._id, formData);
+    const response = await createTag(tenant._id, tenant.languages, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -26,15 +26,6 @@ export const CreateTagForm = ({tenant, colors}: CreateTagFormProps) => {
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title (*)</Label>

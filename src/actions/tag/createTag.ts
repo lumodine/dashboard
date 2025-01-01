@@ -2,8 +2,7 @@
 import {redirect} from "next/navigation";
 import tagService from "@/services/tag.service";
 
-export default async function (tenantId: string, formData: FormData) {
-  const languages = formData.getAll("languages") as string[];
+export default async function (tenantId: string, languages: any[], formData: FormData) {
   const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
   const color = formData.get("color") as string;
@@ -12,7 +11,7 @@ export default async function (tenantId: string, formData: FormData) {
 
   for (const i in languages) {
     translations.push({
-      language: languages[i],
+      language: languages[i].language._id,
       title: titles[i],
       description: descriptions[i],
     });

@@ -90,7 +90,15 @@ export const UpdateProductForm = ({tenant, category, product, tags}: UpdateProdu
   };
 
   const clientAction = async (formData: FormData) => {
-    const response = await updateProduct(tenant._id, category._id, product._id, formData);
+    const response = await updateProduct(
+      tenant._id,
+      tenant.languages,
+      tenant.currencies,
+      otherTags,
+      category._id,
+      product._id,
+      formData,
+    );
 
     if (response.message) {
       toast(response.message, {
@@ -136,23 +144,6 @@ export const UpdateProductForm = ({tenant, category, product, tags}: UpdateProdu
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-      {tenant.currencies.map((currency: any, currencyIndex: number) => (
-        <Input
-          key={currencyIndex}
-          defaultValue={currency.currency._id}
-          name="currencies"
-          type="hidden"
-        />
-      ))}
-
       <div className="flex flex-col gap-2 justify-center items-center">
         <div className="relative w-[100px] h-[100px] cursor-pointer group">
           <Label
@@ -314,7 +305,6 @@ export const UpdateProductForm = ({tenant, category, product, tags}: UpdateProdu
               key={tagIndex}
               className="flex justify-between items-center gap-3 p-2 border rounded-lg"
             >
-              <Input defaultValue={tag._id} name="tags" type="hidden" />
               <div className="flex gap-2 items-center">
                 <div className={`rounded-full bg-primary w-3 h-3 theme-${tag.theme?.color}`} />
                 <Tag className="inline-block" size={16} /> <b>{tag.translations[0].title}</b>

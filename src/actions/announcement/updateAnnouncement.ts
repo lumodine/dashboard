@@ -2,8 +2,12 @@
 import {revalidatePath} from "next/cache";
 import announcementService from "@/services/announcement.service";
 
-export default async function (tenantId: string, announcementId: string, formData: FormData) {
-  const languages = formData.getAll("languages") as string[];
+export default async function (
+  tenantId: string,
+  languages: any[],
+  announcementId: string,
+  formData: FormData,
+) {
   const titles = formData.getAll("titles") as string[];
   const descriptions = formData.getAll("descriptions") as string[];
 
@@ -11,7 +15,7 @@ export default async function (tenantId: string, announcementId: string, formDat
 
   for (const i in languages) {
     translations.push({
-      language: languages[i],
+      language: languages[i].language._id,
       title: titles[i],
       description: descriptions[i],
     });

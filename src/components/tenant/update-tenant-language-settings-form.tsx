@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
@@ -55,8 +54,12 @@ export const UpdateTenantLanguageSettingsForm = ({
   const [addableLanguages, setAddableLanguages] = useState<any[]>(_addableLanguages);
   const [newLanguageId, setNewLanguageId] = useState<string>();
 
-  const clientAction = async (formData: FormData) => {
-    const response = await updateTenantLanguageSettings(tenant._id, formData);
+  const clientAction = async () => {
+    const response = await updateTenantLanguageSettings(
+      tenant._id,
+      defaultLanguage,
+      otherLanguages,
+    );
 
     if (response.message) {
       toast(response.message, {
@@ -125,8 +128,6 @@ export const UpdateTenantLanguageSettingsForm = ({
 
   return (
     <form action={clientAction} className="w-full flex flex-col gap-4">
-      <Input defaultValue={defaultLanguage._id} name="defaultLanguage" type="hidden" />
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label htmlFor="defaultLanguage">Default language</Label>
@@ -170,7 +171,6 @@ export const UpdateTenantLanguageSettingsForm = ({
               key={languageIndex}
               className="flex justify-between items-center gap-3 p-2 border rounded-lg"
             >
-              <Input defaultValue={language._id} name="otherLanguages" type="hidden" />
               <div className="flex gap-2 items-center">
                 <Button
                   size={"sm"}

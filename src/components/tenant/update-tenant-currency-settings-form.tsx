@@ -13,7 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
 import {NotFound} from "@/components/common/error";
 import updateTenantCurrencySettings from "@/actions/tenant/updateTenantCurrencySettings";
 import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
@@ -55,8 +54,12 @@ export const UpdateTenantCurrencySettingsForm = ({
   const [addableCurrencies, setAddableCurrencies] = useState<any[]>(_addableCurrencies);
   const [newCurrencyId, setNewCurrencyId] = useState<string>();
 
-  const clientAction = async (formData: FormData) => {
-    const response = await updateTenantCurrencySettings(tenant._id, formData);
+  const clientAction = async () => {
+    const response = await updateTenantCurrencySettings(
+      tenant._id,
+      defaultCurrency,
+      otherCurrencies,
+    );
 
     if (response.message) {
       toast(response.message, {
@@ -125,8 +128,6 @@ export const UpdateTenantCurrencySettingsForm = ({
 
   return (
     <form action={clientAction} className="w-full flex flex-col gap-4">
-      <Input defaultValue={defaultCurrency._id} name="defaultCurrency" type="hidden" />
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label htmlFor="defaultCurrency">Default currency</Label>
@@ -170,7 +171,6 @@ export const UpdateTenantCurrencySettingsForm = ({
               key={currencyIndex}
               className="flex justify-between items-center gap-3 p-2 border rounded-lg"
             >
-              <Input defaultValue={currency._id} name="otherCurrencies" type="hidden" />
               <div className="flex gap-2 items-center">
                 <Button
                   size={"sm"}

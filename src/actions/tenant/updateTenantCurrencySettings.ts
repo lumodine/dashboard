@@ -2,20 +2,17 @@
 
 import tenantService from "@/services/tenant.service";
 
-export default async function (tenantId: string, formData: FormData) {
-  const defaultCurrency = formData.get("defaultCurrency") as string;
-  const otherCurrencies = formData.getAll("otherCurrencies") as string[];
-
-  let currencies = [
+export default async function (tenantId: string, defaultCurrency: any, otherCurrencies: any[]) {
+  let currencies: any[] = [
     {
-      currency: defaultCurrency,
+      currency: defaultCurrency._id,
       isDefault: true,
     },
   ];
 
   for (const otherCurrency of otherCurrencies) {
     currencies.push({
-      currency: otherCurrency,
+      currency: otherCurrency._id,
       isDefault: false,
     });
   }

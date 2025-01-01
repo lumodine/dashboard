@@ -13,7 +13,7 @@ export type CreateTenantBranchFormProps = {
 
 export const CreateTenantBranchForm = ({tenant}: CreateTenantBranchFormProps) => {
   const clientAction = async (formData: FormData) => {
-    const response = await createTenantBranch(tenant._id, formData);
+    const response = await createTenantBranch(tenant._id, tenant.languages, formData);
 
     if (response.message) {
       toast(response.message, {
@@ -24,15 +24,6 @@ export const CreateTenantBranchForm = ({tenant}: CreateTenantBranchFormProps) =>
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">
-      {tenant.languages.map((language: any, languageIndex: number) => (
-        <Input
-          key={languageIndex}
-          defaultValue={language.language._id}
-          name="languages"
-          type="hidden"
-        />
-      ))}
-
       <div className="grid gap-2">
         <div className="flex items-center">
           <Label>Title (*)</Label>
