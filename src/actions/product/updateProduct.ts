@@ -6,8 +6,6 @@ export default async function (
   tenantId: string,
   languages: any[],
   currencies: any[],
-  otherTags: any[],
-  categoryId: string,
   productId: string,
   formData: FormData,
 ) {
@@ -35,14 +33,7 @@ export default async function (
     });
   }
 
-  const response = await productService.update(
-    tenantId,
-    productId,
-    categoryId,
-    translations,
-    prices,
-    otherTags,
-  );
+  const response = await productService.update(tenantId, productId, translations, prices);
 
   if (response.success) {
     revalidatePath("/", "layout");

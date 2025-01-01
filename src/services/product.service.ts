@@ -10,19 +10,10 @@ const getById = async (tenantId: string, productId: string) => {
   return await itemService.getById(tenantId, productId, ITEM_KINDS.PRODUCT);
 };
 
-const update = async (
-  tenantId: string,
-  productId: string,
-  categoryId: string,
-  translations: any[],
-  prices: any[],
-  tags: any[],
-) => {
+const update = async (tenantId: string, productId: string, translations: any[], prices: any[]) => {
   const {data} = await axios.put(`/tenants/${tenantId}/items/products/${productId}`, {
-    category: categoryId,
     translations,
     prices,
-    tags,
   });
 
   return data;

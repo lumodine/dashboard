@@ -45,6 +45,7 @@ export default function RootLayout({children}: Readonly<RootLayoutProps>) {
             autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
+            pauseOnFocusLoss={false}
             position={"bottom-center"}
             rtl={false}
             theme="colored"
