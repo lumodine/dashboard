@@ -17,10 +17,7 @@ export default async function TenantCreateMenuPage({params}: TenantCreateMenuPag
 
   return (
     <>
-      <Hero
-        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
-        title={"Add menu items"}
-      />
+      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Create menu"} />
 
       <AppBreadcrumb
         items={[
@@ -36,7 +33,7 @@ export default async function TenantCreateMenuPage({params}: TenantCreateMenuPag
           },
           {
             icon: TableOfContents,
-            title: "Add menu items",
+            title: "Create menu",
           },
         ]}
       />

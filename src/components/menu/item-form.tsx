@@ -25,7 +25,7 @@ export const ItemForm = ({
   onUpdatePrice,
 }: ItemFormProps) => {
   return (
-    <div className="ml-8 p-4 border rounded-lg relative">
+    <div className="p-4 border rounded-lg relative">
       <Button
         className="absolute right-2 top-2"
         size="icon"

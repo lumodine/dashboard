@@ -3,10 +3,9 @@ import Link from "next/link";
 import {notFound} from "next/navigation";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
-import {CreateProductForm} from "@/components/product/create-product-form";
-import categoryService from "@/services/category.service";
 import tenantService from "@/services/tenant.service";
-import tagService from "@/services/tag.service";
+import {CreateSubMenuForm} from "@/components/menu/create-sub-menu-form";
+import itemService from "@/services/item.service";
 
 type TenantMenuCreateSubItemPageProps = {
   params: Promise<{
@@ -20,19 +19,21 @@ export default async function TenantMenuCreateSubItemPage({
 }: TenantMenuCreateSubItemPageProps) {
   const {tenantId, itemId} = await params;
 
-  const [{data: tenant}, {data: category}, {data: tags}] = await Promise.all([
+  const [{data: tenant}, {data: item}] = await Promise.all([
     tenantService.getById(tenantId),
-    categoryService.getById(tenantId, itemId),
-    tagService.getAll(tenantId),
+    itemService.getById(tenantId, itemId),
   ]);
 
-  if (!category) {
+  if (!item) {
     return notFound();
   }
 
   return (
     <>
-      <Hero supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>} title={"Add product"} />
+      <Hero
+        supTitle={<Link href={`/d/${tenant._id}`}>{tenant.name}</Link>}
+        title={"Create sub menu"}
+      />
 
       <AppBreadcrumb
         items={[
@@ -48,18 +49,18 @@ export default async function TenantMenuCreateSubItemPage({
           },
           {
             icon: TableOfContents,
-            title: category.translations[0].title,
-            href: `/d/${tenantId}/menu/${category._id}`,
+            title: item.translations[0].title,
+            href: `/d/${tenantId}/menu/${item._id}`,
           },
           {
             icon: Box,
-            title: "Add product",
+            title: "Create sub menu",
           },
         ]}
       />
 
       <section className="container">
-        <CreateProductForm category={category} tags={tags} tenant={tenant} />
+        <CreateSubMenuForm itemId={itemId} tenant={tenant} />
       </section>
     </>
   );

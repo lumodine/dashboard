@@ -10,23 +10,6 @@ const getById = async (tenantId: string, productId: string) => {
   return await itemService.getById(tenantId, productId, ITEM_KINDS.PRODUCT);
 };
 
-const create = async (
-  tenantId: string,
-  categoryId: string,
-  translations: any[],
-  prices: any[],
-  tags: any[],
-) => {
-  const {data} = await axios.post(`/tenants/${tenantId}/items/products`, {
-    category: categoryId,
-    translations,
-    prices,
-    tags,
-  });
-
-  return data;
-};
-
 const update = async (
   tenantId: string,
   productId: string,
@@ -71,7 +54,6 @@ const removeImage = async (tenantId: string, productId: string) => {
 export default {
   getAll,
   getById,
-  create,
   update,
   remove,
   uploadImage,
