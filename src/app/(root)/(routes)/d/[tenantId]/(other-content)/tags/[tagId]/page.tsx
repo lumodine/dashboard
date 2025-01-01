@@ -63,7 +63,7 @@ export default async function TenantTagDetailPage({params}: TenantTagDetailPageP
             <UpdateTagForm colors={colors} tag={tag} tenant={tenant} />
             <RemoveTagForm tag={tag} tenant={tenant} />
           </div>
-          <TenantIframe path={`/tags/${tagId}`} tenant={tenant} />
+          <TenantIframe path={`/${tagId}`} tenant={tenant} />
         </TenantIframeGroup>
       </section>
     </>
