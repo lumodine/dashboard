@@ -40,6 +40,10 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
       parentItem.kind === ITEM_KINDS.CATEGORY || parentItem.kind === ITEM_KINDS.TAG,
   );
 
+  if (!category) {
+    return null;
+  }
+
   const handleType = async (type: string) => {
     const response = await updateItemType(tenant._id, product._id, type);
 

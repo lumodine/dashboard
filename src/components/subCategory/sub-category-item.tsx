@@ -29,6 +29,10 @@ export const SubCategoryItem = ({
       parentItem.kind === ITEM_KINDS.CATEGORY || parentItem.kind === ITEM_KINDS.TAG,
   );
 
+  if (!category) {
+    return null;
+  }
+
   const handleStatus = async (status: string) => {
     const response = await updateItemStatus(tenant._id, subCategory._id, status);
 
