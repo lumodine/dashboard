@@ -36,7 +36,8 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
   const {reloadIframe} = useIframeReloadContext();
 
   const category = product.parentItems.find(
-    (parentItem: any) => parentItem.kind === ITEM_KINDS.CATEGORY,
+    (parentItem: any) =>
+      parentItem.kind === ITEM_KINDS.CATEGORY || parentItem.kind === ITEM_KINDS.TAG,
   );
 
   const handleType = async (type: string) => {

@@ -12,6 +12,9 @@ import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
 import itemService from "@/services/item.service";
 import {Button} from "@/components/ui/button";
+import {ITEM_KINDS} from "@/constants/item";
+import {UpdateTagForm} from "@/components/tag/update-tag-form";
+import {RemoveTagForm} from "@/components/tag/remove-tag-form";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -23,15 +26,16 @@ type TenantMenuProductsPageProps = {
 export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
   const {tenantId, itemId} = await params;
 
-  const [{data: tenant}, {data: items}, {data: item}] = await Promise.all([
-    tenantService.getById(tenantId),
-    itemService.getAll(tenantId, itemId),
-    itemService.getById(tenantId, itemId),
-  ]);
+  const {data: item} = await itemService.getById(tenantId, itemId);
 
   if (!item) {
     return notFound();
   }
+
+  const [{data: tenant}, {data: items}] = await Promise.all([
+    tenantService.getById(tenantId),
+    itemService.getAll(tenantId, itemId),
+  ]);
 
   return (
     <>
@@ -79,8 +83,18 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
             </TabsContent>
             <TabsContent value="settings">
               <div className="flex flex-col gap-4">
-                <UpdateCategoryForm category={item} tenant={tenant} />
-                <RemoveCategoryForm category={item} tenant={tenant} />
+                {item.kind === ITEM_KINDS.CATEGORY && (
+                  <>
+                    <UpdateCategoryForm category={item} tenant={tenant} />
+                    <RemoveCategoryForm category={item} tenant={tenant} />
+                  </>
+                )}
+                {item.kind === ITEM_KINDS.TAG && (
+                  <>
+                    <UpdateTagForm colors={[]} tag={item} tenant={tenant} />
+                    <RemoveTagForm tag={item} tenant={tenant} />
+                  </>
+                )}
               </div>
             </TabsContent>
           </Tabs>

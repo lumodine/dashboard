@@ -25,7 +25,8 @@ export const SubCategoryItem = ({
   const {reloadIframe} = useIframeReloadContext();
 
   const category = subCategory.parentItems.find(
-    (parentItem: any) => parentItem.kind === ITEM_KINDS.CATEGORY,
+    (parentItem: any) =>
+      parentItem.kind === ITEM_KINDS.CATEGORY || parentItem.kind === ITEM_KINDS.TAG,
   );
 
   const handleStatus = async (status: string) => {
