@@ -2,6 +2,7 @@
 
 import {Plus, Save, Tag, Trash} from "lucide-react";
 import {useState} from "react";
+import {toast} from "react-toastify";
 import {SubmitButton} from "@/components/common/submit-button";
 import {NotFound} from "@/components/common/error";
 import {Button} from "@/components/ui/button";
@@ -12,6 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import updateProductTags from "@/actions/product/updateProductTags";
+import {useIframeReloadContext} from "@/contexts/iframeReloadContext";
 
 export type UpdateProductTagsFormProps = {
   tenant: any;
@@ -19,7 +22,9 @@ export type UpdateProductTagsFormProps = {
   tags: any[];
 };
 
-export const UpdateProductTagsForm = ({product, tags}: UpdateProductTagsFormProps) => {
+export const UpdateProductTagsForm = ({tenant, product, tags}: UpdateProductTagsFormProps) => {
+  const {reloadIframe} = useIframeReloadContext();
+
   const _productTags = tags?.filter((tag) =>
     product.parentItems.some((productTag: any) => productTag._id === tag._id),
   );
@@ -71,7 +76,17 @@ export const UpdateProductTagsForm = ({product, tags}: UpdateProductTagsFormProp
     setNewTagId("");
   };
 
-  const clientAction = async () => {};
+  const clientAction = async () => {
+    const response = await updateProductTags(tenant._id, product._id, otherTags);
+
+    if (response.message) {
+      toast(response.message, {
+        type: response.success ? "success" : "error",
+      });
+    }
+
+    reloadIframe();
+  };
 
   return (
     <form action={clientAction} className="flex flex-col gap-4">

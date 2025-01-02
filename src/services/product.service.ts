@@ -19,6 +19,14 @@ const update = async (tenantId: string, productId: string, translations: any[], 
   return data;
 };
 
+const updateTags = async (tenantId: string, productId: string, tags: string[]) => {
+  const {data} = await axios.put(`/tenants/${tenantId}/items/products/${productId}/tags`, {
+    tags,
+  });
+
+  return data;
+};
+
 const remove = async (tenantId: string, productId: string) => {
   const {data} = await axios.delete(`/tenants/${tenantId}/items/products/${productId}`);
 
@@ -46,6 +54,7 @@ export default {
   getAll,
   getById,
   update,
+  updateTags,
   remove,
   uploadImage,
   removeImage,
