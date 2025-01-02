@@ -23,10 +23,17 @@ type TenantMenuProductsPageProps = {
     itemId: string;
     subItemId: string;
   }>;
+  searchParams: Promise<{
+    tab?: string;
+  }>;
 };
 
-export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
+export default async function TenantMenuProductsPage({
+  params,
+  searchParams,
+}: TenantMenuProductsPageProps) {
   const {tenantId, itemId, subItemId} = await params;
+  const {tab} = await searchParams;
 
   const [{data: tenant}, {data: item}, {data: subItem}, {data: tags}] = await Promise.all([
     tenantService.getById(tenantId),
@@ -46,6 +53,8 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
       (childItem: any) => childItem.kind === ITEM_KINDS.PRODUCT_VARIANT,
     );
   }
+
+  const basePath = `/d/${tenant._id}/menu/${item._id}/${subItem._id}`;
 
   return (
     <>
@@ -82,11 +91,17 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
         <TenantIframeGroup>
           <div className="w-full">
             {subItem.kind === ITEM_KINDS.PRODUCT && (
-              <Tabs className="w-full" defaultValue="general">
+              <Tabs className="w-full" defaultValue={tab || "general"}>
                 <TabsList>
-                  <TabsTrigger value="general">General</TabsTrigger>
-                  <TabsTrigger value="tags">Tags</TabsTrigger>
-                  <TabsTrigger value="variants">Variants</TabsTrigger>
+                  <TabsTrigger asChild value="general">
+                    <Link href={basePath}>General</Link>
+                  </TabsTrigger>
+                  <TabsTrigger asChild value="tags">
+                    <Link href={`${basePath}?tab=tags`}>Tags</Link>
+                  </TabsTrigger>
+                  <TabsTrigger asChild value="variants">
+                    <Link href={`${basePath}?tab=variants`}>Variants</Link>
+                  </TabsTrigger>
                 </TabsList>
                 <TabsContent className="flex flex-col gap-4" value="general">
                   <UpdateProductForm product={subItem} tenant={tenant} />

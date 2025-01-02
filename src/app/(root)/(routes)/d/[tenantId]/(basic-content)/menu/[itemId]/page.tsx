@@ -21,10 +21,17 @@ type TenantMenuProductsPageProps = {
     tenantId: string;
     itemId: string;
   }>;
+  searchParams: Promise<{
+    tab?: string;
+  }>;
 };
 
-export default async function TenantMenuProductsPage({params}: TenantMenuProductsPageProps) {
+export default async function TenantMenuProductsPage({
+  params,
+  searchParams,
+}: TenantMenuProductsPageProps) {
   const {tenantId, itemId} = await params;
+  const {tab} = await searchParams;
 
   const {data: item} = await itemService.getById(tenantId, itemId);
 
@@ -36,6 +43,8 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
     tenantService.getById(tenantId),
     itemService.getAll(tenantId, itemId),
   ]);
+
+  const basePath = `/d/${tenant._id}/menu/${item._id}`;
 
   return (
     <>
@@ -65,10 +74,14 @@ export default async function TenantMenuProductsPage({params}: TenantMenuProduct
 
       <section className="container">
         <TenantIframeGroup>
-          <Tabs className="w-full" defaultValue="items">
+          <Tabs className="w-full" defaultValue={tab || "items"}>
             <TabsList>
-              <TabsTrigger value="items">Items</TabsTrigger>
-              <TabsTrigger value="settings">Settings</TabsTrigger>
+              <TabsTrigger asChild value="items">
+                <Link href={basePath}>Items</Link>
+              </TabsTrigger>
+              <TabsTrigger asChild value="settings">
+                <Link href={`${basePath}?tab=settings`}>Settings</Link>
+              </TabsTrigger>
             </TabsList>
             <TabsContent className="flex flex-col gap-2" value="items">
               <div className="inline-flex gap-2 justify-start items-center">

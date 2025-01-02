@@ -8,8 +8,18 @@ import {UpdateUserInfoForm} from "@/components/user/update-user-info-form";
 import {UpdateUserEmailForm} from "@/components/user/update-user-email-form";
 import {UpdateUserPasswordForm} from "@/components/user/update-user-password-form";
 
-export default async function MyAccountPage() {
+type MyAccountPageProps = {
+  searchParams: Promise<{
+    tab?: string;
+  }>;
+};
+
+export default async function MyAccountPage({searchParams}: MyAccountPageProps) {
+  const {tab} = await searchParams;
+
   const {data: user} = await authService.getMe();
+
+  const basePath = `/d/my-account`;
 
   return (
     <>
@@ -28,11 +38,17 @@ export default async function MyAccountPage() {
       />
 
       <section className="container">
-        <Tabs defaultValue="info">
+        <Tabs defaultValue={tab || "info"}>
           <TabsList>
-            <TabsTrigger value="info">Information</TabsTrigger>
-            <TabsTrigger value="email">Email</TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
+            <TabsTrigger asChild value="info">
+              <Link href={basePath}>Information</Link>
+            </TabsTrigger>
+            <TabsTrigger asChild value="email">
+              <Link href={`${basePath}?tab=email`}>Email</Link>
+            </TabsTrigger>
+            <TabsTrigger asChild value="password">
+              <Link href={`${basePath}?tab=password`}>Password</Link>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="info">
             <UpdateUserInfoForm user={user} />

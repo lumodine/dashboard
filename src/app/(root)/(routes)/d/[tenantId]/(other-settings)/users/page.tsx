@@ -12,14 +12,21 @@ type TenantUsersPageProps = {
   params: Promise<{
     tenantId: string;
   }>;
+  searchParams: Promise<{
+    tab?: string;
+  }>;
 };
 
-export default async function TenantUsersPage({params}: TenantUsersPageProps) {
+export default async function TenantUsersPage({params, searchParams}: TenantUsersPageProps) {
   const {tenantId} = await params;
+  const {tab} = await searchParams;
+
   const [{data: tenant}, {data: users}] = await Promise.all([
     tenantService.getById(tenantId),
     userService.getAll(tenantId),
   ]);
+
+  const basePath = `/d/${tenant._id}/users`;
 
   return (
     <>
@@ -44,15 +51,19 @@ export default async function TenantUsersPage({params}: TenantUsersPageProps) {
       />
 
       <section className="container">
-        <Tabs className="w-full" defaultValue="users">
+        <Tabs className="w-full" defaultValue={tab || "users"}>
           <TabsList>
-            <TabsTrigger value="users">Users</TabsTrigger>
-            <TabsTrigger value="create-user">Add user</TabsTrigger>
+            <TabsTrigger asChild value="users">
+              <Link href={basePath}>Users</Link>
+            </TabsTrigger>
+            <TabsTrigger asChild value="add-user">
+              <Link href={`${basePath}?tab=add-user`}>Add user</Link>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="users">
             <TenantUserList tenant={tenant} users={users} />
           </TabsContent>
-          <TabsContent value="create-user">
+          <TabsContent value="add-user">
             <TenantUserCreateForm tenant={tenant} />
           </TabsContent>
         </Tabs>
