@@ -15,6 +15,7 @@ import {Button} from "@/components/ui/button";
 import {ITEM_KINDS} from "@/constants/item";
 import {UpdateTagForm} from "@/components/tag/update-tag-form";
 import {RemoveTagForm} from "@/components/tag/remove-tag-form";
+import themeService from "@/services/theme.service";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -39,9 +40,10 @@ export default async function TenantMenuProductsPage({
     return notFound();
   }
 
-  const [{data: tenant}, {data: items}] = await Promise.all([
+  const [{data: tenant}, {data: items}, {data: colors}] = await Promise.all([
     tenantService.getById(tenantId),
     itemService.getAll(tenantId, itemId),
+    item.kind === ITEM_KINDS.TAG && themeService.getAllColors(),
   ]);
 
   const basePath = `/d/${tenant._id}/menu/${item._id}`;
@@ -104,7 +106,7 @@ export default async function TenantMenuProductsPage({
                 )}
                 {item.kind === ITEM_KINDS.TAG && (
                   <>
-                    <UpdateTagForm colors={[]} tag={item} tenant={tenant} />
+                    <UpdateTagForm colors={colors} tag={item} tenant={tenant} />
                     <RemoveTagForm tag={item} tenant={tenant} />
                   </>
                 )}
