@@ -32,7 +32,7 @@ export const AppBreadcrumb = ({items}: AppBreadcrumbProps) => {
   return (
     <section className="container py-2">
       <Breadcrumb>
-        <BreadcrumbList>
+        <BreadcrumbList key={"breadcrumb-list"}>
           {items.map((item: any, itemIndex: number) => {
             const isLast = count === itemIndex;
 
