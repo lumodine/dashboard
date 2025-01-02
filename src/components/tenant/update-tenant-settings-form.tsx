@@ -35,7 +35,9 @@ export const UpdateTenantSettingsForm = ({tenant}: UpdateTenantSettingsFormProps
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

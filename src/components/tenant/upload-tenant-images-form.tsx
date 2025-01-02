@@ -39,7 +39,9 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleUploadBackground = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +62,9 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveLogo = async () => {
@@ -72,7 +76,9 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveBackground = async () => {
@@ -84,7 +90,9 @@ export const UploadTenantImagesForm = ({tenant}: UploadTenantImagesFormProps) =>
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

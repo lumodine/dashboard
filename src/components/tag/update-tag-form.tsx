@@ -28,7 +28,9 @@ export const UpdateTagForm = ({tenant, tag, colors}: UpdateTagFormProps) => {
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

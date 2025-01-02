@@ -24,7 +24,9 @@ export const UpdateTenantSocialMediaForm = ({tenant}: UpdateTenantSocialMediaFor
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const findSocialMediaByType = (type: string) => {

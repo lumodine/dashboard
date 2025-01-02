@@ -43,7 +43,9 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleType = async (type: string) => {
@@ -55,7 +57,9 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +80,9 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveImage = async () => {
@@ -88,7 +94,9 @@ export const CategoryItem = ({tenant, category, index, isDragDisabled}: Category
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

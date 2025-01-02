@@ -36,7 +36,9 @@ export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleType = async (type: string) => {
@@ -48,7 +50,9 @@ export const TagItem = ({tenant, tag, index, isDragDisabled}: TagItemProps) => {
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

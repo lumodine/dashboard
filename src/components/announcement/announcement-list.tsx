@@ -48,7 +48,9 @@ export const AnnouncementList = ({tenant, announcements}: AnnouncementListProps)
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

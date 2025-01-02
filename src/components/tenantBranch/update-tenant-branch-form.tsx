@@ -31,7 +31,9 @@ export const UpdateTenantBranchForm = ({tenant, tenantBranch}: UpdateTenantBranc
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

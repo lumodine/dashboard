@@ -67,7 +67,9 @@ export const UpdateTenantLanguageSettingsForm = ({
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const removeLanguage = (language: any) => {

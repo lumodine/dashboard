@@ -24,7 +24,9 @@ export const UpdateTenantThemeColorForm = ({tenant, colors}: UpdateTenantThemeCo
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

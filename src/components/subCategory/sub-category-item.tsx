@@ -42,7 +42,9 @@ export const SubCategoryItem = ({
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

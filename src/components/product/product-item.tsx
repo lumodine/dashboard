@@ -53,7 +53,9 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleStatus = async (status: string) => {
@@ -65,7 +67,9 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +90,9 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveImage = async () => {
@@ -98,7 +104,9 @@ export const ProductItem = ({tenant, product, index, isDragDisabled}: ProductIte
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

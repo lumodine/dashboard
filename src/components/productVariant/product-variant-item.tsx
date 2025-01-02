@@ -24,7 +24,9 @@ export const ProductVariantItem = ({tenant, variant}: ProductVariantItemProps) =
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

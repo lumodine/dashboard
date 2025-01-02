@@ -38,7 +38,9 @@ export const UpdateProductForm = ({tenant, product}: UpdateProductFormProps) => 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +61,9 @@ export const UpdateProductForm = ({tenant, product}: UpdateProductFormProps) => 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveImage = async () => {
@@ -71,7 +75,9 @@ export const UpdateProductForm = ({tenant, product}: UpdateProductFormProps) => 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

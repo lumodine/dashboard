@@ -31,7 +31,9 @@ export const UpdateAnnouncementForm = ({tenant, announcement}: UpdateAnnouncemen
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

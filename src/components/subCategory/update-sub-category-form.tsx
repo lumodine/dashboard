@@ -31,7 +31,9 @@ export const UpdateSubCategoryForm = ({tenant, subCategory}: UpdateSubCategoryFo
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

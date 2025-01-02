@@ -26,7 +26,9 @@ export const AnnouncementItem = ({tenant, announcement, index}: AnnouncementItem
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

@@ -54,7 +54,9 @@ export const ItemList = ({tenant, items, isDropDisabled, isDragDisabled}: ItemLi
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

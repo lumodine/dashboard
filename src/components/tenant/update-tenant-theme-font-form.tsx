@@ -24,7 +24,9 @@ export const UpdateTenantThemeFontForm = ({tenant, fonts}: UpdateTenantThemeFont
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

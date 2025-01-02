@@ -32,7 +32,9 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +55,9 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   const handleRemoveImage = async () => {
@@ -65,7 +69,9 @@ export const UpdateCategoryForm = ({tenant, category}: UpdateCategoryFormProps) 
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

@@ -31,7 +31,9 @@ export const UpdateTenantThemeLayoutForm = ({tenant}: UpdateTenantThemeLayoutFor
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (

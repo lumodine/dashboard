@@ -85,7 +85,9 @@ export const UpdateProductTagsForm = ({tenant, product, tags}: UpdateProductTags
       });
     }
 
-    reloadIframe();
+    if (response.success) {
+      reloadIframe();
+    }
   };
 
   return (
