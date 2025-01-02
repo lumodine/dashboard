@@ -10,11 +10,11 @@ const getById = async (tenantId: string, productVariantId: string) => {
   return await itemService.getById(tenantId, productVariantId, ITEM_KINDS.PRODUCT_VARIANT);
 };
 
-const create = async (tenantId: string, productId: string, translations: any[], prices: any[]) => {
+const create = async (tenantId: string, itemId: string, subItemId: string, items: any[]) => {
   const {data} = await axios.post(`/tenants/${tenantId}/items/product-variants`, {
-    productId,
-    translations,
-    prices,
+    itemId,
+    subItemId,
+    items,
   });
 
   return data;

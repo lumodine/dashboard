@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {Box, Building2, SquareMenu, TableOfContents} from "lucide-react";
+import {Box, Building2, Plus, SquareMenu, TableOfContents} from "lucide-react";
 import {AppBreadcrumb} from "@/components/common/breadcrumb";
 import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
@@ -16,6 +16,7 @@ import {RemoveSubCategoryForm} from "@/components/subCategory/remove-sub-categor
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {UpdateProductTagsForm} from "@/components/product/update-product-tags-form";
 import {ProductVariantList} from "@/components/productVariant/product-variant-list";
+import {Button} from "@/components/ui/button";
 
 type TenantMenuProductsPageProps = {
   params: Promise<{
@@ -111,7 +112,15 @@ export default async function TenantMenuProductsPage({
                   <UpdateProductTagsForm product={subItem} tags={tags} tenant={tenant} />
                 </TabsContent>
                 <TabsContent value="variants">
-                  <ProductVariantList tenant={tenant} variants={variants} />
+                  <div className="flex flex-col gap-2">
+                    <Link href={`${basePath}/create`}>
+                      <Button size={"sm"}>
+                        <Plus size={14} /> Create variants
+                      </Button>
+                    </Link>
+
+                    <ProductVariantList tenant={tenant} variants={variants} />
+                  </div>
                 </TabsContent>
               </Tabs>
             )}

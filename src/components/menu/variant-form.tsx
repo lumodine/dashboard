@@ -21,7 +21,7 @@ export const VariantForm = ({
   onUpdatePrice,
 }: VariantFormProps) => {
   return (
-    <div className="ml-4 p-4 border rounded-lg relative">
+    <div className="p-4 border rounded-lg relative">
       <Button
         className="absolute right-2 top-2"
         size="icon"
