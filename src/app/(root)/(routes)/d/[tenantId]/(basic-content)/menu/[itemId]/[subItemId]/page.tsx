@@ -119,7 +119,12 @@ export default async function TenantMenuProductsPage({
                       </Button>
                     </Link>
 
-                    <ProductVariantList tenant={tenant} variants={variants} />
+                    <ProductVariantList
+                      category={item}
+                      product={subItem}
+                      tenant={tenant}
+                      variants={variants}
+                    />
                   </div>
                 </TabsContent>
               </Tabs>
