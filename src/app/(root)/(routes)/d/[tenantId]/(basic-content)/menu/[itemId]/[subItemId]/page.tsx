@@ -112,7 +112,7 @@ export default async function TenantMenuProductsPage({
                   <UpdateProductTagsForm product={subItem} tags={tags} tenant={tenant} />
                 </TabsContent>
                 <TabsContent value="variants">
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 justify-start items-start">
                     <Link href={`${basePath}/create`}>
                       <Button size={"sm"}>
                         <Plus size={14} /> Create variants

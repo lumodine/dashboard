@@ -10,7 +10,7 @@ export type ProductVariantListProps = {
 
 export const ProductVariantList = ({tenant, variants}: ProductVariantListProps) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       {variants?.length === 0 && <NotFound title="You have not added any variants. Add one now." />}
 
       {variants?.map((variant: any, variantIndex: number) => (
