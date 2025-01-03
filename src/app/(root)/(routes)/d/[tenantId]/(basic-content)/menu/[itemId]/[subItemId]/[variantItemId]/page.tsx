@@ -6,7 +6,6 @@ import {Hero} from "@/components/common/hero";
 import tenantService from "@/services/tenant.service";
 import {TenantIframeGroup} from "@/components/tenant/tenant-iframe-group";
 import {TenantIframe} from "@/components/tenant/tenant-iframe";
-import tagService from "@/services/tag.service";
 import itemService from "@/services/item.service";
 import {RemoveProductVariantForm} from "@/components/productVariant/remove-product-variant-form";
 import {UpdateProductVariantForm} from "@/components/productVariant/update-product-variant-form";
@@ -25,14 +24,12 @@ export default async function TenantMenuProductVariantPage({
 }: TenantMenuProductVariantPageProps) {
   const {tenantId, itemId, subItemId, variantItemId} = await params;
 
-  const [{data: tenant}, {data: item}, {data: subItem}, {data: tags}, {data: variant}] =
-    await Promise.all([
-      tenantService.getById(tenantId),
-      itemService.getById(tenantId, itemId),
-      itemService.getById(tenantId, subItemId),
-      tagService.getAll(tenantId),
-      itemService.getById(tenantId, variantItemId),
-    ]);
+  const [{data: tenant}, {data: item}, {data: subItem}, {data: variant}] = await Promise.all([
+    tenantService.getById(tenantId),
+    itemService.getById(tenantId, itemId),
+    itemService.getById(tenantId, subItemId),
+    itemService.getById(tenantId, variantItemId),
+  ]);
 
   if (!item || !subItem || !variant) {
     return notFound();
