@@ -7,10 +7,31 @@ on:
       - main
 
 jobs:
+  check:
+    name: Lint & Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Build application
+        run: npm run build
+
   deploy:
     name: Deploy
+    needs: check
     runs-on: ubuntu-latest
-
     steps:
       - name: Connect SSH and Deploy Project
         uses: appleboy/ssh-action@v1.2.0
