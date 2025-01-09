@@ -8,7 +8,7 @@ export const Footer = () => {
   const year = startYear === currentYear ? startYear : `${startYear}-${currentYear}`;
 
   return (
-    <footer className="my-12">
+    <footer className="py-12">
       <div className="container flex flex-col items-center justify-center gap-6">
         <p className="text-xs">
           &copy; {year} &#x2022;{" "}
